@@ -1,10 +1,13 @@
-import { Typography, Alert } from "antd";
+"use client";
+
+import { Typography, Alert, Grid, Button } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import LevelBadge from "./LevelBadge";
 import ApiTag from "./ApiTag";
 import type { Level } from "@/lib/constants";
 
 const { Title, Paragraph, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const GITHUB_BASE =
   "https://github.com/malakasandakalw/react-learning-platform-by-malaka/blob/main";
@@ -26,18 +29,24 @@ export default function PageIntro({
   apiUsed,
   sourcePath,
 }: Props) {
+  const screens = useBreakpoint();
+  const isMobile = screens.md === false;
+
   return (
     <div style={{ marginBottom: 32 }}>
+      {/* Title row */}
       <div
         style={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "flex-start" : "center",
           justifyContent: "space-between",
-          marginBottom: 8,
+          gap: isMobile ? 12 : 0,
+          marginBottom: 12,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Title level={2} style={{ margin: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+          <Title level={isMobile ? 3 : 2} style={{ margin: 0 }}>
             {title}
           </Title>
           <LevelBadge level={level} size="large" />
@@ -45,19 +54,28 @@ export default function PageIntro({
         </div>
 
         {sourcePath && (
-          <a
+          <Button
+            icon={<GithubOutlined />}
             href={`${GITHUB_BASE}/${sourcePath}`}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#555" }}
+            style={{
+              background: "#24292f",
+              color: "#fff",
+              borderColor: "#24292f",
+              fontWeight: 600,
+              fontSize: 13,
+              flexShrink: 0,
+            }}
           >
-            <GithubOutlined />
-            View source
-          </a>
+            {isMobile ? "View Source" : "View Source on GitHub"}
+          </Button>
         )}
       </div>
 
-      <Paragraph style={{ fontSize: 15, marginBottom: 16 }}>{description}</Paragraph>
+      <Paragraph style={{ fontSize: isMobile ? 14 : 15, marginBottom: 16 }}>
+        {description}
+      </Paragraph>
 
       <Alert
         type="info"
@@ -66,7 +84,7 @@ export default function PageIntro({
         description={
           <ul style={{ margin: "4px 0 0 0", paddingLeft: 20 }}>
             {teaches.map((item, i) => (
-              <li key={i} style={{ marginBottom: 2, fontSize: 12 }}>
+              <li key={i} style={{ marginBottom: 2, fontSize: 13 }}>
                 {item}
               </li>
             ))}
@@ -82,20 +100,25 @@ export default function PageIntro({
         description={
           <span style={{ fontSize: 13, lineHeight: 1.7 }}>
             The demo above shows <em>what</em> this concept does. As a developer, you learn by
-            reading <em>how</em> it is built. Open this page&apos;s source file and read through
-            every line before moving on.{" "}
+            reading <em>how</em> it is built.{" "}
             {sourcePath ? (
               <>
+                Open{" "}
                 <a href={`${GITHUB_BASE}/${sourcePath}`} target="_blank" rel="noopener noreferrer">
                   <Text code style={{ fontSize: 12 }}>
                     {sourcePath}
                   </Text>
-                </a>
+                </a>{" "}
+                and read every line before moving on.
               </>
             ) : (
-              <Text code style={{ fontSize: 12 }}>
-                app/[section]/[hook]/[level]/page.tsx
-              </Text>
+              <>
+                Open{" "}
+                <Text code style={{ fontSize: 12 }}>
+                  app/[section]/[hook]/[level]/page.tsx
+                </Text>{" "}
+                and read every line before moving on.
+              </>
             )}
           </span>
         }

@@ -3,6 +3,7 @@
 import { Card, Col, Row, Typography } from "antd";
 import Link from "next/link";
 import { ArrowRightOutlined } from "@ant-design/icons";
+import LevelDot from "@/components/shared/LevelDot";
 
 const { Title, Paragraph } = Typography;
 
@@ -80,14 +81,22 @@ export default function HooksIndexPage() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    gap: 4,
+                    gap: 5,
                     fontSize: 12,
                     color: "rgba(0,0,0,0.65)",
                   }}
                 >
-                  <span>Easy: {hook.easy}</span>
-                  <span>Medium: {hook.medium}</span>
-                  <span>Advanced: {hook.advanced}</span>
+                  {(["easy", "medium", "advanced"] as const).map((lvl, i) => (
+                    <span key={lvl} style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                      <LevelDot level={lvl} size={6} />
+                      <span>
+                        <strong style={{ fontWeight: 500 }}>
+                          {["Easy", "Medium", "Advanced"][i]}:
+                        </strong>{" "}
+                        {[hook.easy, hook.medium, hook.advanced][i]}
+                      </span>
+                    </span>
+                  ))}
                 </div>
                 <div
                   style={{

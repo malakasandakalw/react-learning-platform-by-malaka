@@ -39,7 +39,7 @@ export default function CustomHooksIndexPage() {
             api: "DummyJSON",
           },
         ].map((item) => (
-          <Col xs={24} md={8} key={item.level}>
+          <Col xs={24} sm={12} lg={8} key={item.level}>
             <Link href={`/custom-hooks/${item.level}`} style={{ textDecoration: "none" }}>
               <Card
                 hoverable

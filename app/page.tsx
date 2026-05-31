@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, Col, Divider, Row, Typography, Space } from "antd";
+import { Card, Col, Divider, Grid, Row, Typography, Space } from "antd";
 import {
   BookOutlined,
   ThunderboltOutlined,
@@ -18,6 +18,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const { Paragraph, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const MODULES = [
   {
@@ -108,25 +109,43 @@ const MODULES = [
 ];
 
 export default function HomePage() {
+  const screens = useBreakpoint();
+  const isMobile = screens.sm === false;
+
   return (
     <div style={{ background: "#fff", minHeight: "100vh" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 40px" }}>
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: isMobile ? "32px 16px" : "60px 40px",
+        }}
+      >
         {/* Header */}
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: isMobile ? 32 : 48 }}>
           <Image
             src="/logo.png"
             alt="React Learning Hub by Malaka"
             width={260}
             height={72}
             style={{
+              width: isMobile ? 180 : 260,
+              height: "auto",
               objectFit: "contain",
               objectPosition: "left",
-              marginBottom: 20,
+              marginBottom: 16,
               display: "block",
             }}
             priority
           />
-          <Paragraph style={{ fontSize: 15, color: "rgba(0,0,0,0.65)", maxWidth: 560, margin: 0 }}>
+          <Paragraph
+            style={{
+              fontSize: isMobile ? 14 : 15,
+              color: "rgba(0,0,0,0.65)",
+              maxWidth: 560,
+              margin: 0,
+            }}
+          >
             A structured, code-first learning platform for modern React development. Each concept is
             broken into Easy, Medium, and Advanced examples, all backed by real APIs.
           </Paragraph>
@@ -135,17 +154,26 @@ export default function HomePage() {
         {/* Decision Guide: prominent link */}
         <Link
           href="/decision-guide"
-          style={{ textDecoration: "none", display: "block", marginBottom: 40 }}
+          style={{ textDecoration: "none", display: "block", marginBottom: 32 }}
         >
           <Card
             hoverable
             style={{ borderColor: "#1677ff", background: "#e6f4ff" }}
-            styles={{ body: { padding: "16px 20px" } }}
+            styles={{ body: { padding: "14px 16px" } }}
           >
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <CompassOutlined style={{ fontSize: 22, color: "#1677ff" }} />
-                <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: 12,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 12, minWidth: 0 }}>
+                <CompassOutlined
+                  style={{ fontSize: 20, color: "#1677ff", flexShrink: 0, marginTop: 2 }}
+                />
+                <div style={{ minWidth: 0 }}>
                   <Text strong style={{ fontSize: 14, color: "#1677ff", display: "block" }}>
                     When to use what? Decision Guide
                   </Text>
@@ -155,7 +183,9 @@ export default function HomePage() {
                   </Text>
                 </div>
               </div>
-              <ArrowRightOutlined style={{ color: "#1677ff", fontSize: 14 }} />
+              <ArrowRightOutlined
+                style={{ color: "#1677ff", fontSize: 14, flexShrink: 0, marginTop: 3 }}
+              />
             </div>
           </Card>
         </Link>

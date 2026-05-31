@@ -19,6 +19,13 @@ export const LEVEL_COLORS: Record<Level, string> = {
   advanced: "geekblue",
 };
 
+// Hex colours used for the coloured dot indicator next to level labels
+export const LEVEL_DOT_COLORS: Record<Level, string> = {
+  easy: "#52c41a",
+  medium: "#fa8c16",
+  advanced: "#f5222d",
+};
+
 export const MODULES = {
   hooks: {
     key: "hooks",

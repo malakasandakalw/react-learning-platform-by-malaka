@@ -43,7 +43,7 @@ export default function ReduxIndexPage() {
       </div>
       <Row gutter={[20, 20]}>
         {LEVELS.map((item) => (
-          <Col xs={24} md={8} key={item.level}>
+          <Col xs={24} sm={12} lg={8} key={item.level}>
             <Link href={item.path} style={{ textDecoration: "none" }}>
               <Card
                 hoverable
