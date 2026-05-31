@@ -9,17 +9,7 @@
 // useMemo gives you a STABLE reference that only changes when the content actually changes.
 
 import { memo, useMemo, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Statistic,
-  Tag,
-  Typography,
-  Space,
-  Divider,
-} from "antd";
+import { Button, Card, Col, Row, Statistic, Tag, Typography, Space, Divider } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -54,10 +44,23 @@ const StatsPanel = memo(function StatsPanel({
         <Tag title={`Rendered ${renderCount} times`}>{renderCount}</Tag>
       </div>
       <Row gutter={8}>
-        <Col span={12}><Statistic title="Total" value={stats.total} styles={{ content: { fontSize: 20 } }} /></Col>
-        <Col span={12}><Statistic title="Average" value={stats.average} precision={1} styles={{ content: { fontSize: 20 } }} /></Col>
-        <Col span={12}><Statistic title="Max" value={stats.max} styles={{ content: { fontSize: 20 } }} /></Col>
-        <Col span={12}><Statistic title="Min" value={stats.min} styles={{ content: { fontSize: 20 } }} /></Col>
+        <Col span={12}>
+          <Statistic title="Total" value={stats.total} styles={{ content: { fontSize: 20 } }} />
+        </Col>
+        <Col span={12}>
+          <Statistic
+            title="Average"
+            value={stats.average}
+            precision={1}
+            styles={{ content: { fontSize: 20 } }}
+          />
+        </Col>
+        <Col span={12}>
+          <Statistic title="Max" value={stats.max} styles={{ content: { fontSize: 20 } }} />
+        </Col>
+        <Col span={12}>
+          <Statistic title="Min" value={stats.min} styles={{ content: { fontSize: 20 } }} />
+        </Col>
       </Row>
     </div>
   );
@@ -82,12 +85,15 @@ export default function UseMemoAdvancedPage() {
 
   // ✓ GOOD: useMemo returns the SAME object reference until scores changes.
   // React.memo on StatsPanel will see the same reference → skips re-render.
-  const memoizedStats = useMemo((): Stats => ({
-    total: scores.reduce((a, b) => a + b, 0),
-    average: scores.reduce((a, b) => a + b, 0) / scores.length,
-    max: Math.max(...scores),
-    min: Math.min(...scores),
-  }), [scores]); // [scores]: only recompute if the scores array changes
+  const memoizedStats = useMemo(
+    (): Stats => ({
+      total: scores.reduce((a, b) => a + b, 0),
+      average: scores.reduce((a, b) => a + b, 0) / scores.length,
+      max: Math.max(...scores),
+      min: Math.min(...scores),
+    }),
+    [scores]
+  ); // [scores]: only recompute if the scores array changes
   renderCounts.memoized += 1;
 
   return (
@@ -142,9 +148,7 @@ export default function UseMemoAdvancedPage() {
 
       <Card style={{ marginTop: 24, borderRadius: 12 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-          <Text>
-            Click to trigger a parent re-render without changing scores:
-          </Text>
+          <Text>Click to trigger a parent re-render without changing scores:</Text>
           <Button onClick={() => setUnrelatedCount((c) => c + 1)}>
             Unrelated click #{unrelatedCount}
           </Button>

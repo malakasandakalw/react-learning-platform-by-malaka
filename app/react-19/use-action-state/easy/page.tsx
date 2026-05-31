@@ -10,16 +10,7 @@
 // actionFn receives (currentState, payload) and returns the next state.
 
 import { useActionState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Statistic,
-  Tag,
-  Typography,
-  Space,
-} from "antd";
+import { Button, Card, Col, Row, Statistic, Tag, Typography, Space } from "antd";
 import { PlusOutlined, MinusOutlined, ReloadOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -73,10 +64,7 @@ export default function UseActionStateEasyPage() {
         <Col xs={24} lg={12}>
           <Card title="Counter (useActionState)" style={{ borderRadius: 12 }}>
             <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
-              <Statistic
-                value={state.count}
-                styles={{ content: { fontSize: 72 } }}
-              />
+              <Statistic value={state.count} styles={{ content: { fontSize: 72 } }} />
 
               <Space>
                 <Button
@@ -103,7 +91,9 @@ export default function UseActionStateEasyPage() {
               </Space>
 
               <div>
-                <Text type="secondary" style={{ fontSize: 12 }}>Last action: </Text>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  Last action:{" "}
+                </Text>
                 <Tag color="green">{state.lastAction}</Tag>
               </div>
             </Space>
@@ -114,9 +104,19 @@ export default function UseActionStateEasyPage() {
           <Card
             title="useActionState anatomy"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Define the action:</div>
               <div style={{ color: "#569cd6" }}>async function action(state, payload) {"{"}</div>
               <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>await saveToServer();</div>
@@ -125,13 +125,31 @@ export default function UseActionStateEasyPage() {
               <br />
               <div style={{ color: "#6a9955" }}>// In component:</div>
               <div style={{ color: "#d4d4d4" }}>const [state, dispatch, isPending]</div>
-              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>= useActionState(action, initial);</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>
+                = useActionState(action, initial);
+              </div>
               <br />
               <div style={{ color: "#6a9955" }}>// Dispatch:</div>
-              <div style={{ color: "#dcdcaa" }}>dispatch("increment")  <span style={{ color: "#d4d4d4" }}>← payload</span></div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
-                <div>count: <span style={{ color: "#b5cea8" }}>{state.count}</span></div>
-                <div>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
+              <div style={{ color: "#dcdcaa" }}>
+                dispatch("increment") <span style={{ color: "#d4d4d4" }}>← payload</span>
+              </div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 10px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
+                <div>
+                  count: <span style={{ color: "#b5cea8" }}>{state.count}</span>
+                </div>
+                <div>
+                  isPending:{" "}
+                  <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>
+                    {String(isPending)}
+                  </span>
+                </div>
               </div>
             </div>
           </Card>

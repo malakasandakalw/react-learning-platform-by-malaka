@@ -5,18 +5,8 @@
 // A production error boundary: shows error details, provides a retry button,
 // tracks retry attempts, and resets by remounting via the key prop.
 
-import { Component, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Typography,
-  Space,
-  Tag,
-  Statistic,
-  Alert,
-} from "antd";
+import { Component, useState, useSyncExternalStore } from "react";
+import { Button, Card, Col, Row, Typography, Space, Tag, Statistic, Alert } from "antd";
 import {
   ReloadOutlined,
   WarningOutlined,
@@ -82,12 +72,7 @@ class RetryableErrorBoundary extends Component<
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 {canRetry ? (
-                  <Button
-                    size="small"
-                    icon={<ReloadOutlined />}
-                    onClick={this.handleRetry}
-                    danger
-                  >
+                  <Button size="small" icon={<ReloadOutlined />} onClick={this.handleRetry} danger>
                     Retry ({maxRetries - this.state.retries} left)
                   </Button>
                 ) : (
@@ -109,9 +94,26 @@ class RetryableErrorBoundary extends Component<
 }
 
 // ─── Flaky component that fails randomly ─────────────────────────────────────
-function FlakyDataWidget({ attemptCount }: { attemptCount: number }) {
-  // Fails 60% of the time to demonstrate retry
-  if (attemptCount <= 3 && Math.random() < 0.6) {
+// shouldFail is pre-computed in the parent's event handler so Math.random() never
+// runs during render (React Compiler requires pure render functions).
+function FlakyDataWidget({
+  attemptCount,
+  shouldFail,
+}: {
+  attemptCount: number;
+  shouldFail: boolean;
+}) {
+  // Returns false on the server so the throw never happens during SSR prerendering,
+  // where Error Boundaries don't exist to catch it.
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+
+  if (!mounted) return null;
+
+  if (shouldFail) {
     throw new Error(`Network timeout on attempt ${attemptCount + 1}`);
   }
 
@@ -129,9 +131,13 @@ function FlakyDataWidget({ attemptCount }: { attemptCount: number }) {
 export default function ErrorBoundaryMediumPage() {
   const [attempt, setAttempt] = useState(0);
   const [boundaryKey, setBoundaryKey] = useState(0);
+  // Start as true so the error boundary is visible immediately on load.
+  // Randomised on each retry inside the event handler (Math.random in render is banned).
+  const [shouldFail, setShouldFail] = useState(true);
 
   function handleReset() {
     setAttempt((a) => a + 1);
+    setShouldFail(Math.random() < 0.6);
   }
 
   return (
@@ -163,18 +169,18 @@ export default function ErrorBoundaryMediumPage() {
               This component randomly throws. Keep clicking Retry until it succeeds.
             </Text>
 
-            <RetryableErrorBoundary
-              key={boundaryKey}
-              onReset={handleReset}
-              maxRetries={5}
-            >
-              <FlakyDataWidget attemptCount={attempt} />
+            <RetryableErrorBoundary key={boundaryKey} onReset={handleReset} maxRetries={5}>
+              <FlakyDataWidget attemptCount={attempt} shouldFail={shouldFail} />
             </RetryableErrorBoundary>
 
             <Button
               size="small"
               style={{ marginTop: 16 }}
-              onClick={() => { setAttempt(0); setBoundaryKey((k) => k + 1); }}
+              onClick={() => {
+                setAttempt(0);
+                setBoundaryKey((k) => k + 1);
+                setShouldFail(true);
+              }}
             >
               Reset Everything
             </Button>
@@ -183,10 +189,7 @@ export default function ErrorBoundaryMediumPage() {
 
         <Col xs={24} lg={10}>
           <Card style={{ borderRadius: 12 }}>
-            <Statistic
-              title="Current attempt"
-              value={attempt + 1}
-            />
+            <Statistic title="Current attempt" value={attempt + 1} />
           </Card>
         </Col>
       </Row>

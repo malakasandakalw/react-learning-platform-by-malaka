@@ -7,18 +7,7 @@
 // so the user keeps their focus and the input stays responsive.
 
 import { useState, useTransition, useEffect } from "react";
-import {
-  Avatar,
-  Card,
-  Col,
-  Input,
-  List,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Badge,
-} from "antd";
+import { Avatar, Card, Col, Input, List, Row, Spin, Tag, Typography, Badge } from "antd";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { getUsers } from "@/services/jsonPlaceholder";
 import type { User } from "@/types/user";
@@ -85,33 +74,40 @@ export default function UseTransitionMediumPage() {
 
             <div style={{ minHeight: 200 }}>
               {isPending ? (
-                <div style={{ display: "flex", alignItems: "center", gap: 8, padding: 16, color: "#9ca3af" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: 16,
+                    color: "#9ca3af",
+                  }}
+                >
                   <Spin size="small" />
                   <Text type="secondary">Updating results...</Text>
                 </div>
+              ) : results.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "32px 0", color: "#9ca3af" }}>
+                  {searchQuery ? "No users found" : "Start typing to search"}
+                </div>
               ) : (
-                {results.length === 0 ? (
-                  <div style={{ textAlign: "center", padding: "32px 0", color: "#9ca3af" }}>
-                    {searchQuery ? "No users found" : "Start typing to search"}
-                  </div>
-                ) : (
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {results.map((user) => (
-                      <List.Item key={user.id}>
-                        <List.Item.Meta
-                          avatar={<Avatar icon={<UserOutlined />} />}
-                          title={user.name}
-                          description={
-                            <span>
-                              <Text type="secondary">{user.email}</Text>
-                              {" · "}<Tag>{user.address.city}</Tag>
-                            </span>
-                          }
-                        />
-                      </List.Item>
-                    ))}
-                  </ul>
-                )}
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {results.map((user) => (
+                    <List.Item key={user.id}>
+                      <List.Item.Meta
+                        avatar={<Avatar icon={<UserOutlined />} />}
+                        title={user.name}
+                        description={
+                          <span>
+                            <Text type="secondary">{user.email}</Text>
+                            {" · "}
+                            <Tag>{user.address.city}</Tag>
+                          </span>
+                        }
+                      />
+                    </List.Item>
+                  ))}
+                </ul>
               )}
             </div>
           </Card>
@@ -121,7 +117,10 @@ export default function UseTransitionMediumPage() {
           <Card
             title="State Split"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div style={{ color: "#6a9955" }}>// Updates IMMEDIATELY (urgent):</div>
@@ -129,14 +128,18 @@ export default function UseTransitionMediumPage() {
                 <span style={{ color: "#569cd6" }}>inputValue: </span>
                 <span style={{ color: "#ce9178" }}>&quot;{inputValue}&quot;</span>
               </div>
-              <div style={{ marginTop: 8, color: "#6a9955" }}>// Updates in TRANSITION (deferred):</div>
+              <div style={{ marginTop: 8, color: "#6a9955" }}>
+                // Updates in TRANSITION (deferred):
+              </div>
               <div>
                 <span style={{ color: "#569cd6" }}>searchQuery: </span>
                 <span style={{ color: "#b5cea8" }}>&quot;{searchQuery}&quot;</span>
               </div>
               <div>
                 <span style={{ color: "#569cd6" }}>isPending: </span>
-                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
               </div>
               <div>
                 <span style={{ color: "#569cd6" }}>results: </span>

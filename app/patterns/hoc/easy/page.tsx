@@ -7,17 +7,7 @@
 // but HOCs are still used when you need to inject props or wrap a component in a decorator.
 
 import { useState, useEffect, ComponentType } from "react";
-import {
-  Card,
-  Col,
-  Row,
-  Spin,
-  Typography,
-  Space,
-  Tag,
-  Avatar,
-  Alert,
-} from "antd";
+import { Card, Col, Row, Spin, Typography, Space, Tag, Avatar, Alert } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import type { User } from "@/types/user";
 import { getUsers } from "@/services/jsonPlaceholder";
@@ -29,16 +19,16 @@ const { Text } = Typography;
 // ─── withLoading HOC ──────────────────────────────────────────────────────────
 // Takes any component and wraps it: when loading=true, shows a spinner instead.
 // The wrapped component receives all original props minus loading.
-function withLoading<P extends object>(
-  WrappedComponent: ComponentType<P>
-) {
+function withLoading<P extends object>(WrappedComponent: ComponentType<P>) {
   // Returns a NEW component with an extra `loading` prop
   function WithLoadingComponent(props: P & { loading: boolean }) {
     const { loading, ...rest } = props;
 
     if (loading) {
       return (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: 40 }}>
+        <div
+          style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: 40 }}
+        >
           <Spin size="large" />
         </div>
       );
@@ -58,11 +48,24 @@ function UserList({ users }: { users: User[] }) {
   return (
     <div>
       {users.slice(0, 5).map((user) => (
-        <div key={user.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px solid #f5f5f5" }}>
+        <div
+          key={user.id}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "8px 0",
+            borderBottom: "1px solid #f5f5f5",
+          }}
+        >
           <Avatar icon={<UserOutlined />} />
           <div>
-            <Text strong style={{ fontSize: 13 }}>{user.name}</Text>
-            <Text type="secondary" style={{ fontSize: 12, display: "block" }}>{user.email}</Text>
+            <Text strong style={{ fontSize: 13 }}>
+              {user.name}
+            </Text>
+            <Text type="secondary" style={{ fontSize: 12, display: "block" }}>
+              {user.email}
+            </Text>
           </div>
         </div>
       ))}
@@ -78,9 +81,7 @@ function withError<P extends object>(WrappedComponent: ComponentType<P>) {
   function WithErrorComponent(props: P & { error: string | null }) {
     const { error, ...rest } = props;
     if (error) {
-      return (
-        <Alert type="error" title={error} showIcon style={{ borderRadius: 8 }} />
-      );
+      return <Alert type="error" title={error} showIcon style={{ borderRadius: 8 }} />;
     }
     return <WrappedComponent {...(rest as P)} />;
   }
@@ -129,7 +130,9 @@ export default function HocEasyPage() {
           <Card title="withError(withLoading(UserList))" style={{ borderRadius: 12 }}>
             <Space style={{ marginBottom: 12 }}>
               <Tag style={{ fontSize: 11 }}>loading={String(loading)}</Tag>
-              <Tag color={error ? "error" : "default"} style={{ fontSize: 11 }}>error={String(!!error)}</Tag>
+              <Tag color={error ? "error" : "default"} style={{ fontSize: 11 }}>
+                error={String(!!error)}
+              </Tag>
             </Space>
             {/* Composed HOCs: error check first, then loading, then content */}
             <UserListEnhanced users={users} loading={loading} error={error} />

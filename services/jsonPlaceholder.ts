@@ -29,9 +29,7 @@ export async function getPostsByUser(userId: number): Promise<Post[]> {
   return res.json();
 }
 
-export async function createPost(
-  post: Omit<Post, "id">
-): Promise<Post> {
+export async function createPost(post: Omit<Post, "id">): Promise<Post> {
   const res = await fetch(`${BASE}/posts`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -40,10 +38,7 @@ export async function createPost(
   return res.json();
 }
 
-export async function updatePost(
-  id: number,
-  post: Partial<Post>
-): Promise<Post> {
+export async function updatePost(id: number, post: Partial<Post>): Promise<Post> {
   const res = await fetch(`${BASE}/posts/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -66,9 +61,7 @@ export async function getTodosByUser(userId: number): Promise<Todo[]> {
   return res.json();
 }
 
-export async function createTodo(
-  todo: Omit<Todo, "id">
-): Promise<Todo> {
+export async function createTodo(todo: Omit<Todo, "id">): Promise<Todo> {
   const res = await fetch(`${BASE}/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

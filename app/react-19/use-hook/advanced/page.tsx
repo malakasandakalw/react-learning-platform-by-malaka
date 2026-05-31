@@ -10,17 +10,7 @@
 // resolves instantly (no re-fetch, no spinner). New items trigger Suspense.
 
 import { use, Suspense, useState, useTransition } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Descriptions,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Space,
-} from "antd";
+import { Button, Card, Col, Descriptions, Row, Spin, Tag, Typography, Space } from "antd";
 import { API_URLS } from "@/lib/constants";
 import type { User } from "@/types/user";
 import PageIntro from "@/components/shared/PageIntro";
@@ -130,26 +120,53 @@ export default function UseHookAdvancedPage() {
           <Card
             title="Cache State"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Promise cache:</div>
               <div>
-                {loadedIds.length === 0
-                  ? <span style={{ color: "#d4d4d4" }}>No cached promises yet</span>
-                  : loadedIds.map((id) => (
+                {loadedIds.length === 0 ? (
+                  <span style={{ color: "#d4d4d4" }}>No cached promises yet</span>
+                ) : (
+                  loadedIds.map((id) => (
                     <div key={id}>
                       <span style={{ color: "#b5cea8" }}>{id}</span>
                       <span style={{ color: "#d4d4d4" }}> → Promise (resolved)</span>
                       {id === selectedId && <span style={{ color: "#b5cea8" }}> ← viewing</span>}
                     </div>
                   ))
-                }
+                )}
               </div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
-                <div style={{ color: "#569cd6" }}>selected: <span style={{ color: "#b5cea8" }}>{selectedId}</span></div>
-                <div style={{ color: "#569cd6" }}>cached: <span style={{ color: "#b5cea8" }}>{loadedIds.length}</span></div>
-                <div style={{ color: "#569cd6" }}>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 10px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
+                <div style={{ color: "#569cd6" }}>
+                  selected: <span style={{ color: "#b5cea8" }}>{selectedId}</span>
+                </div>
+                <div style={{ color: "#569cd6" }}>
+                  cached: <span style={{ color: "#b5cea8" }}>{loadedIds.length}</span>
+                </div>
+                <div style={{ color: "#569cd6" }}>
+                  isPending:{" "}
+                  <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>
+                    {String(isPending)}
+                  </span>
+                </div>
               </div>
             </div>
           </Card>

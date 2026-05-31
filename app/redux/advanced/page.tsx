@@ -23,11 +23,7 @@ import {
   Statistic,
   Typography,
 } from "antd";
-import {
-  ShoppingCartOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToCart, removeFromCart, updateQuantity, clearCart } from "@/store/slices/cartSlice";
 import { getProducts } from "@/services/dummyJson";
@@ -78,7 +74,9 @@ export default function ReduxAdvancedPage() {
         <Col xs={24} lg={15}>
           <Card title="Products" style={{ borderRadius: 12 }}>
             {loadingProducts ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : (
               <Row gutter={[12, 12]}>
                 {products.map((product) => {
@@ -94,13 +92,20 @@ export default function ReduxAdvancedPage() {
                           transition: "all 0.2s",
                         }}
                       >
-                        <Avatar src={product.thumbnail} size={40} shape="square" style={{ borderRadius: 6, marginBottom: 6 }} />
-                        <Text strong style={{ display: "block", fontSize: 11, marginBottom: 2 }} ellipsis>
+                        <Avatar
+                          src={product.thumbnail}
+                          size={40}
+                          shape="square"
+                          style={{ borderRadius: 6, marginBottom: 6 }}
+                        />
+                        <Text
+                          strong
+                          style={{ display: "block", fontSize: 11, marginBottom: 2 }}
+                          ellipsis
+                        >
                           {product.title}
                         </Text>
-                        <Text style={{ fontSize: 12, fontWeight: 600 }}>
-                          ${product.price}
-                        </Text>
+                        <Text style={{ fontSize: 12, fontWeight: 600 }}>${product.price}</Text>
                         <Button
                           size="small"
                           block
@@ -133,7 +138,9 @@ export default function ReduxAdvancedPage() {
             }
             extra={
               cartItems.length > 0 ? (
-                <Button size="small" danger onClick={() => dispatch(clearCart())}>Clear</Button>
+                <Button size="small" danger onClick={() => dispatch(clearCart())}>
+                  Clear
+                </Button>
               ) : null
             }
             style={{ borderRadius: 12, position: "sticky", top: 80 }}
@@ -145,16 +152,27 @@ export default function ReduxAdvancedPage() {
                 {cartItems.map((item) => (
                   <div key={item.id} style={{ marginBottom: 10 }}>
                     <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                      <Avatar src={item.thumbnail} size={36} shape="square" style={{ borderRadius: 4, flexShrink: 0 }} />
+                      <Avatar
+                        src={item.thumbnail}
+                        size={36}
+                        shape="square"
+                        style={{ borderRadius: 4, flexShrink: 0 }}
+                      />
                       <div style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 11, fontWeight: 500, display: "block" }} ellipsis>{item.title}</Text>
-                        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}>
+                        <Text style={{ fontSize: 11, fontWeight: 500, display: "block" }} ellipsis>
+                          {item.title}
+                        </Text>
+                        <div
+                          style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4 }}
+                        >
                           <InputNumber
                             size="small"
                             min={1}
                             max={10}
                             value={item.quantity}
-                            onChange={(v) => dispatch(updateQuantity({ id: item.id, quantity: v ?? 1 }))}
+                            onChange={(v) =>
+                              dispatch(updateQuantity({ id: item.id, quantity: v ?? 1 }))
+                            }
                             style={{ width: 60 }}
                           />
                           <Text style={{ fontSize: 11, fontWeight: 600 }}>
@@ -203,9 +221,19 @@ export default function ReduxAdvancedPage() {
           <Card
             title="Store Architecture"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none", marginTop: 16 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#dcdcaa" }}>configureStore({"{"}</div>
               <div style={{ paddingLeft: 16 }}>reducer: {"{"}</div>
               <div style={{ paddingLeft: 32, color: "#b5cea8" }}>counter: counterReducer,</div>
@@ -214,9 +242,20 @@ export default function ReduxAdvancedPage() {
               <div style={{ paddingLeft: 32, color: "#d4d4d4" }}>cart: cartReducer,</div>
               <div style={{ paddingLeft: 16 }}>{"}"}</div>
               <div style={{ color: "#dcdcaa" }}>{"}"});</div>
-              <div style={{ marginTop: 8, padding: "6px 10px", background: "#2d2d2d", borderRadius: 6 }}>
-                <div>cart.items: <span style={{ color: "#b5cea8" }}>{cartItems.length}</span></div>
-                <div>cart.total: <span style={{ color: "#ce9178" }}>${cartTotal.toFixed(2)}</span></div>
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "6px 10px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
+                <div>
+                  cart.items: <span style={{ color: "#b5cea8" }}>{cartItems.length}</span>
+                </div>
+                <div>
+                  cart.total: <span style={{ color: "#ce9178" }}>${cartTotal.toFixed(2)}</span>
+                </div>
               </div>
             </div>
           </Card>

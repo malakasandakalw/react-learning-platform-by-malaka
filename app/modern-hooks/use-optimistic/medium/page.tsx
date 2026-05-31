@@ -6,19 +6,7 @@
 // The real state only updates once the API call succeeds.
 
 import { useOptimistic, useState, useTransition } from "react";
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Input,
-  Row,
-  Space,
-  Tag,
-  Typography,
-  Spin,
-  Empty,
-} from "antd";
+import { Button, Card, Checkbox, Col, Input, Row, Space, Tag, Typography, Spin, Empty } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { getTodosByUser, createTodo } from "@/services/jsonPlaceholder";
 import type { Todo } from "@/types/post";
@@ -28,9 +16,7 @@ import LevelNavigator from "@/components/shared/LevelNavigator";
 
 const { Text } = Typography;
 
-type OptimisticAction =
-  | { type: "add"; todo: Todo }
-  | { type: "toggle"; id: number };
+type OptimisticAction = { type: "add"; todo: Todo } | { type: "toggle"; id: number };
 
 // The reducer for optimistic updates (same pattern as useReducer)
 function optimisticReducer(state: Todo[], action: OptimisticAction): Todo[] {
@@ -38,9 +24,7 @@ function optimisticReducer(state: Todo[], action: OptimisticAction): Todo[] {
     case "add":
       return [action.todo, ...state];
     case "toggle":
-      return state.map((t) =>
-        t.id === action.id ? { ...t, completed: !t.completed } : t
-      );
+      return state.map((t) => (t.id === action.id ? { ...t, completed: !t.completed } : t));
   }
 }
 
@@ -75,10 +59,7 @@ export default function UseOptimisticMediumPage() {
       const created = await createTodo({ userId: 1, title, completed: false });
 
       // Replace temp todo with real one
-      setTodos((prev) => [
-        { ...created, id: created.id },
-        ...prev,
-      ]);
+      setTodos((prev) => [{ ...created, id: created.id }, ...prev]);
     });
   }
 
@@ -90,9 +71,7 @@ export default function UseOptimisticMediumPage() {
       // Simulate API call (JSONPlaceholder doesn't actually persist, but we call it)
       await new Promise((r) => setTimeout(r, 600));
 
-      setTodos((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
-      );
+      setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)));
     });
   }
 
@@ -127,7 +106,9 @@ export default function UseOptimisticMediumPage() {
             </Space.Compact>
 
             {loading ? (
-              <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 32 }}>
+                <Spin />
+              </div>
             ) : optimisticTodos.length === 0 ? (
               <Empty />
             ) : (
@@ -168,15 +149,46 @@ export default function UseOptimisticMediumPage() {
           <Card
             title="Optimistic State"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>todos (real): </span><span style={{ color: "#d4d4d4" }}>{todos.length}</span></div>
-              <div><span style={{ color: "#569cd6" }}>optimisticTodos: </span><span style={{ color: "#b5cea8" }}>{optimisticTodos.length}</span></div>
-              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span></div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>todos (real): </span>
+                <span style={{ color: "#d4d4d4" }}>{todos.length}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>optimisticTodos: </span>
+                <span style={{ color: "#b5cea8" }}>{optimisticTodos.length}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
+              </div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>Temp items (id &lt; 0):</div>
-                <div style={{ color: "#6a9955" }}>{optimisticTodos.filter((t) => t.id < 0).length} pending</div>
+                <div style={{ color: "#6a9955" }}>
+                  {optimisticTodos.filter((t) => t.id < 0).length} pending
+                </div>
               </div>
             </div>
           </Card>

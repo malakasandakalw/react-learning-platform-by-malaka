@@ -110,11 +110,15 @@ export default function UseStateMediumPage() {
               <Text strong>{formData.name}</Text>
               {" · "}
               <Text type="secondary">{formData.email}</Text>
-              <Tag color="blue" style={{ marginLeft: 8 }}>{formData.role}</Tag>
+              <Tag color="blue" style={{ marginLeft: 8 }}>
+                {formData.role}
+              </Tag>
             </span>
           }
           extra={[
-            <Button key="reset" onClick={handleReset}>Register another</Button>,
+            <Button key="reset" onClick={handleReset}>
+              Register another
+            </Button>,
           ]}
         />
         <LevelNavigator basePath="/hooks/use-state" currentLevel="medium" />
@@ -173,7 +177,10 @@ export default function UseStateMediumPage() {
               >
                 <Select
                   value={formData.role || undefined}
-                  onChange={(val) => { handleChange("role", val); handleBlur("role"); }}
+                  onChange={(val) => {
+                    handleChange("role", val);
+                    handleBlur("role");
+                  }}
                   placeholder="Select your role"
                   options={[
                     { value: "frontend", label: "Frontend Developer" },
@@ -209,7 +216,10 @@ export default function UseStateMediumPage() {
           <Card
             title="Live State Inspector"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
               <div style={{ color: "#6a9955", marginBottom: 8 }}>// formData state</div>
@@ -223,9 +233,7 @@ export default function UseStateMediumPage() {
               </pre>
               <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
               <div style={{ color: "#6a9955", marginBottom: 8 }}>// isValid (derived)</div>
-              <span style={{ color: isValid ? "#b5cea8" : "#ce9178" }}>
-                {String(isValid)}
-              </span>
+              <span style={{ color: isValid ? "#b5cea8" : "#ce9178" }}>{String(isValid)}</span>
             </div>
           </Card>
         </Col>

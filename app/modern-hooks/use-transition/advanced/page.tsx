@@ -102,7 +102,16 @@ export default function UseTransitionAdvancedPage() {
         <Col xs={24} lg={17}>
           <Card
             title="Posts Dashboard"
-            extra={isPending ? <><Spin size="small" /> <Text type="secondary" style={{ fontSize: 12, marginLeft: 6 }}>Updating...</Text></> : null}
+            extra={
+              isPending ? (
+                <>
+                  <Spin size="small" />{" "}
+                  <Text type="secondary" style={{ fontSize: 12, marginLeft: 6 }}>
+                    Updating...
+                  </Text>
+                </>
+              ) : null
+            }
             style={{ borderRadius: 12 }}
           >
             <Space style={{ marginBottom: 16 }} wrap>
@@ -112,7 +121,10 @@ export default function UseTransitionAdvancedPage() {
                 style={{ width: 130 }}
                 options={[
                   { value: "all", label: "All Users" },
-                  ...Array.from({ length: 10 }, (_, i) => ({ value: i + 1, label: `User ${i + 1}` })),
+                  ...Array.from({ length: 10 }, (_, i) => ({
+                    value: i + 1,
+                    label: `User ${i + 1}`,
+                  })),
                 ]}
               />
               <Select
@@ -151,18 +163,45 @@ export default function UseTransitionAdvancedPage() {
           <Card
             title="Transition Stats"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <Statistic
               title={<span style={{ color: "#6a9955", fontSize: 11 }}>transitions fired</span>}
               value={transitionCount}
               styles={{ content: { color: "#b5cea8" } }}
             />
-            <div style={{ marginTop: 12, fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>userId: </span><span style={{ color: "#ce9178" }}>{String(userId)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>sort: </span><span style={{ color: "#d4d4d4" }}>{sortField} {sortOrder}</span></div>
-              <div><span style={{ color: "#569cd6" }}>showing: </span><span style={{ color: "#b5cea8" }}>{processedData.length} posts</span></div>
-              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span></div>
+            <div
+              style={{
+                marginTop: 12,
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>userId: </span>
+                <span style={{ color: "#ce9178" }}>{String(userId)}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>sort: </span>
+                <span style={{ color: "#d4d4d4" }}>
+                  {sortField} {sortOrder}
+                </span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>showing: </span>
+                <span style={{ color: "#b5cea8" }}>{processedData.length} posts</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
+              </div>
             </div>
           </Card>
         </Col>
@@ -177,7 +216,10 @@ function sortPosts(posts: Post[], field: SortField, order: SortOrder): Post[] {
   return [...posts].sort((a, b) => {
     const aVal = a[field];
     const bVal = b[field];
-    const cmp = typeof aVal === "string" ? aVal.localeCompare(bVal as string) : (aVal as number) - (bVal as number);
+    const cmp =
+      typeof aVal === "string"
+        ? aVal.localeCompare(bVal as string)
+        : (aVal as number) - (bVal as number);
     return order === "asc" ? cmp : -cmp;
   });
 }

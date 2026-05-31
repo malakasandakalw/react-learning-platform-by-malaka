@@ -8,16 +8,7 @@
 // that is tied to that component's position in the tree.
 
 import { useId, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Input,
-  Row,
-  Space,
-  Typography,
-  Tag,
-} from "antd";
+import { Button, Card, Col, Input, Row, Space, Typography, Tag } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -66,7 +57,9 @@ function ContactForm({
       <Row gutter={[12, 12]}>
         <Col xs={24} sm={8}>
           {/* htmlFor and id are linked via the unique base id */}
-          <label htmlFor={`${id}-name`} style={{ fontSize: 12, fontWeight: 500 }}>Full Name</label>
+          <label htmlFor={`${id}-name`} style={{ fontSize: 12, fontWeight: 500 }}>
+            Full Name
+          </label>
           <Input
             id={`${id}-name`}
             value={contact.name}
@@ -76,7 +69,9 @@ function ContactForm({
           />
         </Col>
         <Col xs={24} sm={8}>
-          <label htmlFor={`${id}-email`} style={{ fontSize: 12, fontWeight: 500 }}>Email</label>
+          <label htmlFor={`${id}-email`} style={{ fontSize: 12, fontWeight: 500 }}>
+            Email
+          </label>
           <Input
             id={`${id}-email`}
             value={contact.email}
@@ -86,7 +81,9 @@ function ContactForm({
           />
         </Col>
         <Col xs={24} sm={8}>
-          <label htmlFor={`${id}-phone`} style={{ fontSize: 12, fontWeight: 500 }}>Phone</label>
+          <label htmlFor={`${id}-phone`} style={{ fontSize: 12, fontWeight: 500 }}>
+            Phone
+          </label>
           <Input
             id={`${id}-phone`}
             value={contact.phone}
@@ -108,10 +105,7 @@ export default function UseIdMediumPage() {
   ]);
 
   function addContact() {
-    setContacts((prev) => [
-      ...prev,
-      { key: `c${nextKey++}`, name: "", email: "", phone: "" },
-    ]);
+    setContacts((prev) => [...prev, { key: `c${nextKey++}`, name: "", email: "", phone: "" }]);
   }
 
   function deleteContact(key: string) {
@@ -119,9 +113,7 @@ export default function UseIdMediumPage() {
   }
 
   function updateContact(key: string, field: keyof Contact, value: string) {
-    setContacts((prev) =>
-      prev.map((c) => (c.key === key ? { ...c, [field]: value } : c))
-    );
+    setContacts((prev) => prev.map((c) => (c.key === key ? { ...c, [field]: value } : c)));
   }
 
   return (
@@ -165,9 +157,19 @@ export default function UseIdMediumPage() {
           <Card
             title="Why Not Index?"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none", marginTop: 0 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#ce9178" }}>// ❌ index-based IDs:</div>
               <div style={{ color: "#6a9955" }}>id-0, id-1, id-2</div>
               <div style={{ color: "#6a9955" }}>Delete item 0 →</div>
@@ -177,7 +179,15 @@ export default function UseIdMediumPage() {
               <div style={{ color: "#b5cea8" }}>:r0:, :r1:, :r2:</div>
               <div style={{ color: "#6a9955" }}>Delete item 0 →</div>
               <div style={{ color: "#b5cea8" }}>:r1: and :r2: unchanged ✓</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>Active contacts: {contacts.length}</div>
                 <div style={{ color: "#6a9955" }}>Each has 3 unique IDs: name, email, phone</div>
               </div>

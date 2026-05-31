@@ -7,17 +7,7 @@
 // <Suspense> wraps the lazy component and shows a fallback while the bundle loads.
 
 import { lazy, Suspense, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Spin,
-  Typography,
-  Tag,
-  Space,
-  Alert,
-} from "antd";
+import { Button, Card, Col, Row, Spin, Typography, Tag, Space, Alert } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -36,13 +26,15 @@ function HeavyComponentContent() {
 
   return (
     <div>
-      <Tag color="blue" style={{ marginBottom: 12 }}>Heavy Component Loaded ✓</Tag>
+      <Tag color="blue" style={{ marginBottom: 12 }}>
+        Heavy Component Loaded ✓
+      </Tag>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 4 }}>
         {items.slice(0, 20).map((item, i) => (
           <div
             key={i}
             style={{
-              background: `hsl(${(item.value * 2) + 200}, 60%, 80%)`,
+              background: `hsl(${item.value * 2 + 200}, 60%, 80%)`,
               borderRadius: 4,
               padding: "6px 4px",
               textAlign: "center",
@@ -64,7 +56,12 @@ function HeavyComponentContent() {
 // Simulate React.lazy by wrapping in a promise that delays
 function createLazyComponent(delayMs: number) {
   let resolved = false;
-  const promise = new Promise<void>((r) => setTimeout(() => { resolved = true; r(); }, delayMs));
+  const promise = new Promise<void>((r) =>
+    setTimeout(() => {
+      resolved = true;
+      r();
+    }, delayMs)
+  );
 
   return function LazyWrapper() {
     if (!resolved) throw promise; // Suspense protocol: throw a promise
@@ -133,9 +130,19 @@ export default function SuspenseEasyPage() {
           <Card
             title="How React.lazy works"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Define lazy component:</div>
               <div>const Chart = lazy(</div>
               <div style={{ paddingLeft: 12, color: "#ce9178" }}>{"() => import('./Chart')"}</div>
@@ -145,9 +152,21 @@ export default function SuspenseEasyPage() {
               <div style={{ color: "#569cd6" }}>{"<Suspense fallback={<Spin />}>"}</div>
               <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"<Chart />"}</div>
               <div style={{ color: "#569cd6" }}>{"</Suspense>"}</div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#252526", borderRadius: 6 }}>
-                <div>loaded: <span style={{ color: show ? "#b5cea8" : "#ce9178" }}>{String(show)}</span></div>
-                <div>load attempts: <span style={{ color: "#b5cea8" }}>{loadCount}</span></div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 10px",
+                  background: "#252526",
+                  borderRadius: 6,
+                }}
+              >
+                <div>
+                  loaded:{" "}
+                  <span style={{ color: show ? "#b5cea8" : "#ce9178" }}>{String(show)}</span>
+                </div>
+                <div>
+                  load attempts: <span style={{ color: "#b5cea8" }}>{loadCount}</span>
+                </div>
               </div>
             </div>
           </Card>

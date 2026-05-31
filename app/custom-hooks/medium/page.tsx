@@ -12,18 +12,7 @@
 //   and any scenario where you want to wait for the user to stop typing.
 
 import { useState, useEffect } from "react";
-import {
-  Card,
-  Col,
-  Input,
-  Row,
-  Typography,
-  Tag,
-  Select,
-  Divider,
-  Space,
-  Slider,
-} from "antd";
+import { Card, Col, Input, Row, Typography, Tag, Select, Divider, Space, Slider } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -47,9 +36,8 @@ function useLocalStorage<T>(key: string, initialValue: T) {
   // Wrap the setter to also persist to localStorage
   const setStoredValue = (newValue: T | ((prev: T) => T)) => {
     setValue((prev) => {
-      const resolved = typeof newValue === "function"
-        ? (newValue as (prev: T) => T)(prev)
-        : newValue;
+      const resolved =
+        typeof newValue === "function" ? (newValue as (prev: T) => T)(prev) : newValue;
       try {
         window.localStorage.setItem(key, JSON.stringify(resolved));
       } catch {}
@@ -116,16 +104,15 @@ export default function CustomHooksMediumPage() {
       <Row gutter={[24, 24]}>
         {/* useLocalStorage demo */}
         <Col xs={24} lg={12}>
-          <Card
-            title="useLocalStorage: Persisted Preferences"
-            style={{ borderRadius: 12 }}
-          >
+          <Card title="useLocalStorage: Persisted Preferences" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 12, display: "block", marginBottom: 16 }}>
               Change these settings and refresh the page. They persist in localStorage.
             </Text>
 
             <Space orientation="vertical" style={{ width: "100%" }} size={16}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div
+                style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              >
                 <Text>Accent colour</Text>
                 <Select
                   value={theme}

@@ -54,19 +54,22 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         items: existing
-          ? state.items.map((i) => i.id === action.item.id ? { ...i, qty: i.qty + 1 } : i)
+          ? state.items.map((i) => (i.id === action.item.id ? { ...i, qty: i.qty + 1 } : i))
           : [...state.items, { ...action.item, qty: 1 }],
       };
     }
     case "REMOVE_ITEM":
       return { ...state, items: state.items.filter((i) => i.id !== action.id) };
     case "INCREMENT":
-      return { ...state, items: state.items.map((i) => i.id === action.id ? { ...i, qty: i.qty + 1 } : i) };
+      return {
+        ...state,
+        items: state.items.map((i) => (i.id === action.id ? { ...i, qty: i.qty + 1 } : i)),
+      };
     case "DECREMENT":
       return {
         ...state,
         items: state.items
-          .map((i) => i.id === action.id ? { ...i, qty: i.qty - 1 } : i)
+          .map((i) => (i.id === action.id ? { ...i, qty: i.qty - 1 } : i))
           .filter((i) => i.qty > 0),
       };
     case "CLEAR":
@@ -109,10 +112,23 @@ function ProductList() {
         {PRODUCTS.map((p) => {
           const inCart = state.items.find((i) => i.id === p.id);
           return (
-            <div key={p.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid #f5f5f5" }}>
+            <div
+              key={p.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px 0",
+                borderBottom: "1px solid #f5f5f5",
+              }}
+            >
               <div>
-                <Text strong style={{ fontSize: 13 }}>{p.name}</Text>
-                <Text type="secondary" style={{ fontSize: 12, marginLeft: 8 }}>${p.price}</Text>
+                <Text strong style={{ fontSize: 13 }}>
+                  {p.name}
+                </Text>
+                <Text type="secondary" style={{ fontSize: 12, marginLeft: 8 }}>
+                  ${p.price}
+                </Text>
               </div>
               <Button
                 size="small"
@@ -162,18 +178,42 @@ function CartPanel() {
       ) : (
         <>
           {state.items.map((item) => (
-            <div key={item.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid #f5f5f5" }}>
+            <div
+              key={item.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "8px 0",
+                borderBottom: "1px solid #f5f5f5",
+              }}
+            >
               <div>
                 <Text style={{ fontSize: 13 }}>{item.name}</Text>
-                <Text type="secondary" style={{ fontSize: 11, marginLeft: 6 }}>× {item.qty}</Text>
+                <Text type="secondary" style={{ fontSize: 11, marginLeft: 6 }}>
+                  × {item.qty}
+                </Text>
               </div>
               <Space size={4}>
                 <Text strong style={{ fontSize: 12, minWidth: 50, textAlign: "right" }}>
                   ${(item.price * item.qty).toFixed(2)}
                 </Text>
-                <Button size="small" icon={<MinusOutlined />} onClick={() => dispatch({ type: "DECREMENT", id: item.id })} />
-                <Button size="small" icon={<PlusOutlined />} onClick={() => dispatch({ type: "INCREMENT", id: item.id })} />
-                <Button size="small" danger icon={<DeleteOutlined />} onClick={() => dispatch({ type: "REMOVE_ITEM", id: item.id })} />
+                <Button
+                  size="small"
+                  icon={<MinusOutlined />}
+                  onClick={() => dispatch({ type: "DECREMENT", id: item.id })}
+                />
+                <Button
+                  size="small"
+                  icon={<PlusOutlined />}
+                  onClick={() => dispatch({ type: "INCREMENT", id: item.id })}
+                />
+                <Button
+                  size="small"
+                  danger
+                  icon={<DeleteOutlined />}
+                  onClick={() => dispatch({ type: "REMOVE_ITEM", id: item.id })}
+                />
               </Space>
             </div>
           ))}
@@ -181,7 +221,9 @@ function CartPanel() {
           <Divider style={{ margin: "12px 0" }} />
 
           <Space style={{ width: "100%", justifyContent: "space-between" }}>
-            <Text type="secondary" style={{ fontSize: 12 }}>Discount:</Text>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              Discount:
+            </Text>
             <Space size={4}>
               {[0, 10, 20].map((pct) => (
                 <Tag

@@ -30,9 +30,7 @@ function useTabsContext() {
 function TabsRoot({ defaultTab, children }: { defaultTab: string; children: React.ReactNode }) {
   const [activeTab, setActiveTab] = useState(defaultTab);
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
-      {children}
-    </TabsContext.Provider>
+    <TabsContext.Provider value={{ activeTab, setActiveTab }}>{children}</TabsContext.Provider>
   );
 }
 
@@ -138,20 +136,20 @@ export default function CompoundComponentsEasyPage() {
                   }}
                 >
                   <div style={{ color: "#6a9955" }}>{"// Consumer writes:"}</div>
-                  <div>{"<Tabs defaultTab=\"overview\">"}</div>
+                  <div>{'<Tabs defaultTab="overview">'}</div>
                   <div style={{ paddingLeft: 16 }}>{"<Tabs.List>"}</div>
                   <div style={{ paddingLeft: 32 }}>
-                    {"<Tabs.Tab id=\"overview\">Overview</Tabs.Tab>"}
+                    {'<Tabs.Tab id="overview">Overview</Tabs.Tab>'}
                   </div>
                   <div style={{ paddingLeft: 32 }}>
-                    {"<Tabs.Tab id=\"details\">Details</Tabs.Tab>"}
+                    {'<Tabs.Tab id="details">Details</Tabs.Tab>'}
                   </div>
                   <div style={{ paddingLeft: 16 }}>{"</Tabs.List>"}</div>
                   <div style={{ paddingLeft: 16, color: "#ce9178" }}>
-                    {"<Tabs.Panel id=\"overview\">...</Tabs.Panel>"}
+                    {'<Tabs.Panel id="overview">...</Tabs.Panel>'}
                   </div>
                   <div style={{ paddingLeft: 16, color: "#ce9178" }}>
-                    {"<Tabs.Panel id=\"details\">...</Tabs.Panel>"}
+                    {'<Tabs.Panel id="details">...</Tabs.Panel>'}
                   </div>
                   <div>{"</Tabs>"}</div>
                 </div>
@@ -164,26 +162,28 @@ export default function CompoundComponentsEasyPage() {
           <Card title="Context flow" style={{ borderRadius: 12, height: "100%" }}>
             <div style={{ fontSize: 13, display: "flex", flexDirection: "column", gap: 10 }}>
               <div style={{ padding: "10px 12px", background: "#f5f5f5", borderRadius: 8 }}>
-                <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>TabsRoot: Provider</Text>
+                <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>
+                  TabsRoot: Provider
+                </Text>
                 <br />
                 <Text style={{ fontSize: 12 }}>
                   State: <code>activeTab</code>, <code>setActiveTab</code>
                 </Text>
               </div>
               <div style={{ paddingLeft: 14, display: "flex", flexDirection: "column", gap: 8 }}>
-                <div
-                  style={{ padding: "8px 12px", background: "#f5f5f5", borderRadius: 8 }}
-                >
-                  <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>Tabs.Tab</Text>
+                <div style={{ padding: "8px 12px", background: "#f5f5f5", borderRadius: 8 }}>
+                  <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>
+                    Tabs.Tab
+                  </Text>
                   <br />
                   <Text style={{ fontSize: 12 }}>
                     Reads <code>activeTab</code>, calls <code>setActiveTab</code> on click
                   </Text>
                 </div>
-                <div
-                  style={{ padding: "8px 12px", background: "#f5f5f5", borderRadius: 8 }}
-                >
-                  <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>Tabs.Panel</Text>
+                <div style={{ padding: "8px 12px", background: "#f5f5f5", borderRadius: 8 }}>
+                  <Text strong style={{ color: "rgba(0,0,0,0.88)" }}>
+                    Tabs.Panel
+                  </Text>
                   <br />
                   <Text style={{ fontSize: 12 }}>
                     Returns <code>null</code> if <code>id !== activeTab</code>

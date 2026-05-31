@@ -11,19 +11,7 @@
 // with a single line, without re-implementing loading/error state each time.
 
 import { useState, useEffect } from "react";
-import {
-  Alert,
-  Avatar,
-  Card,
-  Col,
-  Input,
-  List,
-  Row,
-  Select,
-  Spin,
-  Tag,
-  Typography,
-} from "antd";
+import { Alert, Avatar, Card, Col, Input, List, Row, Select, Spin, Tag, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import type { User } from "@/types/user";
 import type { Post } from "@/types/post";
@@ -115,9 +103,18 @@ export default function CustomHooksEasyPage() {
             }
             style={{ borderRadius: 12 }}
           >
-            {error && <Alert type="error" title={error} showIcon style={{ marginBottom: 12, borderRadius: 8 }} />}
+            {error && (
+              <Alert
+                type="error"
+                title={error}
+                showIcon
+                style={{ marginBottom: 12, borderRadius: 8 }}
+              />
+            )}
             {loading ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : (
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {((data as any[])?.slice(0, 8) ?? []).map((item: any, i: number) => (
@@ -138,22 +135,40 @@ export default function CustomHooksEasyPage() {
           <Card
             title="useFetch source"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.9, color: "#d4d4d4" }}>
-              <div style={{ color: "#dcdcaa" }}>function useFetch{"<T>"}(url) {"{"}</div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 1.9,
+                color: "#d4d4d4",
+              }}
+            >
+              <div style={{ color: "#dcdcaa" }}>
+                function useFetch{"<T>"}(url) {"{"}
+              </div>
               <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [data, setData]</div>
-              <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState{"<T | null>"} (null);</div>
+              <div style={{ paddingLeft: 20, color: "#ce9178" }}>
+                = useState{"<T | null>"} (null);
+              </div>
               <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [loading, setLoading]</div>
               <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState(true);</div>
               <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [error, setError]</div>
               <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState(null);</div>
               <br />
-              <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>useEffect(() ={">"} {"{"}</div>
+              <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>
+                useEffect(() ={">"} {"{"}
+              </div>
               <div style={{ paddingLeft: 24, color: "#dcdcaa" }}>fetch(url).then(setData)</div>
               <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>{" }, [url]);"}</div>
               <br />
-              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>return {"{ data, loading, error }"};</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>
+                return {"{ data, loading, error }"};
+              </div>
               <div style={{ color: "#dcdcaa" }}>{"}"}</div>
               <br />
               <div style={{ color: "#6a9955" }}>// Usage: ONE line:</div>

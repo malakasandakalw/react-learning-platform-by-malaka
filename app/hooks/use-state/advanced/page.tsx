@@ -26,11 +26,7 @@ import {
   Result,
   Divider,
 } from "antd";
-import {
-  UserOutlined,
-  SettingOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, SettingOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -90,9 +86,7 @@ export default function UseStateAdvancedPage() {
   function toggleSkill(id: string) {
     setWizard((prev) => ({
       ...prev,
-      skills: prev.skills.map((s) =>
-        s.id === id ? { ...s, selected: !s.selected } : s
-      ),
+      skills: prev.skills.map((s) => (s.id === id ? { ...s, selected: !s.selected } : s)),
     }));
   }
 
@@ -138,15 +132,24 @@ export default function UseStateAdvancedPage() {
           subTitle={`Welcome, ${wizard.profile.name || "teammate"}!`}
           extra={[
             <div key="summary" style={{ textAlign: "left", maxWidth: 400, margin: "0 auto 16px" }}>
-              <Text strong>Role: </Text><Tag color="blue">{wizard.profile.role || "None"}</Tag><br /><br />
+              <Text strong>Role: </Text>
+              <Tag color="blue">{wizard.profile.role || "None"}</Tag>
+              <br />
+              <br />
               <Text strong>Skills: </Text>
               <Space wrap size={4} style={{ marginTop: 4 }}>
-                {wizard.skills.filter((s) => s.selected).map((s) => (
-                  <Tag key={s.id} color="blue">{s.label}</Tag>
-                ))}
+                {wizard.skills
+                  .filter((s) => s.selected)
+                  .map((s) => (
+                    <Tag key={s.id} color="blue">
+                      {s.label}
+                    </Tag>
+                  ))}
               </Space>
             </div>,
-            <Button key="reset" onClick={handleReset}>Start Over</Button>,
+            <Button key="reset" onClick={handleReset}>
+              Start Over
+            </Button>,
           ]}
         />
         <LevelNavigator basePath="/hooks/use-state" currentLevel="advanced" />
@@ -231,11 +234,17 @@ export default function UseStateAdvancedPage() {
                     <Col key={skill.id}>
                       {/* Clicking a skill calls toggleSkill, which maps over the array */}
                       <Tag
-                        style={{ cursor: "pointer", fontSize: 13, padding: "4px 12px", borderRadius: 20 }}
+                        style={{
+                          cursor: "pointer",
+                          fontSize: 13,
+                          padding: "4px 12px",
+                          borderRadius: 20,
+                        }}
                         color={skill.selected ? "purple" : "default"}
                         onClick={() => toggleSkill(skill.id)}
                       >
-                        {skill.selected && "✓ "}{skill.label}
+                        {skill.selected && "✓ "}
+                        {skill.label}
                       </Tag>
                     </Col>
                   ))}
@@ -294,10 +303,15 @@ export default function UseStateAdvancedPage() {
           <Card
             title="State Shape"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#d4d4d4" }}>
-              <div style={{ color: "#569cd6" }}>currentStep: <span style={{ color: "#b5cea8" }}>{wizard.currentStep}</span></div>
+              <div style={{ color: "#569cd6" }}>
+                currentStep: <span style={{ color: "#b5cea8" }}>{wizard.currentStep}</span>
+              </div>
               <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
               <div style={{ color: "#569cd6" }}>profile:</div>
               <pre style={{ margin: "0 0 0 8px", lineHeight: 1.7, color: "#d4d4d4" }}>
@@ -306,9 +320,13 @@ export default function UseStateAdvancedPage() {
               <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
               <div style={{ color: "#569cd6" }}>skills selected:</div>
               <div style={{ marginLeft: 8 }}>
-                {wizard.skills.filter((s) => s.selected).map((s) => (
-                  <Tag key={s.id} color="blue" style={{ marginTop: 4 }}>{s.label}</Tag>
-                ))}
+                {wizard.skills
+                  .filter((s) => s.selected)
+                  .map((s) => (
+                    <Tag key={s.id} color="blue" style={{ marginTop: 4 }}>
+                      {s.label}
+                    </Tag>
+                  ))}
                 {!wizard.skills.some((s) => s.selected) && (
                   <span style={{ color: "#6a9955" }}>none</span>
                 )}

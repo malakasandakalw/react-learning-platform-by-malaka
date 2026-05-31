@@ -12,18 +12,7 @@
 // Composed FROM useFetch: hooks composing other custom hooks is the key pattern.
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  Col,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Statistic,
-  Space,
-} from "antd";
+import { Avatar, Button, Card, Col, Row, Spin, Tag, Typography, Statistic, Space } from "antd";
 import { getProducts } from "@/services/dummyJson";
 import type { Product } from "@/types/product";
 import PageIntro from "@/components/shared/PageIntro";
@@ -57,7 +46,10 @@ function useIntersectionObserver(options?: IntersectionObserverInit) {
 // ─── usePagination ────────────────────────────────────────────────────────────
 // Manages page state and fetches the right slice of data.
 // loadMore appends new items to the existing list (infinite scroll pattern).
-function usePagination<T>(fetchFn: (limit: number, skip: number) => Promise<{ products: T[]; total: number }>, pageSize = 8) {
+function usePagination<T>(
+  fetchFn: (limit: number, skip: number) => Promise<{ products: T[]; total: number }>,
+  pageSize = 8
+) {
   const [items, setItems] = useState<T[]>([]);
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
@@ -81,11 +73,11 @@ function usePagination<T>(fetchFn: (limit: number, skip: number) => Promise<{ pr
 
 export default function CustomHooksAdvancedPage() {
   // Compose the two hooks: observe the sentinel div, trigger loadMore when visible
-  const fetchProducts = useCallback(
-    (limit: number, skip: number) => getProducts(limit, skip),
-    []
+  const fetchProducts = useCallback((limit: number, skip: number) => getProducts(limit, skip), []);
+  const { items, loading, hasMore, total, loadMore, page } = usePagination<Product>(
+    fetchProducts,
+    8
   );
-  const { items, loading, hasMore, total, loadMore, page } = usePagination<Product>(fetchProducts, 8);
   const { ref: sentinelRef, isIntersecting } = useIntersectionObserver({ threshold: 0.1 });
 
   // Load initial batch
@@ -139,25 +131,31 @@ export default function CustomHooksAdvancedPage() {
                       shape="square"
                       style={{ borderRadius: 6, marginBottom: 6 }}
                     />
-                    <Text
-                      style={{ fontSize: 11, display: "block", fontWeight: 500 }}
-                      ellipsis
-                    >
+                    <Text style={{ fontSize: 11, display: "block", fontWeight: 500 }} ellipsis>
                       {(product as any).title}
                     </Text>
-                    <Tag style={{ fontSize: 10, marginTop: 4 }}>
-                      ${(product as any).price}
-                    </Tag>
+                    <Tag style={{ fontSize: 10, marginTop: 4 }}>${(product as any).price}</Tag>
                   </div>
                 </Col>
               ))}
             </Row>
 
             {/* Sentinel: useIntersectionObserver watches this div */}
-            <div ref={sentinelRef} style={{ height: 40, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 16 }}>
+            <div
+              ref={sentinelRef}
+              style={{
+                height: 40,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 16,
+              }}
+            >
               {loading && <Spin />}
               {!hasMore && !loading && (
-                <Text type="secondary" style={{ fontSize: 12 }}>All {total} products loaded</Text>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  All {total} products loaded
+                </Text>
               )}
             </div>
           </Card>
@@ -167,16 +165,54 @@ export default function CustomHooksAdvancedPage() {
           <Card
             title="Hook State"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>page: </span><span style={{ color: "#b5cea8" }}>{page}</span></div>
-              <div><span style={{ color: "#569cd6" }}>loaded: </span><span style={{ color: "#b5cea8" }}>{items.length}</span></div>
-              <div><span style={{ color: "#569cd6" }}>total: </span><span style={{ color: "#d4d4d4" }}>{total}</span></div>
-              <div><span style={{ color: "#569cd6" }}>hasMore: </span><span style={{ color: hasMore ? "#b5cea8" : "#ce9178" }}>{String(hasMore)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>loading: </span><span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>sentinel visible: </span><span style={{ color: isIntersecting ? "#b5cea8" : "#d4d4d4" }}>{String(isIntersecting)}</span></div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>page: </span>
+                <span style={{ color: "#b5cea8" }}>{page}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>loaded: </span>
+                <span style={{ color: "#b5cea8" }}>{items.length}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>total: </span>
+                <span style={{ color: "#d4d4d4" }}>{total}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>hasMore: </span>
+                <span style={{ color: hasMore ? "#b5cea8" : "#ce9178" }}>{String(hasMore)}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>loading: </span>
+                <span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>sentinel visible: </span>
+                <span style={{ color: isIntersecting ? "#b5cea8" : "#d4d4d4" }}>
+                  {String(isIntersecting)}
+                </span>
+              </div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 10px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#dcdcaa" }}>Flow:</div>
                 <div style={{ color: "#d4d4d4" }}>sentinel enters viewport</div>
                 <div style={{ color: "#d4d4d4" }}>→ isIntersecting = true</div>

@@ -63,9 +63,9 @@ export default function HooksIndexPage() {
       <div style={{ marginBottom: 40 }}>
         <Title level={1}>Core React Hooks</Title>
         <Paragraph style={{ fontSize: 15, maxWidth: 640 }}>
-          These are the hooks you will use every single day. Start with Easy to
-          understand the concept, then work through Medium and Advanced to see how
-          it behaves in real-world patterns.
+          These are the hooks you will use every single day. Start with Easy to understand the
+          concept, then work through Medium and Advanced to see how it behaves in real-world
+          patterns.
         </Paragraph>
       </div>
 
@@ -73,18 +73,18 @@ export default function HooksIndexPage() {
         {HOOKS.map((hook) => (
           <Col xs={24} sm={12} lg={8} key={hook.name}>
             <Link href={`${hook.path}/easy`} style={{ textDecoration: "none" }}>
-              <Card
-                hoverable
-                style={{ height: "100%" }}
-                styles={{ body: { padding: 20 } }}
-              >
-                <Title level={5}>
-                  {hook.name}
-                </Title>
-                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>
-                  {hook.description}
-                </Paragraph>
-                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
+              <Card hoverable style={{ height: "100%" }} styles={{ body: { padding: 20 } }}>
+                <Title level={5}>{hook.name}</Title>
+                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>{hook.description}</Paragraph>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 4,
+                    fontSize: 12,
+                    color: "rgba(0,0,0,0.65)",
+                  }}
+                >
                   <span>Easy: {hook.easy}</span>
                   <span>Medium: {hook.medium}</span>
                   <span>Advanced: {hook.advanced}</span>

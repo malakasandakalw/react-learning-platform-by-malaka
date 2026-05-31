@@ -8,14 +8,7 @@
 
 import { createPortal } from "react-dom";
 import { useLayoutEffect, useRef, useState, useCallback } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Space,
-  Typography,
-} from "antd";
+import { Button, Card, Col, Row, Space, Typography } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -34,7 +27,10 @@ function useSmartTooltip() {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<TooltipState>({
-    visible: false, x: 0, y: 0, placement: "top",
+    visible: false,
+    x: 0,
+    y: 0,
+    placement: "top",
   });
 
   // Compute tooltip position before paint: useLayoutEffect prevents flicker
@@ -53,7 +49,8 @@ function useSmartTooltip() {
     else if (trigger.right + tooltip.width + GAP > vw) placement = "left";
     else if (trigger.left < tooltip.width + GAP) placement = "right";
 
-    let x = 0, y = 0;
+    let x = 0,
+      y = 0;
     switch (placement) {
       case "top":
         x = trigger.left + trigger.width / 2 - tooltip.width / 2;
@@ -113,34 +110,39 @@ function SmartTooltip({ content, children }: { content: string; children: React.
         {children}
       </button>
 
-      {state.visible && typeof document !== "undefined" && createPortal(
-        <div
-          ref={tooltipRef}
-          style={{
-            position: "absolute",
-            top: state.y,
-            left: state.x,
-            background: "rgba(0,0,0,0.88)",
-            color: "#fff",
-            padding: "8px 14px",
-            borderRadius: 8,
-            fontSize: 12,
-            pointerEvents: "none",
-            whiteSpace: "nowrap",
-            zIndex: 9999,
-            boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-          }}
-        >
-          {content}
-          <div style={{
-            position: "absolute",
-            width: 8, height: 8,
-            background: "rgba(0,0,0,0.88)",
-            ...ARROW_STYLES[state.placement],
-          }} />
-        </div>,
-        document.body
-      )}
+      {state.visible &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            ref={tooltipRef}
+            style={{
+              position: "absolute",
+              top: state.y,
+              left: state.x,
+              background: "rgba(0,0,0,0.88)",
+              color: "#fff",
+              padding: "8px 14px",
+              borderRadius: 8,
+              fontSize: 12,
+              pointerEvents: "none",
+              whiteSpace: "nowrap",
+              zIndex: 9999,
+              boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+            }}
+          >
+            {content}
+            <div
+              style={{
+                position: "absolute",
+                width: 8,
+                height: 8,
+                background: "rgba(0,0,0,0.88)",
+                ...ARROW_STYLES[state.placement],
+              }}
+            />
+          </div>,
+          document.body
+        )}
     </>
   );
 }
@@ -165,14 +167,24 @@ export default function PortalsAdvancedPage() {
           Hover each button. The tooltip auto-positions based on available space.
         </Text>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 12,
+          }}
+        >
           <SmartTooltip content="I appear above (enough space above)">Center button</SmartTooltip>
           <SmartTooltip content="Near right edge: I flip left">Far right</SmartTooltip>
           <SmartTooltip content="Dynamic positioning based on viewport">Middle</SmartTooltip>
         </div>
 
         <div style={{ marginTop: 40, display: "flex", justifyContent: "center" }}>
-          <SmartTooltip content="Near bottom: I appear above or below based on available space">Bottom area button</SmartTooltip>
+          <SmartTooltip content="Near bottom: I appear above or below based on available space">
+            Bottom area button
+          </SmartTooltip>
         </div>
       </Card>
 

@@ -108,9 +108,15 @@ function wizardReducer(state: WizardState, action: WizardAction): WizardState {
         currentStep: action.step,
       };
     case "UPDATE_ADDRESS":
-      return { ...state, data: { ...state.data, address: { ...state.data.address, ...action.payload } } };
+      return {
+        ...state,
+        data: { ...state.data, address: { ...state.data.address, ...action.payload } },
+      };
     case "UPDATE_PAYMENT":
-      return { ...state, data: { ...state.data, payment: { ...state.data.payment, ...action.payload } } };
+      return {
+        ...state,
+        data: { ...state.data, payment: { ...state.data.payment, ...action.payload } },
+      };
     case "UPDATE_QTY":
       return {
         ...state,
@@ -208,10 +214,21 @@ export default function UseReducerAdvancedPage() {
               <div>
                 <Title level={5}>Your Cart</Title>
                 {state.data.cart.map((item, i) => (
-                  <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid #f0f0f0" }}>
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "10px 0",
+                      borderBottom: "1px solid #f0f0f0",
+                    }}
+                  >
                     <div>
                       <Text strong>{item.name}</Text>
-                      <Text type="secondary" style={{ marginLeft: 8 }}>${item.price}</Text>
+                      <Text type="secondary" style={{ marginLeft: 8 }}>
+                        ${item.price}
+                      </Text>
                     </div>
                     <Space>
                       <InputNumber
@@ -236,19 +253,43 @@ export default function UseReducerAdvancedPage() {
               <div>
                 <Title level={5}>Shipping Address</Title>
                 <Space orientation="vertical" style={{ width: "100%" }} size={12}>
-                  <Input placeholder="Street address" value={state.data.address.street}
-                    onChange={(e) => dispatch({ type: "UPDATE_ADDRESS", payload: { street: e.target.value } })} />
-                  <Input placeholder="City" value={state.data.address.city}
-                    onChange={(e) => dispatch({ type: "UPDATE_ADDRESS", payload: { city: e.target.value } })} />
+                  <Input
+                    placeholder="Street address"
+                    value={state.data.address.street}
+                    onChange={(e) =>
+                      dispatch({ type: "UPDATE_ADDRESS", payload: { street: e.target.value } })
+                    }
+                  />
+                  <Input
+                    placeholder="City"
+                    value={state.data.address.city}
+                    onChange={(e) =>
+                      dispatch({ type: "UPDATE_ADDRESS", payload: { city: e.target.value } })
+                    }
+                  />
                   <Row gutter={12}>
                     <Col span={12}>
-                      <Input placeholder="ZIP code" value={state.data.address.zip}
-                        onChange={(e) => dispatch({ type: "UPDATE_ADDRESS", payload: { zip: e.target.value } })} />
+                      <Input
+                        placeholder="ZIP code"
+                        value={state.data.address.zip}
+                        onChange={(e) =>
+                          dispatch({ type: "UPDATE_ADDRESS", payload: { zip: e.target.value } })
+                        }
+                      />
                     </Col>
                     <Col span={12}>
-                      <Select style={{ width: "100%" }} value={state.data.address.country}
-                        onChange={(v) => dispatch({ type: "UPDATE_ADDRESS", payload: { country: v } })}
-                        options={[{ value: "US", label: "United States" }, { value: "UK", label: "United Kingdom" }, { value: "AU", label: "Australia" }]} />
+                      <Select
+                        style={{ width: "100%" }}
+                        value={state.data.address.country}
+                        onChange={(v) =>
+                          dispatch({ type: "UPDATE_ADDRESS", payload: { country: v } })
+                        }
+                        options={[
+                          { value: "US", label: "United States" },
+                          { value: "UK", label: "United Kingdom" },
+                          { value: "AU", label: "Australia" },
+                        ]}
+                      />
                     </Col>
                   </Row>
                 </Space>
@@ -260,16 +301,35 @@ export default function UseReducerAdvancedPage() {
               <div>
                 <Title level={5}>Payment Details</Title>
                 <Space orientation="vertical" style={{ width: "100%" }} size={12}>
-                  <Input placeholder="Card number (16 digits)" maxLength={16} value={state.data.payment.card}
-                    onChange={(e) => dispatch({ type: "UPDATE_PAYMENT", payload: { card: e.target.value } })} />
+                  <Input
+                    placeholder="Card number (16 digits)"
+                    maxLength={16}
+                    value={state.data.payment.card}
+                    onChange={(e) =>
+                      dispatch({ type: "UPDATE_PAYMENT", payload: { card: e.target.value } })
+                    }
+                  />
                   <Row gutter={12}>
                     <Col span={12}>
-                      <Input placeholder="MM/YY" maxLength={5} value={state.data.payment.expiry}
-                        onChange={(e) => dispatch({ type: "UPDATE_PAYMENT", payload: { expiry: e.target.value } })} />
+                      <Input
+                        placeholder="MM/YY"
+                        maxLength={5}
+                        value={state.data.payment.expiry}
+                        onChange={(e) =>
+                          dispatch({ type: "UPDATE_PAYMENT", payload: { expiry: e.target.value } })
+                        }
+                      />
                     </Col>
                     <Col span={12}>
-                      <Input placeholder="CVV" maxLength={3} type="password" value={state.data.payment.cvv}
-                        onChange={(e) => dispatch({ type: "UPDATE_PAYMENT", payload: { cvv: e.target.value } })} />
+                      <Input
+                        placeholder="CVV"
+                        maxLength={3}
+                        type="password"
+                        value={state.data.payment.cvv}
+                        onChange={(e) =>
+                          dispatch({ type: "UPDATE_PAYMENT", payload: { cvv: e.target.value } })
+                        }
+                      />
                     </Col>
                   </Row>
                   <Tag color="blue">Total to charge: ${total.toFixed(2)}</Tag>
@@ -279,7 +339,10 @@ export default function UseReducerAdvancedPage() {
 
             <Divider />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Button onClick={() => dispatch({ type: "BACK" })} disabled={state.history.length === 0}>
+              <Button
+                onClick={() => dispatch({ type: "BACK" })}
+                disabled={state.history.length === 0}
+              >
                 ← Back
               </Button>
               {state.currentStep === "payment" ? (
@@ -298,15 +361,33 @@ export default function UseReducerAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Wizard State"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>currentStep: </span><span style={{ color: "#ce9178" }}>{state.currentStep}</span></div>
-              <div><span style={{ color: "#569cd6" }}>history: </span><span style={{ color: "#d4d4d4" }}>[{state.history.join(", ")}]</span></div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>currentStep: </span>
+                <span style={{ color: "#ce9178" }}>{state.currentStep}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>history: </span>
+                <span style={{ color: "#d4d4d4" }}>[{state.history.join(", ")}]</span>
+              </div>
               <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
               <div style={{ color: "#569cd6" }}>address:</div>
-              <pre style={{ margin: "0 0 0 8px", fontSize: 10, color: "#d4d4d4" }}>{JSON.stringify(state.data.address, null, 2)}</pre>
+              <pre style={{ margin: "0 0 0 8px", fontSize: 10, color: "#d4d4d4" }}>
+                {JSON.stringify(state.data.address, null, 2)}
+              </pre>
             </div>
           </Card>
         </Col>

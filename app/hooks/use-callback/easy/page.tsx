@@ -9,16 +9,7 @@
 // reference across renders, making React.memo effective.
 
 import { memo, useCallback, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Space,
-  Switch,
-  Tag,
-  Typography,
-} from "antd";
+import { Button, Card, Col, Row, Space, Switch, Tag, Typography } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -120,8 +111,8 @@ export default function UseCallbackEasyPage() {
           >
             <Space orientation="vertical" style={{ width: "100%" }} size={12}>
               <Text type="secondary" style={{ fontSize: 12 }}>
-                Each badge shows how many times that child component re-rendered.
-                Click &quot;Unrelated state&quot;. With useCallback ON, buttons should not re-render.
+                Each badge shows how many times that child component re-rendered. Click
+                &quot;Unrelated state&quot;. With useCallback ON, buttons should not re-render.
               </Text>
 
               <CounterButton
@@ -135,11 +126,7 @@ export default function UseCallbackEasyPage() {
                 renderCount={renderCountB}
               />
 
-              <Button
-                block
-                style={{ marginTop: 8 }}
-                onClick={() => setUnrelated((c) => c + 1)}
-              >
+              <Button block style={{ marginTop: 8 }} onClick={() => setUnrelated((c) => c + 1)}>
                 Unrelated state change (×{unrelated}): should NOT re-render children
               </Button>
             </Space>
@@ -149,20 +136,32 @@ export default function UseCallbackEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Function Identity"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div style={{ color: "#6a9955" }}>// Every render:</div>
               <div style={{ color: "#ce9178" }}>const fn = {"() => {}"}</div>
-              <div style={{ color: "#ce9178" }}>fn === fn? <span style={{ color: "#d4d4d4" }}>false ❌</span></div>
+              <div style={{ color: "#ce9178" }}>
+                fn === fn? <span style={{ color: "#d4d4d4" }}>false ❌</span>
+              </div>
               <br />
               <div style={{ color: "#6a9955" }}>// With useCallback:</div>
               <div style={{ color: "#dcdcaa" }}>const fn = useCallback({"() => {}"}, [])</div>
-              <div style={{ color: "#dcdcaa" }}>fn === fn? <span style={{ color: "#d4d4d4" }}>true ✓</span></div>
+              <div style={{ color: "#dcdcaa" }}>
+                fn === fn? <span style={{ color: "#d4d4d4" }}>true ✓</span>
+              </div>
               <br />
               <div style={{ color: "#6a9955" }}>// Because:</div>
-              <div style={{ color: "#d4d4d4" }}>useCallback ON: <Tag color="default" style={{ fontSize: 10 }}>{callbackEnabled ? "stable ref" : "new ref"}</Tag></div>
+              <div style={{ color: "#d4d4d4" }}>
+                useCallback ON:{" "}
+                <Tag color="default" style={{ fontSize: 10 }}>
+                  {callbackEnabled ? "stable ref" : "new ref"}
+                </Tag>
+              </div>
             </div>
           </Card>
         </Col>

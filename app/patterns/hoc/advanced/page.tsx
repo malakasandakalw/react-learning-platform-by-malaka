@@ -6,17 +6,7 @@
 // Also shows: when to use HOCs vs custom hooks, and the HOC-to-hook migration pattern.
 
 import { ComponentType, useState, useEffect } from "react";
-import {
-  Card,
-  Col,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Space,
-  Alert,
-  Button,
-} from "antd";
+import { Card, Col, Row, Spin, Tag, Typography, Space, Alert, Button } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -47,7 +37,12 @@ function withLogger<P extends object>(name: string) {
 function withLoadingHoc<P extends object>(WrappedComponent: ComponentType<P>) {
   function WithLoading(props: P & { loading?: boolean }) {
     const { loading, ...rest } = props;
-    if (loading) return <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>;
+    if (loading)
+      return (
+        <div style={{ textAlign: "center", padding: 32 }}>
+          <Spin />
+        </div>
+      );
     return <WrappedComponent {...(rest as P)} />;
   }
   WithLoading.displayName = `withLoading(${WrappedComponent.name})`;
@@ -64,14 +59,18 @@ function withErrorBoundaryHoc<P extends object>(WrappedComponent: ComponentType<
   return WithError;
 }
 
-function withRetry<P extends object>(WrappedComponent: ComponentType<P & { onRetry?: () => void }>) {
+function withRetry<P extends object>(
+  WrappedComponent: ComponentType<P & { onRetry?: () => void }>
+) {
   function WithRetry(props: P & { error?: string | null; onRetry?: () => void }) {
     const { error, onRetry, ...rest } = props;
     return (
       <div>
         <WrappedComponent {...(rest as P)} error={error} />
         {error && onRetry && (
-          <Button size="small" style={{ marginTop: 8 }} onClick={onRetry}>Retry</Button>
+          <Button size="small" style={{ marginTop: 8 }} onClick={onRetry}>
+            Retry
+          </Button>
         )}
       </div>
     );
@@ -84,7 +83,11 @@ function withRetry<P extends object>(WrappedComponent: ComponentType<P & { onRet
 function DataDisplay({ data }: { data: string[] }) {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-      {data.map((item, i) => <Tag key={i} color="blue">{item}</Tag>)}
+      {data.map((item, i) => (
+        <Tag key={i} color="blue">
+          {item}
+        </Tag>
+      ))}
     </div>
   );
 }
@@ -92,7 +95,12 @@ function DataDisplay({ data }: { data: string[] }) {
 // ─── Compose all HOCs ─────────────────────────────────────────────────────────
 // Order: withRetry(withError(withLoading(withLogger(DataDisplay))))
 // The FIRST HOC listed in compose() is the OUTERMOST wrapper.
-const EnhancedDataDisplay = compose<{ data: string[]; loading?: boolean; error?: string | null; onRetry?: () => void }>(
+const EnhancedDataDisplay = compose<{
+  data: string[];
+  loading?: boolean;
+  error?: string | null;
+  onRetry?: () => void;
+}>(
   withRetry,
   withErrorBoundaryHoc,
   withLoadingHoc,
@@ -126,8 +134,12 @@ export default function HocAdvancedPage() {
         <Col xs={24} lg={14}>
           <Card title="Composed HOC demo" style={{ borderRadius: 12 }}>
             <Space style={{ marginBottom: 16 }}>
-              <Button onClick={() => simulate("success")} type="primary">Simulate Success</Button>
-              <Button onClick={() => simulate("error")} danger>Simulate Error</Button>
+              <Button onClick={() => simulate("success")} type="primary">
+                Simulate Success
+              </Button>
+              <Button onClick={() => simulate("error")} danger>
+                Simulate Error
+              </Button>
             </Space>
 
             <EnhancedDataDisplay
@@ -143,9 +155,19 @@ export default function HocAdvancedPage() {
           <Card
             title="HOC chain"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// compose() result:</div>
               <div style={{ color: "#569cd6" }}>withRetry(</div>
               <div style={{ paddingLeft: 12, color: "#569cd6" }}>withError(</div>
@@ -156,8 +178,17 @@ export default function HocAdvancedPage() {
               <div style={{ paddingLeft: 24, color: "#569cd6" }}>)</div>
               <div style={{ paddingLeft: 12, color: "#569cd6" }}>)</div>
               <div style={{ color: "#569cd6" }}>)</div>
-              <div style={{ marginTop: 8, padding: "6px 10px", background: "#252526", borderRadius: 6 }}>
-                <div>state: <Tag style={{ fontSize: 10 }}>{state}</Tag></div>
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "6px 10px",
+                  background: "#252526",
+                  borderRadius: 6,
+                }}
+              >
+                <div>
+                  state: <Tag style={{ fontSize: 10 }}>{state}</Tag>
+                </div>
               </div>
             </div>
           </Card>

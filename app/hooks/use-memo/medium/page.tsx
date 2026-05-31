@@ -63,9 +63,7 @@ export default function UseMemoMediumPage() {
     // Side effect for demo purposes: counts how many times this actually runs
     setComputeCount((c) => c + 1);
 
-    const filtered = pokemon.filter((p) =>
-      p.name.toLowerCase().includes(search.toLowerCase())
-    );
+    const filtered = pokemon.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
 
     return filtered.sort((a, b) => {
       if (sort === "az") return a.name.localeCompare(b.name);
@@ -117,7 +115,9 @@ export default function UseMemoMediumPage() {
             </Row>
 
             {loading ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : filteredAndSorted.length === 0 ? (
               <Empty description="No Pokémon found" />
             ) : (
@@ -153,8 +153,11 @@ export default function UseMemoMediumPage() {
         <Col xs={24} lg={7}>
           <Card
             title="Memo Stats"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>

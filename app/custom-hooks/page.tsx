@@ -41,15 +41,30 @@ export default function CustomHooksIndexPage() {
         ].map((item) => (
           <Col xs={24} md={8} key={item.level}>
             <Link href={`/custom-hooks/${item.level}`} style={{ textDecoration: "none" }}>
-              <Card hoverable style={{ borderRadius: 12, height: "100%" }} styles={{ body: { padding: 24 } }}>
+              <Card
+                hoverable
+                style={{ borderRadius: 12, height: "100%" }}
+                styles={{ body: { padding: 24 } }}
+              >
                 <Title level={4} style={{ margin: "0 0 8px", fontFamily: "var(--font-mono)" }}>
                   {item.title}
                 </Title>
                 <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>{item.desc}</Paragraph>
                 {item.api !== "" && (
-                  <div style={{ fontSize: 11, color: "rgba(0,0,0,0.65)", marginBottom: 8 }}>API: {item.api}</div>
+                  <div style={{ fontSize: 11, color: "rgba(0,0,0,0.65)", marginBottom: 8 }}>
+                    API: {item.api}
+                  </div>
                 )}
-                <div style={{ color: "#1677ff", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
+                <div
+                  style={{
+                    color: "#1677ff",
+                    fontWeight: 600,
+                    fontSize: 12,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
                   Explore <ArrowRightOutlined />
                 </div>
               </Card>

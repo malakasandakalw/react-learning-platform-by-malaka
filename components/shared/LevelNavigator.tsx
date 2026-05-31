@@ -19,10 +19,7 @@ export default function LevelNavigator({ basePath, currentLevel }: Props) {
   return (
     <Space style={{ display: "flex", justifyContent: "space-between", marginTop: 32 }}>
       {prevLevel ? (
-        <Button
-          icon={<LeftOutlined />}
-          onClick={() => router.push(`${basePath}/${prevLevel}`)}
-        >
+        <Button icon={<LeftOutlined />} onClick={() => router.push(`${basePath}/${prevLevel}`)}>
           {prevLevel.charAt(0).toUpperCase() + prevLevel.slice(1)}
         </Button>
       ) : (

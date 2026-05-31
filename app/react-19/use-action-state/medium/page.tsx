@@ -7,19 +7,7 @@
 // no useState for error messages: it all lives in the action state.
 
 import { useActionState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Typography,
-  Tag,
-  Result,
-} from "antd";
+import { Alert, Button, Card, Col, Form, Input, Row, Select, Typography, Tag, Result } from "antd";
 import { createPost } from "@/services/jsonPlaceholder";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -89,7 +77,9 @@ export default function UseActionStateMediumPage() {
   }
 
   function handleReset() {
-    setTitle(""); setBody(""); setUserId("");
+    setTitle("");
+    setBody("");
+    setUserId("");
     dispatch({ title: "__reset__", body: "", userId: "" });
   }
 
@@ -193,13 +183,42 @@ export default function UseActionStateMediumPage() {
           <Card
             title="Action State"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>status: </span><Tag color={state.status === "error" ? "error" : "default"} style={{ fontSize: 10 }}>{state.status}</Tag></div>
-              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>submittedCount: </span><span style={{ color: "#b5cea8" }}>{state.submittedCount}</span></div>
-              <div><span style={{ color: "#569cd6" }}>errors: </span><span style={{ color: "#d4d4d4" }}>{JSON.stringify(state.errors)}</span></div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>status: </span>
+                <Tag
+                  color={state.status === "error" ? "error" : "default"}
+                  style={{ fontSize: 10 }}
+                >
+                  {state.status}
+                </Tag>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>submittedCount: </span>
+                <span style={{ color: "#b5cea8" }}>{state.submittedCount}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>errors: </span>
+                <span style={{ color: "#d4d4d4" }}>{JSON.stringify(state.errors)}</span>
+              </div>
             </div>
           </Card>
         </Col>

@@ -148,30 +148,30 @@ export default function CompoundComponentsMediumPage() {
             <Accordion multi={multi}>
               <Accordion.Item id="what" title="What are Compound Components?">
                 <Paragraph style={{ margin: 0, fontSize: 13 }}>
-                  Components designed to work together, sharing implicit state via Context.
-                  Like native HTML. A <code>{"<select>"}</code> knows about its{" "}
-                  <code>{"<option>"}</code>s without you wiring them up.
+                  Components designed to work together, sharing implicit state via Context. Like
+                  native HTML. A <code>{"<select>"}</code> knows about its <code>{"<option>"}</code>
+                  s without you wiring them up.
                 </Paragraph>
               </Accordion.Item>
               <Accordion.Item id="when" title="When should I use this pattern?">
                 <Paragraph style={{ margin: 0, fontSize: 13 }}>
-                  When building reusable UI components that need flexible composition,
-                  design systems, component libraries, shared UI kits. The consumer
-                  decides structure; the compound component handles coordination.
+                  When building reusable UI components that need flexible composition, design
+                  systems, component libraries, shared UI kits. The consumer decides structure; the
+                  compound component handles coordination.
                 </Paragraph>
               </Accordion.Item>
               <Accordion.Item id="vs-props" title="vs. Prop Drilling">
                 <Paragraph style={{ margin: 0, fontSize: 13 }}>
                   Without this pattern you&apos;d pass <code>activeItem</code> and{" "}
-                  <code>onItemChange</code> to every child. Context eliminates that
-                  wiring. Sub-components are fully self-contained.
+                  <code>onItemChange</code> to every child. Context eliminates that wiring.
+                  Sub-components are fully self-contained.
                 </Paragraph>
               </Accordion.Item>
               <Accordion.Item id="vs-hooks" title="vs. Custom Hooks">
                 <Paragraph style={{ margin: 0, fontSize: 13 }}>
-                  Custom hooks share logic. Compound components share both logic{" "}
-                  <em>and</em> structure. Use compound components for UI building blocks
-                  where the relationship between parts matters.
+                  Custom hooks share logic. Compound components share both logic <em>and</em>{" "}
+                  structure. Use compound components for UI building blocks where the relationship
+                  between parts matters.
                 </Paragraph>
               </Accordion.Item>
             </Accordion>
@@ -193,26 +193,19 @@ export default function CompoundComponentsMediumPage() {
             >
               <div style={{ color: "#dcdcaa" }}>{"function toggle(id) {"}</div>
               <div style={{ paddingLeft: 12 }}>{"const next = new Set(prev);"}</div>
-              <div style={{ paddingLeft: 12, color: "#569cd6" }}>
-                {"if (next.has(id)) {"}
-              </div>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"if (next.has(id)) {"}</div>
               <div style={{ paddingLeft: 24 }}>{"next.delete(id);"}</div>
-              <div style={{ paddingLeft: 12, color: "#569cd6" }}>
-                {"} else {"}
-              </div>
-              <div style={{ paddingLeft: 24, color: "#6a9955" }}>
-                {"// exclusive mode:"}
-              </div>
-              <div style={{ paddingLeft: 24 }}>
-                {"if (!multi) next.clear();"}
-              </div>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"} else {"}</div>
+              <div style={{ paddingLeft: 24, color: "#6a9955" }}>{"// exclusive mode:"}</div>
+              <div style={{ paddingLeft: 24 }}>{"if (!multi) next.clear();"}</div>
               <div style={{ paddingLeft: 24 }}>{"next.add(id);"}</div>
               <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"}"}</div>
               <div style={{ color: "#dcdcaa" }}>{"}"}</div>
             </div>
             <div style={{ marginTop: 12, fontSize: 12, color: "#555" }}>
               <Text style={{ fontSize: 12 }}>
-                Mode now: <strong>{multi ? "multi (any open)" : "exclusive (one at a time)"}</strong>
+                Mode now:{" "}
+                <strong>{multi ? "multi (any open)" : "exclusive (one at a time)"}</strong>
               </Text>
             </div>
           </Card>

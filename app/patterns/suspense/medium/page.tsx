@@ -6,17 +6,7 @@
 // Named fallbacks give users feedback on exactly what is loading.
 
 import { lazy, Suspense, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Spin,
-  Typography,
-  Tag,
-  Space,
-  Tabs,
-} from "antd";
+import { Button, Card, Col, Row, Spin, Typography, Tag, Space, Tabs } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -25,7 +15,12 @@ const { Text } = Typography;
 // Simulated lazy sections: each has a different load delay
 function createSection(name: string, color: string, delayMs: number) {
   let loaded = false;
-  const promise = new Promise<void>((r) => setTimeout(() => { loaded = true; r(); }, delayMs));
+  const promise = new Promise<void>((r) =>
+    setTimeout(() => {
+      loaded = true;
+      r();
+    }, delayMs)
+  );
 
   return function Section() {
     if (!loaded) throw promise;
@@ -45,7 +40,9 @@ function createSection(name: string, color: string, delayMs: number) {
         }}
       >
         <Tag color="blue">{name}: loaded ✓</Tag>
-        <Text type="secondary" style={{ fontSize: 12 }}>Bundle loaded in {delayMs}ms</Text>
+        <Text type="secondary" style={{ fontSize: 12 }}>
+          Bundle loaded in {delayMs}ms
+        </Text>
       </div>
     );
   };
@@ -106,8 +103,8 @@ export default function SuspenseMediumPage() {
       {!started ? (
         <Card style={{ borderRadius: 12, textAlign: "center", padding: 32 }}>
           <Text type="secondary" style={{ display: "block", marginBottom: 20, fontSize: 14 }}>
-            Click to trigger all 4 sections loading simultaneously.
-            Watch them appear as their bundles load, fastest first.
+            Click to trigger all 4 sections loading simultaneously. Watch them appear as their
+            bundles load, fastest first.
           </Text>
           <Button type="primary" size="large" onClick={() => setStarted(true)}>
             Load All Sections

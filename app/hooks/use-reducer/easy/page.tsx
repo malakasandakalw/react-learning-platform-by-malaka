@@ -8,16 +8,7 @@
 // Redux is built on exactly this pattern.
 
 import { useReducer } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Space,
-  Statistic,
-  Tag,
-  Typography,
-} from "antd";
+import { Button, Card, Col, Row, Space, Statistic, Tag, Typography } from "antd";
 import {
   MinusOutlined,
   PlusOutlined,
@@ -111,10 +102,7 @@ export default function UseReducerEasyPage() {
         <Col xs={24} lg={14}>
           <Card style={{ borderRadius: 12 }}>
             <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
-              <Statistic
-                value={state.count}
-                styles={{ content: { fontSize: 72 } }}
-              />
+              <Statistic value={state.count} styles={{ content: { fontSize: 72 } }} />
 
               <Space>
                 <Button
@@ -148,7 +136,9 @@ export default function UseReducerEasyPage() {
               </Space>
 
               <div style={{ width: "100%" }}>
-                <Text type="secondary" style={{ fontSize: 12 }}>Step size:</Text>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  Step size:
+                </Text>
                 <Space style={{ marginLeft: 8 }}>
                   {STEP_OPTIONS.map((s) => (
                     <Tag
@@ -169,8 +159,11 @@ export default function UseReducerEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Dispatch Log"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
@@ -184,7 +177,8 @@ export default function UseReducerEasyPage() {
               <div>
                 <span style={{ color: "#569cd6" }}>history: </span>
                 <span style={{ color: "#d4d4d4" }}>
-                  [{state.history.slice(-5).join(", ")}{state.history.length > 5 ? "..." : ""}]
+                  [{state.history.slice(-5).join(", ")}
+                  {state.history.length > 5 ? "..." : ""}]
                 </span>
               </div>
               <div style={{ marginTop: 12, color: "#6a9955", fontSize: 11 }}>

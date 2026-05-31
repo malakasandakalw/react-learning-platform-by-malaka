@@ -7,15 +7,7 @@
 // Pattern: <Mouse render={(pos) => <Cursor at={pos} />} />
 
 import { useState } from "react";
-import {
-  Card,
-  Col,
-  Row,
-  Typography,
-  Tag,
-  Space,
-  Switch,
-} from "antd";
+import { Card, Col, Row, Typography, Tag, Space, Switch } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -108,7 +100,12 @@ export default function RenderPropsEasyPage() {
                         transition: "background 0.2s",
                       }}
                     />
-                    <Text>Status: <Tag color={isHovered ? "success" : "default"}>{isHovered ? "active" : "idle"}</Tag></Text>
+                    <Text>
+                      Status:{" "}
+                      <Tag color={isHovered ? "success" : "default"}>
+                        {isHovered ? "active" : "idle"}
+                      </Tag>
+                    </Text>
                   </div>
                 )}
               </Hover>
@@ -127,7 +124,10 @@ export default function RenderPropsEasyPage() {
                 render={({ on, toggle }) => (
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <Switch checked={on} onChange={toggle} />
-                    <Text>Feature flag: <Tag color={on ? "success" : "default"}>{on ? "enabled" : "disabled"}</Tag></Text>
+                    <Text>
+                      Feature flag:{" "}
+                      <Tag color={on ? "success" : "default"}>{on ? "enabled" : "disabled"}</Tag>
+                    </Text>
                   </div>
                 )}
               />

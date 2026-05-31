@@ -8,18 +8,7 @@
 // AND the component only re-renders when the filtered result actually changes.
 
 import { useEffect, useDeferredValue, useState, useMemo, memo } from "react";
-import {
-  Card,
-  Col,
-  Input,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Avatar,
-  Statistic,
-  Empty,
-} from "antd";
+import { Card, Col, Input, Row, Spin, Tag, Typography, Avatar, Statistic, Empty } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { getPokemonList } from "@/services/pokeApi";
 import type { PokemonListItem } from "@/types/pokemon";
@@ -49,13 +38,23 @@ const FilteredGrid = memo(function FilteredGrid({
         const id = getPokemonId(p.url);
         return (
           <Col key={p.name} xs={8} sm={6} md={4} lg={3}>
-            <div style={{ textAlign: "center", padding: 6, background: "#f8f9fc", borderRadius: 8, border: "1px solid #f0f0f0" }}>
+            <div
+              style={{
+                textAlign: "center",
+                padding: 6,
+                background: "#f8f9fc",
+                borderRadius: 8,
+                border: "1px solid #f0f0f0",
+              }}
+            >
               <Avatar
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                 size={36}
                 shape="square"
               />
-              <div style={{ fontSize: 10, marginTop: 2, textTransform: "capitalize" }}>{p.name}</div>
+              <div style={{ fontSize: 10, marginTop: 2, textTransform: "capitalize" }}>
+                {p.name}
+              </div>
             </div>
           </Col>
         );
@@ -84,9 +83,7 @@ export default function UseDeferredValueAdvancedPage() {
   // Combined with useDeferredValue: the filter runs AFTER the input settles.
   const filteredPokemon = useMemo(() => {
     setMemoRunCount((c) => c + 1);
-    return allPokemon.filter((p) =>
-      p.name.toLowerCase().includes(deferredQuery.toLowerCase())
-    );
+    return allPokemon.filter((p) => p.name.toLowerCase().includes(deferredQuery.toLowerCase()));
     // deferredQuery, not query. This is the key to the combination.
   }, [allPokemon, deferredQuery]);
 
@@ -119,7 +116,9 @@ export default function UseDeferredValueAdvancedPage() {
               allowClear
             />
             {loading ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : (
               <div style={{ opacity: isStale ? 0.6 : 1, transition: "opacity 0.15s" }}>
                 <FilteredGrid filteredPokemon={filteredPokemon} />
@@ -132,18 +131,46 @@ export default function UseDeferredValueAdvancedPage() {
           <Card
             title="Optimization Layers"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <Statistic
               title={<span style={{ color: "#6a9955", fontSize: 11 }}>filter ran (times)</span>}
               value={memoRunCount}
               styles={{ content: { color: "#b5cea8" } }}
             />
-            <div style={{ marginTop: 12, fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div><span style={{ color: "#569cd6" }}>query: </span><span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span></div>
-              <div><span style={{ color: "#569cd6" }}>deferred: </span><span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span></div>
-              <div><span style={{ color: "#569cd6" }}>results: </span><span style={{ color: "#d4d4d4" }}>{filteredPokemon.length}</span></div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+            <div
+              style={{
+                marginTop: 12,
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>query: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>deferred: </span>
+                <span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>results: </span>
+                <span style={{ color: "#d4d4d4" }}>{filteredPokemon.length}</span>
+              </div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>Layer 1: useDeferredValue</div>
                 <div style={{ color: "#6a9955" }}>→ delays re-render trigger</div>
                 <div style={{ color: "#569cd6", marginTop: 4 }}>Layer 2: useMemo</div>

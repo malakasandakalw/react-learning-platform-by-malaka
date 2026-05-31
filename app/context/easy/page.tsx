@@ -13,16 +13,7 @@
 //   3. useContext: read the value from any component below
 
 import { createContext, useContext, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Space,
-  Tag,
-  Typography,
-  Alert,
-} from "antd";
+import { Button, Card, Col, Row, Space, Tag, Typography, Alert } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -50,15 +41,11 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [accent, setAccent] = useState<Accent>("blue");
   const toggleAccent = () => setAccent((a) => (a === "blue" ? "indigo" : "blue"));
 
-  return (
-    <ThemeContext.Provider value={{ accent, toggleAccent }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ accent, toggleAccent }}>{children}</ThemeContext.Provider>;
 }
 
 const ACCENT = {
-  blue:   { bg: "#e6f4ff", border: "#91caff", text: "#0958d9", tag: "blue"   as const },
+  blue: { bg: "#e6f4ff", border: "#91caff", text: "#0958d9", tag: "blue" as const },
   indigo: { bg: "#f0f5ff", border: "#adc6ff", text: "#1677ff", tag: "blue" as const },
 };
 
@@ -79,7 +66,9 @@ function ThemedHeader() {
         alignItems: "center",
       }}
     >
-      <Text strong style={{ color: a.text }}>Application Header</Text>
+      <Text strong style={{ color: a.text }}>
+        Application Header
+      </Text>
       <Button size="small" onClick={toggleAccent}>
         Switch to {accent === "blue" ? "Indigo" : "Blue"}
       </Button>
@@ -178,9 +167,19 @@ export default function ContextEasyPage() {
           <Card
             title="Context API Steps"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none", marginTop: 16 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// 1. Create</div>
               <div style={{ color: "#ce9178" }}>createContext(defaultValue)</div>
               <div style={{ color: "#6a9955", marginTop: 4 }}>// 2. Provide</div>

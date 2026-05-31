@@ -7,11 +7,7 @@
 
 import { useState } from "react";
 import { Button, Card, Col, Row, Space, Statistic, Switch, Tag, Typography } from "antd";
-import {
-  MinusOutlined,
-  PlusOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons";
+import { MinusOutlined, PlusOutlined, ReloadOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -29,16 +25,8 @@ function CounterDemo() {
       <Space orientation="vertical" align="center" style={{ width: "100%" }}>
         <Statistic value={count} styles={{ content: { fontSize: 56 } }} />
         <Space>
-          <Button
-            icon={<MinusOutlined />}
-            onClick={() => setCount(count - 1)}
-            size="large"
-          />
-          <Button
-            icon={<ReloadOutlined />}
-            onClick={() => setCount(0)}
-            size="large"
-          >
+          <Button icon={<MinusOutlined />} onClick={() => setCount(count - 1)} size="large" />
+          <Button icon={<ReloadOutlined />} onClick={() => setCount(0)} size="large">
             Reset
           </Button>
           <Button
@@ -121,8 +109,8 @@ export default function UseStateEasyPage() {
           Key Rule
         </Title>
         <Text style={{ fontSize: 13 }}>
-          Never mutate state directly (e.g. <code>count++</code>). Always call the setter.
-          React compares the old and new values. If they are the same reference, it skips the re-render.
+          Never mutate state directly (e.g. <code>count++</code>). Always call the setter. React
+          compares the old and new values. If they are the same reference, it skips the re-render.
           For objects and arrays, always return a new reference.
         </Text>
       </Card>

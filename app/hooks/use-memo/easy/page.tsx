@@ -107,11 +107,11 @@ export default function UseMemoEasyPage() {
                 />
               </div>
 
-              <div style={{ background: "#f8f9fc", borderRadius: 8, padding: 20, textAlign: "center" }}>
+              <div
+                style={{ background: "#f8f9fc", borderRadius: 8, padding: 20, textAlign: "center" }}
+              >
                 <ThunderboltOutlined style={{ fontSize: 24, marginBottom: 8 }} />
-                <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 4 }}>
-                  {number}! =
-                </div>
+                <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 4 }}>{number}! =</div>
                 <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "var(--font-mono)" }}>
                   {formatBigNumber(result ?? 0)}
                 </div>
@@ -119,8 +119,8 @@ export default function UseMemoEasyPage() {
 
               <div style={{ borderTop: "1px solid #f0f0f0", paddingTop: 16 }}>
                 <Text type="secondary" style={{ fontSize: 13 }}>
-                  This button is unrelated to the factorial. Click it. With useMemo ON,
-                  the calculation does NOT rerun. With it OFF, every click reruns the expensive loop.
+                  This button is unrelated to the factorial. Click it. With useMemo ON, the
+                  calculation does NOT rerun. With it OFF, every click reruns the expensive loop.
                 </Text>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
                   <Button onClick={() => setCounter((c) => c + 1)}>
@@ -143,8 +143,11 @@ export default function UseMemoEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="useMemo Anatomy"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div style={{ color: "#569cd6" }}>const result = useMemo(</div>
@@ -164,7 +167,14 @@ export default function UseMemoEasyPage() {
                 <span style={{ color: "#b5cea8" }}>number changes → </span>
                 <span style={{ color: "#d4d4d4" }}>RECALCULATED</span>
               </div>
-              <div style={{ marginTop: 16, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 16,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <span style={{ color: "#569cd6" }}>current deps: </span>
                 <span style={{ color: "#b5cea8" }}>number={number}</span>
               </div>

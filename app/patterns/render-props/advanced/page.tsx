@@ -80,7 +80,8 @@ export default function RenderPropsAdvancedPage() {
         <Col xs={24} md={12}>
           <Card title="Consumer 1: coordinate display" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 12 }}>
-              Move your mouse inside the box. MouseTracker calls the render prop with live {"{x, y}"}.
+              Move your mouse inside the box. MouseTracker calls the render prop with live{" "}
+              {"{x, y}"}.
             </Text>
             <MouseTracker
               style={{
@@ -136,7 +137,8 @@ export default function RenderPropsAdvancedPage() {
         <Col xs={24} md={12}>
           <Card title="Consumer 2: color mixer" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 12 }}>
-              Same MouseTracker component, completely different UI. Here x maps to red and y maps to green.
+              Same MouseTracker component, completely different UI. Here x maps to red and y maps to
+              green.
             </Text>
             <MouseTracker
               style={{
@@ -233,8 +235,7 @@ export default function RenderPropsAdvancedPage() {
                             <Tag color={on ? "success" : "default"}>{on ? "on" : "off"}</Tag>
                           </Text>
                           <Text style={{ fontSize: 12 }}>
-                            Mouse position:{" "}
-                            <Tag>{on ? `(${x}, ${y})` : "paused"}</Tag>
+                            Mouse position: <Tag>{on ? `(${x}, ${y})` : "paused"}</Tag>
                           </Text>
                           <Text type="secondary" style={{ fontSize: 11 }}>
                             Both providers' state in one render fn
@@ -282,16 +283,12 @@ export default function RenderPropsAdvancedPage() {
               <div style={{ color: "#6a9955" }}>
                 {"// Nesting render prop providers: each adds its state:"}
               </div>
-              <div>
-                {"<Toggle render={({ on, toggle }) => ("}
-              </div>
-              <div style={{ paddingLeft: 16 }}>
-                {"<MouseTracker render={({ x, y }) => ("}
-              </div>
+              <div>{"<Toggle render={({ on, toggle }) => ("}</div>
+              <div style={{ paddingLeft: 16 }}>{"<MouseTracker render={({ x, y }) => ("}</div>
               <div style={{ paddingLeft: 32, color: "#ce9178" }}>
                 {"// on, toggle, x, y all available here"}
               </div>
-              <div style={{ paddingLeft: 16 }}>{")}>"}  </div>
+              <div style={{ paddingLeft: 16 }}>{")}>"} </div>
               <div>{")} />"}</div>
             </div>
           </Card>

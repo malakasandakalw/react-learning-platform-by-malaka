@@ -7,18 +7,7 @@
 // This makes the UI feel instant even with slow network connections.
 
 import { useOptimistic, useState, useTransition } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  List,
-  Row,
-  Space,
-  Spin,
-  Tag,
-  Typography,
-  Avatar,
-} from "antd";
+import { Button, Card, Col, List, Row, Space, Spin, Tag, Typography, Avatar } from "antd";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -50,9 +39,7 @@ export default function UseOptimisticEasyPage() {
     posts,
     (currentPosts: Post[], postId: number) =>
       currentPosts.map((p) =>
-        p.id === postId
-          ? { ...p, liked: !p.liked, likes: p.liked ? p.likes - 1 : p.likes + 1 }
-          : p
+        p.id === postId ? { ...p, liked: !p.liked, likes: p.liked ? p.likes - 1 : p.likes + 1 } : p
       )
   );
 
@@ -121,7 +108,11 @@ export default function UseOptimisticEasyPage() {
                   <List.Item.Meta
                     avatar={<Avatar>{post.id}</Avatar>}
                     title={post.title}
-                    description={<Text type="secondary" style={{ fontSize: 12 }}>Post #{post.id}</Text>}
+                    description={
+                      <Text type="secondary" style={{ fontSize: 12 }}>
+                        Post #{post.id}
+                      </Text>
+                    }
                   />
                 </List.Item>
               ))}
@@ -133,18 +124,37 @@ export default function UseOptimisticEasyPage() {
           <Card
             title="Optimistic Flow"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#b5cea8" }}>1. User clicks like</div>
               <div style={{ color: "#b5cea8" }}>2. addOptimisticLike(id)</div>
-              <div style={{ color: "#b5cea8" }}>   → UI updates instantly ✓</div>
+              <div style={{ color: "#b5cea8" }}> → UI updates instantly ✓</div>
               <div style={{ color: "#dcdcaa" }}>3. API call runs (1s)</div>
               <div style={{ color: "#b5cea8" }}>4a. Success → setPosts()</div>
               <div style={{ color: "#ce9178" }}>4b. Failure → rollback</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <span style={{ color: "#569cd6" }}>isPending: </span>
-                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
               </div>
             </div>
           </Card>

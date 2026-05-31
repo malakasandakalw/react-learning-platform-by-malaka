@@ -10,18 +10,7 @@
 // With useCallback (and proper deps), only the affected item re-renders.
 
 import { memo, useCallback, useState } from "react";
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Row,
-  Space,
-  Tag,
-  Typography,
-  Input,
-  Empty,
-} from "antd";
+import { Button, Card, Checkbox, Col, Row, Space, Tag, Typography, Input, Empty } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -54,10 +43,7 @@ const TaskRow = memo(function TaskRow({
         marginBottom: 6,
       }}
     >
-      <Checkbox
-        checked={task.done}
-        onChange={() => onToggle(task.id)}
-      />
+      <Checkbox checked={task.done} onChange={() => onToggle(task.id)} />
       <Text
         style={{
           flex: 1,
@@ -68,12 +54,7 @@ const TaskRow = memo(function TaskRow({
         {task.text}
       </Text>
       <Tag title={`${renderCount} renders`}>{renderCount}</Tag>
-      <Button
-        icon={<DeleteOutlined />}
-        size="small"
-        danger
-        onClick={() => onDelete(task.id)}
-      />
+      <Button icon={<DeleteOutlined />} size="small" danger onClick={() => onDelete(task.id)} />
     </div>
   );
 });
@@ -101,9 +82,7 @@ export default function UseCallbackMediumPage() {
   // If we wrote setTasks(tasks.map(...)) we would need [tasks] as a dep, and the
   // function would change on every tasks change, defeating the purpose.
   const handleToggle = useCallback((id: number) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
-    );
+    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t)));
   }, []); // []: stable forever because we use the functional updater
 
   const handleDelete = useCallback((id: number) => {
@@ -162,11 +141,7 @@ export default function UseCallbackMediumPage() {
               ))
             )}
 
-            <Button
-              block
-              style={{ marginTop: 12 }}
-              onClick={() => setUnrelated((c) => c + 1)}
-            >
+            <Button block style={{ marginTop: 12 }} onClick={() => setUnrelated((c) => c + 1)}>
               Unrelated state (×{unrelated}): tasks should not re-render
             </Button>
           </Card>
@@ -175,10 +150,20 @@ export default function UseCallbackMediumPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Why Empty Deps Work"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// ❌ NEEDS [tasks] in deps:</div>
               <div style={{ color: "#ce9178" }}>{"setTasks(tasks.map(...))"}</div>
               <div style={{ color: "#6a9955" }}>{"// reads 'tasks' from closure"}</div>

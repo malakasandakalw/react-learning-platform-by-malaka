@@ -7,15 +7,7 @@
 // This is the "escape hatch" from React's declarative model for direct DOM access.
 
 import { useRef, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Input,
-  Row,
-  Space,
-  Typography,
-} from "antd";
+import { Button, Card, Col, Input, Row, Space, Typography } from "antd";
 import { SearchOutlined, AudioOutlined, FormOutlined } from "@ant-design/icons";
 import type { InputRef } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
@@ -134,9 +126,10 @@ export default function UseRefEasyPage() {
           When to use ref vs state
         </Title>
         <Text style={{ fontSize: 13 }}>
-          If the value affects what the user sees on screen, use <code>useState</code>.
-          If you just need to <em>do something</em> to a DOM element without changing the UI, use <code>useRef</code>.
-          A focused input doesn&apos;t need to store &quot;isFocused&quot; in state unless you want to change the UI based on it.
+          If the value affects what the user sees on screen, use <code>useState</code>. If you just
+          need to <em>do something</em> to a DOM element without changing the UI, use{" "}
+          <code>useRef</code>. A focused input doesn&apos;t need to store &quot;isFocused&quot; in
+          state unless you want to change the UI based on it.
         </Text>
       </Card>
 

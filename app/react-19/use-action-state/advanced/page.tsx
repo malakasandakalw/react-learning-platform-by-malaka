@@ -6,19 +6,7 @@
 // in the UI while the real action runs. If it fails, the optimistic update reverts.
 
 import { useActionState, useOptimistic, useTransition } from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  Col,
-  Input,
-  List,
-  Row,
-  Tag,
-  Typography,
-  Space,
-  Alert,
-} from "antd";
+import { Avatar, Button, Card, Col, Input, List, Row, Tag, Typography, Space, Alert } from "antd";
 import { PlusOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { createTodo } from "@/services/jsonPlaceholder";
 import type { Todo } from "@/types/post";
@@ -82,7 +70,7 @@ export default function UseActionStateAdvancedPage() {
 
     startTransition(async () => {
       addOptimisticItem(title); // Show immediately
-      dispatch(title);          // Confirm with server
+      dispatch(title); // Confirm with server
     });
   }
 
@@ -102,7 +90,13 @@ export default function UseActionStateAdvancedPage() {
       />
 
       {state.error && (
-        <Alert type="error" title={state.error} showIcon style={{ marginBottom: 16, borderRadius: 8 }} closable />
+        <Alert
+          type="error"
+          title={state.error}
+          showIcon
+          style={{ marginBottom: 16, borderRadius: 8 }}
+          closable
+        />
       )}
 
       <Row gutter={[24, 24]}>
@@ -118,7 +112,12 @@ export default function UseActionStateAdvancedPage() {
                 onPressEnter={handleAdd}
                 placeholder="New todo..."
               />
-              <Button type="primary" icon={<PlusOutlined />} loading={isPending} onClick={handleAdd}>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                loading={isPending}
+                onClick={handleAdd}
+              >
                 Add
               </Button>
             </Space.Compact>
@@ -130,21 +129,33 @@ export default function UseActionStateAdvancedPage() {
                     avatar={
                       <Avatar
                         size={28}
-                        style={{ background: item.id < 0 ? "#8c8c8c" : item.completed ? "#1677ff" : "#722ed1" }}
+                        style={{
+                          background:
+                            item.id < 0 ? "#8c8c8c" : item.completed ? "#1677ff" : "#722ed1",
+                        }}
                         icon={item.completed ? <CheckCircleOutlined /> : undefined}
                       >
                         {item.id < 0 ? "…" : null}
                       </Avatar>
                     }
                     title={
-                      <Text style={{ textDecoration: item.completed ? "line-through" : "none", color: item.completed ? "#9ca3af" : undefined }}>
+                      <Text
+                        style={{
+                          textDecoration: item.completed ? "line-through" : "none",
+                          color: item.completed ? "#9ca3af" : undefined,
+                        }}
+                      >
                         {item.title}
                       </Text>
                     }
                     description={
-                      item.id < 0
-                        ? <Tag color="orange">Saving to server…</Tag>
-                        : <Tag color={item.completed ? "success" : "default"}>{item.completed ? "Done" : "Pending"}</Tag>
+                      item.id < 0 ? (
+                        <Tag color="orange">Saving to server…</Tag>
+                      ) : (
+                        <Tag color={item.completed ? "success" : "default"}>
+                          {item.completed ? "Done" : "Pending"}
+                        </Tag>
+                      )
                     }
                   />
                 </List.Item>
@@ -157,20 +168,46 @@ export default function UseActionStateAdvancedPage() {
           <Card
             title="State Flow"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#b5cea8" }}>1. handleAdd() fires</div>
               <div style={{ color: "#b5cea8" }}>2. addOptimisticItem(title)</div>
-              <div style={{ color: "#b5cea8" }}>   → list updates instantly</div>
+              <div style={{ color: "#b5cea8" }}> → list updates instantly</div>
               <div style={{ color: "#ce9178" }}>3. dispatch(title)</div>
-              <div style={{ color: "#ce9178" }}>   → action runs async</div>
+              <div style={{ color: "#ce9178" }}> → action runs async</div>
               <div style={{ color: "#b5cea8" }}>4a. success → real item added</div>
               <div style={{ color: "#ce9178" }}>4b. error → optimistic reverts</div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
-                <div>real items: <span style={{ color: "#b5cea8" }}>{state.items.length}</span></div>
-                <div>optimistic: <span style={{ color: "#ce9178" }}>{optimisticItems.length}</span></div>
-                <div>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 10px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
+                <div>
+                  real items: <span style={{ color: "#b5cea8" }}>{state.items.length}</span>
+                </div>
+                <div>
+                  optimistic: <span style={{ color: "#ce9178" }}>{optimisticItems.length}</span>
+                </div>
+                <div>
+                  isPending:{" "}
+                  <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>
+                    {String(isPending)}
+                  </span>
+                </div>
               </div>
             </div>
           </Card>

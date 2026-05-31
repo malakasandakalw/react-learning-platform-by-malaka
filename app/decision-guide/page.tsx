@@ -528,9 +528,7 @@ const GUIDE: GuideEntry[] = [
     ],
     callout:
       "Start with useEffect. Only switch to useLayoutEffect if you observe a visible flicker caused by a DOM measurement driving a state update. The React team recommends using useLayoutEffect sparingly because it blocks the browser from painting until it completes.",
-    links: [
-      { label: "useEffect: Advanced", path: "/hooks/use-effect/advanced" },
-    ],
+    links: [{ label: "useEffect: Advanced", path: "/hooks/use-effect/advanced" }],
   },
   {
     id: 15,
@@ -561,15 +559,14 @@ const GUIDE: GuideEntry[] = [
     ],
     callout:
       "forwardRef + useImperativeHandle is intentionally rare. Most parent–child communication should flow through props and callbacks. Reserve this pattern for genuinely imperative, one-shot actions such as focus, scroll, play/pause, and reset. These are commands, not state.",
-    links: [
-      { label: "useRef: Advanced", path: "/hooks/use-ref/advanced" },
-    ],
+    links: [{ label: "useRef: Advanced", path: "/hooks/use-ref/advanced" }],
   },
   {
     id: 16,
     tag: "Forms",
     tagColor: "#059669",
-    situation: "A form with async submission, server validation, and loading states is getting messy",
+    situation:
+      "A form with async submission, server validation, and loading states is getting messy",
     context:
       "A login or registration form. While submitting, the button should disable and show a spinner. On failure, each field should show the server's error message. On success, navigate or show confirmation. Managing all this with individual useState calls leads to bugs where isLoading and isError can both be true simultaneously.",
     decisions: [
@@ -734,11 +731,20 @@ const VERDICT_LABEL: Record<Verdict, string> = {
 function EntryBody({ entry }: { entry: GuideEntry }) {
   return (
     <div>
-      <Paragraph style={{ margin: "0 0 16px", fontSize: 13, color: "rgba(0,0,0,0.65)", lineHeight: 1.75 }}>
+      <Paragraph
+        style={{ margin: "0 0 16px", fontSize: 13, color: "rgba(0,0,0,0.65)", lineHeight: 1.75 }}
+      >
         {entry.context}
       </Paragraph>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: entry.callout ? 12 : 0 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+          marginBottom: entry.callout ? 12 : 0,
+        }}
+      >
         {entry.decisions.map((d, i) => (
           <Alert
             key={i}
@@ -746,7 +752,9 @@ function EntryBody({ entry }: { entry: GuideEntry }) {
             showIcon
             title={
               <span>
-                <Text strong style={{ fontSize: 13 }}>{VERDICT_LABEL[d.verdict]}: </Text>
+                <Text strong style={{ fontSize: 13 }}>
+                  {VERDICT_LABEL[d.verdict]}:{" "}
+                </Text>
                 <Text style={{ fontSize: 13, fontFamily: "var(--font-mono)" }}>{d.concept}</Text>
               </span>
             }
@@ -756,19 +764,26 @@ function EntryBody({ entry }: { entry: GuideEntry }) {
       </div>
 
       {entry.callout && (
-        <Alert
-          type="info"
-          showIcon
-          title={<Text style={{ fontSize: 13 }}>{entry.callout}</Text>}
-        />
+        <Alert type="info" showIcon title={<Text style={{ fontSize: 13 }}>{entry.callout}</Text>} />
       )}
 
       {entry.links.length > 0 && (
-        <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
-          <Text type="secondary" style={{ fontSize: 12 }}>See it in practice:</Text>
+        <div
+          style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}
+        >
+          <Text type="secondary" style={{ fontSize: 12 }}>
+            See it in practice:
+          </Text>
           {entry.links.map((link) => (
             <Link key={link.path} href={link.path} style={{ textDecoration: "none" }}>
-              <Text style={{ fontSize: 12, color: "#1677ff", fontFamily: "var(--font-mono)", cursor: "pointer" }}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: "#1677ff",
+                  fontFamily: "var(--font-mono)",
+                  cursor: "pointer",
+                }}
+              >
                 {link.label} →
               </Text>
             </Link>
@@ -790,9 +805,15 @@ export default function DecisionGuidePage() {
     key: String(entry.id),
     label: (
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <Text type="secondary" style={{ fontSize: 11, minWidth: 18 }}>{entry.id}.</Text>
-        <Tag color={entry.tagColor} style={{ margin: 0 }}>{entry.tag}</Tag>
-        <Text strong style={{ fontSize: 13, lineHeight: 1.4 }}>{entry.situation}</Text>
+        <Text type="secondary" style={{ fontSize: 11, minWidth: 18 }}>
+          {entry.id}.
+        </Text>
+        <Tag color={entry.tagColor} style={{ margin: 0 }}>
+          {entry.tag}
+        </Tag>
+        <Text strong style={{ fontSize: 13, lineHeight: 1.4 }}>
+          {entry.situation}
+        </Text>
       </div>
     ),
     children: <EntryBody entry={entry} />,
@@ -801,11 +822,13 @@ export default function DecisionGuidePage() {
   return (
     <div>
       <div style={{ marginBottom: 24 }}>
-        <Title level={2} style={{ marginBottom: 8 }}>When to use what?</Title>
+        <Title level={2} style={{ marginBottom: 8 }}>
+          When to use what?
+        </Title>
         <Paragraph style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", margin: "0 0 16px" }}>
-          Organized around the <strong>situation you are in</strong>, not the API name.
-          When you are confused, you rarely know the name of what you need.
-          Each entry describes a real scenario, then explains which React tool to reach for and which to avoid.
+          Organized around the <strong>situation you are in</strong>, not the API name. When you are
+          confused, you rarely know the name of what you need. Each entry describes a real scenario,
+          then explains which React tool to reach for and which to avoid.
         </Paragraph>
         <Alert
           type="warning"
@@ -818,7 +841,16 @@ export default function DecisionGuidePage() {
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
         <Tag
           onClick={() => setActiveTag(null)}
-          style={{ cursor: "pointer", padding: "4px 12px", fontSize: 12, borderRadius: 20, fontWeight: activeTag === null ? 600 : 400, background: activeTag === null ? "#1677ff" : undefined, color: activeTag === null ? "#fff" : undefined, borderColor: activeTag === null ? "#1677ff" : undefined }}
+          style={{
+            cursor: "pointer",
+            padding: "4px 12px",
+            fontSize: 12,
+            borderRadius: 20,
+            fontWeight: activeTag === null ? 600 : 400,
+            background: activeTag === null ? "#1677ff" : undefined,
+            color: activeTag === null ? "#fff" : undefined,
+            borderColor: activeTag === null ? "#1677ff" : undefined,
+          }}
         >
           All ({GUIDE.length})
         </Tag>
@@ -829,7 +861,16 @@ export default function DecisionGuidePage() {
             <Tag
               key={tag}
               onClick={() => setActiveTag(isActive ? null : tag)}
-              style={{ cursor: "pointer", padding: "4px 12px", fontSize: 12, borderRadius: 20, fontWeight: isActive ? 600 : 400, background: isActive ? entry.tagColor : undefined, color: isActive ? "#fff" : undefined, borderColor: isActive ? entry.tagColor : undefined }}
+              style={{
+                cursor: "pointer",
+                padding: "4px 12px",
+                fontSize: 12,
+                borderRadius: 20,
+                fontWeight: isActive ? 600 : 400,
+                background: isActive ? entry.tagColor : undefined,
+                color: isActive ? "#fff" : undefined,
+                borderColor: isActive ? entry.tagColor : undefined,
+              }}
             >
               {tag}
             </Tag>
@@ -837,11 +878,7 @@ export default function DecisionGuidePage() {
         })}
       </div>
 
-      <Collapse
-        items={collapseItems}
-        accordion={false}
-        style={{ background: "#fff" }}
-      />
+      <Collapse items={collapseItems} accordion={false} style={{ background: "#fff" }} />
 
       <div style={{ marginTop: 24 }}>
         <Alert

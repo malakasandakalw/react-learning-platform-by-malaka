@@ -7,19 +7,7 @@
 // This was the primary alternative to HOCs before custom hooks existed.
 
 import { useState, useEffect } from "react";
-import {
-  Alert,
-  Avatar,
-  Card,
-  Col,
-  List,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Space,
-  Select,
-} from "antd";
+import { Alert, Avatar, Card, Col, List, Row, Spin, Tag, Typography, Space, Select } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import type { User } from "@/types/user";
 import type { Post } from "@/types/post";
@@ -41,12 +29,16 @@ function DataFetcher<T>({ url, render }: DataFetcherProps<T>) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setData(null); setLoading(true); setError(null);
+    setData(null);
+    setLoading(true);
+    setError(null);
     const controller = new AbortController();
     fetch(url, { signal: controller.signal })
       .then((r) => r.json())
       .then(setData)
-      .catch((e) => { if (e.name !== "AbortError") setError(e.message); })
+      .catch((e) => {
+        if (e.name !== "AbortError") setError(e.message);
+      })
       .finally(() => setLoading(false));
     return () => controller.abort();
   }, [url]);
@@ -80,7 +72,12 @@ export default function RenderPropsMediumPage() {
             <DataFetcher<User[]>
               url={`${API_URLS.jsonPlaceholder}/users`}
               render={({ data, loading, error }) => {
-                if (loading) return <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>;
+                if (loading)
+                  return (
+                    <div style={{ textAlign: "center", padding: 32 }}>
+                      <Spin />
+                    </div>
+                  );
                 if (error) return <Alert type="error" title={error} showIcon />;
                 return (
                   <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -110,7 +107,10 @@ export default function RenderPropsMediumPage() {
                 onChange={setUserId}
                 size="small"
                 style={{ width: 100 }}
-                options={Array.from({ length: 5 }, (_, i) => ({ value: i + 1, label: `User ${i + 1}` }))}
+                options={Array.from({ length: 5 }, (_, i) => ({
+                  value: i + 1,
+                  label: `User ${i + 1}`,
+                }))}
               />
             }
             style={{ borderRadius: 12 }}
@@ -118,13 +118,23 @@ export default function RenderPropsMediumPage() {
             <DataFetcher<Post[]>
               url={`${API_URLS.jsonPlaceholder}/users/${userId}/posts`}
               render={({ data, loading, error }) => {
-                if (loading) return <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>;
+                if (loading)
+                  return (
+                    <div style={{ textAlign: "center", padding: 32 }}>
+                      <Spin />
+                    </div>
+                  );
                 if (error) return <Alert type="error" title={error} showIcon />;
                 return (
                   <div>
                     {data?.slice(0, 4).map((post) => (
-                      <div key={post.id} style={{ padding: "8px 0", borderBottom: "1px solid #f5f5f5" }}>
-                        <Text strong style={{ fontSize: 12 }} ellipsis>{post.title}</Text>
+                      <div
+                        key={post.id}
+                        style={{ padding: "8px 0", borderBottom: "1px solid #f5f5f5" }}
+                      >
+                        <Text strong style={{ fontSize: 12 }} ellipsis>
+                          {post.title}
+                        </Text>
                       </div>
                     ))}
                     <Text type="secondary" style={{ fontSize: 11 }}>

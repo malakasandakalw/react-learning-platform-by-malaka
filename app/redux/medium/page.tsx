@@ -87,7 +87,9 @@ export default function ReduxMediumPage() {
             style={{ borderRadius: 12 }}
           >
             {loading && users.length === 0 ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : (
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {users.map((user) => (
@@ -113,23 +115,48 @@ export default function ReduxMediumPage() {
           <Card
             title="Async Thunk Lifecycle"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#dcdcaa" }}>dispatch(fetchUsers())</div>
               <div style={{ color: "#6a9955" }}>↓ users/fetchAll/pending</div>
-              <div style={{ color: "#6a9955" }}>   loading = true</div>
+              <div style={{ color: "#6a9955" }}> loading = true</div>
               <div style={{ color: "#ce9178" }}>↓ await getUsers()</div>
               <div style={{ color: "#b5cea8" }}>↓ users/fetchAll/fulfilled</div>
-              <div style={{ color: "#d4d4d4" }}>   list = payload</div>
-              <div style={{ color: "#d4d4d4" }}>   loading = false</div>
+              <div style={{ color: "#d4d4d4" }}> list = payload</div>
+              <div style={{ color: "#d4d4d4" }}> loading = false</div>
               <div style={{ color: "#ce9178" }}>↓ (on error) /rejected</div>
-              <div style={{ color: "#d4d4d4" }}>   error = message</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div style={{ color: "#d4d4d4" }}> error = message</div>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>current state:</div>
-                <div>loading: <span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span></div>
-                <div>users: <span style={{ color: "#d4d4d4" }}>{users.length}</span></div>
-                <div>error: <span style={{ color: error ? "#ce9178" : "#b5cea8" }}>{error ?? "null"}</span></div>
+                <div>
+                  loading:{" "}
+                  <span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span>
+                </div>
+                <div>
+                  users: <span style={{ color: "#d4d4d4" }}>{users.length}</span>
+                </div>
+                <div>
+                  error:{" "}
+                  <span style={{ color: error ? "#ce9178" : "#b5cea8" }}>{error ?? "null"}</span>
+                </div>
               </div>
             </div>
           </Card>

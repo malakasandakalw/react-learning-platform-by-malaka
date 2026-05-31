@@ -148,7 +148,10 @@ export default function UseEffectAdvancedPage() {
           <Card
             title="Effect Inspector"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <Row gutter={[0, 0]}>
               <Col span={12}>
@@ -170,9 +173,7 @@ export default function UseEffectAdvancedPage() {
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
                 <span style={{ color: "#569cd6" }}>status: </span>
-                <span style={{ color: "#d4d4d4" }}>
-                  {running ? "● running" : "● paused"}
-                </span>
+                <span style={{ color: "#d4d4d4" }}>{running ? "● running" : "● paused"}</span>
               </div>
               <div>
                 <span style={{ color: "#569cd6" }}>interval: </span>

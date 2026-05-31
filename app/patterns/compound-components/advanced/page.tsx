@@ -222,7 +222,7 @@ export default function CompoundComponentsAdvancedPage() {
                 {"// const FlexCard = Object.assign(FlexCardRoot, { Header, Body, Footer, Badge })"}
               </div>
               <br />
-              <div>{"<FlexCard variant=\"success\">"}</div>
+              <div>{'<FlexCard variant="success">'}</div>
               <div style={{ paddingLeft: 16 }}>{"<FlexCard.Header>"}</div>
               <div style={{ paddingLeft: 32 }}>
                 {"Title <FlexCard.Badge>Active</FlexCard.Badge>"}
@@ -258,8 +258,8 @@ export default function CompoundComponentsAdvancedPage() {
                 <Text strong>Without Context:</Text>
                 <br />
                 <Text type="secondary" style={{ fontSize: 12 }}>
-                  You would write <code>variant</code> on every sub-component.
-                  FlexCard.Header, FlexCard.Footer, FlexCard.Badge.
+                  You would write <code>variant</code> on every sub-component. FlexCard.Header,
+                  FlexCard.Footer, FlexCard.Badge.
                 </Text>
               </div>
               <div>

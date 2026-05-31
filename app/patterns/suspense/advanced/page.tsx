@@ -5,18 +5,8 @@
 // Outer boundary catches errors. Inner boundaries handle individual section loading.
 // This is the production pattern: granular fallbacks + graceful error recovery.
 
-import { Suspense, useState, Component } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Row,
-  Spin,
-  Typography,
-  Tag,
-  Space,
-} from "antd";
+import { Suspense, useState, Component, useSyncExternalStore } from "react";
+import { Alert, Button, Card, Col, Row, Spin, Typography, Tag, Space } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -48,12 +38,25 @@ function createSection(opts: { delay: number; shouldFail?: boolean }) {
   let state: "pending" | "resolved" | "rejected" = "pending";
   const promise = new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      if (opts.shouldFail) { state = "rejected"; reject(new Error("Bundle load failed")); }
-      else { state = "resolved"; resolve(); }
+      if (opts.shouldFail) {
+        state = "rejected";
+        reject(new Error("Bundle load failed"));
+      } else {
+        state = "resolved";
+        resolve();
+      }
     }, opts.delay);
   });
 
   return function Section({ label, color }: { label: string; color: string }) {
+    // Guard against SSR: ErrorBoundaries don't catch server-side throws during prerendering.
+    const mounted = useSyncExternalStore(
+      () => () => {},
+      () => true,
+      () => false
+    );
+    if (!mounted) return null;
+
     if (state === "pending") throw promise;
     if (state === "rejected") throw new Error("Failed to load " + label);
     return (
@@ -70,9 +73,21 @@ const FailSection = createSection({ delay: 800, shouldFail: true });
 
 function SectionFallback({ label }: { label: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: 16, background: "#f5f5f5", borderRadius: 8, minHeight: 60 }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: 16,
+        background: "#f5f5f5",
+        borderRadius: 8,
+        minHeight: 60,
+      }}
+    >
       <Spin size="small" />
-      <Text type="secondary" style={{ fontSize: 12 }}>Loading {label}...</Text>
+      <Text type="secondary" style={{ fontSize: 12 }}>
+        Loading {label}...
+      </Text>
     </div>
   );
 }
@@ -83,7 +98,13 @@ function ErrorFallback({ label, onRetry }: { label: string; onRetry?: () => void
       type="error"
       showIcon
       message={`${label} failed to load`}
-      action={onRetry && <Button size="small" icon={<ReloadOutlined />} onClick={onRetry}>Retry</Button>}
+      action={
+        onRetry && (
+          <Button size="small" icon={<ReloadOutlined />} onClick={onRetry}>
+            Retry
+          </Button>
+        )
+      }
       style={{ borderRadius: 8 }}
     />
   );
@@ -141,12 +162,7 @@ export default function SuspenseAdvancedPage() {
           <Card title="Widget C (fails at 800ms)" style={{ borderRadius: 12 }}>
             <ErrorBoundary
               key={key}
-              fallback={
-                <ErrorFallback
-                  label="Widget C"
-                  onRetry={() => setKey((k) => k + 1)}
-                />
-              }
+              fallback={<ErrorFallback label="Widget C" onRetry={() => setKey((k) => k + 1)} />}
             >
               <Suspense fallback={<SectionFallback label="Widget C" />}>
                 <FailSection label="Widget C" color="#f5f5f5" />
@@ -158,12 +174,19 @@ export default function SuspenseAdvancedPage() {
 
       <Card
         style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
-        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+        styles={{
+          header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+          body: { padding: 16 },
+        }}
       >
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+        <div
+          style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}
+        >
           <div style={{ color: "#6a9955" }}>// Nesting pattern per section:</div>
           <div style={{ color: "#569cd6" }}>{"<ErrorBoundary fallback={<ErrorFallback />}>"}</div>
-          <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"<Suspense fallback={<SectionFallback />}>"}</div>
+          <div style={{ color: "#569cd6", paddingLeft: 12 }}>
+            {"<Suspense fallback={<SectionFallback />}>"}
+          </div>
           <div style={{ color: "#ce9178", paddingLeft: 24 }}>{"<LazyWidget />"}</div>
           <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"</Suspense>"}</div>
           <div style={{ color: "#569cd6" }}>{"</ErrorBoundary>"}</div>

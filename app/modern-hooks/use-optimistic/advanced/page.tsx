@@ -45,10 +45,38 @@ async function likeApi(id: number, forceFail: boolean): Promise<void> {
 }
 
 const INITIAL_COMMENTS: Comment[] = [
-  { id: 1, author: "Alice", body: "Great article on React hooks!", likes: 12, liked: false, status: "idle" },
-  { id: 2, author: "Bob", body: "The useTransition examples are really clear.", likes: 8, liked: false, status: "idle" },
-  { id: 3, author: "Carol", body: "I finally understand useMemo after this.", likes: 31, liked: true, status: "idle" },
-  { id: 4, author: "Dave", body: "Would love more advanced examples!", likes: 5, liked: false, status: "idle" },
+  {
+    id: 1,
+    author: "Alice",
+    body: "Great article on React hooks!",
+    likes: 12,
+    liked: false,
+    status: "idle",
+  },
+  {
+    id: 2,
+    author: "Bob",
+    body: "The useTransition examples are really clear.",
+    likes: 8,
+    liked: false,
+    status: "idle",
+  },
+  {
+    id: 3,
+    author: "Carol",
+    body: "I finally understand useMemo after this.",
+    likes: 31,
+    liked: true,
+    status: "idle",
+  },
+  {
+    id: 4,
+    author: "Dave",
+    body: "Would love more advanced examples!",
+    likes: 5,
+    liked: false,
+    status: "idle",
+  },
 ];
 
 export default function UseOptimisticAdvancedPage() {
@@ -66,9 +94,19 @@ export default function UseOptimisticAdvancedPage() {
         if (c.id !== update.id) return c;
         switch (update.action) {
           case "pending":
-            return { ...c, liked: !c.liked, likes: c.liked ? c.likes - 1 : c.likes + 1, status: "pending" as const };
+            return {
+              ...c,
+              liked: !c.liked,
+              likes: c.liked ? c.likes - 1 : c.likes + 1,
+              status: "pending" as const,
+            };
           case "revert":
-            return { ...c, liked: !c.liked, likes: c.liked ? c.likes - 1 : c.likes + 1, status: "failed" as const };
+            return {
+              ...c,
+              liked: !c.liked,
+              likes: c.liked ? c.likes - 1 : c.likes + 1,
+              status: "failed" as const,
+            };
           default:
             return c;
         }
@@ -93,7 +131,12 @@ export default function UseOptimisticAdvancedPage() {
         setComments((prev) =>
           prev.map((c) =>
             c.id === id
-              ? { ...c, liked: !c.liked, likes: c.liked ? c.likes - 1 : c.likes + 1, status: "idle" }
+              ? {
+                  ...c,
+                  liked: !c.liked,
+                  likes: c.liked ? c.likes - 1 : c.likes + 1,
+                  status: "idle",
+                }
               : c
           )
         );
@@ -103,15 +146,11 @@ export default function UseOptimisticAdvancedPage() {
         setLastError("Like failed. Rolled back to previous state.");
 
         // Mark the comment as failed (will show in UI briefly)
-        setComments((prev) =>
-          prev.map((c) => (c.id === id ? { ...c, status: "failed" } : c))
-        );
+        setComments((prev) => prev.map((c) => (c.id === id ? { ...c, status: "failed" } : c)));
 
         // Reset status after showing failure
         setTimeout(() => {
-          setComments((prev) =>
-            prev.map((c) => (c.id === id ? { ...c, status: "idle" } : c))
-          );
+          setComments((prev) => prev.map((c) => (c.id === id ? { ...c, status: "idle" } : c)));
         }, 2000);
       }
     });
@@ -143,7 +182,6 @@ export default function UseOptimisticAdvancedPage() {
                   onChange={setForceFail}
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
-                  danger={forceFail}
                 />
               </Space>
             }
@@ -177,9 +215,13 @@ export default function UseOptimisticAdvancedPage() {
                       {comment.likes}
                     </Button>,
                     comment.status === "failed" ? (
-                      <Tag key="status" color="error">Rolled back</Tag>
+                      <Tag key="status" color="error">
+                        Rolled back
+                      </Tag>
                     ) : comment.status === "pending" ? (
-                      <Tag key="status" color="warning">Saving...</Tag>
+                      <Tag key="status" color="warning">
+                        Saving...
+                      </Tag>
                     ) : null,
                   ].filter(Boolean)}
                 >
@@ -198,7 +240,10 @@ export default function UseOptimisticAdvancedPage() {
           <Card
             title="Rollback Stats"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <Row gutter={[0, 16]}>
               <Col span={12}>
@@ -216,10 +261,36 @@ export default function UseOptimisticAdvancedPage() {
                 />
               </Col>
             </Row>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4", marginTop: 12 }}>
-              <div><span style={{ color: "#569cd6" }}>forceFail: </span><span style={{ color: forceFail ? "#ce9178" : "#b5cea8" }}>{String(forceFail)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span></div>
-              <div style={{ marginTop: 8, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+                marginTop: 12,
+              }}
+            >
+              <div>
+                <span style={{ color: "#569cd6" }}>forceFail: </span>
+                <span style={{ color: forceFail ? "#ce9178" : "#b5cea8" }}>
+                  {String(forceFail)}
+                </span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
+                  {String(isPending)}
+                </span>
+              </div>
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>When fail mode ON:</div>
                 <div style={{ color: "#6a9955" }}>Every like call throws</div>
                 <div style={{ color: "#6a9955" }}>Optimistic state reverts</div>

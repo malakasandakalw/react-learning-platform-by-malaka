@@ -8,16 +8,7 @@
 
 import { useFormStatus } from "react-dom";
 import { useActionState } from "react";
-import {
-  Alert,
-  Card,
-  Col,
-  Row,
-  Typography,
-  Space,
-  Tag,
-  Statistic,
-} from "antd";
+import { Alert, Card, Col, Row, Typography, Space, Tag, Statistic } from "antd";
 import { LoadingOutlined, CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { createPost } from "@/services/jsonPlaceholder";
 import PageIntro from "@/components/shared/PageIntro";
@@ -53,14 +44,32 @@ function FieldStatus() {
 
   return (
     <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#374151" }}>
-      <div>pending: <Tag color={pending ? "orange" : "default"}>{String(pending)}</Tag></div>
-      <div>data.title: <span style={{ color: "#1677ff" }}>&quot;{data?.get("title")?.toString() ?? ""}&quot;</span></div>
-      <div>data.body: <span style={{ color: "#1677ff" }}>&quot;{(data?.get("body")?.toString() ?? "").slice(0, 20)}&quot;</span></div>
+      <div>
+        pending: <Tag color={pending ? "orange" : "default"}>{String(pending)}</Tag>
+      </div>
+      <div>
+        data.title:{" "}
+        <span style={{ color: "#1677ff" }}>&quot;{data?.get("title")?.toString() ?? ""}&quot;</span>
+      </div>
+      <div>
+        data.body:{" "}
+        <span style={{ color: "#1677ff" }}>
+          &quot;{(data?.get("body")?.toString() ?? "").slice(0, 20)}&quot;
+        </span>
+      </div>
     </div>
   );
 }
 
-function SmartInput({ name, label, multiline }: { name: string; label: string; multiline?: boolean }) {
+function SmartInput({
+  name,
+  label,
+  multiline,
+}: {
+  name: string;
+  label: string;
+  multiline?: boolean;
+}) {
   const { pending } = useFormStatus();
   const style: React.CSSProperties = {
     width: "100%",
@@ -78,11 +87,14 @@ function SmartInput({ name, label, multiline }: { name: string; label: string; m
 
   return (
     <div>
-      <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 4 }}>{label}</label>
-      {multiline
-        ? <textarea name={name} disabled={pending} style={style} />
-        : <input name={name} disabled={pending} style={style} />
-      }
+      <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 4 }}>
+        {label}
+      </label>
+      {multiline ? (
+        <textarea name={name} disabled={pending} style={style} />
+      ) : (
+        <input name={name} disabled={pending} style={style} />
+      )}
     </div>
   );
 }
@@ -142,10 +154,22 @@ export default function UseFormStatusAdvancedPage() {
         <Col xs={24} lg={14}>
           <Card title="Post Form (React 19 pattern)" style={{ borderRadius: 12 }}>
             {result.status === "success" && (
-              <Alert type="success" title={result.message} showIcon icon={<CheckCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
+              <Alert
+                type="success"
+                title={result.message}
+                showIcon
+                icon={<CheckCircleOutlined />}
+                style={{ marginBottom: 12, borderRadius: 8 }}
+              />
             )}
             {result.status === "error" && (
-              <Alert type="error" title={result.message} showIcon icon={<CloseCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
+              <Alert
+                type="error"
+                title={result.message}
+                showIcon
+                icon={<CloseCircleOutlined />}
+                style={{ marginBottom: 12, borderRadius: 8 }}
+              />
             )}
 
             {/* form action={dispatch}: useFormStatus inside children reads this */}
@@ -161,7 +185,10 @@ export default function UseFormStatusAdvancedPage() {
 
         <Col xs={24} lg={10}>
           <Space orientation="vertical" style={{ width: "100%" }} size={16}>
-            <Card title="Live Form Status" style={{ borderRadius: 12, border: "1px solid #e0e7ff" }}>
+            <Card
+              title="Live Form Status"
+              style={{ borderRadius: 12, border: "1px solid #e0e7ff" }}
+            >
               {/* FieldStatus must be INSIDE the form to read its status */}
               {/* We show it here for visibility. In real use it would be inside the form. */}
               <form action={dispatch} style={{ display: "none" }}>
@@ -172,17 +199,30 @@ export default function UseFormStatusAdvancedPage() {
                   Form status from useFormStatus:
                 </Text>
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
-                  <div>isPending: <Tag color={isPending ? "orange" : "default"}>{String(isPending)}</Tag></div>
-                  <div>status: <Tag color={result.status === "success" ? "success" : result.status === "error" ? "error" : "default"}>{result.status}</Tag></div>
+                  <div>
+                    isPending:{" "}
+                    <Tag color={isPending ? "orange" : "default"}>{String(isPending)}</Tag>
+                  </div>
+                  <div>
+                    status:{" "}
+                    <Tag
+                      color={
+                        result.status === "success"
+                          ? "success"
+                          : result.status === "error"
+                            ? "error"
+                            : "default"
+                      }
+                    >
+                      {result.status}
+                    </Tag>
+                  </div>
                 </div>
               </div>
             </Card>
 
             <Card style={{ borderRadius: 12 }}>
-              <Statistic
-                title="Posts submitted this session"
-                value={result.count}
-              />
+              <Statistic title="Posts submitted this session" value={result.count} />
             </Card>
           </Space>
         </Col>

@@ -44,7 +44,7 @@ function usePrevious<T>(value: T): T | undefined {
 }
 
 function StockTracker() {
-  const [price, setPrice] = useState(142.50);
+  const [price, setPrice] = useState(142.5);
   const previousPrice = usePrevious(price);
 
   const diff = previousPrice !== undefined ? price - previousPrice : 0;
@@ -64,7 +64,11 @@ function StockTracker() {
               value={price}
               prefix="$"
               precision={2}
-              styles={{ content: { color: trend === "up" ? "#16a34a" : trend === "down" ? "#dc2626" : "#374151" } }}
+              styles={{
+                content: {
+                  color: trend === "up" ? "#16a34a" : trend === "down" ? "#dc2626" : "#374151",
+                },
+              }}
             />
           </Col>
           <Col span={12}>
@@ -80,8 +84,16 @@ function StockTracker() {
 
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <Text>Change:</Text>
-          {trend === "up" && <Tag color="success" icon={<ArrowUpOutlined />}>+${diff.toFixed(2)}</Tag>}
-          {trend === "down" && <Tag color="error" icon={<ArrowDownOutlined />}>${diff.toFixed(2)}</Tag>}
+          {trend === "up" && (
+            <Tag color="success" icon={<ArrowUpOutlined />}>
+              +${diff.toFixed(2)}
+            </Tag>
+          )}
+          {trend === "down" && (
+            <Tag color="error" icon={<ArrowDownOutlined />}>
+              ${diff.toFixed(2)}
+            </Tag>
+          )}
           {trend === "flat" && <Tag icon={<MinusOutlined />}>No change</Tag>}
         </div>
 
@@ -109,29 +121,18 @@ function RenderCounter() {
       <Space orientation="vertical" style={{ width: "100%" }}>
         <Row gutter={16}>
           <Col span={12}>
-            <Statistic
-              title="State value"
-              value={count}
-            />
+            <Statistic title="State value" value={count} />
           </Col>
           <Col span={12}>
-            <Statistic
-              title="Total renders"
-              value={renderCount.current}
-            />
+            <Statistic title="Total renders" value={renderCount.current} />
           </Col>
         </Row>
 
-        <Slider
-          value={count}
-          min={0}
-          max={20}
-          onChange={setCount}
-        />
+        <Slider value={count} min={0} max={20} onChange={setCount} />
 
         <Text type="secondary" style={{ fontSize: 12 }}>
-          Moving the slider changes state → triggers re-render → renderCount increments.
-          renderCount itself never causes a re-render.
+          Moving the slider changes state → triggers re-render → renderCount increments. renderCount
+          itself never causes a re-render.
         </Text>
       </Space>
     </Card>

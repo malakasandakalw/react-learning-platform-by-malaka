@@ -8,19 +8,7 @@
 // and prevents impossible states (you can't be both loading AND showing an error).
 
 import { useReducer } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Form,
-  Input,
-  Row,
-  Result,
-  Typography,
-  Select,
-  Tag,
-} from "antd";
+import { Alert, Button, Card, Col, Form, Input, Row, Result, Typography, Select, Tag } from "antd";
 import { CheckCircleOutlined } from "@ant-design/icons";
 import { createPost } from "@/services/jsonPlaceholder";
 import PageIntro from "@/components/shared/PageIntro";
@@ -76,10 +64,7 @@ function formReducer(state: FormState, action: FormAction): FormState {
         errorMessage: null,
         title: "",
         body: "",
-        submittedPosts: [
-          { title: action.title, id: action.id },
-          ...state.submittedPosts,
-        ],
+        submittedPosts: [{ title: action.title, id: action.id }, ...state.submittedPosts],
       };
 
     case "SUBMIT_ERROR":
@@ -152,7 +137,11 @@ export default function UseReducerMediumPage() {
                 showIcon
                 title="Post created! You can submit another."
                 style={{ marginBottom: 16, borderRadius: 8 }}
-                action={<Button size="small" onClick={() => dispatch({ type: "RESET" })}>New post</Button>}
+                action={
+                  <Button size="small" onClick={() => dispatch({ type: "RESET" })}>
+                    New post
+                  </Button>
+                }
               />
             )}
             {state.status === "error" && (
@@ -216,16 +205,41 @@ export default function UseReducerMediumPage() {
         <Col xs={24} lg={10}>
           <Card
             title="State Machine"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
-              <div>idle <span style={{ color: "#6a9955" }}>→ SUBMIT →</span> submitting</div>
-              <div>submitting <span style={{ color: "#6a9955" }}>→ SUCCESS →</span> success</div>
-              <div>submitting <span style={{ color: "#6a9955" }}>→ ERROR →</span> error</div>
-              <div>any <span style={{ color: "#6a9955" }}>→ RESET →</span> idle</div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
+              <div>
+                idle <span style={{ color: "#6a9955" }}>→ SUBMIT →</span> submitting
+              </div>
+              <div>
+                submitting <span style={{ color: "#6a9955" }}>→ SUCCESS →</span> success
+              </div>
+              <div>
+                submitting <span style={{ color: "#6a9955" }}>→ ERROR →</span> error
+              </div>
+              <div>
+                any <span style={{ color: "#6a9955" }}>→ RESET →</span> idle
+              </div>
 
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>current status:</div>
                 <div style={{ color: "#ce9178" }}>{state.status}</div>
               </div>

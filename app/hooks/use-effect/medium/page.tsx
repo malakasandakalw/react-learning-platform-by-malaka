@@ -8,18 +8,7 @@
 // The cleanup function cancels the previous timeout, preventing stale calls.
 
 import { useEffect, useState } from "react";
-import {
-  Avatar,
-  Card,
-  Col,
-  Empty,
-  Input,
-  List,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-} from "antd";
+import { Avatar, Card, Col, Empty, Input, List, Row, Spin, Tag, Typography } from "antd";
 import { SearchOutlined, UserOutlined } from "@ant-design/icons";
 import { getUsers } from "@/services/jsonPlaceholder";
 import type { User } from "@/types/user";
@@ -130,7 +119,10 @@ export default function UseEffectMediumPage() {
           <Card
             title="Debounce Inspector"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div>
@@ -142,13 +134,20 @@ export default function UseEffectMediumPage() {
                 <span style={{ color: "#ce9178" }}>&quot;{debouncedQuery}&quot;</span>
               </div>
               <div style={{ marginTop: 8, color: "#6a9955" }}>
-                {query !== debouncedQuery
-                  ? "⏳ waiting 400ms..."
-                  : "✓ in sync"}
+                {query !== debouncedQuery ? "⏳ waiting 400ms..." : "✓ in sync"}
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#252526", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#252526",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6", marginBottom: 4 }}>results:</div>
-                <span style={{ color: "#d4d4d4" }}>{filtered.length} / {allUsers.length} users</span>
+                <span style={{ color: "#d4d4d4" }}>
+                  {filtered.length} / {allUsers.length} users
+                </span>
               </div>
             </div>
           </Card>

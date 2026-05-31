@@ -88,7 +88,9 @@ function ProductCard({ product }: { product: Product }) {
     >
       <Avatar src={product.thumbnail} size={56} shape="square" style={{ borderRadius: 6 }} />
       <div style={{ flex: 1 }}>
-        <Text strong style={{ fontSize: 13 }}>{product.title}</Text>
+        <Text strong style={{ fontSize: 13 }}>
+          {product.title}
+        </Text>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 2 }}>
           <Tag>{product.category}</Tag>
           <Rate disabled value={product.rating} style={{ fontSize: 11 }} allowHalf />
@@ -139,16 +141,16 @@ export default function UseCallbackAdvancedPage() {
             </Space.Compact>
 
             {loading ? (
-              <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 32 }}>
+                <Spin />
+              </div>
             ) : results.length === 0 ? (
               <Empty
                 description={query ? "No products found" : "Type to search products"}
                 style={{ padding: 32 }}
               />
             ) : (
-              results.slice(0, 8).map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))
+              results.slice(0, 8).map((p) => <ProductCard key={p.id} product={p} />)
             )}
           </Card>
         </Col>
@@ -156,8 +158,11 @@ export default function UseCallbackAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Hook Inspector"
-            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            style={{ background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
@@ -172,14 +177,28 @@ export default function UseCallbackAdvancedPage() {
                 <span style={{ color: "#569cd6" }}>results: </span>
                 <span style={{ color: "#d4d4d4" }}>{results.length}</span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6", marginBottom: 4 }}>search() deps:</div>
                 <code style={{ color: "#dcdcaa" }}>[]</code>
                 <div style={{ color: "#6a9955", fontSize: 10, marginTop: 4 }}>
                   stable: safe in useEffect deps
                 </div>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6", marginBottom: 4 }}>debounce effect deps:</div>
                 <code style={{ color: "#b5cea8" }}>[query, search]</code>
                 <div style={{ color: "#6a9955", fontSize: 10, marginTop: 4 }}>

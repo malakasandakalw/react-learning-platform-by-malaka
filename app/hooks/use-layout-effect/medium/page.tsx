@@ -16,13 +16,7 @@ const { Text } = Typography;
 
 type Position = { top: number; left: number };
 
-function Tooltip({
-  text,
-  children,
-}: {
-  text: string;
-  children: React.ReactNode;
-}) {
+function Tooltip({ text, children }: { text: string; children: React.ReactNode }) {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -39,11 +33,7 @@ function Tooltip({
     // Position tooltip centered above the trigger
     setPos({
       top: triggerRect.top - tooltipRect.height - 8 + window.scrollY,
-      left:
-        triggerRect.left +
-        triggerRect.width / 2 -
-        tooltipRect.width / 2 +
-        window.scrollX,
+      left: triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2 + window.scrollX,
     });
   }, [visible]);
 
@@ -111,8 +101,8 @@ function FlickerDemo() {
   return (
     <Card title="Without useLayoutEffect (simulated flicker)" style={{ borderRadius: 12 }}>
       <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 16 }}>
-        With useEffect, position is computed AFTER paint. You see a jump from (0,0) to the
-        correct position. With useLayoutEffect that jump never happens.
+        With useEffect, position is computed AFTER paint. You see a jump from (0,0) to the correct
+        position. With useLayoutEffect that jump never happens.
       </Text>
 
       <div
@@ -132,10 +122,12 @@ function FlickerDemo() {
         <div style={{ color: "#d4d4d4" }}>Frame 3: re-render at correct position</div>
         <div style={{ marginTop: 8, color: "#ce9178" }}>→ User sees a jump</div>
         <div style={{ marginTop: 8, color: "#b5cea8" }}>
-          // useLayoutEffect: no flicker:<br />
-          Frame 1: effect runs before paint<br />
-          Frame 1: tooltip renders at correct position<br />
-          → User sees nothing wrong ✓
+          // useLayoutEffect: no flicker:
+          <br />
+          Frame 1: effect runs before paint
+          <br />
+          Frame 1: tooltip renders at correct position
+          <br />→ User sees nothing wrong ✓
         </div>
       </div>
     </Card>
@@ -161,7 +153,8 @@ export default function UseLayoutEffectMediumPage() {
         <Col xs={24} lg={12}>
           <Card title="Tooltip with useLayoutEffect" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 20 }}>
-              Hover each button. The tooltip appears at the correct position instantly, with no flicker.
+              Hover each button. The tooltip appears at the correct position instantly, with no
+              flicker.
             </Text>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
               <Tooltip text="This is button A: positioned above">Hover me</Tooltip>

@@ -25,7 +25,9 @@ function SlowTabContent({ tab }: { tab: string }) {
           {item}
         </div>
       ))}
-      <Text type="secondary" style={{ fontSize: 11 }}>...and 4,980 more items (simulated)</Text>
+      <Text type="secondary" style={{ fontSize: 11 }}>
+        ...and 4,980 more items (simulated)
+      </Text>
     </div>
   );
 }
@@ -95,7 +97,10 @@ export default function UseTransitionEasyPage() {
           <Card
             title="Transition State"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div>
@@ -108,10 +113,19 @@ export default function UseTransitionEasyPage() {
                   {String(isPending)}
                 </span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ color: "#569cd6", fontSize: 11 }}>Without useTransition:</div>
                 <div style={{ color: "#ce9178", fontSize: 11 }}>UI freezes during render</div>
-                <div style={{ color: "#569cd6", fontSize: 11, marginTop: 8 }}>With useTransition:</div>
+                <div style={{ color: "#569cd6", fontSize: 11, marginTop: 8 }}>
+                  With useTransition:
+                </div>
                 <div style={{ color: "#b5cea8", fontSize: 11 }}>Buttons stay clickable</div>
               </div>
             </div>

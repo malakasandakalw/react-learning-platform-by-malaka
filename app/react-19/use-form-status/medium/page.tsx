@@ -8,18 +8,7 @@
 
 import { useFormStatus } from "react-dom";
 import { useState } from "react";
-import {
-  Alert,
-  Card,
-  Col,
-  Row,
-  Typography,
-  Space,
-  Tag,
-  Select,
-  Result,
-  Button,
-} from "antd";
+import { Alert, Card, Col, Row, Typography, Space, Tag, Select, Result, Button } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -85,7 +74,9 @@ function FormSelect({
   return (
     <div>
       <input type="hidden" name={name} value={value} />
-      <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 4 }}>{label}</label>
+      <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 4 }}>
+        {label}
+      </label>
       <Select
         style={{ width: "100%" }}
         disabled={pending}
@@ -211,8 +202,20 @@ export default function UseFormStatusMediumPage() {
                       <FormField label="Last Name" name="lastName" placeholder="Smith" required />
                     </Col>
                   </Row>
-                  <FormField label="Email" name="email" type="email" placeholder="jane@example.com" required />
-                  <FormField label="Password" name="password" type="password" placeholder="Min 8 characters" required />
+                  <FormField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="jane@example.com"
+                    required
+                  />
+                  <FormField
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Min 8 characters"
+                    required
+                  />
                   <FormSelect
                     label="Role"
                     name="role"
@@ -236,19 +239,37 @@ export default function UseFormStatusMediumPage() {
           <Card
             title="Why this matters"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Old pattern (prop drilling):</div>
               <div style={{ color: "#d4d4d4" }}>{"<Form isLoading={isLoading}>"}</div>
-              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>{"<Input disabled={isLoading} />"}</div>
-              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>{"<Button disabled={isLoading} />"}</div>
+              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>
+                {"<Input disabled={isLoading} />"}
+              </div>
+              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>
+                {"<Button disabled={isLoading} />"}
+              </div>
               <div style={{ color: "#d4d4d4" }}>{"</Form>"}</div>
               <br />
               <div style={{ color: "#6a9955" }}>// React 19 (useFormStatus):</div>
               <div style={{ color: "#b5cea8" }}>{"<form action={submit}>"}</div>
-              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>{"<FormField />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span></div>
-              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>{"<SubmitButton />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span></div>
+              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>
+                {"<FormField />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span>
+              </div>
+              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>
+                {"<SubmitButton />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span>
+              </div>
               <div style={{ color: "#b5cea8" }}>{"</form>"}</div>
             </div>
           </Card>

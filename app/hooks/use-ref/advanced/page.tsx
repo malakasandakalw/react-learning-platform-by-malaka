@@ -9,22 +9,8 @@
 // This is the pattern used by UI libraries (like Ant Design itself) internally.
 
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Input,
-  Row,
-  Space,
-  Typography,
-  InputRef,
-} from "antd";
-import {
-  ClearOutlined,
-  CheckOutlined,
-  ExclamationCircleOutlined,
-} from "@ant-design/icons";
+import { Alert, Button, Card, Col, Input, Row, Space, Typography, InputRef } from "antd";
+import { ClearOutlined, CheckOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -47,64 +33,65 @@ type SmartInputProps = {
 
 // forwardRef wraps the component so it can receive a ref from its parent.
 // useImperativeHandle defines what that ref exposes.
-const SmartInput = forwardRef<SmartInputHandle, SmartInputProps>(
-  function SmartInput({ placeholder, required, label }, ref) {
-    const [value, setValue] = useState("");
-    const [status, setStatus] = useState<"" | "error" | "warning">("");
-    const inputRef = useRef<InputRef>(null);
+const SmartInput = forwardRef<SmartInputHandle, SmartInputProps>(function SmartInput(
+  { placeholder, required, label },
+  ref
+) {
+  const [value, setValue] = useState("");
+  const [status, setStatus] = useState<"" | "error" | "warning">("");
+  const inputRef = useRef<InputRef>(null);
 
-    // useImperativeHandle: define exactly what the parent can do.
-    // The parent gets a SmartInputHandle object, not the raw DOM input.
-    useImperativeHandle(ref, () => ({
-      focus() {
-        inputRef.current?.focus();
-      },
-      clear() {
-        setValue("");
-        setStatus("");
-      },
-      validate() {
-        if (required && !value.trim()) {
-          setStatus("error");
-          return false;
+  // useImperativeHandle: define exactly what the parent can do.
+  // The parent gets a SmartInputHandle object, not the raw DOM input.
+  useImperativeHandle(ref, () => ({
+    focus() {
+      inputRef.current?.focus();
+    },
+    clear() {
+      setValue("");
+      setStatus("");
+    },
+    validate() {
+      if (required && !value.trim()) {
+        setStatus("error");
+        return false;
+      }
+      setStatus("");
+      return true;
+    },
+    getValue() {
+      return value;
+    },
+  }));
+
+  return (
+    <div>
+      {label && <Text style={{ display: "block", marginBottom: 4 }}>{label}</Text>}
+      <Input
+        ref={inputRef}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          if (status) setStatus("");
+        }}
+        placeholder={placeholder}
+        status={status}
+        suffix={
+          status === "error" ? (
+            <ExclamationCircleOutlined style={{ color: "#ef4444" }} />
+          ) : value ? (
+            <CheckOutlined style={{ color: "#16a34a" }} />
+          ) : null
         }
-        setStatus("");
-        return true;
-      },
-      getValue() {
-        return value;
-      },
-    }));
-
-    return (
-      <div>
-        {label && <Text style={{ display: "block", marginBottom: 4 }}>{label}</Text>}
-        <Input
-          ref={inputRef}
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-            if (status) setStatus("");
-          }}
-          placeholder={placeholder}
-          status={status}
-          suffix={
-            status === "error" ? (
-              <ExclamationCircleOutlined style={{ color: "#ef4444" }} />
-            ) : value ? (
-              <CheckOutlined style={{ color: "#16a34a" }} />
-            ) : null
-          }
-        />
-        {status === "error" && (
-          <Text type="danger" style={{ fontSize: 12 }}>
-            This field is required
-          </Text>
-        )}
-      </div>
-    );
-  }
-);
+      />
+      {status === "error" && (
+        <Text type="danger" style={{ fontSize: 12 }}>
+          This field is required
+        </Text>
+      )}
+    </div>
+  );
+});
 
 SmartInput.displayName = "SmartInput";
 
@@ -193,17 +180,31 @@ export default function UseRefAdvancedPage() {
           <Card
             title="How forwardRef Works"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.8, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 1.8,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// without forwardRef:</div>
               <div style={{ color: "#ce9178" }}>{"<SmartInput ref={ref} />"}</div>
               <div style={{ color: "#6a9955" }}>// ❌ Warning: ref not forwarded</div>
               <br />
               <div style={{ color: "#6a9955" }}>// with forwardRef:</div>
               <div style={{ color: "#dcdcaa" }}>{"forwardRef((props, ref) => {"}</div>
-              <div style={{ paddingLeft: 16, color: "#dcdcaa" }}>{"useImperativeHandle(ref, () => ({"}</div>
-              <div style={{ paddingLeft: 32, color: "#569cd6" }}>{"focus: () => inputRef.current?.focus(),"}</div>
+              <div style={{ paddingLeft: 16, color: "#dcdcaa" }}>
+                {"useImperativeHandle(ref, () => ({"}
+              </div>
+              <div style={{ paddingLeft: 32, color: "#569cd6" }}>
+                {"focus: () => inputRef.current?.focus(),"}
+              </div>
               <div style={{ paddingLeft: 32, color: "#569cd6" }}>{"validate: () => boolean,"}</div>
               <div style={{ paddingLeft: 16, color: "#dcdcaa" }}>{"}));"}</div>
               <div style={{ color: "#dcdcaa" }}>{"})"}</div>
@@ -212,7 +213,9 @@ export default function UseRefAdvancedPage() {
               <div style={{ color: "#d4d4d4" }}>{"ref.current.focus()"}</div>
               <div style={{ color: "#d4d4d4" }}>{"ref.current.validate()"}</div>
               <div style={{ color: "#d4d4d4" }}>{"ref.current.clear()"}</div>
-              <div style={{ color: "#6a9955", marginTop: 8 }}>{"// NOT ref.current.style etc."}</div>
+              <div style={{ color: "#6a9955", marginTop: 8 }}>
+                {"// NOT ref.current.style etc."}
+              </div>
             </div>
           </Card>
         </Col>

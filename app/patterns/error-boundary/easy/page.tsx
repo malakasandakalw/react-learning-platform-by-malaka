@@ -7,16 +7,7 @@
 // They do NOT catch: event handlers, async code, server errors.
 
 import { Component, useState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Row,
-  Tag,
-  Typography,
-  Space,
-} from "antd";
+import { Alert, Button, Card, Col, Row, Tag, Typography, Space } from "antd";
 import { WarningOutlined, ReloadOutlined, BugOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -80,7 +71,9 @@ function BuggyProfile({ data }: { data: any }) {
   return (
     <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16 }}>
       <Text strong>{data.name}</Text>
-      <Text type="secondary" style={{ display: "block" }}>{data.email}</Text>
+      <Text type="secondary" style={{ display: "block" }}>
+        {data.email}
+      </Text>
     </div>
   );
 }
@@ -110,7 +103,9 @@ export default function ErrorBoundaryEasyPage() {
             <Space orientation="vertical" style={{ width: "100%" }} size={12}>
               {/* Each component wrapped in its own boundary */}
               <div>
-                <Text style={{ fontSize: 12, marginBottom: 6, display: "block" }}>Counter component:</Text>
+                <Text style={{ fontSize: 12, marginBottom: 6, display: "block" }}>
+                  Counter component:
+                </Text>
                 <BasicErrorBoundary name="Counter" key={key}>
                   <BuggyCounter shouldCrash={crash1} />
                 </BasicErrorBoundary>
@@ -118,16 +113,23 @@ export default function ErrorBoundaryEasyPage() {
                   size="small"
                   danger={crash1}
                   style={{ marginTop: 8 }}
-                  onClick={() => { setCrash1((c) => !c); setKey((k) => k + 1); }}
+                  onClick={() => {
+                    setCrash1((c) => !c);
+                    setKey((k) => k + 1);
+                  }}
                 >
                   {crash1 ? "Fix Counter" : "Crash Counter"}
                 </Button>
               </div>
 
               <div>
-                <Text style={{ fontSize: 12, marginBottom: 6, display: "block" }}>Profile component (null data):</Text>
+                <Text style={{ fontSize: 12, marginBottom: 6, display: "block" }}>
+                  Profile component (null data):
+                </Text>
                 <BasicErrorBoundary name="Profile" key={crash2 ? "bad" : "good"}>
-                  <BuggyProfile data={crash2 ? null : { name: "Jane Smith", email: "jane@example.com" }} />
+                  <BuggyProfile
+                    data={crash2 ? null : { name: "Jane Smith", email: "jane@example.com" }}
+                  />
                 </BasicErrorBoundary>
                 <Button
                   size="small"
@@ -146,9 +148,19 @@ export default function ErrorBoundaryEasyPage() {
           <Card
             title="Without vs With boundary"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Without boundary:</div>
               <div style={{ color: "#d4d4d4" }}>Counter throws</div>
               <div style={{ color: "#d4d4d4" }}>→ entire React tree unmounts</div>

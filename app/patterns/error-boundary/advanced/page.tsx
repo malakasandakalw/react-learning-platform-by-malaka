@@ -6,22 +6,8 @@
 // Non-critical sections (recommendations, ads) use lenient boundaries that hide silently.
 
 import { Component, useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Tag,
-  Typography,
-  Space,
-  Alert,
-  Switch,
-} from "antd";
-import {
-  BugOutlined,
-  WarningOutlined,
-  CloseCircleOutlined,
-} from "@ant-design/icons";
+import { Button, Card, Col, Row, Tag, Typography, Space, Alert, Switch } from "antd";
+import { BugOutlined, WarningOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -45,7 +31,9 @@ class CriticalBoundary extends Component<
           type="error"
           showIcon
           message={`Critical Error: ${this.props.section} unavailable`}
-          description={<span style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{this.state.error}</span>}
+          description={
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{this.state.error}</span>
+          }
           style={{ borderRadius: 8 }}
         />
       );
@@ -59,8 +47,12 @@ class SilentBoundary extends Component<
   { hasError: boolean }
 > {
   state = { hasError: false };
-  static getDerivedStateFromError() { return { hasError: true }; }
-  componentDidCatch(e: Error) { console.warn(`[Silent:${this.props.section}]`, e.message); }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(e: Error) {
+    console.warn(`[Silent:${this.props.section}]`, e.message);
+  }
 
   render() {
     if (this.state.hasError) return null; // Render nothing (non-critical)
@@ -130,7 +122,12 @@ export default function ErrorBoundaryAdvancedPage() {
         {/* CRITICAL: payment */}
         <Col xs={24} md={8}>
           <Card
-            title={<Space><Tag color="red">Critical</Tag><span>Payment</span></Space>}
+            title={
+              <Space>
+                <Tag color="red">Critical</Tag>
+                <span>Payment</span>
+              </Space>
+            }
             style={{ borderRadius: 12 }}
           >
             <CriticalBoundary section="Payment" key={keys.payment}>
@@ -140,7 +137,9 @@ export default function ErrorBoundaryAdvancedPage() {
               size="small"
               danger={!failPayment}
               style={{ marginTop: 12 }}
-              onClick={() => failPayment ? fix("payment", setFailPayment) : crash("payment", setFailPayment)}
+              onClick={() =>
+                failPayment ? fix("payment", setFailPayment) : crash("payment", setFailPayment)
+              }
             >
               {failPayment ? "Fix" : "Crash"} Payment
             </Button>
@@ -150,11 +149,21 @@ export default function ErrorBoundaryAdvancedPage() {
         {/* SILENT: recommendations */}
         <Col xs={24} md={8}>
           <Card
-            title={<Space><Tag color="blue">Silent</Tag><span>Recommendations</span></Space>}
+            title={
+              <Space>
+                <Tag color="blue">Silent</Tag>
+                <span>Recommendations</span>
+              </Space>
+            }
             style={{ borderRadius: 12 }}
           >
             {failRec && (
-              <Alert type="warning" showIcon title="Component errored silently (check console)" style={{ marginBottom: 8, borderRadius: 6 }} />
+              <Alert
+                type="warning"
+                showIcon
+                title="Component errored silently (check console)"
+                style={{ marginBottom: 8, borderRadius: 6 }}
+              />
             )}
             <SilentBoundary section="Recommendations" key={keys.rec}>
               <RecommendationsWidget shouldFail={failRec} />
@@ -162,7 +171,7 @@ export default function ErrorBoundaryAdvancedPage() {
             <Button
               size="small"
               style={{ marginTop: 12 }}
-              onClick={() => failRec ? fix("rec", setFailRec) : crash("rec", setFailRec)}
+              onClick={() => (failRec ? fix("rec", setFailRec) : crash("rec", setFailRec))}
             >
               {failRec ? "Fix" : "Crash"} Recommendations
             </Button>
@@ -172,7 +181,12 @@ export default function ErrorBoundaryAdvancedPage() {
         {/* CRITICAL: profile */}
         <Col xs={24} md={8}>
           <Card
-            title={<Space><Tag color="orange">Critical</Tag><span>Profile</span></Space>}
+            title={
+              <Space>
+                <Tag color="orange">Critical</Tag>
+                <span>Profile</span>
+              </Space>
+            }
             style={{ borderRadius: 12 }}
           >
             <CriticalBoundary section="Profile" key={keys.profile}>
@@ -182,7 +196,9 @@ export default function ErrorBoundaryAdvancedPage() {
               size="small"
               danger={!failProfile}
               style={{ marginTop: 12 }}
-              onClick={() => failProfile ? fix("profile", setFailProfile) : crash("profile", setFailProfile)}
+              onClick={() =>
+                failProfile ? fix("profile", setFailProfile) : crash("profile", setFailProfile)
+              }
             >
               {failProfile ? "Fix" : "Crash"} Profile
             </Button>

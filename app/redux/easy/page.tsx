@@ -7,18 +7,7 @@
 // Components read state with useAppSelector and trigger changes with useAppDispatch.
 // This is the minimal Redux Toolkit setup with everything you need to get started.
 
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Select,
-  Space,
-  Statistic,
-  Tag,
-  Typography,
-  Divider,
-} from "antd";
+import { Button, Card, Col, Row, Select, Space, Statistic, Tag, Typography, Divider } from "antd";
 import {
   MinusOutlined,
   PlusOutlined,
@@ -72,10 +61,7 @@ export default function ReduxEasyPage() {
         <Col xs={24} lg={13}>
           <Card title="Counter (Redux Store)" style={{ borderRadius: 12 }}>
             <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
-              <Statistic
-                value={count}
-                styles={{ content: { fontSize: 72 } }}
-              />
+              <Statistic value={count} styles={{ content: { fontSize: 72 } }} />
 
               <Space>
                 <Button
@@ -84,11 +70,7 @@ export default function ReduxEasyPage() {
                   // dispatch(action()): sends the action to the Redux store
                   onClick={() => dispatch(decrement())}
                 />
-                <Button
-                  size="large"
-                  icon={<ReloadOutlined />}
-                  onClick={() => dispatch(reset())}
-                >
+                <Button size="large" icon={<ReloadOutlined />} onClick={() => dispatch(reset())}>
                   Reset
                 </Button>
                 <Button
@@ -100,7 +82,9 @@ export default function ReduxEasyPage() {
               </Space>
 
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <Text type="secondary" style={{ fontSize: 12 }}>Step size:</Text>
+                <Text type="secondary" style={{ fontSize: 12 }}>
+                  Step size:
+                </Text>
                 <Select
                   value={step}
                   onChange={(val) => dispatch(setStep(val))}
@@ -130,9 +114,19 @@ export default function ReduxEasyPage() {
           <Card
             title="Redux Store Inspector"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 12,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// store.getState()</div>
               <div style={{ color: "#d4d4d4" }}>{"{"}</div>
               <div style={{ paddingLeft: 16 }}>
@@ -151,9 +145,17 @@ export default function ReduxEasyPage() {
               <div style={{ color: "#d4d4d4" }}>{"}"}</div>
               <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
               <div style={{ color: "#6a9955" }}>// Available actions:</div>
-              {["increment()", "decrement()", "reset()", `setStep(${step})`, `incrementByAmount(n)`].map((a) => (
+              {[
+                "increment()",
+                "decrement()",
+                "reset()",
+                `setStep(${step})`,
+                `incrementByAmount(n)`,
+              ].map((a) => (
                 <div key={a}>
-                  <Tag color="blue" style={{ fontSize: 10, margin: "1px 0" }}>{a}</Tag>
+                  <Tag color="blue" style={{ fontSize: 10, margin: "1px 0" }}>
+                    {a}
+                  </Tag>
                 </div>
               ))}
             </div>

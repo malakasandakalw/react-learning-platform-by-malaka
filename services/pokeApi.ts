@@ -3,10 +3,7 @@ import type { Pokemon, PokemonListResponse } from "@/types/pokemon";
 
 const BASE = API_URLS.pokeApi;
 
-export async function getPokemonList(
-  limit = 151,
-  offset = 0
-): Promise<PokemonListResponse> {
+export async function getPokemonList(limit = 151, offset = 0): Promise<PokemonListResponse> {
   const res = await fetch(`${BASE}/pokemon?limit=${limit}&offset=${offset}`);
   return res.json();
 }

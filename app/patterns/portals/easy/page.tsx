@@ -12,15 +12,7 @@
 
 import { createPortal } from "react-dom";
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Typography,
-  Space,
-  Alert,
-} from "antd";
+import { Button, Card, Col, Row, Typography, Space, Alert } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -30,7 +22,11 @@ const { Text } = Typography;
 // ─── Modal rendered via portal ────────────────────────────────────────────────
 // Even though <Modal> is called inside a deeply nested component,
 // its DOM output appears in document.body, outside all parent containers.
-function Modal({ title, onClose, children }: {
+function Modal({
+  title,
+  onClose,
+  children,
+}: {
   title: string;
   onClose: () => void;
   children: React.ReactNode;
@@ -47,7 +43,9 @@ function Modal({ title, onClose, children }: {
         justifyContent: "center",
         zIndex: 1000,
       }}
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       <div
         style={{
@@ -59,8 +57,17 @@ function Modal({ title, onClose, children }: {
           boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-          <Text strong style={{ fontSize: 16 }}>{title}</Text>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 16,
+          }}
+        >
+          <Text strong style={{ fontSize: 16 }}>
+            {title}
+          </Text>
           <button
             onClick={onClose}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}
@@ -117,8 +124,12 @@ function ClippedContainer({ usePortal }: { usePortal: boolean }) {
           }}
         >
           <div style={{ background: "#fff", borderRadius: 8, padding: 16, textAlign: "center" }}>
-            <Text strong style={{ display: "block", marginBottom: 8 }}>Clipped modal :(</Text>
-            <Button size="small" onClick={() => setOpen(false)}>Close</Button>
+            <Text strong style={{ display: "block", marginBottom: 8 }}>
+              Clipped modal :(
+            </Text>
+            <Button size="small" onClick={() => setOpen(false)}>
+              Close
+            </Button>
           </div>
         </div>
       )}
@@ -126,9 +137,14 @@ function ClippedContainer({ usePortal }: { usePortal: boolean }) {
       {/* With portal: rendered in document.body and not clipped */}
       {usePortal && open && (
         <Modal title="Portal Modal" onClose={() => setOpen(false)}>
-          <Text>This modal renders in <code>document.body</code>, not inside the overflow:hidden container. It can cover the full screen.</Text>
+          <Text>
+            This modal renders in <code>document.body</code>, not inside the overflow:hidden
+            container. It can cover the full screen.
+          </Text>
           <div style={{ marginTop: 16, textAlign: "right" }}>
-            <Button type="primary" onClick={() => setOpen(false)}>Close</Button>
+            <Button type="primary" onClick={() => setOpen(false)}>
+              Close
+            </Button>
           </div>
         </Modal>
       )}
@@ -166,9 +182,14 @@ export default function PortalsEasyPage() {
 
       <Card
         style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
-        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+        styles={{
+          header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+          body: { padding: 16 },
+        }}
       >
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+        <div
+          style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}
+        >
           <div style={{ color: "#6a9955" }}>// createPortal syntax:</div>
           <div>return createPortal(</div>
           <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"<Modal>...</Modal>,"}</div>

@@ -18,20 +18,14 @@ export const fetchPosts = createAsyncThunk("posts/fetchAll", async () => {
   return getPosts();
 });
 
-export const addPost = createAsyncThunk(
-  "posts/add",
-  async (post: Omit<Post, "id">) => {
-    return createPost(post);
-  }
-);
+export const addPost = createAsyncThunk("posts/add", async (post: Omit<Post, "id">) => {
+  return createPost(post);
+});
 
-export const removePost = createAsyncThunk(
-  "posts/remove",
-  async (id: number) => {
-    await deletePost(id);
-    return id;
-  }
-);
+export const removePost = createAsyncThunk("posts/remove", async (id: number) => {
+  await deletePost(id);
+  return id;
+});
 
 export const postsSlice = createSlice({
   name: "posts",
@@ -70,6 +64,5 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { clearPosts, optimisticAddPost, optimisticRemovePost } =
-  postsSlice.actions;
+export const { clearPosts, optimisticAddPost, optimisticRemovePost } = postsSlice.actions;
 export default postsSlice.reducer;

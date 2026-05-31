@@ -12,17 +12,7 @@
 // read and write different parts of the DOM in a single synchronous batch.
 
 import { useLayoutEffect, useRef, useState, useCallback } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Row,
-  Tag,
-  Typography,
-  Slider,
-  Statistic,
-  Space,
-} from "antd";
+import { Button, Card, Col, Row, Tag, Typography, Slider, Statistic, Space } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -141,7 +131,9 @@ export default function UseLayoutEffectAdvancedPage() {
                       }}
                     >
                       <span style={{ color: "#9ca3af", width: 24, flexShrink: 0 }}>{line.num}</span>
-                      <span style={{ color: line.changed ? "#389e0d" : "#374151" }}>{line.code}</span>
+                      <span style={{ color: line.changed ? "#389e0d" : "#374151" }}>
+                        {line.code}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -168,7 +160,9 @@ export default function UseLayoutEffectAdvancedPage() {
                       }}
                     >
                       <span style={{ color: "#9ca3af", width: 24, flexShrink: 0 }}>{line.num}</span>
-                      <span style={{ color: line.changed ? "#cf1322" : "#374151" }}>{line.code}</span>
+                      <span style={{ color: line.changed ? "#cf1322" : "#374151" }}>
+                        {line.code}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -179,7 +173,10 @@ export default function UseLayoutEffectAdvancedPage() {
 
         {/* Live resize tracker */}
         <Col xs={24} lg={14}>
-          <Card title="Live Size Tracker (ResizeObserver + useLayoutEffect)" style={{ borderRadius: 12 }}>
+          <Card
+            title="Live Size Tracker (ResizeObserver + useLayoutEffect)"
+            style={{ borderRadius: 12 }}
+          >
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 12 }}>
               Drag the slider to resize the panel. Size updates synchronously before paint.
             </Text>
@@ -215,12 +212,22 @@ export default function UseLayoutEffectAdvancedPage() {
           <Card
             title="Why useLayoutEffect here"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#569cd6" }}>// Synced scroll:</div>
               <div style={{ color: "#6a9955" }}>onScroll → read scrollTop</div>
-              <div style={{ color: "#6a9955" }}>         → write to other panel</div>
+              <div style={{ color: "#6a9955" }}> → write to other panel</div>
               <div style={{ color: "#b5cea8" }}>Must happen before paint → no tear</div>
               <br />
               <div style={{ color: "#569cd6" }}>// ResizeObserver:</div>
@@ -230,7 +237,9 @@ export default function UseLayoutEffectAdvancedPage() {
               <br />
               <div style={{ padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
                 <div style={{ color: "#569cd6" }}>current size:</div>
-                <div style={{ color: "#d4d4d4" }}>{size.width} × {size.height}px</div>
+                <div style={{ color: "#d4d4d4" }}>
+                  {size.width} × {size.height}px
+                </div>
               </div>
             </div>
           </Card>

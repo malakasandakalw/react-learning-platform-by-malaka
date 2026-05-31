@@ -51,10 +51,21 @@ function buildMenuItems(items: NavItem[]): MenuProps["items"] {
       key: item.path,
       label: dot ? (
         <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ width: 4, height: 4, borderRadius: "50%", backgroundColor: dot, flexShrink: 0, display: "inline-block" }} />
+          <span
+            style={{
+              width: 4,
+              height: 4,
+              borderRadius: "50%",
+              backgroundColor: dot,
+              flexShrink: 0,
+              display: "inline-block",
+            }}
+          />
           {item.label}
         </span>
-      ) : item.label,
+      ) : (
+        item.label
+      ),
     };
   });
 }
@@ -108,10 +119,22 @@ export default function AppSidebar({ collapsed, onCollapse }: AppSidebarProps) {
         }}
       >
         {!collapsed && (
-          <Image src="/logo.png" alt="React Learning Hub" width={160} height={40} style={{ objectFit: "contain" }} />
+          <Image
+            src="/logo.png"
+            alt="React Learning Hub"
+            width={160}
+            height={40}
+            style={{ objectFit: "contain" }}
+          />
         )}
         {collapsed && (
-          <Image src="/logo.png" alt="React Learning Hub" width={32} height={32} style={{ objectFit: "contain" }} />
+          <Image
+            src="/logo.png"
+            alt="React Learning Hub"
+            width={32}
+            height={32}
+            style={{ objectFit: "contain" }}
+          />
         )}
       </div>
 

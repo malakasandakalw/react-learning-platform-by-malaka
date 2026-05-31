@@ -7,18 +7,7 @@
 // This is how protected routes are implemented with HOCs.
 
 import { ComponentType, useContext, createContext, useState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Input,
-  Row,
-  Space,
-  Tag,
-  Typography,
-  Avatar,
-} from "antd";
+import { Alert, Button, Card, Col, Input, Row, Space, Tag, Typography, Avatar } from "antd";
 import {
   LockOutlined,
   UserOutlined,
@@ -33,18 +22,24 @@ const { Text, Title } = Typography;
 
 // ─── Auth Context ─────────────────────────────────────────────────────────────
 type AuthUser = { name: string; role: "admin" | "user" };
-type AuthCtxType = { user: AuthUser | null; login: (name: string, role: "admin" | "user") => void; logout: () => void };
+type AuthCtxType = {
+  user: AuthUser | null;
+  login: (name: string, role: "admin" | "user") => void;
+  logout: () => void;
+};
 
-const AuthCtx = createContext<AuthCtxType>({ user: null, login: () => { }, logout: () => { } });
+const AuthCtx = createContext<AuthCtxType>({ user: null, login: () => {}, logout: () => {} });
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   return (
-    <AuthCtx.Provider value={{
-      user,
-      login: (name, role) => setUser({ name, role }),
-      logout: () => setUser(null),
-    }}>
+    <AuthCtx.Provider
+      value={{
+        user,
+        login: (name, role) => setUser({ name, role }),
+        logout: () => setUser(null),
+      }}
+    >
       {children}
     </AuthCtx.Provider>
   );
@@ -62,8 +57,12 @@ function withAuth<P extends object>(
       return (
         <div style={{ textAlign: "center", padding: 40 }}>
           <LockOutlined style={{ fontSize: 32, color: "#d1d5db", marginBottom: 12 }} />
-          <Title level={5} style={{ color: "rgba(0,0,0,0.65)" }}>Authentication Required</Title>
-          <Text type="secondary" style={{ fontSize: 13 }}>Please log in to view this content.</Text>
+          <Title level={5} style={{ color: "rgba(0,0,0,0.65)" }}>
+            Authentication Required
+          </Title>
+          <Text type="secondary" style={{ fontSize: 13 }}>
+            Please log in to view this content.
+          </Text>
         </div>
       );
     }
@@ -126,23 +125,36 @@ function LoginForm() {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Space>
-          <Avatar>
-            {user.name[0]}
-          </Avatar>
+          <Avatar>{user.name[0]}</Avatar>
           <div>
             <Text strong>{user.name}</Text>
-            <Tag color={user.role === "admin" ? "gold" : "blue"} style={{ marginLeft: 6 }}>{user.role}</Tag>
+            <Tag color={user.role === "admin" ? "gold" : "blue"} style={{ marginLeft: 6 }}>
+              {user.role}
+            </Tag>
           </div>
         </Space>
-        <Button icon={<LogoutOutlined />} size="small" onClick={logout}>Logout</Button>
+        <Button icon={<LogoutOutlined />} size="small" onClick={logout}>
+          Logout
+        </Button>
       </div>
     );
   }
 
   return (
     <Space>
-      <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" style={{ width: 120 }} size="small" />
-      <Button size="small" type="primary" icon={<UserOutlined />} onClick={() => login(name, "user")}>
+      <Input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+        style={{ width: 120 }}
+        size="small"
+      />
+      <Button
+        size="small"
+        type="primary"
+        icon={<UserOutlined />}
+        onClick={() => login(name, "user")}
+      >
         Login as User
       </Button>
       <Button size="small" icon={<CrownOutlined />} onClick={() => login(name, "admin")}>

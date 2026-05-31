@@ -20,12 +20,9 @@ export const fetchUsers = createAsyncThunk("users/fetchAll", async () => {
   return getUsers();
 });
 
-export const fetchUser = createAsyncThunk(
-  "users/fetchOne",
-  async (id: number) => {
-    return getUser(id);
-  }
-);
+export const fetchUser = createAsyncThunk("users/fetchOne", async (id: number) => {
+  return getUser(id);
+});
 
 export const usersSlice = createSlice({
   name: "users",

@@ -14,16 +14,7 @@
 
 import { useFormStatus } from "react-dom";
 import { useState } from "react";
-import {
-  Card,
-  Col,
-  Input,
-  Row,
-  Typography,
-  Alert,
-  Tag,
-  Space,
-} from "antd";
+import { Card, Col, Input, Row, Typography, Alert, Tag, Space } from "antd";
 import { LoadingOutlined, SendOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -135,11 +126,19 @@ export default function UseFormStatusEasyPage() {
             <form onSubmit={handleSubmit}>
               <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                 <div>
-                  <label style={{ display: "block", marginBottom: 4, fontSize: 13, fontWeight: 500 }}>Name</label>
+                  <label
+                    style={{ display: "block", marginBottom: 4, fontSize: 13, fontWeight: 500 }}
+                  >
+                    Name
+                  </label>
                   <Input name="name" placeholder="Your name" required />
                 </div>
                 <div>
-                  <label style={{ display: "block", marginBottom: 4, fontSize: 13, fontWeight: 500 }}>Message</label>
+                  <label
+                    style={{ display: "block", marginBottom: 4, fontSize: 13, fontWeight: 500 }}
+                  >
+                    Message
+                  </label>
                   <Input.TextArea name="message" rows={3} placeholder="Your message" required />
                 </div>
 
@@ -157,16 +156,29 @@ export default function UseFormStatusEasyPage() {
           <Card
             title="useFormStatus rules"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#b5cea8" }}>// ✓ Works: inside a form:</div>
               <div style={{ color: "#ce9178" }}>{"<form>"}</div>
               <div style={{ color: "#ce9178", paddingLeft: 12 }}>{"<SubmitButton />"}</div>
               <div style={{ color: "#ce9178" }}>{"</form>"}</div>
               <br />
               <div style={{ color: "#6a9955" }}>// ✗ Fails: not inside a form:</div>
-              <div style={{ color: "#d4d4d4" }}>{"<SubmitButton />"} <span style={{ color: "#6a9955" }}>← pending always false</span></div>
+              <div style={{ color: "#d4d4d4" }}>
+                {"<SubmitButton />"}{" "}
+                <span style={{ color: "#6a9955" }}>← pending always false</span>
+              </div>
               <br />
               <div style={{ color: "#6a9955" }}>// Returns:</div>
               <div style={{ color: "#d4d4d4" }}>{"{ pending: boolean,"}</div>

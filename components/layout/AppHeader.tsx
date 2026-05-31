@@ -11,7 +11,16 @@ const { Header } = Layout;
 
 function buildBreadcrumbs(pathname: string) {
   const segments = pathname.split("/").filter(Boolean);
-  const crumbs = [{ key: "home", title: <Link href="/"><HomeOutlined /></Link> }];
+  const crumbs = [
+    {
+      key: "home",
+      title: (
+        <Link href="/">
+          <HomeOutlined />
+        </Link>
+      ),
+    },
+  ];
 
   let path = "";
   for (let i = 0; i < segments.length; i++) {
@@ -26,7 +35,9 @@ function buildBreadcrumbs(pathname: string) {
       title: isLast ? (
         <Typography.Text style={{ fontWeight: 500 }}>{label}</Typography.Text>
       ) : (
-        <Link href={path} style={{ color: "inherit" }}>{label}</Link>
+        <Link href={path} style={{ color: "inherit" }}>
+          {label}
+        </Link>
       ),
     });
   }

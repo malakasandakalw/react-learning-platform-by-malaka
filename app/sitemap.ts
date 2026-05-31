@@ -13,12 +13,7 @@ const coreHooks = [
   "use-callback",
   "use-reducer",
 ];
-const modernHooks = [
-  "use-transition",
-  "use-deferred-value",
-  "use-id",
-  "use-optimistic",
-];
+const modernHooks = ["use-transition", "use-deferred-value", "use-id", "use-optimistic"];
 const react19Hooks = ["use-hook", "use-action-state", "use-form-status"];
 const patterns = [
   "suspense",
@@ -43,10 +38,7 @@ function sectionWithLevels(base: string): MetadataRoute.Sitemap {
 }
 
 function hookSection(prefix: string, hooks: string[]): MetadataRoute.Sitemap {
-  return [
-    url(prefix, 0.8),
-    ...hooks.flatMap((hook) => sectionWithLevels(`${prefix}/${hook}`)),
-  ];
+  return [url(prefix, 0.8), ...hooks.flatMap((hook) => sectionWithLevels(`${prefix}/${hook}`))];
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

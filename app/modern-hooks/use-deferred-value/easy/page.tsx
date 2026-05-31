@@ -8,14 +8,7 @@
 // The input stays instant; the slow part renders asynchronously.
 
 import { useDeferredValue, useState } from "react";
-import {
-  Card,
-  Col,
-  Input,
-  Row,
-  Typography,
-  Spin,
-} from "antd";
+import { Card, Col, Input, Row, Typography, Spin } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -54,7 +47,9 @@ function SlowList({ query }: { query: string }) {
         </Text>
       )}
       {visible.length === 0 && (
-        <Text type="secondary" style={{ padding: 16, display: "block" }}>No matches</Text>
+        <Text type="secondary" style={{ padding: 16, display: "block" }}>
+          No matches
+        </Text>
       )}
     </div>
   );
@@ -110,7 +105,10 @@ export default function UseDeferredValueEasyPage() {
           <Card
             title="Value Comparison"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div style={{ color: "#6a9955" }}>// Real value (instant):</div>
@@ -127,7 +125,15 @@ export default function UseDeferredValueEasyPage() {
                 <span style={{ color: "#569cd6" }}>isStale: </span>
                 <span style={{ color: isStale ? "#dcdcaa" : "#b5cea8" }}>{String(isStale)}</span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 11 }}>
+              <div
+                style={{
+                  marginTop: 12,
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 11,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>vs useTransition:</div>
                 <div style={{ color: "#6a9955" }}>useTransition wraps the setter</div>
                 <div style={{ color: "#6a9955" }}>useDeferredValue wraps the value</div>

@@ -50,20 +50,29 @@ function ThemedBadge({ showBadge }: { showBadge: boolean }) {
 
 // ─── Multiple Suspense Boundaries ────────────────────────────────────────────
 // Each fetches independently and they do not block each other
-const postsPromise = fetch(`${API_URLS.jsonPlaceholder}/posts?_limit=5`)
-  .then((r) => r.json() as Promise<Post[]>);
+const postsPromise = fetch(`${API_URLS.jsonPlaceholder}/posts?_limit=5`).then(
+  (r) => r.json() as Promise<Post[]>
+);
 
-const usersPromise = fetch(`${API_URLS.jsonPlaceholder}/users?_limit=5`)
-  .then((r) => r.json() as Promise<User[]>);
+const usersPromise = fetch(`${API_URLS.jsonPlaceholder}/users?_limit=5`).then(
+  (r) => r.json() as Promise<User[]>
+);
 
 function PostList() {
   const posts = use(postsPromise);
   return (
     <div>
       {posts.map((p) => (
-        <div key={p.id} style={{ padding: "6px 0", borderBottom: "1px solid #f5f5f5", fontSize: 12 }}>
-          <Text strong style={{ fontSize: 12 }}>#{p.id}</Text>
-          <Text style={{ marginLeft: 8, fontSize: 12 }} ellipsis>{p.title}</Text>
+        <div
+          key={p.id}
+          style={{ padding: "6px 0", borderBottom: "1px solid #f5f5f5", fontSize: 12 }}
+        >
+          <Text strong style={{ fontSize: 12 }}>
+            #{p.id}
+          </Text>
+          <Text style={{ marginLeft: 8, fontSize: 12 }} ellipsis>
+            {p.title}
+          </Text>
         </div>
       ))}
     </div>
@@ -75,7 +84,10 @@ function UserList() {
   return (
     <div>
       {users.map((u) => (
-        <div key={u.id} style={{ padding: "6px 0", borderBottom: "1px solid #f5f5f5", fontSize: 12 }}>
+        <div
+          key={u.id}
+          style={{ padding: "6px 0", borderBottom: "1px solid #f5f5f5", fontSize: 12 }}
+        >
           <Tag style={{ fontSize: 10 }}>{u.address.city}</Tag>
           <Text style={{ marginLeft: 6, fontSize: 12 }}>{u.name}</Text>
         </div>
@@ -88,7 +100,9 @@ function SuspenseFallback({ label }: { label: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8, padding: 16, color: "#9ca3af" }}>
       <Spin size="small" />
-      <Text type="secondary" style={{ fontSize: 12 }}>Loading {label}...</Text>
+      <Text type="secondary" style={{ fontSize: 12 }}>
+        Loading {label}...
+      </Text>
     </div>
   );
 }
@@ -97,9 +111,10 @@ export default function UseHookMediumPage() {
   const [showBadge, setShowBadge] = useState(true);
   const [themeColor, setThemeColor] = useState<"blue" | "purple">("blue");
 
-  const themeValue: ThemeCtx = themeColor === "blue"
-    ? { color: "#1677ff", label: "Blue" }
-    : { color: "#722ed1", label: "Purple" };
+  const themeValue: ThemeCtx =
+    themeColor === "blue"
+      ? { color: "#1677ff", label: "Blue" }
+      : { color: "#722ed1", label: "Purple" };
 
   return (
     <div>
@@ -122,21 +137,34 @@ export default function UseHookMediumPage() {
           <Card title="use() with Context (conditional)" style={{ borderRadius: 12 }}>
             <ThemeContext.Provider value={themeValue}>
               <Space orientation="vertical" style={{ width: "100%" }} size={12}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                >
                   <Text style={{ fontSize: 13 }}>Show badge?</Text>
                   <Switch checked={showBadge} onChange={setShowBadge} />
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                >
                   <Text style={{ fontSize: 13 }}>Theme colour</Text>
                   <Button
                     size="small"
-                    onClick={() => setThemeColor((c) => c === "blue" ? "purple" : "blue")}
+                    onClick={() => setThemeColor((c) => (c === "blue" ? "purple" : "blue"))}
                   >
                     Toggle
                   </Button>
                 </div>
 
-                <div style={{ background: "#f8f9fc", borderRadius: 8, padding: 16, minHeight: 40, display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    background: "#f8f9fc",
+                    borderRadius: 8,
+                    padding: 16,
+                    minHeight: 40,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   {/* use(ThemeContext) only called when showBadge is true */}
                   <ThemedBadge showBadge={showBadge} />
                 </div>
@@ -144,7 +172,7 @@ export default function UseHookMediumPage() {
                 <Alert
                   type="info"
                   showIcon
-                  title='use(Context) is called only when showBadge=true. This is impossible with useContext.'
+                  title="use(Context) is called only when showBadge=true. This is impossible with useContext."
                   style={{ borderRadius: 8 }}
                 />
               </Space>
@@ -154,19 +182,26 @@ export default function UseHookMediumPage() {
 
         {/* Multiple Suspense boundaries */}
         <Col xs={24} lg={13}>
-          <Card title="Multiple Suspense Boundaries (parallel loading)" style={{ borderRadius: 12 }}>
+          <Card
+            title="Multiple Suspense Boundaries (parallel loading)"
+            style={{ borderRadius: 12 }}
+          >
             <Text type="secondary" style={{ fontSize: 12, display: "block", marginBottom: 16 }}>
               Both requests fire simultaneously. Neither blocks the other.
             </Text>
             <Row gutter={16}>
               <Col span={12}>
-                <Text strong style={{ fontSize: 12, display: "block", marginBottom: 8 }}>Posts</Text>
+                <Text strong style={{ fontSize: 12, display: "block", marginBottom: 8 }}>
+                  Posts
+                </Text>
                 <Suspense fallback={<SuspenseFallback label="posts" />}>
                   <PostList />
                 </Suspense>
               </Col>
               <Col span={12}>
-                <Text strong style={{ fontSize: 12, display: "block", marginBottom: 8 }}>Users</Text>
+                <Text strong style={{ fontSize: 12, display: "block", marginBottom: 8 }}>
+                  Users
+                </Text>
                 <Suspense fallback={<SuspenseFallback label="users" />}>
                   <UserList />
                 </Suspense>

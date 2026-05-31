@@ -12,17 +12,7 @@
 // - It cannot be used in async Server Components (use fetch directly there)
 
 import { use, Suspense } from "react";
-import {
-  Avatar,
-  Card,
-  Col,
-  List,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Alert,
-} from "antd";
+import { Avatar, Card, Col, List, Row, Spin, Tag, Typography, Alert } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { API_URLS } from "@/lib/constants";
 import type { User } from "@/types/user";
@@ -55,7 +45,8 @@ function UserList() {
             description={
               <span>
                 <Text type="secondary">{user.email}</Text>
-                {" · "}<Tag>{user.address.city}</Tag>
+                {" · "}
+                <Tag>{user.address.city}</Tag>
               </span>
             }
           />
@@ -112,19 +103,33 @@ export default function UseHookEasyPage() {
           <Card
             title="use() vs useEffect"
             style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#6a9955" }}>// Before (useEffect pattern):</div>
               <div style={{ color: "#d4d4d4" }}>const [data, setData] = useState(null)</div>
               <div style={{ color: "#d4d4d4" }}>const [loading, setLoading] = useState(true)</div>
-              <div style={{ color: "#dcdcaa" }}>useEffect(() ={">"} {"{"}</div>
+              <div style={{ color: "#dcdcaa" }}>
+                useEffect(() ={">"} {"{"}
+              </div>
               <div style={{ color: "#dcdcaa", paddingLeft: 12 }}>fetch(url).then(setData)</div>
               <div style={{ color: "#dcdcaa" }}>{"}, [])"}</div>
               <div style={{ color: "#d4d4d4" }}>if (loading) return {"<Spinner />"}</div>
               <br />
               <div style={{ color: "#6a9955" }}>// React 19 (use() pattern):</div>
-              <div style={{ color: "#b5cea8" }}>const promise = fetch(url).then(r ={">"} r.json())</div>
+              <div style={{ color: "#b5cea8" }}>
+                const promise = fetch(url).then(r ={">"} r.json())
+              </div>
               <div style={{ color: "#6a9955" }}>// In component:</div>
               <div style={{ color: "#dcdcaa" }}>const data = use(promise)</div>
               <div style={{ color: "#6a9955" }}>// Parent: {"<Suspense fallback={...}>"}</div>

@@ -12,16 +12,7 @@
 // If you use useEffect for DOM measurements, you get a visible flicker.
 
 import { useLayoutEffect, useEffect, useRef, useState } from "react";
-import {
-  Card,
-  Col,
-  Row,
-  Switch,
-  Typography,
-  Tag,
-  Statistic,
-  Alert,
-} from "antd";
+import { Card, Col, Row, Switch, Typography, Tag, Statistic, Alert } from "antd";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -116,15 +107,8 @@ function TimelineDemo() {
             padding: "6px 10px",
             marginBottom: 4,
             borderRadius: 6,
-            background:
-              i === 2
-                ? "#e6f4ff"
-                : i === 4
-                ? "#fff7ed"
-                : "#f8f9fc",
-            borderLeft: `3px solid ${
-              i === 2 ? "#1677ff" : i === 4 ? "#d9d9d9" : "#e5e7eb"
-            }`,
+            background: i === 2 ? "#e6f4ff" : i === 4 ? "#fff7ed" : "#f8f9fc",
+            borderLeft: `3px solid ${i === 2 ? "#1677ff" : i === 4 ? "#d9d9d9" : "#e5e7eb"}`,
             color: i === 2 ? "#1677ff" : i === 4 ? "rgba(0,0,0,0.65)" : "#374151",
           }}
         >
@@ -171,14 +155,25 @@ export default function UseLayoutEffectEasyPage() {
 
       <Card
         style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
-        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 20 } }}
+        styles={{
+          header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+          body: { padding: 20 },
+        }}
       >
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2, color: "#d4d4d4" }}>
+        <div
+          style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2, color: "#d4d4d4" }}
+        >
           <div style={{ color: "#569cd6" }}>// useEffect (most cases)</div>
-          <div>useEffect({"() => { fetchData(); }"}, [])  <span style={{ color: "#6a9955" }}>← runs after paint</span></div>
+          <div>
+            useEffect({"() => { fetchData(); }"}, []){" "}
+            <span style={{ color: "#6a9955" }}>← runs after paint</span>
+          </div>
           <br />
           <div style={{ color: "#569cd6" }}>// useLayoutEffect (DOM measurement/mutation)</div>
-          <div>useLayoutEffect({"() => { measureDOM(); }"}, [])  <span style={{ color: "#6a9955" }}>← runs before paint</span></div>
+          <div>
+            useLayoutEffect({"() => { measureDOM(); }"}, []){" "}
+            <span style={{ color: "#6a9955" }}>← runs before paint</span>
+          </div>
         </div>
       </Card>
 

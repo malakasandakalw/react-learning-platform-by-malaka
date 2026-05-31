@@ -6,17 +6,7 @@
 // This is the real-world version of the easy example, using the same pattern with real data.
 
 import { useEffect, useDeferredValue, useState } from "react";
-import {
-  Avatar,
-  Card,
-  Col,
-  Input,
-  Row,
-  Spin,
-  Tag,
-  Typography,
-  Empty,
-} from "antd";
+import { Avatar, Card, Col, Input, Row, Spin, Tag, Typography, Empty } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { getPokemonList } from "@/services/pokeApi";
 import type { PokemonListItem } from "@/types/pokemon";
@@ -31,9 +21,7 @@ function getPokemonId(url: string): number {
 }
 
 function PokemonGrid({ pokemon, query }: { pokemon: PokemonListItem[]; query: string }) {
-  const filtered = pokemon.filter((p) =>
-    p.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const filtered = pokemon.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()));
 
   if (filtered.length === 0) return <Empty description="No Pokémon match" />;
 
@@ -43,13 +31,25 @@ function PokemonGrid({ pokemon, query }: { pokemon: PokemonListItem[]; query: st
         const id = getPokemonId(p.url);
         return (
           <Col key={p.name} xs={8} sm={6} md={4} lg={3}>
-            <div style={{ textAlign: "center", padding: 6, background: "#f8f9fc", borderRadius: 8, border: "1px solid #f0f0f0" }}>
+            <div
+              style={{
+                textAlign: "center",
+                padding: 6,
+                background: "#f8f9fc",
+                borderRadius: 8,
+                border: "1px solid #f0f0f0",
+              }}
+            >
               <Avatar
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                 size={40}
                 shape="square"
               />
-              <div style={{ fontSize: 10, marginTop: 2, textTransform: "capitalize", fontWeight: 500 }}>{p.name}</div>
+              <div
+                style={{ fontSize: 10, marginTop: 2, textTransform: "capitalize", fontWeight: 500 }}
+              >
+                {p.name}
+              </div>
               <Tag style={{ fontSize: 9, margin: "2px 0 0" }}>#{id}</Tag>
             </div>
           </Col>
@@ -104,7 +104,9 @@ export default function UseDeferredValueMediumPage() {
             />
 
             {loading ? (
-              <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
+              <div style={{ textAlign: "center", padding: 40 }}>
+                <Spin />
+              </div>
             ) : (
               <div style={{ opacity: isStale ? 0.6 : 1, transition: "opacity 0.15s" }}>
                 <PokemonGrid pokemon={allPokemon} query={deferredQuery} />
@@ -117,13 +119,28 @@ export default function UseDeferredValueMediumPage() {
           <Card
             title="Deferred State"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
             <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
-              <div><span style={{ color: "#569cd6" }}>query: </span><span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span></div>
-              <div><span style={{ color: "#569cd6" }}>deferred: </span><span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span></div>
-              <div><span style={{ color: "#569cd6" }}>isStale: </span><span style={{ color: isStale ? "#dcdcaa" : "#b5cea8" }}>{String(isStale)}</span></div>
-              <div><span style={{ color: "#569cd6" }}>total: </span><span style={{ color: "#d4d4d4" }}>{allPokemon.length}</span></div>
+              <div>
+                <span style={{ color: "#569cd6" }}>query: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>deferred: </span>
+                <span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>isStale: </span>
+                <span style={{ color: isStale ? "#dcdcaa" : "#b5cea8" }}>{String(isStale)}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>total: </span>
+                <span style={{ color: "#d4d4d4" }}>{allPokemon.length}</span>
+              </div>
             </div>
           </Card>
         </Col>

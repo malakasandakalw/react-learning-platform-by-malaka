@@ -8,14 +8,7 @@
 // This example builds an accessible combobox (searchable dropdown) with full ARIA.
 
 import { useId, useState, useRef } from "react";
-import {
-  Card,
-  Col,
-  Row,
-  Tag,
-  Typography,
-  Alert,
-} from "antd";
+import { Card, Col, Row, Tag, Typography, Alert } from "antd";
 import { SearchOutlined, CheckOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -23,8 +16,16 @@ import LevelNavigator from "@/components/shared/LevelNavigator";
 const { Text, Title } = Typography;
 
 const OPTIONS = [
-  "React", "Next.js", "TypeScript", "Redux Toolkit", "Tailwind CSS",
-  "Node.js", "GraphQL", "REST API", "WebSockets", "Docker",
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Redux Toolkit",
+  "Tailwind CSS",
+  "Node.js",
+  "GraphQL",
+  "REST API",
+  "WebSockets",
+  "Docker",
 ];
 
 // A fully accessible combobox (searchable dropdown).
@@ -47,9 +48,7 @@ function AccessibleCombobox({ label }: { label: string }) {
   const getOptionId = (i: number) => `${id}-option-${i}`;
 
   const filtered = OPTIONS.filter(
-    (o) =>
-      o.toLowerCase().includes(query.toLowerCase()) &&
-      !selected.includes(o)
+    (o) => o.toLowerCase().includes(query.toLowerCase()) && !selected.includes(o)
   );
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -104,15 +103,17 @@ function AccessibleCombobox({ label }: { label: string }) {
           <input
             ref={inputRef}
             role="combobox"
-            aria-labelledby={labelId}         // Links to the label above
-            aria-controls={listboxId}          // Controls the dropdown listbox
-            aria-expanded={isOpen}             // Tells screen readers if dropdown is open
+            aria-labelledby={labelId} // Links to the label above
+            aria-controls={listboxId} // Controls the dropdown listbox
+            aria-expanded={isOpen} // Tells screen readers if dropdown is open
             aria-autocomplete="list"
-            aria-activedescendant={
-              activeIndex >= 0 ? getOptionId(activeIndex) : undefined
-            }
+            aria-activedescendant={activeIndex >= 0 ? getOptionId(activeIndex) : undefined}
             value={query}
-            onChange={(e) => { setQuery(e.target.value); setIsOpen(true); setActiveIndex(-1); }}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setIsOpen(true);
+              setActiveIndex(-1);
+            }}
             onFocus={() => setIsOpen(true)}
             onBlur={() => setTimeout(() => setIsOpen(false), 150)}
             onKeyDown={handleKeyDown}
@@ -130,7 +131,7 @@ function AccessibleCombobox({ label }: { label: string }) {
 
         {isOpen && filtered.length > 0 && (
           <ul
-            id={listboxId}                   // Matches the input's aria-controls
+            id={listboxId} // Matches the input's aria-controls
             role="listbox"
             aria-labelledby={labelId}
             aria-multiselectable="true"
@@ -154,7 +155,7 @@ function AccessibleCombobox({ label }: { label: string }) {
             {filtered.map((option, i) => (
               <li
                 key={option}
-                id={getOptionId(i)}          // Matches input's aria-activedescendant
+                id={getOptionId(i)} // Matches input's aria-activedescendant
                 role="option"
                 aria-selected={activeIndex === i}
                 onMouseDown={() => select(option)}
@@ -212,17 +213,40 @@ export default function UseIdAdvancedPage() {
           <Card
             title="ARIA ID Map"
             style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
-            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
+            styles={{
+              header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" },
+              body: { padding: 16 },
+            }}
           >
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                lineHeight: 2,
+                color: "#d4d4d4",
+              }}
+            >
               <div style={{ color: "#569cd6" }}>const id = useId();</div>
               <div style={{ color: "#6a9955" }}>// generates e.g. ":r3:"</div>
               <br />
-              <div>labelId = <span style={{ color: "#ce9178" }}>&quot;:r3:-label&quot;</span></div>
-              <div>listboxId = <span style={{ color: "#ce9178" }}>&quot;:r3:-listbox&quot;</span></div>
-              <div>optionId(0) = <span style={{ color: "#ce9178" }}>&quot;:r3:-option-0&quot;</span></div>
+              <div>
+                labelId = <span style={{ color: "#ce9178" }}>&quot;:r3:-label&quot;</span>
+              </div>
+              <div>
+                listboxId = <span style={{ color: "#ce9178" }}>&quot;:r3:-listbox&quot;</span>
+              </div>
+              <div>
+                optionId(0) = <span style={{ color: "#ce9178" }}>&quot;:r3:-option-0&quot;</span>
+              </div>
               <br />
-              <div style={{ padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+              <div
+                style={{
+                  padding: "8px 12px",
+                  background: "#2d2d2d",
+                  borderRadius: 6,
+                  fontSize: 10,
+                }}
+              >
                 <div style={{ color: "#569cd6" }}>input connects:</div>
                 <div style={{ color: "#6a9955" }}>aria-labelledby → labelId</div>
                 <div style={{ color: "#6a9955" }}>aria-controls → listboxId</div>
