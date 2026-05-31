@@ -80,6 +80,7 @@ export default function UseEffectAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-effect/advanced/page.tsx"
         title="useEffect"
         level="advanced"
         apiUsed="JSONPlaceholder"

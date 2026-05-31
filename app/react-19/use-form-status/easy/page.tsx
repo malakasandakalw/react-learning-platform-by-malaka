@@ -97,6 +97,7 @@ export default function UseFormStatusEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-form-status/easy/page.tsx"
         title="useFormStatus"
         level="easy"
         description="useFormStatus reads the parent form's pending state from inside any child component without prop drilling. The SubmitButton and StatusBanner both use it without receiving any props."

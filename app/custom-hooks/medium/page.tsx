@@ -90,6 +90,7 @@ export default function CustomHooksMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/custom-hooks/medium/page.tsx"
         title="Custom Hooks"
         level="medium"
         description="Two utility hooks found in almost every real codebase. useLocalStorage persists state across refreshes. useDebounce delays a value and is essential for search inputs and live API calls."

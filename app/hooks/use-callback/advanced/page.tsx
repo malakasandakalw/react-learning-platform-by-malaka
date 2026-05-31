@@ -112,6 +112,7 @@ export default function UseCallbackAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-callback/advanced/page.tsx"
         title="useCallback"
         level="advanced"
         apiUsed="DummyJSON"

@@ -99,6 +99,7 @@ export default function UseMemoAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-memo/advanced/page.tsx"
         title="useMemo"
         level="advanced"
         description="The most subtle use of useMemo: stabilizing object references. When you pass an object/array literal as a prop, it is a NEW reference every render. React.memo cannot skip re-renders unless the reference is stable, which is what useMemo provides."

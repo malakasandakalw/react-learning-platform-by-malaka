@@ -53,6 +53,7 @@ export default function RenderPropsMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/render-props/medium/page.tsx"
         title="Render Props"
         level="medium"
         apiUsed="JSONPlaceholder"

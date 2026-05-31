@@ -269,6 +269,7 @@ export default function ContextAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/context/advanced/page.tsx"
         title="Context API"
         level="advanced"
         description="Context + useReducer is the foundational pattern that Redux is built on. The Provider owns the reducer. Consumers dispatch actions. The reducer owns all state transitions. This pattern scales to complex apps without any external library."

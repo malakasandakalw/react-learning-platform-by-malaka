@@ -81,6 +81,7 @@ export default function UseCallbackEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-callback/easy/page.tsx"
         title="useCallback"
         level="easy"
         description="useCallback memoizes a function. Without it, every render creates a new function instance, which breaks React.memo optimization on child components that receive functions as props."

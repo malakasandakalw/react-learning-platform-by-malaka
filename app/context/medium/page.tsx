@@ -237,6 +237,7 @@ export default function ContextMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/context/medium/page.tsx"
         title="Context API"
         level="medium"
         description="Auth context is the most common real-world context. The user state lives in one place (AuthProvider) and is accessible everywhere. Components check auth state and respond accordingly, without prop drilling."

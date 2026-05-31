@@ -60,6 +60,7 @@ export default function UseHookEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-hook/easy/page.tsx"
         title="use()"
         level="easy"
         apiUsed="JSONPlaceholder"

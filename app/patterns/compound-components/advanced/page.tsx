@@ -156,6 +156,7 @@ export default function CompoundComponentsAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/compound-components/advanced/page.tsx"
         title="Compound Components"
         level="advanced"
         description="FlexCard propagates a variant through Context so every sub-component (Header icon, Footer border, Badge color) reacts automatically with no variant prop threaded through each one. Footer is optional: omit it and it simply does not render."

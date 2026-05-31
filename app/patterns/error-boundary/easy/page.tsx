@@ -86,6 +86,7 @@ export default function ErrorBoundaryEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/error-boundary/easy/page.tsx"
         title="Error Boundaries"
         level="easy"
         description="Error Boundaries catch rendering errors before they crash the whole app. Without them, one buggy component brings down the entire page. With them, the error is contained and a friendly message is shown."

@@ -123,6 +123,7 @@ export default function UseLayoutEffectEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-layout-effect/easy/page.tsx"
         title="useLayoutEffect"
         level="easy"
         description="useLayoutEffect is identical to useEffect but fires synchronously after DOM updates and before the browser paints. Use it when you need to read or write the DOM before the user sees anything, which avoids visible flicker."

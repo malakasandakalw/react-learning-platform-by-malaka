@@ -75,6 +75,7 @@ export default function UseMemoMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-memo/medium/page.tsx"
         title="useMemo"
         level="medium"
         apiUsed="PokéAPI"

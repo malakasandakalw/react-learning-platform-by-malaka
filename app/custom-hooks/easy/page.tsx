@@ -73,6 +73,7 @@ export default function CustomHooksEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/custom-hooks/easy/page.tsx"
         title="Custom Hooks"
         level="easy"
         apiUsed="JSONPlaceholder"

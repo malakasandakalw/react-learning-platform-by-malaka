@@ -179,6 +179,7 @@ export default function PortalsMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/portals/medium/page.tsx"
         title="Portals"
         level="medium"
         description="A toast notification system built with portals. Toasts are triggered from anywhere in the component tree but always render in the top-right corner via a portal to document.body, regardless of overflow or z-index constraints in the component hierarchy."

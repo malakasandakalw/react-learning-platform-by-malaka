@@ -138,6 +138,7 @@ export default function UseLayoutEffectMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-layout-effect/medium/page.tsx"
         title="useLayoutEffect"
         level="medium"
         description="Tooltip and popover positioning is the canonical use case for useLayoutEffect. The position must be computed from DOM measurements before the tooltip appears. Using useEffect here produces a one-frame flicker that is visible on fast monitors."

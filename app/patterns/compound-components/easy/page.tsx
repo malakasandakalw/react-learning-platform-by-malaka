@@ -85,6 +85,7 @@ export default function CompoundComponentsEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/compound-components/easy/page.tsx"
         title="Compound Components"
         level="easy"
         description="Tabs is the classic compound component. Tabs.List, Tabs.Tab, and Tabs.Panel all share the active-tab state via Context with no activeTab or onChange props threaded between them. The parent just provides the initial state."

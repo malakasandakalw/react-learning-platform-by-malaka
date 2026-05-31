@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Layout, Breadcrumb, Typography } from "antd";
 import Link from "next/link";
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, GithubOutlined } from "@ant-design/icons";
 import LevelBadge from "@/components/shared/LevelBadge";
 import type { Level } from "@/lib/constants";
 
@@ -76,7 +76,18 @@ export default function AppHeader({ sidebarCollapsed }: AppHeaderProps) {
       }}
     >
       <Breadcrumb items={breadcrumbs} />
-      {level && <LevelBadge level={level} />}
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        {level && <LevelBadge level={level} />}
+        <a
+          href="https://github.com/malakasandakalw/react-learning-platform-by-malaka"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: "flex", alignItems: "center", color: "#555", fontSize: 20 }}
+          title="View on GitHub"
+        >
+          <GithubOutlined />
+        </a>
+      </div>
     </Header>
   );
 }

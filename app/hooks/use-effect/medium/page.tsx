@@ -62,6 +62,7 @@ export default function UseEffectMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-effect/medium/page.tsx"
         title="useEffect"
         level="medium"
         apiUsed="JSONPlaceholder"

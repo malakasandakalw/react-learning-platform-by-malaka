@@ -168,6 +168,7 @@ export default function HocMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/hoc/medium/page.tsx"
         title="Higher Order Components"
         level="medium"
         description="withAuth wraps any component and handles authentication/authorization before rendering. Components inside do not know about auth logic. They just receive the user as a prop."

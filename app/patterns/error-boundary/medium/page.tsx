@@ -143,6 +143,7 @@ export default function ErrorBoundaryMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/error-boundary/medium/page.tsx"
         title="Error Boundaries"
         level="medium"
         description="A production error boundary with retry capability. The boundary tracks retry attempts, limits them to prevent infinite loops, and resets child state by updating its own key prop, which forces a complete remount."

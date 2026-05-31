@@ -89,6 +89,7 @@ export default function UseLayoutEffectAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-layout-effect/advanced/page.tsx"
         title="useLayoutEffect"
         level="advanced"
         description="Advanced DOM synchronization patterns: synchronized scrolling between panels and live size tracking with ResizeObserver. Both require useLayoutEffect to prevent visible tearing between the read and write phases of DOM manipulation."

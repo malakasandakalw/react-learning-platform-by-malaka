@@ -108,6 +108,7 @@ export default function UseReducerMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-reducer/medium/page.tsx"
         title="useReducer"
         level="medium"
         apiUsed="JSONPlaceholder"

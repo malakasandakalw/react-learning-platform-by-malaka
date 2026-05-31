@@ -90,6 +90,7 @@ export default function UseDeferredValueAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-deferred-value/advanced/page.tsx"
         title="useDeferredValue"
         level="advanced"
         apiUsed="PokéAPI"

@@ -143,6 +143,7 @@ export default function UseRefMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-ref/medium/page.tsx"
         title="useRef"
         level="medium"
         description="useRef is not just for DOM elements. It is a general-purpose mutable container that survives re-renders. Unlike state, mutating ref.current is instant, synchronous, and does not schedule a re-render."

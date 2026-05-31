@@ -135,6 +135,7 @@ export default function ContextEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/context/easy/page.tsx"
         title="Context API"
         level="easy"
         description="Context solves prop drilling. Instead of passing theme through every component, any component can read it directly with useContext, as long as it lives inside the Provider."

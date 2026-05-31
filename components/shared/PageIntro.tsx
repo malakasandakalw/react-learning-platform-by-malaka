@@ -1,9 +1,13 @@
 import { Typography, Alert } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
 import LevelBadge from "./LevelBadge";
 import ApiTag from "./ApiTag";
 import type { Level } from "@/lib/constants";
 
 const { Title, Paragraph, Text } = Typography;
+
+const GITHUB_BASE =
+  "https://github.com/malakasandakalw/react-learning-platform-by-malaka/blob/main";
 
 type Props = {
   title: string;
@@ -11,17 +15,46 @@ type Props = {
   description: string;
   teaches: string[];
   apiUsed?: string;
+  sourcePath?: string;
 };
 
-export default function PageIntro({ title, level, description, teaches, apiUsed }: Props) {
+export default function PageIntro({
+  title,
+  level,
+  description,
+  teaches,
+  apiUsed,
+  sourcePath,
+}: Props) {
   return (
     <div style={{ marginBottom: 32 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-        <Title level={2} style={{ margin: 0 }}>
-          {title}
-        </Title>
-        <LevelBadge level={level} size="large" />
-        {apiUsed && <ApiTag api={apiUsed} />}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 8,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Title level={2} style={{ margin: 0 }}>
+            {title}
+          </Title>
+          <LevelBadge level={level} size="large" />
+          {apiUsed && <ApiTag api={apiUsed} />}
+        </div>
+
+        {sourcePath && (
+          <a
+            href={`${GITHUB_BASE}/${sourcePath}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#555" }}
+          >
+            <GithubOutlined />
+            View source
+          </a>
+        )}
       </div>
 
       <Paragraph style={{ fontSize: 15, marginBottom: 16 }}>{description}</Paragraph>
@@ -49,11 +82,21 @@ export default function PageIntro({ title, level, description, teaches, apiUsed 
         description={
           <span style={{ fontSize: 13, lineHeight: 1.7 }}>
             The demo above shows <em>what</em> this concept does. As a developer, you learn by
-            reading <em>how</em> it is built. Open this page&apos;s source file in your editor and
-            read through every line before moving on. The file path matches the URL:{" "}
-            <Text code style={{ fontSize: 12 }}>
-              app/[section]/[hook]/[level]/page.tsx
-            </Text>
+            reading <em>how</em> it is built. Open this page&apos;s source file and read through
+            every line before moving on.{" "}
+            {sourcePath ? (
+              <>
+                <a href={`${GITHUB_BASE}/${sourcePath}`} target="_blank" rel="noopener noreferrer">
+                  <Text code style={{ fontSize: 12 }}>
+                    {sourcePath}
+                  </Text>
+                </a>
+              </>
+            ) : (
+              <Text code style={{ fontSize: 12 }}>
+                app/[section]/[hook]/[level]/page.tsx
+              </Text>
+            )}
           </span>
         }
       />

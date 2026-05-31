@@ -298,7 +298,7 @@ export default function HomePage() {
 
         <div style={{ marginTop: 24 }}>
           <Text type="secondary" style={{ fontSize: 12 }}>
-            © 2025 React Learning Hub by Malaka · Developed by{" "}
+            © 2026 React Learning Hub by Malaka · Developed by{" "}
             <a
               href="https://www.linkedin.com/in/malakasandakal/"
               target="_blank"

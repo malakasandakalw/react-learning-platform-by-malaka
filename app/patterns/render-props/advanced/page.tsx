@@ -64,6 +64,7 @@ export default function RenderPropsAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/render-props/advanced/page.tsx"
         title="Render Props"
         level="advanced"
         description="MouseTracker listens to mousemove on a container div and exposes {x, y} via render prop. Two consumers render completely different UIs from the same tracker. Advanced: composing Toggle and MouseTracker so state from both providers flows into one render function."

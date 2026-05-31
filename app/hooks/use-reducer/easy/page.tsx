@@ -87,6 +87,7 @@ export default function UseReducerEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-reducer/easy/page.tsx"
         title="useReducer"
         level="easy"
         description="useReducer separates HOW state changes from WHEN it changes. You dispatch named actions; the reducer decides the next state. This makes state transitions explicit, testable, and easy to follow."

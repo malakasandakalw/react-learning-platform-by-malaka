@@ -185,6 +185,7 @@ export default function UseIdAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-id/advanced/page.tsx"
         title="useId"
         level="advanced"
         description="Complex ARIA patterns require matching IDs between elements that are far apart in the DOM tree. useId generates these IDs in a way that is guaranteed to match between server and client, preventing accessibility hydration mismatches."

@@ -159,6 +159,7 @@ export default function UseOptimisticAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-optimistic/advanced/page.tsx"
         title="useOptimistic"
         level="advanced"
         description="Handling rollback explicitly. When the API fails, the optimistic state reverts to the real state automatically. This demo lets you force failures to observe the rollback behavior, which is essential for production-grade optimistic UIs."

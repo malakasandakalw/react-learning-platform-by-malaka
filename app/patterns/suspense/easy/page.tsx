@@ -86,6 +86,7 @@ export default function SuspenseEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/suspense/easy/page.tsx"
         title="Suspense & React.lazy"
         level="easy"
         description="React.lazy defers loading a component's code bundle until it is first needed. Suspense shows a fallback while it loads. This is code splitting, the most impactful performance technique for large React apps."

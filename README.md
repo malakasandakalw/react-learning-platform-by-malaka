@@ -1,6 +1,6 @@
 # React Learning Hub by Malaka
 
-A structured, code-first learning platform for modern React development. Built to help frontend teams understand React hooks, state management patterns, and architectural patterns through working examples backed by real APIs.
+A structured, code-first learning platform for modern React development. Built to help frontend teams understand React hooks, state management patterns, and architectural patterns through working, interactive examples.
 
 Each concept is broken into three difficulty levels — **Easy**, **Medium**, and **Advanced** — so learners can progress at their own pace without switching platforms.
 
@@ -72,6 +72,18 @@ A dedicated page that answers "which tool do I use here?" organized around 19 re
 
 ---
 
+## How the platform works
+
+Every page follows the same layout:
+
+1. **PageIntro** — title, difficulty badge, description, and a "What you will learn" list with a direct link to the source file on GitHub
+2. **Working demo** — a live, interactive example using real data from public APIs
+3. **LevelNavigator** — buttons to move to the previous or next difficulty level
+
+The learning model is deliberate: interact with the demo to understand _what_ a concept does, then read the source code to understand _how_ it is built. Every page links directly to its own source file on GitHub so you can read the implementation without cloning the repo.
+
+---
+
 ## Tech stack
 
 | Technology    | Version | Purpose                          |
@@ -88,48 +100,6 @@ A dedicated page that answers "which tool do I use here?" organized around 19 re
 - **JSONPlaceholder** (`jsonplaceholder.typicode.com`) — users, posts, todos
 - **PokéAPI** (`pokeapi.co`) — Pokémon list and search
 - **DummyJSON** (`dummyjson.com`) — products and cart
-
----
-
-## Getting started
-
-### Requirements
-
-- Node.js 20.9.0 or higher (Next.js 16 requires it)
-- npm
-
-If you have `nvm`, switch to a compatible version:
-
-```bash
-nvm use 22
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-> **Note:** The default system Node.js may be too old. If you see a Node version error, run the dev server directly with a newer binary:
->
-> ```bash
-> ~/.nvm/versions/node/v22.16.0/bin/node node_modules/.bin/next dev
-> ```
-
-### Build for production
-
-```bash
-npm run build
-npm start
-```
 
 ---
 
@@ -179,24 +149,6 @@ services/                       # Typed API clients (JSONPlaceholder, PokéAPI, 
 store/                          # Redux store, slices (counter, users, posts, cart)
 types/                          # Shared TypeScript types (User, Post, Pokemon, Product)
 ```
-
----
-
-## How each example page is structured
-
-Every page follows the same layout:
-
-1. **PageIntro** — title, difficulty badge, description, and a "What you will learn" list
-2. **Working demo** — a live, interactive example using real data
-3. **LevelNavigator** — buttons to move to the previous or next difficulty level
-
-There is no syntax-highlighted code viewer. The learning model is: read the page, understand the behavior, then open the source file to study how it works.
-
----
-
-## Development log
-
-See [DEVLOG.md](DEVLOG.md) for a session-by-session record of what was built and when.
 
 ---
 

@@ -57,6 +57,7 @@ export default function ReduxAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/redux/advanced/page.tsx"
         title="Redux Toolkit"
         level="advanced"
         apiUsed="DummyJSON"

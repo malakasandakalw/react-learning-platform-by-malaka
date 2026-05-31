@@ -77,6 +77,7 @@ export default function UseDeferredValueMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-deferred-value/medium/page.tsx"
         title="useDeferredValue"
         level="medium"
         apiUsed="PokéAPI"

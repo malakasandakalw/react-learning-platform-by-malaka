@@ -51,6 +51,7 @@ export default function RenderPropsEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/render-props/easy/page.tsx"
         title="Render Props"
         level="easy"
         description="A render prop is a prop whose value is a function. The component calls this function with its internal state, letting the consumer control the UI while the component controls the logic."

@@ -107,6 +107,7 @@ export default function ErrorBoundaryAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/error-boundary/advanced/page.tsx"
         title="Error Boundaries"
         level="advanced"
         description="Different sections need different recovery strategies. Critical sections (payment) use CriticalBoundary, which shows a highly visible error the user must act on. Non-critical sections (recommendations) use SilentBoundary, which hides and logs the error without disrupting the user."

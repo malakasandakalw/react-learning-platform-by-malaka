@@ -80,6 +80,7 @@ export default function UseStateEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-state/easy/page.tsx"
         title="useState"
         level="easy"
         description="useState is how you add memory to a component. Without it, every render starts fresh. With it, React remembers values between renders and re-renders the component whenever they change."

@@ -122,6 +122,7 @@ export default function CompoundComponentsMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/compound-components/medium/page.tsx"
         title="Compound Components"
         level="medium"
         description="Accordion coordinates which items are open via a Set<string> in Context. The root handles exclusive-vs-multi logic in one place. AccordionItem just calls toggle(id) and checks openItems.has(id). No item knows about its siblings."

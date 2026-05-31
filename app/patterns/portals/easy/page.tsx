@@ -156,6 +156,7 @@ export default function PortalsEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/portals/easy/page.tsx"
         title="Portals"
         level="easy"
         description="createPortal renders children into a different DOM node than their component's parent. The component stays in the React tree (events still bubble), but the DOM output escapes parent overflow and z-index constraints."

@@ -151,6 +151,7 @@ export default function PortalsAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/portals/advanced/page.tsx"
         title="Portals"
         level="advanced"
         description="A smart tooltip built with portal and useLayoutEffect positioning. The tooltip always renders in the correct position, auto-adjusting when near viewport edges. This is the core of every tooltip/popover library."

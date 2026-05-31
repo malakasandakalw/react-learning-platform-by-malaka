@@ -96,6 +96,7 @@ export default function CustomHooksAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/custom-hooks/advanced/page.tsx"
         title="Custom Hooks"
         level="advanced"
         apiUsed="DummyJSON"

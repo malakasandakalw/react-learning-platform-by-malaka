@@ -46,6 +46,7 @@ export default function ReduxEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/redux/easy/page.tsx"
         title="Redux Toolkit"
         level="easy"
         description="Redux Toolkit removes the boilerplate. createSlice generates your action creators and reducer together. useAppSelector reads from the store. useAppDispatch sends actions. That's the entire API you need for most use cases."

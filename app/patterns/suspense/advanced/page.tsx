@@ -116,6 +116,7 @@ export default function SuspenseAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/suspense/advanced/page.tsx"
         title="Suspense & React.lazy"
         level="advanced"
         description="Nested Suspense + Error Boundary composition. Each section has its own loading fallback and error recovery. The outer ErrorBoundary catches catastrophic failures while inner boundaries handle individual section errors gracefully."

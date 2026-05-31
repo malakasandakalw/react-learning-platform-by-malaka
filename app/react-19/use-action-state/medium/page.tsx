@@ -87,6 +87,7 @@ export default function UseActionStateMediumPage() {
     return (
       <div>
         <PageIntro
+          sourcePath="app/react-19/use-action-state/medium/page.tsx"
           title="useActionState"
           level="medium"
           apiUsed="JSONPlaceholder"
@@ -112,6 +113,7 @@ export default function UseActionStateMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-action-state/medium/page.tsx"
         title="useActionState"
         level="medium"
         apiUsed="JSONPlaceholder"

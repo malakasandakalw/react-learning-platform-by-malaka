@@ -106,6 +106,7 @@ export default function HocEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/hoc/easy/page.tsx"
         title="Higher Order Components"
         level="easy"
         apiUsed="JSONPlaceholder"

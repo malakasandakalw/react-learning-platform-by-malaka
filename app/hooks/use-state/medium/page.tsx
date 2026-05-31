@@ -92,6 +92,7 @@ export default function UseStateMediumPage() {
     return (
       <div>
         <PageIntro
+          sourcePath="app/hooks/use-state/medium/page.tsx"
           title="useState"
           level="medium"
           description="State can hold complex objects. When you need to update one field of an object, always spread the rest to avoid losing data."
@@ -129,6 +130,7 @@ export default function UseStateMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-state/medium/page.tsx"
         title="useState"
         level="medium"
         description="State can hold complex objects. When you need to update one field of an object, always spread the rest to avoid losing data."

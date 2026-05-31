@@ -47,6 +47,7 @@ export default function UseTransitionMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-transition/medium/page.tsx"
         title="useTransition"
         level="medium"
         apiUsed="JSONPlaceholder"

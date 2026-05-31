@@ -98,6 +98,7 @@ export default function UseRefEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-ref/easy/page.tsx"
         title="useRef"
         level="easy"
         description="useRef gives you direct access to a DOM element. Unlike state, changing ref.current does not trigger a re-render. Use refs when you need to call DOM methods imperatively (focus, scroll, play/pause, measure size)."

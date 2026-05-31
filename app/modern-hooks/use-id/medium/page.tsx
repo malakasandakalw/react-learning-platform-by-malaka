@@ -119,6 +119,7 @@ export default function UseIdMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-id/medium/page.tsx"
         title="useId"
         level="medium"
         description="When you dynamically render a list of form components, each component needs its own unique ID set for label/input pairing. useId generates these automatically. Each instance gets its own stable set tied to its position in the component tree."

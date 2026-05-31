@@ -69,6 +69,7 @@ export default function UseDeferredValueEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-deferred-value/easy/page.tsx"
         title="useDeferredValue"
         level="easy"
         description="useDeferredValue wraps a value, not a setter. It returns a version of the value that lags behind the real one. React renders the stale version first (fast), then updates in the background when idle."

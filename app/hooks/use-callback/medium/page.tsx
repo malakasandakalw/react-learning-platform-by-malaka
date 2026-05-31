@@ -98,6 +98,7 @@ export default function UseCallbackMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-callback/medium/page.tsx"
         title="useCallback"
         level="medium"
         description="When rendering lists, passing stable callbacks prevents every item from re-rendering on unrelated state changes. The key insight: use the functional updater form in setState to avoid adding state to the dependency array."

@@ -161,6 +161,7 @@ export default function UseRefAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-ref/advanced/page.tsx"
         title="useRef"
         level="advanced"
         description="forwardRef and useImperativeHandle give you controlled imperative APIs for custom components. Instead of exposing the raw DOM node, you define exactly which methods the parent is allowed to call, creating a clean and safe imperative interface."

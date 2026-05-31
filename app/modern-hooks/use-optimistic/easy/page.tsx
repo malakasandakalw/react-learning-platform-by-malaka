@@ -75,6 +75,7 @@ export default function UseOptimisticEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-optimistic/easy/page.tsx"
         title="useOptimistic"
         level="easy"
         description="useOptimistic lets you show an expected result immediately, before the server confirms. The UI feels instant. If the server fails, the state rolls back automatically."

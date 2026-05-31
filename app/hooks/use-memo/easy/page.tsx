@@ -62,6 +62,7 @@ export default function UseMemoEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-memo/easy/page.tsx"
         title="useMemo"
         level="easy"
         description="useMemo caches the return value of a function between renders. Use it when a calculation is expensive and its inputs don't change on every render."

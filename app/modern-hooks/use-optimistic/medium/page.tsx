@@ -78,6 +78,7 @@ export default function UseOptimisticMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-optimistic/medium/page.tsx"
         title="useOptimistic"
         level="medium"
         apiUsed="JSONPlaceholder"

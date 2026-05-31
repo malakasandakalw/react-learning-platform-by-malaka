@@ -49,6 +49,7 @@ export default function UseActionStateEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-action-state/easy/page.tsx"
         title="useActionState"
         level="easy"
         description="useActionState manages state driven by an action function. The action receives the current state and the dispatched value, runs async logic, and returns the next state. isPending tracks execution automatically."

@@ -89,6 +89,7 @@ export default function SuspenseMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/suspense/medium/page.tsx"
         title="Suspense & React.lazy"
         level="medium"
         description="Multiple independent Suspense boundaries load in parallel without blocking each other. Named fallbacks tell users exactly what is loading. Faster sections appear first with no waterfall."

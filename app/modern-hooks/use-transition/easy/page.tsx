@@ -52,6 +52,7 @@ export default function UseTransitionEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-transition/easy/page.tsx"
         title="useTransition"
         level="easy"
         description="useTransition tells React that some state updates are less urgent. The UI stays responsive while expensive renders happen in the background. isPending lets you show a loading indicator during the transition."

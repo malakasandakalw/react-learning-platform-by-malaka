@@ -157,6 +157,7 @@ export default function UseReducerAdvancedPage() {
     return (
       <div>
         <PageIntro
+          sourcePath="app/hooks/use-reducer/advanced/page.tsx"
           title="useReducer"
           level="advanced"
           description="Multi-step wizards with navigation history are a natural fit for useReducer. Each step transition is an action; the history stack enables the BACK button."
@@ -185,6 +186,7 @@ export default function UseReducerAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-reducer/advanced/page.tsx"
         title="useReducer"
         level="advanced"
         description="Multi-step wizards with navigation history are a natural fit for useReducer. Each step transition is an action; the history stack enables the BACK button."

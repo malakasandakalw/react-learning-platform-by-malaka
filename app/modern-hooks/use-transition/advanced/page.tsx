@@ -86,6 +86,7 @@ export default function UseTransitionAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-transition/advanced/page.tsx"
         title="useTransition"
         level="advanced"
         apiUsed="JSONPlaceholder"

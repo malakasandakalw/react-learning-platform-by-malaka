@@ -119,6 +119,7 @@ export default function UseHookMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-hook/medium/page.tsx"
         title="use()"
         level="medium"
         apiUsed="JSONPlaceholder"

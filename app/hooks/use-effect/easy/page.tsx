@@ -43,6 +43,7 @@ export default function UseEffectEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-effect/easy/page.tsx"
         title="useEffect"
         level="easy"
         apiUsed="JSONPlaceholder"

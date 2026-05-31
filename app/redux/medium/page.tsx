@@ -54,6 +54,7 @@ export default function ReduxMediumPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/redux/medium/page.tsx"
         title="Redux Toolkit"
         level="medium"
         apiUsed="JSONPlaceholder"

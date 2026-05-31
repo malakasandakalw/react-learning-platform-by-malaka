@@ -116,6 +116,7 @@ export default function UseIdEasyPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/modern-hooks/use-id/easy/page.tsx"
         title="useId"
         level="easy"
         description="useId generates a unique ID that is stable across server and client renders. Its primary purpose is accessibility: linking <label htmlFor> to <input id> without prop drilling or hydration mismatches."

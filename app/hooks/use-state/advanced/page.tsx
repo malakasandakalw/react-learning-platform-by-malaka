@@ -116,6 +116,7 @@ export default function UseStateAdvancedPage() {
     return (
       <div>
         <PageIntro
+          sourcePath="app/hooks/use-state/advanced/page.tsx"
           title="useState"
           level="advanced"
           description="Complex state management with nested objects, arrays, and lazy initialization."
@@ -160,6 +161,7 @@ export default function UseStateAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/hooks/use-state/advanced/page.tsx"
         title="useState"
         level="advanced"
         description="Complex state management with nested objects, arrays, and lazy initialization."

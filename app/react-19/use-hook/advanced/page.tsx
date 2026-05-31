@@ -64,6 +64,7 @@ export default function UseHookAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/react-19/use-hook/advanced/page.tsx"
         title="use()"
         level="advanced"
         apiUsed="JSONPlaceholder"

@@ -119,6 +119,7 @@ export default function HocAdvancedPage() {
   return (
     <div>
       <PageIntro
+        sourcePath="app/patterns/hoc/advanced/page.tsx"
         title="Higher Order Components"
         level="advanced"
         description="HOC composition with a compose utility. Multiple HOCs stack in a defined order and each handles one cross-cutting concern. The order matters: outermost HOC runs first."
