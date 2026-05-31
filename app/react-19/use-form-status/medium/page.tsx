@@ -45,7 +45,7 @@ function FormField({
   return (
     <div>
       <label style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 4 }}>
-        {label} {required && <span style={{ color: "#ef4444" }}>*</span>}
+        {label} {required && <span>*</span>}
       </label>
       <input
         name={name}
@@ -107,7 +107,7 @@ function SubmitButton() {
       style={{
         width: "100%",
         padding: "10px 0",
-        background: pending ? "#6b7280" : "#059669",
+        background: pending ? "#6b7280" : "#1677ff",
         color: "#fff",
         border: "none",
         borderRadius: 8,
@@ -143,8 +143,8 @@ function PendingOverlay() {
       }}
     >
       <div style={{ textAlign: "center" }}>
-        <LoadingOutlined style={{ fontSize: 24, color: "#059669" }} />
-        <div style={{ marginTop: 8, color: "#059669", fontWeight: 600 }}>Processing...</div>
+        <LoadingOutlined style={{ fontSize: 24, color: "#1677ff" }} />
+        <div style={{ marginTop: 8, color: "#1677ff", fontWeight: 600 }}>Processing...</div>
       </div>
     </div>
   );
@@ -202,7 +202,7 @@ export default function UseFormStatusMediumPage() {
           <div style={{ position: "relative" }}>
             <Card title="Registration Form" style={{ borderRadius: 12 }}>
               <form onSubmit={handleSubmit}>
-                <Space direction="vertical" style={{ width: "100%" }} size={14}>
+                <Space orientation="vertical" style={{ width: "100%" }} size={14}>
                   <Row gutter={12}>
                     <Col span={12}>
                       <FormField label="First Name" name="firstName" placeholder="Jane" required />
@@ -235,21 +235,21 @@ export default function UseFormStatusMediumPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Why this matters"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#f87171" }}>// Old pattern (prop drilling):</div>
-              <div style={{ color: "#6b7280" }}>{"<Form isLoading={isLoading}>"}</div>
-              <div style={{ color: "#6b7280", paddingLeft: 12 }}>{"<Input disabled={isLoading} />"}</div>
-              <div style={{ color: "#6b7280", paddingLeft: 12 }}>{"<Button disabled={isLoading} />"}</div>
-              <div style={{ color: "#6b7280" }}>{"</Form>"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Old pattern (prop drilling):</div>
+              <div style={{ color: "#d4d4d4" }}>{"<Form isLoading={isLoading}>"}</div>
+              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>{"<Input disabled={isLoading} />"}</div>
+              <div style={{ color: "#d4d4d4", paddingLeft: 12 }}>{"<Button disabled={isLoading} />"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"</Form>"}</div>
               <br />
-              <div style={{ color: "#4ade80" }}>// React 19 (useFormStatus):</div>
-              <div style={{ color: "#4ade80" }}>{"<form action={submit}>"}</div>
-              <div style={{ color: "#4ade80", paddingLeft: 12 }}>{"<FormField />"} <span style={{ color: "#6b7280" }}>← self-disables</span></div>
-              <div style={{ color: "#4ade80", paddingLeft: 12 }}>{"<SubmitButton />"} <span style={{ color: "#6b7280" }}>← self-disables</span></div>
-              <div style={{ color: "#4ade80" }}>{"</form>"}</div>
+              <div style={{ color: "#6a9955" }}>// React 19 (useFormStatus):</div>
+              <div style={{ color: "#b5cea8" }}>{"<form action={submit}>"}</div>
+              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>{"<FormField />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span></div>
+              <div style={{ color: "#b5cea8", paddingLeft: 12 }}>{"<SubmitButton />"} <span style={{ color: "#d4d4d4" }}>← self-disables</span></div>
+              <div style={{ color: "#b5cea8" }}>{"</form>"}</div>
             </div>
           </Card>
         </Col>

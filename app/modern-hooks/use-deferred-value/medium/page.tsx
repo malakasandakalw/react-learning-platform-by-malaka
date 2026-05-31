@@ -116,14 +116,14 @@ export default function UseDeferredValueMediumPage() {
         <Col xs={24} lg={6}>
           <Card
             title="Deferred State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2 }}>
-              <div><span style={{ color: "#7c3aed" }}>query: </span><span style={{ color: "#fbbf24" }}>&quot;{query}&quot;</span></div>
-              <div><span style={{ color: "#7c3aed" }}>deferred: </span><span style={{ color: "#4ade80" }}>&quot;{deferredQuery}&quot;</span></div>
-              <div><span style={{ color: "#7c3aed" }}>isStale: </span><span style={{ color: isStale ? "#f59e0b" : "#4ade80" }}>{String(isStale)}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>total: </span><span style={{ color: "#e2e8f0" }}>{allPokemon.length}</span></div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
+              <div><span style={{ color: "#569cd6" }}>query: </span><span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span></div>
+              <div><span style={{ color: "#569cd6" }}>deferred: </span><span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span></div>
+              <div><span style={{ color: "#569cd6" }}>isStale: </span><span style={{ color: isStale ? "#dcdcaa" : "#b5cea8" }}>{String(isStale)}</span></div>
+              <div><span style={{ color: "#569cd6" }}>total: </span><span style={{ color: "#d4d4d4" }}>{allPokemon.length}</span></div>
             </div>
           </Card>
         </Col>

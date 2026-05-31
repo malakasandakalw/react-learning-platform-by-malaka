@@ -105,12 +105,11 @@ export default function UseEffectMediumPage() {
             ) : filtered.length === 0 ? (
               <Empty description="No users match your search" />
             ) : (
-              <List
-                dataSource={filtered}
-                renderItem={(user) => (
-                  <List.Item>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {filtered.map((user) => (
+                  <List.Item key={user.id}>
                     <List.Item.Meta
-                      avatar={<Avatar style={{ background: "#4f46e5" }} icon={<UserOutlined />} />}
+                      avatar={<Avatar icon={<UserOutlined />} />}
                       title={user.name}
                       description={
                         <span>
@@ -121,8 +120,8 @@ export default function UseEffectMediumPage() {
                       }
                     />
                   </List.Item>
-                )}
-              />
+                ))}
+              </ul>
             )}
           </Card>
         </Col>
@@ -130,26 +129,26 @@ export default function UseEffectMediumPage() {
         <Col xs={24} lg={8}>
           <Card
             title="Debounce Inspector"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>query: </span>
-                <span style={{ color: "#fbbf24" }}>&quot;{query}&quot;</span>
+                <span style={{ color: "#569cd6" }}>query: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>debouncedQuery: </span>
-                <span style={{ color: "#4ade80" }}>&quot;{debouncedQuery}&quot;</span>
+                <span style={{ color: "#569cd6" }}>debouncedQuery: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{debouncedQuery}&quot;</span>
               </div>
-              <div style={{ marginTop: 8, color: "#6b7280" }}>
+              <div style={{ marginTop: 8, color: "#6a9955" }}>
                 {query !== debouncedQuery
                   ? "⏳ waiting 400ms..."
                   : "✓ in sync"}
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc", marginBottom: 4 }}>results:</div>
-                <span style={{ color: "#e2e8f0" }}>{filtered.length} / {allUsers.length} users</span>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#252526", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6", marginBottom: 4 }}>results:</div>
+                <span style={{ color: "#d4d4d4" }}>{filtered.length} / {allUsers.length} users</span>
               </div>
             </div>
           </Card>

@@ -19,12 +19,10 @@ import {
   Col,
   Row,
   Space,
-  Switch,
   Tag,
   Typography,
   Alert,
 } from "antd";
-import { BulbOutlined, BulbFilled } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -32,12 +30,12 @@ const { Text, Title } = Typography;
 
 // STEP 1: createContext: define the context shape and default value.
 // The default value is used when a component is rendered OUTSIDE any Provider.
-type Theme = "light" | "dark";
-type ThemeContextType = { theme: Theme; toggleTheme: () => void };
+type Accent = "blue" | "indigo";
+type ThemeContextType = { accent: Accent; toggleAccent: () => void };
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "light",
-  toggleTheme: () => {},
+  accent: "blue",
+  toggleAccent: () => {},
 });
 
 // Custom hook: wraps useContext with a clear name and optional validation.
@@ -49,24 +47,31 @@ function useTheme() {
 // STEP 2: Provider: wraps the subtree and holds the state.
 // Only ONE component owns the state; all consumers read from the same source.
 function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-  const toggleTheme = () => setTheme((t) => (t === "light" ? "dark" : "light"));
+  const [accent, setAccent] = useState<Accent>("blue");
+  const toggleAccent = () => setAccent((a) => (a === "blue" ? "indigo" : "blue"));
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ accent, toggleAccent }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
+const ACCENT = {
+  blue:   { bg: "#e6f4ff", border: "#91caff", text: "#0958d9", tag: "blue"   as const },
+  indigo: { bg: "#f0f5ff", border: "#adc6ff", text: "#1677ff", tag: "blue" as const },
+};
+
 // STEP 3: Consumer components: use useTheme() anywhere inside the Provider.
 // No props needed: these are 3 levels deep but access the same context.
 function ThemedHeader() {
-  const { theme, toggleTheme } = useTheme();
+  const { accent, toggleAccent } = useTheme();
+  const a = ACCENT[accent];
   return (
     <div
       style={{
-        background: theme === "dark" ? "#1e1b4b" : "#eef2ff",
+        background: a.bg,
+        border: `1px solid ${a.border}`,
         padding: "16px 20px",
         borderRadius: 10,
         display: "flex",
@@ -74,67 +79,64 @@ function ThemedHeader() {
         alignItems: "center",
       }}
     >
-      <Text strong style={{ color: theme === "dark" ? "#e0e7ff" : "#1e1b4b" }}>
-        Application Header
-      </Text>
-      <Switch
-        checked={theme === "dark"}
-        onChange={toggleTheme}
-        checkedChildren={<BulbFilled />}
-        unCheckedChildren={<BulbOutlined />}
-      />
+      <Text strong style={{ color: a.text }}>Application Header</Text>
+      <Button size="small" onClick={toggleAccent}>
+        Switch to {accent === "blue" ? "Indigo" : "Blue"}
+      </Button>
     </div>
   );
 }
 
 function ThemedCard() {
-  const { theme } = useTheme();
+  const { accent } = useTheme();
+  const a = ACCENT[accent];
   return (
     <div
       style={{
-        background: theme === "dark" ? "#161630" : "#fff",
-        border: `1px solid ${theme === "dark" ? "#312e81" : "#e5e7eb"}`,
+        background: "#fff",
+        border: `1px solid ${a.border}`,
         borderRadius: 10,
         padding: 16,
       }}
     >
-      <Text strong style={{ color: theme === "dark" ? "#a5b4fc" : "#374151", display: "block", marginBottom: 8 }}>
+      <Text strong style={{ color: a.text, display: "block", marginBottom: 8 }}>
         Content Card
       </Text>
-      <Text style={{ color: theme === "dark" ? "#6b7280" : "#4b5563", fontSize: 13 }}>
-        This card reads the theme from context. No theme prop was passed.
+      <Text style={{ color: "#4b5563", fontSize: 13 }}>
+        This card reads the accent from context. No accent prop was passed.
       </Text>
     </div>
   );
 }
 
 function ThemedFooter() {
-  const { theme } = useTheme();
+  const { accent } = useTheme();
+  const a = ACCENT[accent];
   return (
     <div
       style={{
-        background: theme === "dark" ? "#0f0f23" : "#f3f4f6",
+        background: "#f3f4f6",
         padding: "12px 20px",
         borderRadius: 10,
         textAlign: "center",
       }}
     >
-      <Text style={{ color: theme === "dark" ? "#6b7280" : "#9ca3af", fontSize: 12 }}>
-        Footer · Current theme: <Tag color={theme === "dark" ? "purple" : "blue"}>{theme}</Tag>
+      <Text style={{ color: "#9ca3af", fontSize: 12 }}>
+        Footer · Current accent: <Tag color={a.tag}>{accent}</Tag>
       </Text>
     </div>
   );
 }
 
 // This is the OUTSIDE-PROVIDER demo: shows what happens without a Provider.
-// The context falls back to its default value: { theme: "light", toggleTheme: () => {} }
+// The context falls back to its default value: { accent: "blue", toggleAccent: () => {} }
 function OutsideProviderDemo() {
-  const { theme } = useTheme();
+  const { accent } = useTheme();
   return (
     <Alert
       type="warning"
       showIcon
-      message={`Outside Provider → theme defaults to: "${theme}" (from createContext default)`}
+      title={`Outside Provider → accent defaults to: "${accent}" (from createContext default)`}
       style={{ borderRadius: 8 }}
     />
   );
@@ -160,7 +162,7 @@ export default function ContextEasyPage() {
           {/* Everything inside ThemeProvider can access the theme */}
           <ThemeProvider>
             <Card title="Inside ThemeProvider" style={{ borderRadius: 12 }}>
-              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+              <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                 <ThemedHeader />
                 <ThemedCard />
                 <ThemedFooter />
@@ -175,16 +177,16 @@ export default function ContextEasyPage() {
 
           <Card
             title="Context API Steps"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none", marginTop: 16 }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", marginTop: 16 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// 1. Create</div>
-              <div style={{ color: "#6b7280" }}>createContext(defaultValue)</div>
-              <div style={{ color: "#7c3aed", marginTop: 4 }}>// 2. Provide</div>
-              <div style={{ color: "#6b7280" }}>{"<Ctx.Provider value={...}>"}</div>
-              <div style={{ color: "#7c3aed", marginTop: 4 }}>// 3. Consume</div>
-              <div style={{ color: "#4ade80" }}>useContext(ThemeContext)</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// 1. Create</div>
+              <div style={{ color: "#ce9178" }}>createContext(defaultValue)</div>
+              <div style={{ color: "#6a9955", marginTop: 4 }}>// 2. Provide</div>
+              <div style={{ color: "#ce9178" }}>{"<Ctx.Provider value={...}>"}</div>
+              <div style={{ color: "#6a9955", marginTop: 4 }}>// 3. Consume</div>
+              <div style={{ color: "#dcdcaa" }}>useContext(ThemeContext)</div>
             </div>
           </Card>
         </Col>

@@ -24,7 +24,7 @@ function buildBreadcrumbs(pathname: string) {
     crumbs.push({
       key: path,
       title: isLast ? (
-        <Typography.Text style={{ color: "#1677ff", fontWeight: 600 }}>{label}</Typography.Text>
+        <Typography.Text style={{ fontWeight: 500 }}>{label}</Typography.Text>
       ) : (
         <Link href={path} style={{ color: "inherit" }}>{label}</Link>
       ),
@@ -61,7 +61,6 @@ export default function AppHeader({ sidebarCollapsed }: AppHeaderProps) {
         alignItems: "center",
         justifyContent: "space-between",
         borderBottom: "1px solid #f0f0f0",
-        marginLeft: sidebarCollapsed ? 80 : 240,
         transition: "margin-left 0.2s",
       }}
     >

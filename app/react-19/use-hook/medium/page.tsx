@@ -32,7 +32,7 @@ const { Text } = Typography;
 
 // ─── use() with Context ───────────────────────────────────────────────────────
 type ThemeCtx = { color: string; label: string };
-const ThemeContext = createContext<ThemeCtx>({ color: "#059669", label: "Green" });
+const ThemeContext = createContext<ThemeCtx>({ color: "#1677ff", label: "Blue" });
 
 // use(Context) reads context and can be called conditionally unlike useContext
 function ThemedBadge({ showBadge }: { showBadge: boolean }) {
@@ -95,11 +95,11 @@ function SuspenseFallback({ label }: { label: string }) {
 
 export default function UseHookMediumPage() {
   const [showBadge, setShowBadge] = useState(true);
-  const [themeColor, setThemeColor] = useState<"green" | "blue">("green");
+  const [themeColor, setThemeColor] = useState<"blue" | "purple">("blue");
 
-  const themeValue: ThemeCtx = themeColor === "green"
-    ? { color: "#059669", label: "Emerald" }
-    : { color: "#4f46e5", label: "Indigo" };
+  const themeValue: ThemeCtx = themeColor === "blue"
+    ? { color: "#1677ff", label: "Blue" }
+    : { color: "#722ed1", label: "Purple" };
 
   return (
     <div>
@@ -121,7 +121,7 @@ export default function UseHookMediumPage() {
         <Col xs={24} lg={11}>
           <Card title="use() with Context (conditional)" style={{ borderRadius: 12 }}>
             <ThemeContext.Provider value={themeValue}>
-              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+              <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <Text style={{ fontSize: 13 }}>Show badge?</Text>
                   <Switch checked={showBadge} onChange={setShowBadge} />
@@ -130,7 +130,7 @@ export default function UseHookMediumPage() {
                   <Text style={{ fontSize: 13 }}>Theme colour</Text>
                   <Button
                     size="small"
-                    onClick={() => setThemeColor((c) => c === "green" ? "blue" : "green")}
+                    onClick={() => setThemeColor((c) => c === "blue" ? "purple" : "blue")}
                   >
                     Toggle
                   </Button>
@@ -144,7 +144,7 @@ export default function UseHookMediumPage() {
                 <Alert
                   type="info"
                   showIcon
-                  message='use(Context) is called only when showBadge=true. This is impossible with useContext.'
+                  title='use(Context) is called only when showBadge=true. This is impossible with useContext.'
                   style={{ borderRadius: 8 }}
                 />
               </Space>

@@ -79,7 +79,7 @@ export default function UseMemoEasyPage() {
             title={
               <Space>
                 <span>Factorial Calculator</span>
-                <Tag color={useMemoEnabled ? "purple" : "default"}>
+                <Tag color={useMemoEnabled ? "blue" : "default"}>
                   {useMemoEnabled ? "useMemo ON" : "useMemo OFF"}
                 </Tag>
               </Space>
@@ -94,7 +94,7 @@ export default function UseMemoEasyPage() {
             }
             style={{ borderRadius: 12 }}
           >
-            <Space direction="vertical" style={{ width: "100%" }} size={20}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={20}>
               <div>
                 <Text>Calculate factorial of:</Text>
                 <InputNumber
@@ -108,11 +108,11 @@ export default function UseMemoEasyPage() {
               </div>
 
               <div style={{ background: "#f8f9fc", borderRadius: 8, padding: 20, textAlign: "center" }}>
-                <ThunderboltOutlined style={{ fontSize: 24, color: "#4f46e5", marginBottom: 8 }} />
+                <ThunderboltOutlined style={{ fontSize: 24, marginBottom: 8 }} />
                 <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 4 }}>
                   {number}! =
                 </div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: "#1e1b4b", fontFamily: "var(--font-geist-mono)" }}>
+                <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "var(--font-mono)" }}>
                   {formatBigNumber(result ?? 0)}
                 </div>
               </div>
@@ -127,12 +127,12 @@ export default function UseMemoEasyPage() {
                     Unrelated counter: {counter}
                   </Button>
                   {!useMemoEnabled && counter > 0 && (
-                    <Tag color="red" icon={<ClockCircleOutlined />}>
+                    <Tag color="default" icon={<ClockCircleOutlined />}>
                       Recalculated {counter}x unnecessarily
                     </Tag>
                   )}
                   {useMemoEnabled && counter > 0 && (
-                    <Tag color="green">Calculation skipped ✓</Tag>
+                    <Tag color="default">Calculation skipped ✓</Tag>
                   )}
                 </div>
               </div>
@@ -143,30 +143,30 @@ export default function UseMemoEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="useMemo Anatomy"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
-              <div style={{ color: "#7c3aed" }}>const result = useMemo(</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
+              <div style={{ color: "#569cd6" }}>const result = useMemo(</div>
               <div style={{ paddingLeft: 16 }}>
-                <span style={{ color: "#4ade80" }}>{"() => expensiveCalc(number)"}</span>
-                <span style={{ color: "#e2e8f0" }}>,</span>
+                <span style={{ color: "#dcdcaa" }}>{"() => expensiveCalc(number)"}</span>
+                <span style={{ color: "#d4d4d4" }}>,</span>
               </div>
-              <div style={{ paddingLeft: 16, color: "#fbbf24" }}>{"[number]"}</div>
-              <div style={{ color: "#7c3aed" }}>);</div>
-              <div style={{ marginTop: 16, color: "#6b7280" }}>renders where memo skips:</div>
+              <div style={{ paddingLeft: 16, color: "#b5cea8" }}>{"[number]"}</div>
+              <div style={{ color: "#569cd6" }}>);</div>
+              <div style={{ marginTop: 16, color: "#6a9955" }}>renders where memo skips:</div>
               <div>
-                <span style={{ color: "#4ade80" }}>counter changes → </span>
-                <span style={{ color: "#e2e8f0" }}>SKIPPED ✓</span>
+                <span style={{ color: "#ce9178" }}>counter changes → </span>
+                <span style={{ color: "#d4d4d4" }}>SKIPPED ✓</span>
               </div>
-              <div style={{ color: "#6b7280" }}>renders where memo runs:</div>
+              <div style={{ color: "#6a9955" }}>renders where memo runs:</div>
               <div>
-                <span style={{ color: "#fbbf24" }}>number changes → </span>
-                <span style={{ color: "#e2e8f0" }}>RECALCULATED</span>
+                <span style={{ color: "#b5cea8" }}>number changes → </span>
+                <span style={{ color: "#d4d4d4" }}>RECALCULATED</span>
               </div>
-              <div style={{ marginTop: 16, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <span style={{ color: "#a5b4fc" }}>current deps: </span>
-                <span style={{ color: "#fbbf24" }}>number={number}</span>
+              <div style={{ marginTop: 16, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <span style={{ color: "#569cd6" }}>current deps: </span>
+                <span style={{ color: "#b5cea8" }}>number={number}</span>
               </div>
             </div>
           </Card>

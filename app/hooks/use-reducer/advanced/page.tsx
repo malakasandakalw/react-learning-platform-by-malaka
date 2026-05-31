@@ -235,7 +235,7 @@ export default function UseReducerAdvancedPage() {
             {state.currentStep === "address" && (
               <div>
                 <Title level={5}>Shipping Address</Title>
-                <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                   <Input placeholder="Street address" value={state.data.address.street}
                     onChange={(e) => dispatch({ type: "UPDATE_ADDRESS", payload: { street: e.target.value } })} />
                   <Input placeholder="City" value={state.data.address.city}
@@ -259,7 +259,7 @@ export default function UseReducerAdvancedPage() {
             {state.currentStep === "payment" && (
               <div>
                 <Title level={5}>Payment Details</Title>
-                <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                   <Input placeholder="Card number (16 digits)" maxLength={16} value={state.data.payment.card}
                     onChange={(e) => dispatch({ type: "UPDATE_PAYMENT", payload: { card: e.target.value } })} />
                   <Row gutter={12}>
@@ -298,15 +298,15 @@ export default function UseReducerAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Wizard State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div><span style={{ color: "#7c3aed" }}>currentStep: </span><span style={{ color: "#fbbf24" }}>{state.currentStep}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>history: </span><span style={{ color: "#e2e8f0" }}>[{state.history.join(", ")}]</span></div>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "8px 0" }} />
-              <div style={{ color: "#a5b4fc" }}>address:</div>
-              <pre style={{ margin: "0 0 0 8px", fontSize: 10 }}>{JSON.stringify(state.data.address, null, 2)}</pre>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div><span style={{ color: "#569cd6" }}>currentStep: </span><span style={{ color: "#ce9178" }}>{state.currentStep}</span></div>
+              <div><span style={{ color: "#569cd6" }}>history: </span><span style={{ color: "#d4d4d4" }}>[{state.history.join(", ")}]</span></div>
+              <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
+              <div style={{ color: "#569cd6" }}>address:</div>
+              <pre style={{ margin: "0 0 0 8px", fontSize: 10, color: "#d4d4d4" }}>{JSON.stringify(state.data.address, null, 2)}</pre>
             </div>
           </Card>
         </Col>

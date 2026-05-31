@@ -131,25 +131,25 @@ export default function UseDeferredValueAdvancedPage() {
         <Col xs={24} lg={6}>
           <Card
             title="Optimization Layers"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
             <Statistic
-              title={<span style={{ color: "#6b7280", fontSize: 11 }}>filter ran (times)</span>}
+              title={<span style={{ color: "#6a9955", fontSize: 11 }}>filter ran (times)</span>}
               value={memoRunCount}
-              valueStyle={{ color: "#fbbf24" }}
+              styles={{ content: { color: "#b5cea8" } }}
             />
-            <div style={{ marginTop: 12, fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div><span style={{ color: "#7c3aed" }}>query: </span><span style={{ color: "#fbbf24" }}>&quot;{query}&quot;</span></div>
-              <div><span style={{ color: "#7c3aed" }}>deferred: </span><span style={{ color: "#4ade80" }}>&quot;{deferredQuery}&quot;</span></div>
-              <div><span style={{ color: "#7c3aed" }}>results: </span><span style={{ color: "#e2e8f0" }}>{filteredPokemon.length}</span></div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 10 }}>
-                <div style={{ color: "#a5b4fc" }}>Layer 1: useDeferredValue</div>
-                <div style={{ color: "#6b7280" }}>→ delays re-render trigger</div>
-                <div style={{ color: "#a5b4fc", marginTop: 4 }}>Layer 2: useMemo</div>
-                <div style={{ color: "#6b7280" }}>→ skips filter when deferred same</div>
-                <div style={{ color: "#a5b4fc", marginTop: 4 }}>Layer 3: React.memo</div>
-                <div style={{ color: "#6b7280" }}>→ skips child render when result same</div>
+            <div style={{ marginTop: 12, fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div><span style={{ color: "#569cd6" }}>query: </span><span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span></div>
+              <div><span style={{ color: "#569cd6" }}>deferred: </span><span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span></div>
+              <div><span style={{ color: "#569cd6" }}>results: </span><span style={{ color: "#d4d4d4" }}>{filteredPokemon.length}</span></div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+                <div style={{ color: "#569cd6" }}>Layer 1: useDeferredValue</div>
+                <div style={{ color: "#6a9955" }}>→ delays re-render trigger</div>
+                <div style={{ color: "#569cd6", marginTop: 4 }}>Layer 2: useMemo</div>
+                <div style={{ color: "#6a9955" }}>→ skips filter when deferred same</div>
+                <div style={{ color: "#569cd6", marginTop: 4 }}>Layer 3: React.memo</div>
+                <div style={{ color: "#6a9955" }}>→ skips child render when result same</div>
               </div>
             </div>
           </Card>

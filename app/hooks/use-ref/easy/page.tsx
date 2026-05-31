@@ -42,14 +42,14 @@ function FocusDemo() {
 
   return (
     <Card title="Focus on Command" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Input
           ref={inputRef}
           prefix={<SearchOutlined />}
           placeholder="I'll be focused when you click the button..."
           onBlur={handleBlur}
           onFocus={() => setFocused(true)}
-          style={{ borderColor: focused ? "#4f46e5" : undefined }}
+          style={{}}
         />
         <Button type="primary" onClick={handleFocus} block>
           Focus the input
@@ -84,7 +84,7 @@ function ScrollDemo() {
           padding: "8px 12px",
           marginBottom: 12,
           fontSize: 12,
-          fontFamily: "var(--font-geist-mono)",
+          fontFamily: "var(--font-mono)",
         }}
       >
         {items.map((item, i) => (
@@ -127,10 +127,10 @@ export default function UseRefEasyPage() {
       </Row>
 
       <Card
-        style={{ marginTop: 24, borderRadius: 12, background: "#f5f3ff", border: "1px solid #ddd6fe" }}
+        style={{ marginTop: 24, borderRadius: 12, borderLeft: "3px solid #1677ff" }}
         styles={{ body: { padding: 20 } }}
       >
-        <Title level={5} style={{ margin: "0 0 8px", color: "#7c3aed" }}>
+        <Title level={5} style={{ margin: "0 0 8px" }}>
           When to use ref vs state
         </Title>
         <Text style={{ fontSize: 13 }}>

@@ -46,12 +46,11 @@ function UserList() {
   const users = use(usersPromise);
 
   return (
-    <List
-      dataSource={users}
-      renderItem={(user) => (
-        <List.Item>
+    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+      {users.map((user) => (
+        <List.Item key={user.id}>
           <List.Item.Meta
-            avatar={<Avatar style={{ background: "#059669" }} icon={<UserOutlined />} />}
+            avatar={<Avatar icon={<UserOutlined />} />}
             title={user.name}
             description={
               <span>
@@ -61,8 +60,8 @@ function UserList() {
             }
           />
         </List.Item>
-      )}
-    />
+      ))}
+    </ul>
   );
 }
 
@@ -85,7 +84,7 @@ export default function UseHookEasyPage() {
       <Alert
         type="info"
         showIcon
-        message="React 19 only"
+        title="React 19 only"
         description="use() requires React 19+. This project runs React 19.2.4, so it works here."
         style={{ marginBottom: 24, borderRadius: 8 }}
       />
@@ -112,23 +111,23 @@ export default function UseHookEasyPage() {
         <Col xs={24} lg={9}>
           <Card
             title="use() vs useEffect"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#f87171" }}>// Before (useEffect pattern):</div>
-              <div style={{ color: "#6b7280" }}>const [data, setData] = useState(null)</div>
-              <div style={{ color: "#6b7280" }}>const [loading, setLoading] = useState(true)</div>
-              <div style={{ color: "#6b7280" }}>useEffect(() ={">"} {"{"}</div>
-              <div style={{ color: "#6b7280", paddingLeft: 12 }}>fetch(url).then(setData)</div>
-              <div style={{ color: "#6b7280" }}>{"}, [])"}</div>
-              <div style={{ color: "#6b7280" }}>if (loading) return {"<Spinner />"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Before (useEffect pattern):</div>
+              <div style={{ color: "#d4d4d4" }}>const [data, setData] = useState(null)</div>
+              <div style={{ color: "#d4d4d4" }}>const [loading, setLoading] = useState(true)</div>
+              <div style={{ color: "#dcdcaa" }}>useEffect(() ={">"} {"{"}</div>
+              <div style={{ color: "#dcdcaa", paddingLeft: 12 }}>fetch(url).then(setData)</div>
+              <div style={{ color: "#dcdcaa" }}>{"}, [])"}</div>
+              <div style={{ color: "#d4d4d4" }}>if (loading) return {"<Spinner />"}</div>
               <br />
-              <div style={{ color: "#4ade80" }}>// React 19 (use() pattern):</div>
-              <div style={{ color: "#4ade80" }}>const promise = fetch(url).then(r ={">"} r.json())</div>
-              <div style={{ color: "#4ade80" }}>// In component:</div>
-              <div style={{ color: "#4ade80" }}>const data = use(promise)</div>
-              <div style={{ color: "#4ade80" }}>// Parent: {"<Suspense fallback={...}>"}</div>
+              <div style={{ color: "#6a9955" }}>// React 19 (use() pattern):</div>
+              <div style={{ color: "#b5cea8" }}>const promise = fetch(url).then(r ={">"} r.json())</div>
+              <div style={{ color: "#6a9955" }}>// In component:</div>
+              <div style={{ color: "#dcdcaa" }}>const data = use(promise)</div>
+              <div style={{ color: "#6a9955" }}>// Parent: {"<Suspense fallback={...}>"}</div>
             </div>
           </Card>
         </Col>

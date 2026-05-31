@@ -17,7 +17,6 @@ import {
   Col,
   Input,
   Row,
-  Switch,
   Typography,
   Tag,
   Select,
@@ -76,20 +75,19 @@ function useDebounce<T>(value: T, delay: number): T {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-const THEME_OPTIONS = ["indigo", "violet", "sky", "emerald", "rose"];
+const THEME_OPTIONS = ["blue", "purple", "cyan", "geekblue", "magenta"];
 
 const THEME_COLORS: Record<string, string> = {
-  indigo: "#4f46e5",
-  violet: "#7c3aed",
-  sky: "#0891b2",
-  emerald: "#059669",
-  rose: "#e11d48",
+  blue: "#1677ff",
+  purple: "#722ed1",
+  cyan: "#0891b2",
+  geekblue: "#2f54eb",
+  magenta: "#c41d7f",
 };
 
 export default function CustomHooksMediumPage() {
   // useLocalStorage: persists across page refreshes. Try refreshing!
-  const [theme, setTheme] = useLocalStorage("rlh-theme", "indigo");
-  const [darkMode, setDarkMode] = useLocalStorage("rlh-dark", false);
+  const [theme, setTheme] = useLocalStorage("rlh-theme", "blue");
   const [fontSize, setFontSize] = useLocalStorage("rlh-font-size", 14);
 
   // useDebounce: search only fires after 400ms of inactivity
@@ -99,7 +97,7 @@ export default function CustomHooksMediumPage() {
   const [searchWithDelay, setSearchWithDelay] = useState("");
   const debouncedWithCustomDelay = useDebounce(searchInput, debounceDelay);
 
-  const color = THEME_COLORS[theme] ?? "#4f46e5";
+  const color = THEME_COLORS[theme] ?? "#1677ff";
 
   return (
     <div>
@@ -126,7 +124,7 @@ export default function CustomHooksMediumPage() {
               Change these settings and refresh the page. They persist in localStorage.
             </Text>
 
-            <Space direction="vertical" style={{ width: "100%" }} size={16}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={16}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Text>Accent colour</Text>
                 <Select
@@ -136,11 +134,6 @@ export default function CustomHooksMediumPage() {
                   style={{ width: 110 }}
                   options={THEME_OPTIONS.map((t) => ({ value: t, label: t }))}
                 />
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <Text>Dark mode</Text>
-                <Switch checked={darkMode} onChange={setDarkMode} />
               </div>
 
               <div>
@@ -154,7 +147,7 @@ export default function CustomHooksMediumPage() {
               {/* Preview using the persisted values */}
               <div
                 style={{
-                  background: darkMode ? "#0f0f23" : "#f8f9fc",
+                  background: "#f8f9fc",
                   border: `2px solid ${color}`,
                   borderRadius: 8,
                   padding: 16,
@@ -163,7 +156,7 @@ export default function CustomHooksMediumPage() {
                 <Text
                   style={{
                     fontSize,
-                    color: darkMode ? "#e2e8f0" : "#374151",
+                    color: "#374151",
                     fontWeight: 500,
                   }}
                 >
@@ -171,8 +164,8 @@ export default function CustomHooksMediumPage() {
                 </Text>
               </div>
 
-              <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, color: "#9ca3af" }}>
-                localStorage keys: rlh-theme, rlh-dark, rlh-font-size
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#9ca3af" }}>
+                localStorage keys: rlh-theme, rlh-font-size
               </div>
             </Space>
           </Card>
@@ -185,7 +178,7 @@ export default function CustomHooksMediumPage() {
               Type quickly. The debounced value only updates after you pause.
             </Text>
 
-            <Space direction="vertical" style={{ width: "100%" }} size={16}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={16}>
               <div>
                 <Text style={{ fontSize: 12, display: "block", marginBottom: 4 }}>
                   Delay: {debounceDelay}ms
@@ -212,7 +205,7 @@ export default function CustomHooksMediumPage() {
                   background: "#f8f9fc",
                   borderRadius: 8,
                   padding: 12,
-                  fontFamily: "var(--font-geist-mono)",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 12,
                 }}
               >

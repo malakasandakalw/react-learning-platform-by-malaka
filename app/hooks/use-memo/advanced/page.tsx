@@ -10,7 +10,6 @@
 
 import { memo, useMemo, useState } from "react";
 import {
-  Badge,
   Button,
   Card,
   Col,
@@ -47,23 +46,18 @@ const StatsPanel = memo(function StatsPanel({
         background: "#f8f9fc",
         borderRadius: 8,
         padding: 16,
-        border: "2px solid",
-        borderColor: renderCount > 1 ? "#fbbf24" : "#a7f3d0",
+        border: "1px solid #f0f0f0",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
         <Text strong>{title}</Text>
-        <Badge
-          count={renderCount}
-          style={{ background: renderCount > 3 ? "#ef4444" : renderCount > 1 ? "#f59e0b" : "#16a34a" }}
-          title={`Rendered ${renderCount} times`}
-        />
+        <Tag title={`Rendered ${renderCount} times`}>{renderCount}</Tag>
       </div>
       <Row gutter={8}>
-        <Col span={12}><Statistic title="Total" value={stats.total} valueStyle={{ fontSize: 20 }} /></Col>
-        <Col span={12}><Statistic title="Average" value={stats.average} precision={1} valueStyle={{ fontSize: 20 }} /></Col>
-        <Col span={12}><Statistic title="Max" value={stats.max} valueStyle={{ fontSize: 20 }} /></Col>
-        <Col span={12}><Statistic title="Min" value={stats.min} valueStyle={{ fontSize: 20 }} /></Col>
+        <Col span={12}><Statistic title="Total" value={stats.total} styles={{ content: { fontSize: 20 } }} /></Col>
+        <Col span={12}><Statistic title="Average" value={stats.average} precision={1} styles={{ content: { fontSize: 20 } }} /></Col>
+        <Col span={12}><Statistic title="Max" value={stats.max} styles={{ content: { fontSize: 20 } }} /></Col>
+        <Col span={12}><Statistic title="Min" value={stats.min} styles={{ content: { fontSize: 20 } }} /></Col>
       </Row>
     </div>
   );
@@ -112,7 +106,7 @@ export default function UseMemoAdvancedPage() {
 
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
-          <Card title="Without useMemo" style={{ borderRadius: 12, borderColor: "#fbbf24" }}>
+          <Card title="Without useMemo" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 12, display: "block", marginBottom: 12 }}>
               stats prop is a new object on every render → React.memo can&apos;t help
             </Text>
@@ -129,7 +123,7 @@ export default function UseMemoAdvancedPage() {
         </Col>
 
         <Col xs={24} md={12}>
-          <Card title="With useMemo" style={{ borderRadius: 12, borderColor: "#a7f3d0" }}>
+          <Card title="With useMemo" style={{ borderRadius: 12 }}>
             <Text type="secondary" style={{ fontSize: 12, display: "block", marginBottom: 12 }}>
               memoizedStats is the same reference until scores changes → memo works
             </Text>

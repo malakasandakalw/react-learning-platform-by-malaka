@@ -72,10 +72,10 @@ export default function UseActionStateEasyPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={12}>
           <Card title="Counter (useActionState)" style={{ borderRadius: 12 }}>
-            <Space direction="vertical" align="center" style={{ width: "100%" }} size={20}>
+            <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
               <Statistic
                 value={state.count}
-                valueStyle={{ fontSize: 72, color: "#059669" }}
+                styles={{ content: { fontSize: 72 } }}
               />
 
               <Space>
@@ -113,25 +113,25 @@ export default function UseActionStateEasyPage() {
         <Col xs={24} lg={12}>
           <Card
             title="useActionState anatomy"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// Define the action:</div>
-              <div>async function action(state, payload) {"{"}</div>
-              <div style={{ paddingLeft: 12, color: "#fbbf24" }}>await saveToServer();</div>
-              <div style={{ paddingLeft: 12 }}>return newState;</div>
-              <div>{"}"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Define the action:</div>
+              <div style={{ color: "#569cd6" }}>async function action(state, payload) {"{"}</div>
+              <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>await saveToServer();</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>return newState;</div>
+              <div style={{ color: "#569cd6" }}>{"}"}</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// In component:</div>
-              <div>const [state, dispatch, isPending]</div>
-              <div style={{ paddingLeft: 12 }}>= useActionState(action, initial);</div>
+              <div style={{ color: "#6a9955" }}>// In component:</div>
+              <div style={{ color: "#d4d4d4" }}>const [state, dispatch, isPending]</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>= useActionState(action, initial);</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// Dispatch:</div>
-              <div style={{ color: "#4ade80" }}>dispatch("increment")  <span style={{ color: "#6b7280" }}>← payload</span></div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#161630", borderRadius: 6 }}>
-                <div>count: <span style={{ color: "#4ade80" }}>{state.count}</span></div>
-                <div>isPending: <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span></div>
+              <div style={{ color: "#6a9955" }}>// Dispatch:</div>
+              <div style={{ color: "#dcdcaa" }}>dispatch("increment")  <span style={{ color: "#d4d4d4" }}>← payload</span></div>
+              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div>count: <span style={{ color: "#b5cea8" }}>{state.count}</span></div>
+                <div>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
               </div>
             </div>
           </Card>

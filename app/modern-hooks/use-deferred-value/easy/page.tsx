@@ -40,7 +40,7 @@ function SlowList({ query }: { query: string }) {
           style={{
             padding: "6px 10px",
             fontSize: 12,
-            background: item.matches ? "#eef2ff" : undefined,
+            background: item.matches ? "#e6f4ff" : undefined,
             borderRadius: 4,
             marginBottom: 2,
           }}
@@ -109,28 +109,28 @@ export default function UseDeferredValueEasyPage() {
         <Col xs={24} lg={8}>
           <Card
             title="Value Comparison"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2 }}>
-              <div style={{ color: "#6b7280" }}>// Real value (instant):</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
+              <div style={{ color: "#6a9955" }}>// Real value (instant):</div>
               <div>
-                <span style={{ color: "#7c3aed" }}>query: </span>
-                <span style={{ color: "#fbbf24" }}>&quot;{query}&quot;</span>
+                <span style={{ color: "#569cd6" }}>query: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span>
               </div>
-              <div style={{ color: "#6b7280", marginTop: 6 }}>// Deferred value (lags):</div>
+              <div style={{ color: "#6a9955", marginTop: 6 }}>// Deferred value (lags):</div>
               <div>
-                <span style={{ color: "#7c3aed" }}>deferredQuery: </span>
-                <span style={{ color: "#4ade80" }}>&quot;{deferredQuery}&quot;</span>
+                <span style={{ color: "#569cd6" }}>deferredQuery: </span>
+                <span style={{ color: "#b5cea8" }}>&quot;{deferredQuery}&quot;</span>
               </div>
               <div style={{ marginTop: 8 }}>
-                <span style={{ color: "#7c3aed" }}>isStale: </span>
-                <span style={{ color: isStale ? "#f59e0b" : "#4ade80" }}>{String(isStale)}</span>
+                <span style={{ color: "#569cd6" }}>isStale: </span>
+                <span style={{ color: isStale ? "#dcdcaa" : "#b5cea8" }}>{String(isStale)}</span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 11 }}>
-                <div style={{ color: "#a5b4fc" }}>vs useTransition:</div>
-                <div style={{ color: "#6b7280" }}>useTransition wraps the setter</div>
-                <div style={{ color: "#6b7280" }}>useDeferredValue wraps the value</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 11 }}>
+                <div style={{ color: "#569cd6" }}>vs useTransition:</div>
+                <div style={{ color: "#6a9955" }}>useTransition wraps the setter</div>
+                <div style={{ color: "#6a9955" }}>useDeferredValue wraps the value</div>
               </div>
             </div>
           </Card>

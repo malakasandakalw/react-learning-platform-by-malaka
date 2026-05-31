@@ -71,10 +71,10 @@ export default function ReduxEasyPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={13}>
           <Card title="Counter (Redux Store)" style={{ borderRadius: 12 }}>
-            <Space direction="vertical" align="center" style={{ width: "100%" }} size={20}>
+            <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
               <Statistic
                 value={count}
-                valueStyle={{ fontSize: 72, color: "#b45309" }}
+                styles={{ content: { fontSize: 72 } }}
               />
 
               <Space>
@@ -129,31 +129,31 @@ export default function ReduxEasyPage() {
         <Col xs={24} lg={11}>
           <Card
             title="Redux Store Inspector"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// store.getState()</div>
-              <div style={{ color: "#6b7280" }}>{"{"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// store.getState()</div>
+              <div style={{ color: "#d4d4d4" }}>{"{"}</div>
               <div style={{ paddingLeft: 16 }}>
-                <span style={{ color: "#a5b4fc" }}>counter:</span>
-                <span style={{ color: "#6b7280" }}>{" {"}</span>
+                <span style={{ color: "#569cd6" }}>counter:</span>
+                <span style={{ color: "#d4d4d4" }}>{" {"}</span>
               </div>
               <div style={{ paddingLeft: 32 }}>
-                <span style={{ color: "#e2e8f0" }}>value: </span>
-                <span style={{ color: "#4ade80" }}>{count}</span>
+                <span style={{ color: "#d4d4d4" }}>value: </span>
+                <span style={{ color: "#b5cea8" }}>{count}</span>
               </div>
               <div style={{ paddingLeft: 32 }}>
-                <span style={{ color: "#e2e8f0" }}>step: </span>
-                <span style={{ color: "#fbbf24" }}>{step}</span>
+                <span style={{ color: "#d4d4d4" }}>step: </span>
+                <span style={{ color: "#b5cea8" }}>{step}</span>
               </div>
-              <div style={{ paddingLeft: 16, color: "#6b7280" }}>{"}"}</div>
-              <div style={{ color: "#6b7280" }}>{"}"}</div>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "12px 0" }} />
-              <div style={{ color: "#7c3aed" }}>// Available actions:</div>
+              <div style={{ paddingLeft: 16, color: "#d4d4d4" }}>{"}"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"}"}</div>
+              <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
+              <div style={{ color: "#6a9955" }}>// Available actions:</div>
               {["increment()", "decrement()", "reset()", `setStep(${step})`, `incrementByAmount(n)`].map((a) => (
                 <div key={a}>
-                  <Tag color="purple" style={{ fontSize: 10, margin: "1px 0" }}>{a}</Tag>
+                  <Tag color="blue" style={{ fontSize: 10, margin: "1px 0" }}>{a}</Tag>
                 </div>
               ))}
             </div>

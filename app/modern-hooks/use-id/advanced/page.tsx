@@ -91,7 +91,7 @@ function AccessibleCombobox({ label }: { label: string }) {
               key={item}
               closable
               onClose={() => deselect(item)}
-              color="purple"
+              color="blue"
               style={{ margin: 0 }}
             >
               {item}
@@ -140,7 +140,7 @@ function AccessibleCombobox({ label }: { label: string }) {
               left: 0,
               right: 0,
               background: "#fff",
-              border: "1px solid #e5e7eb",
+              border: "1px solid #d9d9d9",
               borderRadius: 8,
               boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               listStyle: "none",
@@ -162,8 +162,8 @@ function AccessibleCombobox({ label }: { label: string }) {
                   padding: "8px 14px",
                   cursor: "pointer",
                   fontSize: 13,
-                  background: activeIndex === i ? "#eef2ff" : undefined,
-                  color: activeIndex === i ? "#4f46e5" : undefined,
+                  background: activeIndex === i ? "#e6f4ff" : undefined,
+                  color: activeIndex === i ? "#1677ff" : undefined,
                 }}
               >
                 {option}
@@ -173,7 +173,7 @@ function AccessibleCombobox({ label }: { label: string }) {
         )}
       </div>
 
-      <Text style={{ fontSize: 12, color: "#9ca3af", fontFamily: "var(--font-geist-mono)" }}>
+      <Text style={{ fontSize: 12, color: "#9ca3af", fontFamily: "var(--font-mono)" }}>
         listbox id: {listboxId}
       </Text>
     </div>
@@ -201,7 +201,7 @@ export default function UseIdAdvancedPage() {
             <Alert
               type="info"
               showIcon
-              message="Try tabbing to this field and using arrow keys + Enter. It is fully keyboard accessible."
+              title="Try tabbing to this field and using arrow keys + Enter. It is fully keyboard accessible."
               style={{ marginBottom: 20, borderRadius: 8 }}
             />
             <AccessibleCombobox label="Select Technologies" />
@@ -211,23 +211,23 @@ export default function UseIdAdvancedPage() {
         <Col xs={24} lg={10}>
           <Card
             title="ARIA ID Map"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>const id = useId();</div>
-              <div style={{ color: "#6b7280" }}>// generates e.g. ":r3:"</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#569cd6" }}>const id = useId();</div>
+              <div style={{ color: "#6a9955" }}>// generates e.g. ":r3:"</div>
               <br />
-              <div>labelId = <span style={{ color: "#fbbf24" }}>&quot;:r3:-label&quot;</span></div>
-              <div>listboxId = <span style={{ color: "#fbbf24" }}>&quot;:r3:-listbox&quot;</span></div>
-              <div>optionId(0) = <span style={{ color: "#fbbf24" }}>&quot;:r3:-option-0&quot;</span></div>
+              <div>labelId = <span style={{ color: "#ce9178" }}>&quot;:r3:-label&quot;</span></div>
+              <div>listboxId = <span style={{ color: "#ce9178" }}>&quot;:r3:-listbox&quot;</span></div>
+              <div>optionId(0) = <span style={{ color: "#ce9178" }}>&quot;:r3:-option-0&quot;</span></div>
               <br />
-              <div style={{ padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 10 }}>
-                <div style={{ color: "#a5b4fc" }}>input connects:</div>
-                <div style={{ color: "#6b7280" }}>aria-labelledby → labelId</div>
-                <div style={{ color: "#6b7280" }}>aria-controls → listboxId</div>
-                <div style={{ color: "#6b7280" }}>aria-activedescendant → optionId(activeIdx)</div>
-                <div style={{ color: "#4ade80", marginTop: 4 }}>All SSR-safe ✓</div>
+              <div style={{ padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+                <div style={{ color: "#569cd6" }}>input connects:</div>
+                <div style={{ color: "#6a9955" }}>aria-labelledby → labelId</div>
+                <div style={{ color: "#6a9955" }}>aria-controls → listboxId</div>
+                <div style={{ color: "#6a9955" }}>aria-activedescendant → optionId(activeIdx)</div>
+                <div style={{ color: "#b5cea8", marginTop: 4 }}>All SSR-safe ✓</div>
               </div>
             </div>
           </Card>

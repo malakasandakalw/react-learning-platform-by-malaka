@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 "use client";
 
 // useEffect: Advanced
@@ -98,7 +99,7 @@ export default function UseEffectAdvancedPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <Badge status={running ? "processing" : "default"} />
                 <span>Live Post Feed</span>
-                {loading && <SyncOutlined spin style={{ color: "#4f46e5" }} />}
+                {loading && <SyncOutlined spin />}
               </div>
             }
             extra={
@@ -126,7 +127,7 @@ export default function UseEffectAdvancedPage() {
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                   <Tag color="blue">Post #{post.id}</Tag>
-                  <Tag color="purple">User #{post.userId}</Tag>
+                  <Tag color="default">User #{post.userId}</Tag>
                 </div>
                 <Text strong style={{ fontSize: 15 }}>
                   {post.title}
@@ -146,40 +147,40 @@ export default function UseEffectAdvancedPage() {
         <Col xs={24} lg={8}>
           <Card
             title="Effect Inspector"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
             <Row gutter={[0, 0]}>
               <Col span={12}>
                 <Statistic
-                  title={<span style={{ color: "#6b7280", fontSize: 11 }}>fetches</span>}
+                  title={<span style={{ color: "#6a9955", fontSize: 11 }}>fetches</span>}
                   value={fetchCount}
-                  valueStyle={{ color: "#4ade80", fontSize: 28 }}
+                  styles={{ content: { color: "#d4d4d4", fontSize: 28 } }}
                 />
               </Col>
               <Col span={12}>
                 <Statistic
-                  title={<span style={{ color: "#6b7280", fontSize: 11 }}>intervals created</span>}
+                  title={<span style={{ color: "#6a9955", fontSize: 11 }}>intervals created</span>}
                   value={intervalRef.current}
-                  valueStyle={{ color: "#f59e0b", fontSize: 28 }}
+                  styles={{ content: { color: "#d4d4d4", fontSize: 28 } }}
                 />
               </Col>
             </Row>
-            <Divider style={{ borderColor: "#1e1e3a", margin: "12px 0" }} />
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
+            <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>status: </span>
-                <span style={{ color: running ? "#4ade80" : "#f87171" }}>
+                <span style={{ color: "#569cd6" }}>status: </span>
+                <span style={{ color: "#d4d4d4" }}>
                   {running ? "● running" : "● paused"}
                 </span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>interval: </span>
-                <span style={{ color: "#fbbf24" }}>{intervalMs}ms</span>
+                <span style={{ color: "#569cd6" }}>interval: </span>
+                <span style={{ color: "#b5cea8" }}>{intervalMs}ms</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>current post: </span>
-                <span style={{ color: "#e2e8f0" }}>#{postId}</span>
+                <span style={{ color: "#569cd6" }}>current post: </span>
+                <span style={{ color: "#d4d4d4" }}>#{postId}</span>
               </div>
             </div>
           </Card>

@@ -47,8 +47,8 @@ function ContactForm({
       size="small"
       title={
         <Space>
-          <Tag color="purple">Contact #{index + 1}</Tag>
-          <Text type="secondary" style={{ fontSize: 11, fontFamily: "var(--font-geist-mono)" }}>
+          <Tag color="default">Contact #{index + 1}</Tag>
+          <Text type="secondary" style={{ fontSize: 11, fontFamily: "var(--font-mono)" }}>
             base id: {id}
           </Text>
         </Space>
@@ -164,22 +164,22 @@ export default function UseIdMediumPage() {
         <Col xs={24} lg={7}>
           <Card
             title="Why Not Index?"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none", marginTop: 0 }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", marginTop: 0 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#f87171" }}>// ❌ index-based IDs:</div>
-              <div style={{ color: "#6b7280" }}>id-0, id-1, id-2</div>
-              <div style={{ color: "#6b7280" }}>Delete item 0 →</div>
-              <div style={{ color: "#f87171" }}>id-0 now points to different element</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#ce9178" }}>// ❌ index-based IDs:</div>
+              <div style={{ color: "#6a9955" }}>id-0, id-1, id-2</div>
+              <div style={{ color: "#6a9955" }}>Delete item 0 →</div>
+              <div style={{ color: "#ce9178" }}>id-0 now points to different element</div>
               <br />
-              <div style={{ color: "#4ade80" }}>// ✓ useId: tree-position based:</div>
-              <div style={{ color: "#4ade80" }}>:r0:, :r1:, :r2:</div>
-              <div style={{ color: "#6b7280" }}>Delete item 0 →</div>
-              <div style={{ color: "#4ade80" }}>:r1: and :r2: unchanged ✓</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 10 }}>
-                <div style={{ color: "#a5b4fc" }}>Active contacts: {contacts.length}</div>
-                <div style={{ color: "#6b7280" }}>Each has 3 unique IDs: name, email, phone</div>
+              <div style={{ color: "#b5cea8" }}>// ✓ useId: tree-position based:</div>
+              <div style={{ color: "#b5cea8" }}>:r0:, :r1:, :r2:</div>
+              <div style={{ color: "#6a9955" }}>Delete item 0 →</div>
+              <div style={{ color: "#b5cea8" }}>:r1: and :r2: unchanged ✓</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+                <div style={{ color: "#569cd6" }}>Active contacts: {contacts.length}</div>
+                <div style={{ color: "#6a9955" }}>Each has 3 unique IDs: name, email, phone</div>
               </div>
             </div>
           </Card>

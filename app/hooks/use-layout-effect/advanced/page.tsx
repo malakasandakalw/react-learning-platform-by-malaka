@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 
 // useLayoutEffect: Advanced
@@ -135,12 +136,12 @@ export default function UseLayoutEffectAdvancedPage() {
                         display: "flex",
                         padding: "2px 12px",
                         background: line.changed ? "#dcfce7" : "transparent",
-                        fontFamily: "var(--font-geist-mono)",
+                        fontFamily: "var(--font-mono)",
                         fontSize: 11,
                       }}
                     >
                       <span style={{ color: "#9ca3af", width: 24, flexShrink: 0 }}>{line.num}</span>
-                      <span style={{ color: line.changed ? "#166534" : "#374151" }}>{line.code}</span>
+                      <span style={{ color: line.changed ? "#389e0d" : "#374151" }}>{line.code}</span>
                     </div>
                   ))}
                 </div>
@@ -162,12 +163,12 @@ export default function UseLayoutEffectAdvancedPage() {
                         display: "flex",
                         padding: "2px 12px",
                         background: line.changed ? "#fee2e2" : "transparent",
-                        fontFamily: "var(--font-geist-mono)",
+                        fontFamily: "var(--font-mono)",
                         fontSize: 11,
                       }}
                     >
                       <span style={{ color: "#9ca3af", width: 24, flexShrink: 0 }}>{line.num}</span>
-                      <span style={{ color: line.changed ? "#991b1b" : "#374151" }}>{line.code}</span>
+                      <span style={{ color: line.changed ? "#cf1322" : "#374151" }}>{line.code}</span>
                     </div>
                   ))}
                 </div>
@@ -194,8 +195,8 @@ export default function UseLayoutEffectAdvancedPage() {
               style={{
                 width: `${panelWidth}%`,
                 minHeight: 80,
-                background: "#eef2ff",
-                border: "2px dashed #4f46e5",
+                background: "#e6f4ff",
+                border: "2px dashed #1677ff",
                 borderRadius: 8,
                 display: "flex",
                 alignItems: "center",
@@ -203,7 +204,7 @@ export default function UseLayoutEffectAdvancedPage() {
                 transition: "width 0.05s",
               }}
             >
-              <Text style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, color: "#4f46e5" }}>
+              <Text style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
                 {size.width} × {size.height} px
               </Text>
             </div>
@@ -213,23 +214,23 @@ export default function UseLayoutEffectAdvancedPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Why useLayoutEffect here"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// Synced scroll:</div>
-              <div style={{ color: "#6b7280" }}>onScroll → read scrollTop</div>
-              <div style={{ color: "#6b7280" }}>         → write to other panel</div>
-              <div style={{ color: "#4ade80" }}>Must happen before paint → no tear</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#569cd6" }}>// Synced scroll:</div>
+              <div style={{ color: "#6a9955" }}>onScroll → read scrollTop</div>
+              <div style={{ color: "#6a9955" }}>         → write to other panel</div>
+              <div style={{ color: "#b5cea8" }}>Must happen before paint → no tear</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// ResizeObserver:</div>
-              <div style={{ color: "#6b7280" }}>observer setup → useLayoutEffect</div>
-              <div style={{ color: "#6b7280" }}>callback: read size → setSize</div>
-              <div style={{ color: "#4ade80" }}>State update batched with layout ✓</div>
+              <div style={{ color: "#569cd6" }}>// ResizeObserver:</div>
+              <div style={{ color: "#6a9955" }}>observer setup → useLayoutEffect</div>
+              <div style={{ color: "#6a9955" }}>callback: read size → setSize</div>
+              <div style={{ color: "#b5cea8" }}>State update batched with layout ✓</div>
               <br />
-              <div style={{ padding: "8px 10px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc" }}>current size:</div>
-                <div>{size.width} × {size.height}px</div>
+              <div style={{ padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6" }}>current size:</div>
+                <div style={{ color: "#d4d4d4" }}>{size.width} × {size.height}px</div>
               </div>
             </div>
           </Card>

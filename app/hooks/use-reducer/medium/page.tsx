@@ -150,7 +150,7 @@ export default function UseReducerMediumPage() {
               <Alert
                 type="success"
                 showIcon
-                message="Post created! You can submit another."
+                title="Post created! You can submit another."
                 style={{ marginBottom: 16, borderRadius: 8 }}
                 action={<Button size="small" onClick={() => dispatch({ type: "RESET" })}>New post</Button>}
               />
@@ -159,7 +159,7 @@ export default function UseReducerMediumPage() {
               <Alert
                 type="error"
                 showIcon
-                message={state.errorMessage}
+                title={state.errorMessage}
                 style={{ marginBottom: 16, borderRadius: 8 }}
               />
             )}
@@ -216,27 +216,27 @@ export default function UseReducerMediumPage() {
         <Col xs={24} lg={10}>
           <Card
             title="State Machine"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div>idle <span style={{ color: "#6b7280" }}>→ SUBMIT →</span> submitting</div>
-              <div>submitting <span style={{ color: "#6b7280" }}>→ SUCCESS →</span> success</div>
-              <div>submitting <span style={{ color: "#6b7280" }}>→ ERROR →</span> error</div>
-              <div>any <span style={{ color: "#6b7280" }}>→ RESET →</span> idle</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div>idle <span style={{ color: "#6a9955" }}>→ SUBMIT →</span> submitting</div>
+              <div>submitting <span style={{ color: "#6a9955" }}>→ SUCCESS →</span> success</div>
+              <div>submitting <span style={{ color: "#6a9955" }}>→ ERROR →</span> error</div>
+              <div>any <span style={{ color: "#6a9955" }}>→ RESET →</span> idle</div>
 
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc" }}>current status:</div>
-                <div style={{ color: "#fbbf24" }}>{state.status}</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6" }}>current status:</div>
+                <div style={{ color: "#ce9178" }}>{state.status}</div>
               </div>
 
               <div style={{ marginTop: 12 }}>
-                <div style={{ color: "#a5b4fc", marginBottom: 4 }}>submitted:</div>
+                <div style={{ color: "#569cd6", marginBottom: 4 }}>submitted:</div>
                 {state.submittedPosts.length === 0 ? (
-                  <Text style={{ color: "#6b7280", fontSize: 11 }}>none yet</Text>
+                  <Text style={{ color: "#6a9955", fontSize: 11 }}>none yet</Text>
                 ) : (
                   state.submittedPosts.slice(0, 3).map((p) => (
-                    <div key={p.id} style={{ fontSize: 10, color: "#4ade80" }}>
+                    <div key={p.id} style={{ fontSize: 10, color: "#dcdcaa" }}>
                       #{p.id}: {p.title.slice(0, 25)}...
                     </div>
                   ))

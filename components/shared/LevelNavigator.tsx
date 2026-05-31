@@ -31,7 +31,7 @@ export default function LevelNavigator({ basePath, currentLevel }: Props) {
       {nextLevel ? (
         <Button
           type="primary"
-          iconPosition="end"
+          iconPlacement="end"
           icon={<RightOutlined />}
           onClick={() => router.push(`${basePath}/${nextLevel}`)}
         >

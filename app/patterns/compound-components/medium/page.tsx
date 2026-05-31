@@ -74,7 +74,7 @@ function AccordionItem({
   return (
     <div
       style={{
-        border: `1.5px solid ${isOpen ? "#4f46e5" : "#e5e7eb"}`,
+        border: `1.5px solid ${isOpen ? "#1677ff" : "#f0f0f0"}`,
         borderRadius: 8,
         overflow: "hidden",
         transition: "border-color 0.2s",
@@ -85,14 +85,14 @@ function AccordionItem({
         style={{
           width: "100%",
           padding: "12px 16px",
-          background: isOpen ? "#eff6ff" : "#fafafa",
+          background: isOpen ? "#e6f4ff" : "#fafafa",
           border: "none",
           cursor: "pointer",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           fontWeight: isOpen ? 600 : 400,
-          color: isOpen ? "#4f46e5" : "#374151",
+          color: isOpen ? "#1677ff" : "rgba(0,0,0,0.88)",
           fontSize: 14,
           transition: "all 0.2s",
         }}
@@ -105,7 +105,7 @@ function AccordionItem({
         )}
       </button>
       {isOpen && (
-        <div style={{ padding: "12px 16px", background: "#fff", borderTop: "1px solid #e5e7eb" }}>
+        <div style={{ padding: "12px 16px", background: "#fff", borderTop: "1px solid #f0f0f0" }}>
           {children}
         </div>
       )}
@@ -182,33 +182,33 @@ export default function CompoundComponentsMediumPage() {
           <Card title="How toggle() works" style={{ borderRadius: 12, height: "100%" }}>
             <div
               style={{
-                background: "#0f0f23",
+                background: "#1e1e1e",
                 borderRadius: 8,
                 padding: 14,
-                fontFamily: "var(--font-geist-mono)",
+                fontFamily: "var(--font-mono)",
                 fontSize: 11,
                 lineHeight: 1.8,
-                color: "#e2e8f0",
+                color: "#d4d4d4",
               }}
             >
-              <div style={{ color: "#7c3aed" }}>{"function toggle(id) {"}</div>
+              <div style={{ color: "#dcdcaa" }}>{"function toggle(id) {"}</div>
               <div style={{ paddingLeft: 12 }}>{"const next = new Set(prev);"}</div>
-              <div style={{ paddingLeft: 12, color: "#fbbf24" }}>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>
                 {"if (next.has(id)) {"}
               </div>
               <div style={{ paddingLeft: 24 }}>{"next.delete(id);"}</div>
-              <div style={{ paddingLeft: 12, color: "#fbbf24" }}>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>
                 {"} else {"}
               </div>
-              <div style={{ paddingLeft: 24, color: "#4ade80" }}>
+              <div style={{ paddingLeft: 24, color: "#6a9955" }}>
                 {"// exclusive mode:"}
               </div>
               <div style={{ paddingLeft: 24 }}>
                 {"if (!multi) next.clear();"}
               </div>
               <div style={{ paddingLeft: 24 }}>{"next.add(id);"}</div>
-              <div style={{ paddingLeft: 12, color: "#fbbf24" }}>{"}"}</div>
-              <div style={{ color: "#7c3aed" }}>{"}"}</div>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"}"}</div>
+              <div style={{ color: "#dcdcaa" }}>{"}"}</div>
             </div>
             <div style={{ marginTop: 12, fontSize: 12, color: "#555" }}>
               <Text style={{ fontSize: 12 }}>

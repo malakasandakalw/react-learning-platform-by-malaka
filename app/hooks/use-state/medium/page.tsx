@@ -19,12 +19,12 @@ import {
   Alert,
   Divider,
   Tag,
+  Result,
 } from "antd";
-import { CheckCircleOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 // The form state is a single object: each field is a key.
 // This mirrors how you would manage forms in real apps before reaching for form libraries.
@@ -102,16 +102,21 @@ export default function UseStateMediumPage() {
             "Derived state: computing values from existing state without extra useState",
           ]}
         />
-        <Card style={{ borderRadius: 12, textAlign: "center", padding: "32px 0" }}>
-          <CheckCircleOutlined style={{ fontSize: 48, color: "#16a34a", marginBottom: 16 }} />
-          <Title level={3} style={{ color: "#16a34a" }}>Registration Complete!</Title>
-          <Text type="secondary" style={{ display: "block", marginBottom: 8 }}>Submitted with:</Text>
-          <Text strong>{formData.name}</Text> · <Text type="secondary">{formData.email}</Text>
-          <Tag color="blue" style={{ marginLeft: 8 }}>{formData.role}</Tag>
-          <div style={{ marginTop: 24 }}>
-            <Button onClick={handleReset}>Register another</Button>
-          </div>
-        </Card>
+        <Result
+          status="success"
+          title="Registration Complete!"
+          subTitle={
+            <span>
+              <Text strong>{formData.name}</Text>
+              {" · "}
+              <Text type="secondary">{formData.email}</Text>
+              <Tag color="blue" style={{ marginLeft: 8 }}>{formData.role}</Tag>
+            </span>
+          }
+          extra={[
+            <Button key="reset" onClick={handleReset}>Register another</Button>,
+          ]}
+        />
         <LevelNavigator basePath="/hooks/use-state" currentLevel="medium" />
       </div>
     );
@@ -203,22 +208,22 @@ export default function UseStateMediumPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Live State Inspector"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12 }}>
-              <div style={{ color: "#7c3aed", marginBottom: 8 }}>// formData state</div>
-              <pre style={{ color: "#e2e8f0", margin: 0, lineHeight: 1.8 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
+              <div style={{ color: "#6a9955", marginBottom: 8 }}>// formData state</div>
+              <pre style={{ color: "#d4d4d4", margin: 0, lineHeight: 1.8 }}>
                 {JSON.stringify(formData, null, 2)}
               </pre>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "12px 0" }} />
-              <div style={{ color: "#7c3aed", marginBottom: 8 }}>// touched state</div>
-              <pre style={{ color: "#e2e8f0", margin: 0, lineHeight: 1.8 }}>
+              <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
+              <div style={{ color: "#6a9955", marginBottom: 8 }}>// touched state</div>
+              <pre style={{ color: "#d4d4d4", margin: 0, lineHeight: 1.8 }}>
                 {JSON.stringify(touched, null, 2)}
               </pre>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "12px 0" }} />
-              <div style={{ color: "#7c3aed", marginBottom: 8 }}>// isValid (derived)</div>
-              <span style={{ color: isValid ? "#4ade80" : "#f87171" }}>
+              <Divider style={{ borderColor: "#333", margin: "12px 0" }} />
+              <div style={{ color: "#6a9955", marginBottom: 8 }}>// isValid (derived)</div>
+              <span style={{ color: isValid ? "#b5cea8" : "#ce9178" }}>
                 {String(isValid)}
               </span>
             </div>
@@ -230,7 +235,7 @@ export default function UseStateMediumPage() {
         <Alert
           type="warning"
           showIcon
-          message="Fix the errors above before submitting"
+          title="Fix the errors above before submitting"
           style={{ marginTop: 16, borderRadius: 8 }}
         />
       )}

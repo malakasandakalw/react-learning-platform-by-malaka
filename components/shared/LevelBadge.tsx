@@ -14,9 +14,6 @@ export default function LevelBadge({ level, size = "default" }: Props) {
         fontSize: size === "large" ? 14 : 12,
         padding: size === "large" ? "4px 14px" : "2px 10px",
         fontWeight: 600,
-        letterSpacing: 0.5,
-        textTransform: "uppercase",
-        borderRadius: 20,
       }}
     >
       {LEVEL_LABELS[level]}

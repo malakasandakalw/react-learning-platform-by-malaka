@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 
 // useCallback: Easy
@@ -9,7 +10,6 @@
 
 import { memo, useCallback, useState } from "react";
 import {
-  Badge,
   Button,
   Card,
   Col,
@@ -46,17 +46,12 @@ const CounterButton = memo(function CounterButton({
         background: "#f8f9fc",
         borderRadius: 8,
         padding: "12px 16px",
-        border: "2px solid",
-        borderColor: renderCount > 2 ? "#fbbf24" : "#a7f3d0",
+        border: "1px solid #f0f0f0",
       }}
     >
       <Text>{label}</Text>
       <Space>
-        <Badge
-          count={renderCount}
-          title={`Rendered ${renderCount} times`}
-          style={{ background: renderCount > 4 ? "#ef4444" : renderCount > 2 ? "#f59e0b" : "#16a34a" }}
-        />
+        <Tag title={`Rendered ${renderCount} times`}>{renderCount}</Tag>
         <Button icon={<PlusOutlined />} onClick={onClick} size="small" type="primary" />
       </Space>
     </div>
@@ -123,10 +118,10 @@ export default function UseCallbackEasyPage() {
             }
             style={{ borderRadius: 12 }}
           >
-            <Space direction="vertical" style={{ width: "100%" }} size={12}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={12}>
               <Text type="secondary" style={{ fontSize: 12 }}>
                 Each badge shows how many times that child component re-rendered.
-                Click "Unrelated state". With useCallback ON, buttons should not re-render.
+                Click &quot;Unrelated state&quot;. With useCallback ON, buttons should not re-render.
               </Text>
 
               <CounterButton
@@ -154,20 +149,20 @@ export default function UseCallbackEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Function Identity"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
-              <div style={{ color: "#6b7280" }}>// Every render:</div>
-              <div style={{ color: "#f87171" }}>const fn = {"() => {}"}</div>
-              <div style={{ color: "#f87171" }}>fn === fn? <span style={{ color: "#e2e8f0" }}>false ❌</span></div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
+              <div style={{ color: "#6a9955" }}>// Every render:</div>
+              <div style={{ color: "#ce9178" }}>const fn = {"() => {}"}</div>
+              <div style={{ color: "#ce9178" }}>fn === fn? <span style={{ color: "#d4d4d4" }}>false ❌</span></div>
               <br />
-              <div style={{ color: "#6b7280" }}>// With useCallback:</div>
-              <div style={{ color: "#4ade80" }}>const fn = useCallback({"() => {}"}, [])</div>
-              <div style={{ color: "#4ade80" }}>fn === fn? <span style={{ color: "#e2e8f0" }}>true ✓</span></div>
+              <div style={{ color: "#6a9955" }}>// With useCallback:</div>
+              <div style={{ color: "#dcdcaa" }}>const fn = useCallback({"() => {}"}, [])</div>
+              <div style={{ color: "#dcdcaa" }}>fn === fn? <span style={{ color: "#d4d4d4" }}>true ✓</span></div>
               <br />
-              <div style={{ color: "#6b7280" }}>// Because:</div>
-              <div style={{ color: "#e2e8f0" }}>useCallback ON: <Tag color="green" style={{ fontSize: 10 }}>{callbackEnabled ? "stable ref" : "new ref"}</Tag></div>
+              <div style={{ color: "#6a9955" }}>// Because:</div>
+              <div style={{ color: "#d4d4d4" }}>useCallback ON: <Tag color="default" style={{ fontSize: 10 }}>{callbackEnabled ? "stable ref" : "new ref"}</Tag></div>
             </div>
           </Card>
         </Col>

@@ -11,7 +11,6 @@ import {
   MinusOutlined,
   PlusOutlined,
   ReloadOutlined,
-  BulbOutlined,
 } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
@@ -27,8 +26,8 @@ function CounterDemo() {
 
   return (
     <Card title="Counter" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" align="center" style={{ width: "100%" }}>
-        <Statistic value={count} valueStyle={{ fontSize: 56, color: "#4f46e5" }} />
+      <Space orientation="vertical" align="center" style={{ width: "100%" }}>
+        <Statistic value={count} styles={{ content: { fontSize: 56 } }} />
         <Space>
           <Button
             icon={<MinusOutlined />}
@@ -63,11 +62,11 @@ function CounterDemo() {
 // Using the callback form is safer when the new value depends on the previous one.
 function ToggleDemo() {
   const [isOn, setIsOn] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [notifications, setNotifications] = useState(true);
 
   return (
     <Card title="Toggle States" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }} size="large">
+      <Space orientation="vertical" style={{ width: "100%" }} size="large">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Text>Feature flag</Text>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -78,17 +77,10 @@ function ToggleDemo() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <Text>UI Theme</Text>
+          <Text>Notifications</Text>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Tag color={theme === "dark" ? "purple" : "gold"}>
-              {theme === "dark" ? "Dark" : "Light"}
-            </Tag>
-            <Switch
-              checkedChildren={<BulbOutlined />}
-              unCheckedChildren={<BulbOutlined />}
-              checked={theme === "dark"}
-              onChange={(checked) => setTheme(checked ? "dark" : "light")}
-            />
+            <Tag color={notifications ? "blue" : "default"}>{notifications ? "On" : "Off"}</Tag>
+            <Switch checked={notifications} onChange={() => setNotifications((prev) => !prev)} />
           </div>
         </div>
       </Space>
@@ -122,10 +114,10 @@ export default function UseStateEasyPage() {
 
       {/* Key concept callout */}
       <Card
-        style={{ marginTop: 24, borderRadius: 12, background: "#f5f3ff", border: "1px solid #ddd6fe" }}
+        style={{ marginTop: 24, borderRadius: 12, borderLeft: "3px solid #1677ff" }}
         styles={{ body: { padding: 20 } }}
       >
-        <Title level={5} style={{ margin: "0 0 8px", color: "#7c3aed" }}>
+        <Title level={5} style={{ margin: "0 0 8px" }}>
           Key Rule
         </Title>
         <Text style={{ fontSize: 13 }}>

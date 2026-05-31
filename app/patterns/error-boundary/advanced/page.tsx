@@ -41,13 +41,13 @@ class CriticalBoundary extends Component<
   render() {
     if (this.state.hasError)
       return (
-        <div style={{ background: "#fef2f2", border: "2px solid #ef4444", borderRadius: 8, padding: 20 }}>
-          <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 8 }}>
-            <CloseCircleOutlined style={{ color: "#ef4444", fontSize: 18 }} />
-            <Text strong style={{ color: "#7f1d1d" }}>Critical Error: {this.props.section} unavailable</Text>
-          </div>
-          <Text style={{ fontSize: 11, fontFamily: "var(--font-geist-mono)", color: "#dc2626" }}>{this.state.error}</Text>
-        </div>
+        <Alert
+          type="error"
+          showIcon
+          message={`Critical Error: ${this.props.section} unavailable`}
+          description={<span style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>{this.state.error}</span>}
+          style={{ borderRadius: 8 }}
+        />
       );
     return this.props.children;
   }
@@ -72,8 +72,8 @@ class SilentBoundary extends Component<
 function PaymentWidget({ shouldFail }: { shouldFail: boolean }) {
   if (shouldFail) throw new Error("PaymentService: connection refused");
   return (
-    <div style={{ background: "#f0fdf4", borderRadius: 8, padding: 16 }}>
-      <Text style={{ color: "#16a34a" }}>💳 Payment form ready</Text>
+    <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16 }}>
+      <Text type="secondary">💳 Payment form ready</Text>
     </div>
   );
 }
@@ -81,8 +81,8 @@ function PaymentWidget({ shouldFail }: { shouldFail: boolean }) {
 function RecommendationsWidget({ shouldFail }: { shouldFail: boolean }) {
   if (shouldFail) throw new Error("RecommendationEngine: model timeout");
   return (
-    <div style={{ background: "#eef2ff", borderRadius: 8, padding: 16 }}>
-      <Text style={{ color: "#4f46e5" }}>🎯 Recommended for you</Text>
+    <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16 }}>
+      <Text type="secondary">🎯 Recommended for you</Text>
     </div>
   );
 }
@@ -90,8 +90,8 @@ function RecommendationsWidget({ shouldFail }: { shouldFail: boolean }) {
 function UserProfileWidget({ shouldFail }: { shouldFail: boolean }) {
   if (shouldFail) throw new Error("ProfileService: 503");
   return (
-    <div style={{ background: "#fff7ed", borderRadius: 8, padding: 16 }}>
-      <Text style={{ color: "#d97706" }}>👤 User profile loaded</Text>
+    <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16 }}>
+      <Text type="secondary">👤 User profile loaded</Text>
     </div>
   );
 }
@@ -154,7 +154,7 @@ export default function ErrorBoundaryAdvancedPage() {
             style={{ borderRadius: 12 }}
           >
             {failRec && (
-              <Alert type="warning" showIcon message="Component errored silently (check console)" style={{ marginBottom: 8, borderRadius: 6 }} />
+              <Alert type="warning" showIcon title="Component errored silently (check console)" style={{ marginBottom: 8, borderRadius: 6 }} />
             )}
             <SilentBoundary section="Recommendations" key={keys.rec}>
               <RecommendationsWidget shouldFail={failRec} />

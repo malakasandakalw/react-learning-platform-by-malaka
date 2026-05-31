@@ -192,14 +192,14 @@ export default function UseActionStateMediumPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Action State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div><span style={{ color: "#7c3aed" }}>status: </span><Tag color={state.status === "error" ? "error" : "default"} style={{ fontSize: 10 }}>{state.status}</Tag></div>
-              <div><span style={{ color: "#7c3aed" }}>isPending: </span><span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>submittedCount: </span><span style={{ color: "#fbbf24" }}>{state.submittedCount}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>errors: </span><span style={{ color: "#e2e8f0" }}>{JSON.stringify(state.errors)}</span></div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div><span style={{ color: "#569cd6" }}>status: </span><Tag color={state.status === "error" ? "error" : "default"} style={{ fontSize: 10 }}>{state.status}</Tag></div>
+              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
+              <div><span style={{ color: "#569cd6" }}>submittedCount: </span><span style={{ color: "#b5cea8" }}>{state.submittedCount}</span></div>
+              <div><span style={{ color: "#569cd6" }}>errors: </span><span style={{ color: "#d4d4d4" }}>{JSON.stringify(state.errors)}</span></div>
             </div>
           </Card>
         </Col>

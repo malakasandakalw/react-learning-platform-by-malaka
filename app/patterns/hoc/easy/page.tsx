@@ -59,7 +59,7 @@ function UserList({ users }: { users: User[] }) {
     <div>
       {users.slice(0, 5).map((user) => (
         <div key={user.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px solid #f5f5f5" }}>
-          <Avatar style={{ background: "#4f46e5" }} icon={<UserOutlined />} />
+          <Avatar icon={<UserOutlined />} />
           <div>
             <Text strong style={{ fontSize: 13 }}>{user.name}</Text>
             <Text type="secondary" style={{ fontSize: 12, display: "block" }}>{user.email}</Text>
@@ -79,7 +79,7 @@ function withError<P extends object>(WrappedComponent: ComponentType<P>) {
     const { error, ...rest } = props;
     if (error) {
       return (
-        <Alert type="error" message={error} showIcon style={{ borderRadius: 8 }} />
+        <Alert type="error" title={error} showIcon style={{ borderRadius: 8 }} />
       );
     }
     return <WrappedComponent {...(rest as P)} />;
@@ -129,7 +129,7 @@ export default function HocEasyPage() {
           <Card title="withError(withLoading(UserList))" style={{ borderRadius: 12 }}>
             <Space style={{ marginBottom: 12 }}>
               <Tag style={{ fontSize: 11 }}>loading={String(loading)}</Tag>
-              <Tag color={error ? "red" : "default"} style={{ fontSize: 11 }}>error={String(!!error)}</Tag>
+              <Tag color={error ? "error" : "default"} style={{ fontSize: 11 }}>error={String(!!error)}</Tag>
             </Space>
             {/* Composed HOCs: error check first, then loading, then content */}
             <UserListEnhanced users={users} loading={loading} error={error} />

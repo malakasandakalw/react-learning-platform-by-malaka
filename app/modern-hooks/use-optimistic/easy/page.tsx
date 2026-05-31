@@ -102,10 +102,10 @@ export default function UseOptimisticEasyPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={16}>
           <Card title="Posts Feed" style={{ borderRadius: 12 }}>
-            <List
-              dataSource={optimisticPosts}
-              renderItem={(post) => (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {optimisticPosts.map((post) => (
                 <List.Item
+                  key={post.id}
                   actions={[
                     <Button
                       key="like"
@@ -119,32 +119,32 @@ export default function UseOptimisticEasyPage() {
                   ]}
                 >
                   <List.Item.Meta
-                    avatar={<Avatar style={{ background: "#4f46e5" }}>{post.id}</Avatar>}
+                    avatar={<Avatar>{post.id}</Avatar>}
                     title={post.title}
                     description={<Text type="secondary" style={{ fontSize: 12 }}>Post #{post.id}</Text>}
                   />
                 </List.Item>
-              )}
-            />
+              ))}
+            </ul>
           </Card>
         </Col>
 
         <Col xs={24} lg={8}>
           <Card
             title="Optimistic Flow"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#4ade80" }}>1. User clicks like</div>
-              <div style={{ color: "#4ade80" }}>2. addOptimisticLike(id)</div>
-              <div style={{ color: "#4ade80" }}>   → UI updates instantly ✓</div>
-              <div style={{ color: "#fbbf24" }}>3. API call runs (1s)</div>
-              <div style={{ color: "#4ade80" }}>4a. Success → setPosts()</div>
-              <div style={{ color: "#f87171" }}>4b. Failure → rollback</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <span style={{ color: "#a5b4fc" }}>isPending: </span>
-                <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#b5cea8" }}>1. User clicks like</div>
+              <div style={{ color: "#b5cea8" }}>2. addOptimisticLike(id)</div>
+              <div style={{ color: "#b5cea8" }}>   → UI updates instantly ✓</div>
+              <div style={{ color: "#dcdcaa" }}>3. API call runs (1s)</div>
+              <div style={{ color: "#b5cea8" }}>4a. Success → setPosts()</div>
+              <div style={{ color: "#ce9178" }}>4b. Failure → rollback</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span>
               </div>
             </div>
           </Card>

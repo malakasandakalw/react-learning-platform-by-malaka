@@ -10,15 +10,14 @@
 
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import {
+  Alert,
   Button,
   Card,
   Col,
   Input,
   Row,
   Space,
-  Tag,
   Typography,
-  Progress,
   InputRef,
 } from "antd";
 import {
@@ -144,7 +143,7 @@ function FormWithImperativeHandles() {
 
   return (
     <Card title="Form with Imperative Handles" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }} size={16}>
+      <Space orientation="vertical" style={{ width: "100%" }} size={16}>
         {/* SmartInput receives a ref, possible only because it uses forwardRef */}
         <SmartInput ref={nameRef} label="Full Name" placeholder="Enter your name" required />
         <SmartInput ref={emailRef} label="Email" placeholder="Enter your email" required />
@@ -159,11 +158,12 @@ function FormWithImperativeHandles() {
         </div>
 
         {submitted && (
-          <div style={{ background: "#f0fdf4", borderRadius: 8, padding: 12 }}>
-            <Text strong style={{ color: "#16a34a" }}>Submitted successfully!</Text>
-            <br />
-            <Text type="secondary">Name: {submitted.name} · Email: {submitted.email}</Text>
-          </div>
+          <Alert
+            type="success"
+            showIcon
+            message="Submitted successfully!"
+            description={`Name: ${submitted.name} · Email: ${submitted.email}`}
+          />
         )}
       </Space>
     </Card>
@@ -192,27 +192,27 @@ export default function UseRefAdvancedPage() {
         <Col xs={24} lg={10}>
           <Card
             title="How forwardRef Works"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 1.8, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// without forwardRef:</div>
-              <div style={{ color: "#f87171" }}>{"<SmartInput ref={ref} />"}</div>
-              <div style={{ color: "#6b7280" }}>// ❌ Warning: ref not forwarded</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.8, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// without forwardRef:</div>
+              <div style={{ color: "#ce9178" }}>{"<SmartInput ref={ref} />"}</div>
+              <div style={{ color: "#6a9955" }}>// ❌ Warning: ref not forwarded</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// with forwardRef:</div>
-              <div style={{ color: "#4ade80" }}>{"forwardRef((props, ref) => {"}</div>
-              <div style={{ paddingLeft: 16, color: "#4ade80" }}>{"useImperativeHandle(ref, () => ({"}</div>
-              <div style={{ paddingLeft: 32, color: "#fbbf24" }}>{"focus: () => inputRef.current?.focus(),"}</div>
-              <div style={{ paddingLeft: 32, color: "#fbbf24" }}>{"validate: () => boolean,"}</div>
-              <div style={{ paddingLeft: 16, color: "#4ade80" }}>{"}));"}</div>
-              <div style={{ color: "#4ade80" }}>{"})"}</div>
+              <div style={{ color: "#6a9955" }}>// with forwardRef:</div>
+              <div style={{ color: "#dcdcaa" }}>{"forwardRef((props, ref) => {"}</div>
+              <div style={{ paddingLeft: 16, color: "#dcdcaa" }}>{"useImperativeHandle(ref, () => ({"}</div>
+              <div style={{ paddingLeft: 32, color: "#569cd6" }}>{"focus: () => inputRef.current?.focus(),"}</div>
+              <div style={{ paddingLeft: 32, color: "#569cd6" }}>{"validate: () => boolean,"}</div>
+              <div style={{ paddingLeft: 16, color: "#dcdcaa" }}>{"}));"}</div>
+              <div style={{ color: "#dcdcaa" }}>{"})"}</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// parent sees:</div>
-              <div style={{ color: "#e2e8f0" }}>{"ref.current.focus()"}</div>
-              <div style={{ color: "#e2e8f0" }}>{"ref.current.validate()"}</div>
-              <div style={{ color: "#e2e8f0" }}>{"ref.current.clear()"}</div>
-              <div style={{ color: "#6b7280", marginTop: 8 }}>{"// NOT ref.current.style etc."}</div>
+              <div style={{ color: "#6a9955" }}>// parent sees:</div>
+              <div style={{ color: "#d4d4d4" }}>{"ref.current.focus()"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"ref.current.validate()"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"ref.current.clear()"}</div>
+              <div style={{ color: "#6a9955", marginTop: 8 }}>{"// NOT ref.current.style etc."}</div>
             </div>
           </Card>
         </Col>

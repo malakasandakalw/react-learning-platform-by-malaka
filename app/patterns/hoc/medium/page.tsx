@@ -35,7 +35,7 @@ const { Text, Title } = Typography;
 type AuthUser = { name: string; role: "admin" | "user" };
 type AuthCtxType = { user: AuthUser | null; login: (name: string, role: "admin" | "user") => void; logout: () => void };
 
-const AuthCtx = createContext<AuthCtxType>({ user: null, login: () => {}, logout: () => {} });
+const AuthCtx = createContext<AuthCtxType>({ user: null, login: () => { }, logout: () => { } });
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -62,7 +62,7 @@ function withAuth<P extends object>(
       return (
         <div style={{ textAlign: "center", padding: 40 }}>
           <LockOutlined style={{ fontSize: 32, color: "#d1d5db", marginBottom: 12 }} />
-          <Title level={5} style={{ color: "#6b7280" }}>Authentication Required</Title>
+          <Title level={5} style={{ color: "rgba(0,0,0,0.65)" }}>Authentication Required</Title>
           <Text type="secondary" style={{ fontSize: 13 }}>Please log in to view this content.</Text>
         </div>
       );
@@ -73,7 +73,7 @@ function withAuth<P extends object>(
         <Alert
           type="error"
           showIcon
-          message="Access Denied"
+          title="Access Denied"
           description={`This section requires ${requiredRole} role. You have: ${user.role}`}
           style={{ borderRadius: 8 }}
         />
@@ -91,25 +91,25 @@ function withAuth<P extends object>(
 // ─── Protected components ─────────────────────────────────────────────────────
 function Dashboard({ user }: { user?: AuthUser }) {
   return (
-    <div style={{ background: "#f0fdf4", borderRadius: 8, padding: 20 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-        <CheckCircleOutlined style={{ color: "#16a34a" }} />
-        <Text strong>User Dashboard</Text>
-      </div>
-      <Text type="secondary" style={{ fontSize: 13 }}>Welcome, {user?.name}! You have {user?.role} access.</Text>
-    </div>
+    <Alert
+      type="success"
+      showIcon
+      message="User Dashboard"
+      description={`Welcome, ${user?.name}! You have ${user?.role} access.`}
+      style={{ borderRadius: 8 }}
+    />
   );
 }
 
 function AdminPanel({ user }: { user?: AuthUser }) {
   return (
-    <div style={{ background: "#fef3c7", borderRadius: 8, padding: 20 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-        <CrownOutlined style={{ color: "#d97706" }} />
-        <Text strong>Admin Panel</Text>
-      </div>
-      <Text type="secondary" style={{ fontSize: 13 }}>Admin controls for {user?.name}</Text>
-    </div>
+    <Alert
+      type="warning"
+      showIcon
+      message="Admin Panel"
+      description={`Admin controls for ${user?.name}`}
+      style={{ borderRadius: 8 }}
+    />
   );
 }
 
@@ -126,7 +126,7 @@ function LoginForm() {
     return (
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Space>
-          <Avatar style={{ background: user.role === "admin" ? "#d97706" : "#4f46e5" }}>
+          <Avatar>
             {user.name[0]}
           </Avatar>
           <div>

@@ -15,6 +15,7 @@ import {
   Row,
   Space,
   Typography,
+  Alert,
 } from "antd";
 import {
   CheckCircleOutlined,
@@ -40,11 +41,12 @@ export function useToast() {
 }
 
 // ─── Toast icons & colors ─────────────────────────────────────────────────────
+// Using Ant Design semantic color tokens via CSS custom properties
 const TOAST_STYLES: Record<ToastType, { bg: string; border: string; icon: React.ReactNode }> = {
-  success: { bg: "#f0fdf4", border: "#a7f3d0", icon: <CheckCircleOutlined style={{ color: "#16a34a" }} /> },
-  error: { bg: "#fef2f2", border: "#fca5a5", icon: <CloseCircleOutlined style={{ color: "#ef4444" }} /> },
-  info: { bg: "#eff6ff", border: "#bfdbfe", icon: <InfoCircleOutlined style={{ color: "#3b82f6" }} /> },
-  warning: { bg: "#fffbeb", border: "#fcd34d", icon: <WarningOutlined style={{ color: "#f59e0b" }} /> },
+  success: { bg: "#ffffff", border: "#d9d9d9", icon: <CheckCircleOutlined style={{ color: "var(--ant-color-success, #52c41a)" }} /> },
+  error: { bg: "#ffffff", border: "#d9d9d9", icon: <CloseCircleOutlined style={{ color: "var(--ant-color-error, #ff4d4f)" }} /> },
+  info: { bg: "#ffffff", border: "#d9d9d9", icon: <InfoCircleOutlined style={{ color: "#1677ff" }} /> },
+  warning: { bg: "#ffffff", border: "#d9d9d9", icon: <WarningOutlined style={{ color: "var(--ant-color-warning, #faad14)" }} /> },
 };
 
 // ─── Individual Toast ─────────────────────────────────────────────────────────
@@ -132,7 +134,7 @@ function ActionButtons() {
   const { addToast } = useToast();
 
   return (
-    <Space direction="vertical" style={{ width: "100%" }}>
+    <Space orientation="vertical" style={{ width: "100%" }}>
       <Button block icon={<CheckCircleOutlined />} onClick={() => addToast("Operation completed successfully!", "success")}>
         Success toast
       </Button>
@@ -175,19 +177,19 @@ export default function PortalsMediumPage() {
           <Col xs={24} md={12}>
             <Card
               title="How it works"
-              style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-              styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+              style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+              styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
             >
-              <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-                <div style={{ color: "#7c3aed" }}>// ToastProvider renders:</div>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+                <div style={{ color: "#6a9955" }}>// ToastProvider renders:</div>
                 <div>{"<ToastContext.Provider>"}</div>
                 <div style={{ paddingLeft: 12 }}>{"{children}"}</div>
-                <div style={{ paddingLeft: 12, color: "#4ade80" }}>
+                <div style={{ paddingLeft: 12, color: "#569cd6" }}>
                   {"createPortal("}
                 </div>
-                <div style={{ paddingLeft: 24, color: "#4ade80" }}>{"<ToastContainer />,"}</div>
-                <div style={{ paddingLeft: 24, color: "#fbbf24" }}>{"document.body"}</div>
-                <div style={{ paddingLeft: 12, color: "#4ade80" }}>{")"}</div>
+                <div style={{ paddingLeft: 24, color: "#569cd6" }}>{"<ToastContainer />,"}</div>
+                <div style={{ paddingLeft: 24, color: "#ce9178" }}>{"document.body"}</div>
+                <div style={{ paddingLeft: 12, color: "#569cd6" }}>{")"}</div>
                 <div>{"</ToastContext.Provider>"}</div>
               </div>
             </Card>

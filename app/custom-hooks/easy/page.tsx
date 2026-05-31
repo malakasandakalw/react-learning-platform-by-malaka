@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 // Custom Hooks: Easy
@@ -112,22 +115,21 @@ export default function CustomHooksEasyPage() {
             }
             style={{ borderRadius: 12 }}
           >
-            {error && <Alert type="error" message={error} showIcon style={{ marginBottom: 12, borderRadius: 8 }} />}
+            {error && <Alert type="error" title={error} showIcon style={{ marginBottom: 12, borderRadius: 8 }} />}
             {loading ? (
               <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
             ) : (
-              <List
-                dataSource={(data as any[])?.slice(0, 8) ?? []}
-                renderItem={(item: any) => (
-                  <List.Item>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {((data as any[])?.slice(0, 8) ?? []).map((item: any, i: number) => (
+                  <List.Item key={item.id ?? i}>
                     <List.Item.Meta
-                      avatar={<Avatar style={{ background: "#d97706" }} icon={<UserOutlined />} />}
+                      avatar={<Avatar icon={<UserOutlined />} />}
                       title={item.name ?? item.title}
                       description={item.email ?? item.body?.slice(0, 60) + "..."}
                     />
                   </List.Item>
-                )}
-              />
+                ))}
+              </ul>
             )}
           </Card>
         </Col>
@@ -135,27 +137,27 @@ export default function CustomHooksEasyPage() {
         <Col xs={24} lg={9}>
           <Card
             title="useFetch source"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 1.9, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>function useFetch{"<T>"}(url) {"{"}</div>
-              <div style={{ paddingLeft: 12, color: "#6b7280" }}>const [data, setData]</div>
-              <div style={{ paddingLeft: 20, color: "#6b7280" }}>= useState{"<T | null>"} (null);</div>
-              <div style={{ paddingLeft: 12, color: "#6b7280" }}>const [loading, setLoading]</div>
-              <div style={{ paddingLeft: 20, color: "#6b7280" }}>= useState(true);</div>
-              <div style={{ paddingLeft: 12, color: "#6b7280" }}>const [error, setError]</div>
-              <div style={{ paddingLeft: 20, color: "#6b7280" }}>= useState(null);</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 1.9, color: "#d4d4d4" }}>
+              <div style={{ color: "#dcdcaa" }}>function useFetch{"<T>"}(url) {"{"}</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [data, setData]</div>
+              <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState{"<T | null>"} (null);</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [loading, setLoading]</div>
+              <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState(true);</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>const [error, setError]</div>
+              <div style={{ paddingLeft: 20, color: "#ce9178" }}>= useState(null);</div>
               <br />
-              <div style={{ paddingLeft: 12, color: "#4ade80" }}>useEffect(() ={">"} {"{"}</div>
-              <div style={{ paddingLeft: 24, color: "#fbbf24" }}>fetch(url).then(setData)</div>
-              <div style={{ paddingLeft: 12, color: "#4ade80" }}>{" }, [url]);"}</div>
+              <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>useEffect(() ={">"} {"{"}</div>
+              <div style={{ paddingLeft: 24, color: "#dcdcaa" }}>fetch(url).then(setData)</div>
+              <div style={{ paddingLeft: 12, color: "#dcdcaa" }}>{" }, [url]);"}</div>
               <br />
-              <div style={{ paddingLeft: 12, color: "#e2e8f0" }}>return {"{ data, loading, error }"};</div>
-              <div style={{ color: "#7c3aed" }}>{"}"}</div>
+              <div style={{ paddingLeft: 12, color: "#d4d4d4" }}>return {"{ data, loading, error }"};</div>
+              <div style={{ color: "#dcdcaa" }}>{"}"}</div>
               <br />
-              <div style={{ color: "#6b7280" }}>// Usage: ONE line:</div>
-              <div style={{ color: "#4ade80" }}>const {"{ data }"} = useFetch(url);</div>
+              <div style={{ color: "#6a9955" }}>// Usage: ONE line:</div>
+              <div style={{ color: "#d4d4d4" }}>const {"{ data }"} = useFetch(url);</div>
             </div>
           </Card>
         </Col>

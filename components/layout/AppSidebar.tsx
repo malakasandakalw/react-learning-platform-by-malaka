@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { Menu, Layout } from "antd";
 import type { MenuProps } from "antd";
 import {
@@ -17,6 +18,12 @@ import {
 import { NAV_ITEMS, type NavItem } from "@/lib/navigation";
 
 const { Sider } = Layout;
+
+const LEVEL_COLORS: Record<string, string> = {
+  easy: "#52c41a",
+  medium: "#fa8c16",
+  advanced: "#f5222d",
+};
 
 const MODULE_ICONS: Record<string, React.ReactNode> = {
   hooks: <BookOutlined />,
@@ -39,9 +46,15 @@ function buildMenuItems(items: NavItem[]): MenuProps["items"] {
         children: buildMenuItems(item.children),
       };
     }
+    const dot = LEVEL_COLORS[item.key];
     return {
       key: item.path,
-      label: item.label,
+      label: dot ? (
+        <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 4, height: 4, borderRadius: "50%", backgroundColor: dot, flexShrink: 0, display: "inline-block" }} />
+          {item.label}
+        </span>
+      ) : item.label,
     };
   });
 }
@@ -70,6 +83,7 @@ export default function AppSidebar({ collapsed, onCollapse }: AppSidebarProps) {
 
   return (
     <Sider
+      theme="light"
       collapsible
       collapsed={collapsed}
       onCollapse={onCollapse}
@@ -94,17 +108,15 @@ export default function AppSidebar({ collapsed, onCollapse }: AppSidebarProps) {
         }}
       >
         {!collapsed && (
-          <span style={{ color: "#fff", fontWeight: 700, fontSize: 16, letterSpacing: 0.5 }}>
-            React Learning Hub
-          </span>
+          <Image src="/logo.png" alt="React Learning Hub" width={160} height={40} style={{ objectFit: "contain" }} />
         )}
         {collapsed && (
-          <span style={{ color: "#1677ff", fontWeight: 700, fontSize: 18 }}>R</span>
+          <Image src="/logo.png" alt="React Learning Hub" width={32} height={32} style={{ objectFit: "contain" }} />
         )}
       </div>
 
       <Menu
-        theme="dark"
+        theme="light"
         mode="inline"
         selectedKeys={[pathname]}
         defaultOpenKeys={collapsed ? [] : openKeys}

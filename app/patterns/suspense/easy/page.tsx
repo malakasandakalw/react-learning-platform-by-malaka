@@ -117,7 +117,7 @@ export default function SuspenseEasyPage() {
                 fallback={
                   <div style={{ textAlign: "center", padding: 40 }}>
                     <Spin size="large" />
-                    <div style={{ marginTop: 12, color: "#9ca3af", fontSize: 12 }}>
+                    <div style={{ marginTop: 12, color: "rgba(0,0,0,0.65)", fontSize: 12 }}>
                       Downloading component bundle... (simulated 1.5s)
                     </div>
                   </div>
@@ -132,22 +132,22 @@ export default function SuspenseEasyPage() {
         <Col xs={24} lg={9}>
           <Card
             title="How React.lazy works"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// Define lazy component:</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Define lazy component:</div>
               <div>const Chart = lazy(</div>
-              <div style={{ paddingLeft: 12, color: "#fbbf24" }}>{"() => import('./Chart')"}</div>
+              <div style={{ paddingLeft: 12, color: "#ce9178" }}>{"() => import('./Chart')"}</div>
               <div>);</div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// Use with Suspense:</div>
-              <div style={{ color: "#4ade80" }}>{"<Suspense fallback={<Spin />}>"}</div>
-              <div style={{ color: "#4ade80", paddingLeft: 12 }}>{"<Chart />"}</div>
-              <div style={{ color: "#4ade80" }}>{"</Suspense>"}</div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#161630", borderRadius: 6 }}>
-                <div>loaded: <span style={{ color: show ? "#4ade80" : "#f87171" }}>{String(show)}</span></div>
-                <div>load attempts: <span style={{ color: "#fbbf24" }}>{loadCount}</span></div>
+              <div style={{ color: "#6a9955" }}>// Use with Suspense:</div>
+              <div style={{ color: "#569cd6" }}>{"<Suspense fallback={<Spin />}>"}</div>
+              <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"<Chart />"}</div>
+              <div style={{ color: "#569cd6" }}>{"</Suspense>"}</div>
+              <div style={{ marginTop: 12, padding: "8px 10px", background: "#252526", borderRadius: 6 }}>
+                <div>loaded: <span style={{ color: show ? "#b5cea8" : "#ce9178" }}>{String(show)}</span></div>
+                <div>load attempts: <span style={{ color: "#b5cea8" }}>{loadCount}</span></div>
               </div>
             </div>
           </Card>

@@ -102,7 +102,7 @@ export default function UseActionStateAdvancedPage() {
       />
 
       {state.error && (
-        <Alert type="error" message={state.error} showIcon style={{ marginBottom: 16, borderRadius: 8 }} closable />
+        <Alert type="error" title={state.error} showIcon style={{ marginBottom: 16, borderRadius: 8 }} closable />
       )}
 
       <Row gutter={[24, 24]}>
@@ -123,15 +123,14 @@ export default function UseActionStateAdvancedPage() {
               </Button>
             </Space.Compact>
 
-            <List
-              dataSource={optimisticItems}
-              renderItem={(item) => (
-                <List.Item>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {optimisticItems.map((item) => (
+                <List.Item key={item.id}>
                   <List.Item.Meta
                     avatar={
                       <Avatar
                         size={28}
-                        style={{ background: item.id < 0 ? "#f59e0b" : item.completed ? "#16a34a" : "#4f46e5" }}
+                        style={{ background: item.id < 0 ? "#8c8c8c" : item.completed ? "#1677ff" : "#722ed1" }}
                         icon={item.completed ? <CheckCircleOutlined /> : undefined}
                       >
                         {item.id < 0 ? "…" : null}
@@ -149,29 +148,29 @@ export default function UseActionStateAdvancedPage() {
                     }
                   />
                 </List.Item>
-              )}
-            />
+              ))}
+            </ul>
           </Card>
         </Col>
 
         <Col xs={24} lg={9}>
           <Card
             title="State Flow"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#4ade80" }}>1. handleAdd() fires</div>
-              <div style={{ color: "#4ade80" }}>2. addOptimisticItem(title)</div>
-              <div style={{ color: "#4ade80" }}>   → list updates instantly</div>
-              <div style={{ color: "#fbbf24" }}>3. dispatch(title)</div>
-              <div style={{ color: "#fbbf24" }}>   → action runs async</div>
-              <div style={{ color: "#4ade80" }}>4a. success → real item added</div>
-              <div style={{ color: "#f87171" }}>4b. error → optimistic reverts</div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#161630", borderRadius: 6 }}>
-                <div>real items: <span style={{ color: "#4ade80" }}>{state.items.length}</span></div>
-                <div>optimistic: <span style={{ color: "#fbbf24" }}>{optimisticItems.length}</span></div>
-                <div>isPending: <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span></div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#b5cea8" }}>1. handleAdd() fires</div>
+              <div style={{ color: "#b5cea8" }}>2. addOptimisticItem(title)</div>
+              <div style={{ color: "#b5cea8" }}>   → list updates instantly</div>
+              <div style={{ color: "#ce9178" }}>3. dispatch(title)</div>
+              <div style={{ color: "#ce9178" }}>   → action runs async</div>
+              <div style={{ color: "#b5cea8" }}>4a. success → real item added</div>
+              <div style={{ color: "#ce9178" }}>4b. error → optimistic reverts</div>
+              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div>real items: <span style={{ color: "#b5cea8" }}>{state.items.length}</span></div>
+                <div>optimistic: <span style={{ color: "#ce9178" }}>{optimisticItems.length}</span></div>
+                <div>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
               </div>
             </div>
           </Card>

@@ -11,7 +11,7 @@ export default function CustomHooksIndexPage() {
     <div>
       <div style={{ marginBottom: 40 }}>
         <Title level={1}>Custom Hooks</Title>
-        <Paragraph style={{ fontSize: 15, color: "#555", maxWidth: 640 }}>
+        <Paragraph style={{ fontSize: 15, maxWidth: 640 }}>
           Custom hooks are functions that start with <code>use</code> and call other hooks inside.
           They let you extract and share stateful logic across components. It is the most powerful
           abstraction React offers. Every real codebase has dozens of them.
@@ -42,14 +42,14 @@ export default function CustomHooksIndexPage() {
           <Col xs={24} md={8} key={item.level}>
             <Link href={`/custom-hooks/${item.level}`} style={{ textDecoration: "none" }}>
               <Card hoverable style={{ borderRadius: 12, height: "100%" }} styles={{ body: { padding: 24 } }}>
-                <Title level={4} style={{ margin: "0 0 8px", fontFamily: "var(--font-geist-mono)", color: "#d97706" }}>
+                <Title level={4} style={{ margin: "0 0 8px", fontFamily: "var(--font-mono)" }}>
                   {item.title}
                 </Title>
-                <Paragraph style={{ color: "#555", fontSize: 13, marginBottom: 16 }}>{item.desc}</Paragraph>
+                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>{item.desc}</Paragraph>
                 {item.api !== "" && (
-                  <div style={{ fontSize: 11, color: "#9ca3af", marginBottom: 8 }}>API: {item.api}</div>
+                  <div style={{ fontSize: 11, color: "rgba(0,0,0,0.65)", marginBottom: 8 }}>API: {item.api}</div>
                 )}
-                <div style={{ color: "#d97706", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ color: "#1677ff", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
                   Explore <ArrowRightOutlined />
                 </div>
               </Card>

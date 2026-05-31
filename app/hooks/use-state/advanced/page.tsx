@@ -142,7 +142,7 @@ export default function UseStateAdvancedPage() {
               <Text strong>Skills: </Text>
               <Space wrap size={4} style={{ marginTop: 4 }}>
                 {wizard.skills.filter((s) => s.selected).map((s) => (
-                  <Tag key={s.id} color="purple">{s.label}</Tag>
+                  <Tag key={s.id} color="blue">{s.label}</Tag>
                 ))}
               </Space>
             </div>,
@@ -185,7 +185,7 @@ export default function UseStateAdvancedPage() {
             {wizard.currentStep === 0 && (
               <div>
                 <Title level={5}>Your Profile</Title>
-                <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                   <Input
                     placeholder="Full name"
                     value={wizard.profile.name}
@@ -257,7 +257,7 @@ export default function UseStateAdvancedPage() {
             {wizard.currentStep === 2 && (
               <div>
                 <Title level={5}>Notification Preferences</Title>
-                <Space direction="vertical" style={{ width: "100%" }} size={12}>
+                <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                   {wizard.notifications.map((notif) => (
                     <div
                       key={notif.type}
@@ -293,24 +293,24 @@ export default function UseStateAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="State Shape"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>currentStep: <span style={{ color: "#f59e0b" }}>{wizard.currentStep}</span></div>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "8px 0" }} />
-              <div style={{ color: "#7c3aed" }}>profile:</div>
-              <pre style={{ margin: "0 0 0 8px", lineHeight: 1.7, color: "#e2e8f0" }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "#d4d4d4" }}>
+              <div style={{ color: "#569cd6" }}>currentStep: <span style={{ color: "#b5cea8" }}>{wizard.currentStep}</span></div>
+              <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
+              <div style={{ color: "#569cd6" }}>profile:</div>
+              <pre style={{ margin: "0 0 0 8px", lineHeight: 1.7, color: "#d4d4d4" }}>
                 {JSON.stringify(wizard.profile, null, 2)}
               </pre>
-              <Divider style={{ borderColor: "#1e1e3a", margin: "8px 0" }} />
-              <div style={{ color: "#7c3aed" }}>skills selected:</div>
+              <Divider style={{ borderColor: "#333", margin: "8px 0" }} />
+              <div style={{ color: "#569cd6" }}>skills selected:</div>
               <div style={{ marginLeft: 8 }}>
                 {wizard.skills.filter((s) => s.selected).map((s) => (
-                  <Tag key={s.id} color="purple" style={{ marginTop: 4 }}>{s.label}</Tag>
+                  <Tag key={s.id} color="blue" style={{ marginTop: 4 }}>{s.label}</Tag>
                 ))}
                 {!wizard.skills.some((s) => s.selected) && (
-                  <span style={{ color: "#6b7280" }}>none</span>
+                  <span style={{ color: "#6a9955" }}>none</span>
                 )}
               </div>
             </div>

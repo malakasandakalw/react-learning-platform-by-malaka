@@ -17,7 +17,7 @@ import {
   Tag,
   Space,
 } from "antd";
-import { ReloadOutlined, WarningOutlined } from "@ant-design/icons";
+import { ReloadOutlined } from "@ant-design/icons";
 import PageIntro from "@/components/shared/PageIntro";
 import LevelNavigator from "@/components/shared/LevelNavigator";
 
@@ -70,7 +70,7 @@ const FailSection = createSection({ delay: 800, shouldFail: true });
 
 function SectionFallback({ label }: { label: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: 16, background: "#f8f9fc", borderRadius: 8, minHeight: 60 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: 16, background: "#f5f5f5", borderRadius: 8, minHeight: 60 }}>
       <Spin size="small" />
       <Text type="secondary" style={{ fontSize: 12 }}>Loading {label}...</Text>
     </div>
@@ -79,21 +79,13 @@ function SectionFallback({ label }: { label: string }) {
 
 function ErrorFallback({ label, onRetry }: { label: string; onRetry?: () => void }) {
   return (
-    <div
-      style={{
-        background: "#fef2f2",
-        border: "1px solid #fecaca",
-        borderRadius: 8,
-        padding: 16,
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-      }}
-    >
-      <WarningOutlined style={{ color: "#ef4444" }} />
-      <Text style={{ fontSize: 12, color: "#991b1b", flex: 1 }}>{label} failed to load</Text>
-      {onRetry && <Button size="small" icon={<ReloadOutlined />} onClick={onRetry}>Retry</Button>}
-    </div>
+    <Alert
+      type="error"
+      showIcon
+      message={`${label} failed to load`}
+      action={onRetry && <Button size="small" icon={<ReloadOutlined />} onClick={onRetry}>Retry</Button>}
+      style={{ borderRadius: 8 }}
+    />
   );
 }
 
@@ -117,7 +109,7 @@ export default function SuspenseAdvancedPage() {
       <Alert
         type="info"
         showIcon
-        message="The 'Widget C' section is intentionally set to fail. Watch how it recovers independently."
+        title="The 'Widget C' section is intentionally set to fail. Watch how it recovers independently."
         style={{ marginBottom: 24, borderRadius: 8 }}
       />
 
@@ -127,7 +119,7 @@ export default function SuspenseAdvancedPage() {
           <Card title="Widget A (500ms)" style={{ borderRadius: 12 }}>
             <ErrorBoundary fallback={<ErrorFallback label="Widget A" />}>
               <Suspense fallback={<SectionFallback label="Widget A" />}>
-                <FastSection label="Widget A" color="#eef2ff" />
+                <FastSection label="Widget A" color="#f5f5f5" />
               </Suspense>
             </ErrorBoundary>
           </Card>
@@ -138,7 +130,7 @@ export default function SuspenseAdvancedPage() {
           <Card title="Widget B (2000ms)" style={{ borderRadius: 12 }}>
             <ErrorBoundary fallback={<ErrorFallback label="Widget B" />}>
               <Suspense fallback={<SectionFallback label="Widget B" />}>
-                <SlowSection label="Widget B" color="#f0fdf4" />
+                <SlowSection label="Widget B" color="#f5f5f5" />
               </Suspense>
             </ErrorBoundary>
           </Card>
@@ -157,7 +149,7 @@ export default function SuspenseAdvancedPage() {
               }
             >
               <Suspense fallback={<SectionFallback label="Widget C" />}>
-                <FailSection label="Widget C" color="#fff7ed" />
+                <FailSection label="Widget C" color="#f5f5f5" />
               </Suspense>
             </ErrorBoundary>
           </Card>
@@ -165,16 +157,16 @@ export default function SuspenseAdvancedPage() {
       </Row>
 
       <Card
-        style={{ marginTop: 24, borderRadius: 12, background: "#0f0f23", border: "none" }}
-        styles={{ body: { padding: 16 } }}
+        style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
+        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
       >
-        <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-          <div style={{ color: "#7c3aed" }}>// Nesting pattern per section:</div>
-          <div style={{ color: "#4ade80" }}>{"<ErrorBoundary fallback={<ErrorFallback />}>"}</div>
-          <div style={{ color: "#4ade80", paddingLeft: 12 }}>{"<Suspense fallback={<SectionFallback />}>"}</div>
-          <div style={{ color: "#fbbf24", paddingLeft: 24 }}>{"<LazyWidget />"}</div>
-          <div style={{ color: "#4ade80", paddingLeft: 12 }}>{"</Suspense>"}</div>
-          <div style={{ color: "#4ade80" }}>{"</ErrorBoundary>"}</div>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+          <div style={{ color: "#6a9955" }}>// Nesting pattern per section:</div>
+          <div style={{ color: "#569cd6" }}>{"<ErrorBoundary fallback={<ErrorFallback />}>"}</div>
+          <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"<Suspense fallback={<SectionFallback />}>"}</div>
+          <div style={{ color: "#ce9178", paddingLeft: 24 }}>{"<LazyWidget />"}</div>
+          <div style={{ color: "#569cd6", paddingLeft: 12 }}>{"</Suspense>"}</div>
+          <div style={{ color: "#569cd6" }}>{"</ErrorBoundary>"}</div>
         </div>
       </Card>
 

@@ -14,9 +14,10 @@ import {
   AppstoreOutlined,
   CompassOutlined,
 } from "@ant-design/icons";
+import Image from "next/image";
 import Link from "next/link";
 
-const { Title, Paragraph, Text } = Typography;
+const { Paragraph, Text } = Typography;
 
 const MODULES = [
   {
@@ -98,10 +99,15 @@ export default function HomePage() {
 
         {/* Header */}
         <div style={{ marginBottom: 48 }}>
-          <Title style={{ margin: "0 0 12px", fontSize: 32, fontWeight: 700 }}>
-            React Learning Hub
-          </Title>
-          <Paragraph style={{ fontSize: 15, color: "rgba(0,0,0,0.55)", maxWidth: 560, margin: 0 }}>
+          <Image
+            src="/logo.png"
+            alt="React Learning Hub by Malaka"
+            width={260}
+            height={72}
+            style={{ objectFit: "contain", objectPosition: "left", marginBottom: 20, display: "block" }}
+            priority
+          />
+          <Paragraph style={{ fontSize: 15, color: "rgba(0,0,0,0.65)", maxWidth: 560, margin: 0 }}>
             A structured, code-first learning platform for modern React development.
             Each concept is broken into Easy, Medium, and Advanced examples, all backed by real APIs.
           </Paragraph>
@@ -121,7 +127,7 @@ export default function HomePage() {
                   <Text strong style={{ fontSize: 14, color: "#1677ff", display: "block" }}>
                     When to use what? Decision Guide
                   </Text>
-                  <Text style={{ fontSize: 12, color: "rgba(0,0,0,0.55)" }}>
+                  <Text style={{ fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
                     Context vs Redux · useRef vs useState · useEffect vs event handler · useMemo vs useTransition · 19 common situations explained
                   </Text>
                 </div>
@@ -134,7 +140,7 @@ export default function HomePage() {
         {/* Module grid */}
         <Row gutter={[16, 16]}>
           {MODULES.map((mod) => (
-            <Col xs={24} sm={12} lg={8} key={mod.key}>
+            <Col xs={24} sm={12} lg={12} key={mod.key}>
               <Link href={mod.path} style={{ textDecoration: "none" }}>
                 <Card
                   hoverable
@@ -149,7 +155,7 @@ export default function HomePage() {
                     </Text>
                   </div>
                   <Paragraph
-                    style={{ fontSize: 12, color: "rgba(0,0,0,0.55)", marginBottom: 14, lineHeight: 1.7 }}
+                    style={{ fontSize: 12, color: "rgba(0,0,0,0.65)", marginBottom: 14, lineHeight: 1.7 }}
                   >
                     {mod.description}
                   </Paragraph>
@@ -163,7 +169,7 @@ export default function HomePage() {
                           borderRadius: 4,
                           padding: "1px 8px",
                           fontSize: 11,
-                          fontFamily: "var(--font-geist-mono)",
+                          fontFamily: "var(--font-mono)",
                           color: "rgba(0,0,0,0.65)",
                         }}
                       >
@@ -171,7 +177,7 @@ export default function HomePage() {
                       </span>
                     ))}
                   </div>
-                  <div style={{ marginTop: 14, fontSize: 12, color: "#1677ff", display: "flex", alignItems: "center", gap: 4 }}>
+                  <div style={{ marginTop: 14, fontSize: 12, color: "#1677ff", display: "flex", alignItems: "center", gap: 4, fontWeight: 600 }}>
                     Start learning <ArrowRightOutlined style={{ fontSize: 10 }} />
                   </div>
                 </Card>
@@ -188,7 +194,7 @@ export default function HomePage() {
             <Text strong style={{ fontSize: 14, display: "block", marginBottom: 8 }}>
               Developed by Malaka Sandakal
             </Text>
-            <Text style={{ fontSize: 13, color: "rgba(0,0,0,0.55)", lineHeight: 1.7, display: "block", marginBottom: 12 }}>
+            <Text style={{ fontSize: 13, color: "rgba(0,0,0,0.65)", lineHeight: 1.7, display: "block", marginBottom: 12 }}>
               Built for educational purposes, to help frontend development teams
               understand React hooks, Context, and Redux Toolkit through clean,
               readable, real-world code examples.
@@ -222,7 +228,7 @@ export default function HomePage() {
                 { name: "PokéAPI", desc: "Pokémon list & search" },
                 { name: "DummyJSON", desc: "Products & Cart" },
               ].map((api) => (
-                <Text key={api.name} style={{ fontSize: 12, color: "rgba(0,0,0,0.55)" }}>
+                <Text key={api.name} style={{ fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
                   <Text strong style={{ fontSize: 12 }}>{api.name}</Text>: {api.desc}
                 </Text>
               ))}
@@ -232,7 +238,7 @@ export default function HomePage() {
 
         <div style={{ marginTop: 24 }}>
           <Text type="secondary" style={{ fontSize: 12 }}>
-            © 2025 React Learning Hub · Developed by{" "}
+            © 2025 React Learning Hub by Malaka · Developed by{" "}
             <a
               href="https://www.linkedin.com/in/malakasandakal/"
               target="_blank"

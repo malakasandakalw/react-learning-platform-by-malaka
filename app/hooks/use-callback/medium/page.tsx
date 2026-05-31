@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react-hooks/immutability */
 "use client";
 
 // useCallback: Medium
@@ -18,7 +20,6 @@ import {
   Tag,
   Typography,
   Input,
-  Badge,
   Empty,
 } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
@@ -66,11 +67,7 @@ const TaskRow = memo(function TaskRow({
       >
         {task.text}
       </Text>
-      <Badge
-        count={renderCount}
-        title={`${renderCount} renders`}
-        style={{ background: renderCount > 2 ? "#f59e0b" : "#16a34a" }}
-      />
+      <Tag title={`${renderCount} renders`}>{renderCount}</Tag>
       <Button
         icon={<DeleteOutlined />}
         size="small"
@@ -178,22 +175,22 @@ export default function UseCallbackMediumPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Why Empty Deps Work"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#f87171" }}>// ❌ NEEDS [tasks] in deps:</div>
-              <div style={{ color: "#6b7280" }}>{"setTasks(tasks.map(...))"}</div>
-              <div style={{ color: "#6b7280" }}>{"// reads 'tasks' from closure"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// ❌ NEEDS [tasks] in deps:</div>
+              <div style={{ color: "#ce9178" }}>{"setTasks(tasks.map(...))"}</div>
+              <div style={{ color: "#6a9955" }}>{"// reads 'tasks' from closure"}</div>
               <br />
-              <div style={{ color: "#4ade80" }}>// ✓ Empty deps [] safe:</div>
-              <div style={{ color: "#4ade80" }}>{"setTasks(prev => prev.map(...))"}</div>
-              <div style={{ color: "#6b7280" }}>{"// 'prev' is injected by React"}</div>
-              <div style={{ color: "#6b7280" }}>{"// no closure over tasks"}</div>
+              <div style={{ color: "#6a9955" }}>// ✓ Empty deps [] safe:</div>
+              <div style={{ color: "#dcdcaa" }}>{"setTasks(prev => prev.map(...))"}</div>
+              <div style={{ color: "#6a9955" }}>{"// 'prev' is injected by React"}</div>
+              <div style={{ color: "#6a9955" }}>{"// no closure over tasks"}</div>
               <br />
-              <div style={{ color: "#a5b4fc" }}>Result: handleToggle never</div>
-              <div style={{ color: "#a5b4fc" }}>changes → TaskRow never</div>
-              <div style={{ color: "#a5b4fc" }}>re-renders unnecessarily.</div>
+              <div style={{ color: "#569cd6" }}>Result: handleToggle never</div>
+              <div style={{ color: "#569cd6" }}>changes → TaskRow never</div>
+              <div style={{ color: "#569cd6" }}>re-renders unnecessarily.</div>
             </div>
           </Card>
         </Col>

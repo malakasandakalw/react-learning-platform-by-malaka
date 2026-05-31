@@ -31,36 +31,36 @@ const VARIANT_CONFIG: Record<
 > = {
   default: {
     bg: "#ffffff",
-    border: "#e5e7eb",
-    accent: "#374151",
+    border: "#d9d9d9",
+    accent: "rgba(0,0,0,0.88)",
     icon: <InfoCircleOutlined />,
     tagColor: "default",
   },
   success: {
-    bg: "#f0fdf4",
-    border: "#86efac",
-    accent: "#15803d",
+    bg: "#f6ffed",
+    border: "#b7eb8f",
+    accent: "rgba(0,0,0,0.88)",
     icon: <CheckCircleOutlined />,
     tagColor: "success",
   },
   warning: {
-    bg: "#fffbeb",
-    border: "#fcd34d",
-    accent: "#b45309",
+    bg: "#fffbe6",
+    border: "#ffe58f",
+    accent: "rgba(0,0,0,0.88)",
     icon: <WarningOutlined />,
     tagColor: "warning",
   },
   error: {
-    bg: "#fef2f2",
-    border: "#fca5a5",
-    accent: "#b91c1c",
+    bg: "#fff2f0",
+    border: "#ffccc7",
+    accent: "rgba(0,0,0,0.88)",
     icon: <CloseCircleOutlined />,
     tagColor: "error",
   },
   info: {
-    bg: "#eff6ff",
-    border: "#93c5fd",
-    accent: "#1d4ed8",
+    bg: "#e6f4ff",
+    border: "#91caff",
+    accent: "rgba(0,0,0,0.88)",
     icon: <InfoCircleOutlined />,
     tagColor: "processing",
   },
@@ -127,7 +127,7 @@ function FlexCardFooter({ children }: { children: React.ReactNode }) {
         borderTop: `1px solid ${cfg.border}`,
         background: "rgba(0,0,0,0.02)",
         fontSize: 12,
-        color: "#6b7280",
+        color: "rgba(0,0,0,0.65)",
       }}
     >
       {children}
@@ -199,26 +199,26 @@ export default function CompoundComponentsAdvancedPage() {
         <Col xs={24} lg={16}>
           <div
             style={{
-              background: "#0f0f23",
+              background: "#1e1e1e",
               borderRadius: 12,
               padding: 20,
             }}
           >
-            <Title level={5} style={{ color: "#a5b4fc", margin: "0 0 14px" }}>
+            <Title level={5} style={{ color: "#d4d4d4", margin: "0 0 14px" }}>
               Dot notation API
             </Title>
             <div
               style={{
-                fontFamily: "var(--font-geist-mono)",
+                fontFamily: "var(--font-mono)",
                 fontSize: 11,
                 lineHeight: 1.9,
-                color: "#e2e8f0",
+                color: "#d4d4d4",
               }}
             >
-              <div style={{ color: "#7c3aed" }}>
+              <div style={{ color: "#6a9955" }}>
                 {"// Object.assign attaches sub-components as static properties:"}
               </div>
-              <div style={{ color: "#7c3aed" }}>
+              <div style={{ color: "#6a9955" }}>
                 {"// const FlexCard = Object.assign(FlexCardRoot, { Header, Body, Footer, Badge })"}
               </div>
               <br />
@@ -228,13 +228,13 @@ export default function CompoundComponentsAdvancedPage() {
                 {"Title <FlexCard.Badge>Active</FlexCard.Badge>"}
               </div>
               <div style={{ paddingLeft: 16 }}>{"</FlexCard.Header>"}</div>
-              <div style={{ paddingLeft: 16, color: "#fbbf24" }}>
+              <div style={{ paddingLeft: 16, color: "#ce9178" }}>
                 {"<FlexCard.Body>...content...</FlexCard.Body>"}
               </div>
-              <div style={{ paddingLeft: 16, color: "#4ade80" }}>
+              <div style={{ paddingLeft: 16, color: "#569cd6" }}>
                 {"<FlexCard.Footer>optional footer</FlexCard.Footer>"}
               </div>
-              <div style={{ color: "#4ade80" }}>{"// ↑ omit Footer and it won't render"}</div>
+              <div style={{ color: "#6a9955" }}>{"// ↑ omit Footer and it won't render"}</div>
               <div>{"</FlexCard>"}</div>
             </div>
           </div>
@@ -243,10 +243,10 @@ export default function CompoundComponentsAdvancedPage() {
         <Col xs={24} lg={8}>
           <div
             style={{
-              background: "#f8f9fc",
+              background: "#ffffff",
               borderRadius: 12,
               padding: 20,
-              border: "1.5px solid #e5e7eb",
+              border: "1.5px solid #f0f0f0",
               height: "100%",
             }}
           >

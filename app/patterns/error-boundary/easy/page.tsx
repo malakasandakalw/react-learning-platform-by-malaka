@@ -49,21 +49,13 @@ class BasicErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div
-          style={{
-            background: "#fef2f2",
-            border: "1px solid #fecaca",
-            borderRadius: 8,
-            padding: 20,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <BugOutlined style={{ color: "#ef4444" }} />
-            <Text strong style={{ color: "#991b1b" }}>Something went wrong</Text>
-            <Tag color="red" style={{ fontSize: 10 }}>{this.props.name}</Tag>
-          </div>
-          <Text style={{ fontSize: 12, color: "#dc2626" }}>{this.state.error}</Text>
-        </div>
+        <Alert
+          type="error"
+          showIcon
+          message="Something went wrong"
+          description={this.state.error}
+          style={{ borderRadius: 8 }}
+        />
       );
     }
 
@@ -77,8 +69,8 @@ function BuggyCounter({ shouldCrash }: { shouldCrash: boolean }) {
     throw new Error("Counter crashed during render!");
   }
   return (
-    <div style={{ background: "#f0fdf4", borderRadius: 8, padding: 16, textAlign: "center" }}>
-      <Text style={{ color: "#16a34a" }}>Counter is working fine ✓</Text>
+    <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16, textAlign: "center" }}>
+      <Text type="secondary">Counter is working fine ✓</Text>
     </div>
   );
 }
@@ -86,7 +78,7 @@ function BuggyCounter({ shouldCrash }: { shouldCrash: boolean }) {
 function BuggyProfile({ data }: { data: any }) {
   // This will throw if data is null (common real-world error)
   return (
-    <div style={{ background: "#eef2ff", borderRadius: 8, padding: 16 }}>
+    <div style={{ background: "#f5f5f5", borderRadius: 8, padding: 16 }}>
       <Text strong>{data.name}</Text>
       <Text type="secondary" style={{ display: "block" }}>{data.email}</Text>
     </div>
@@ -115,7 +107,7 @@ export default function ErrorBoundaryEasyPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={12}>
           <Card title="Controlled crash demo" style={{ borderRadius: 12 }}>
-            <Space direction="vertical" style={{ width: "100%" }} size={12}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={12}>
               {/* Each component wrapped in its own boundary */}
               <div>
                 <Text style={{ fontSize: 12, marginBottom: 6, display: "block" }}>Counter component:</Text>
@@ -153,20 +145,20 @@ export default function ErrorBoundaryEasyPage() {
         <Col xs={24} lg={12}>
           <Card
             title="Without vs With boundary"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#f87171" }}>// Without boundary:</div>
-              <div style={{ color: "#6b7280" }}>Counter throws</div>
-              <div style={{ color: "#6b7280" }}>→ entire React tree unmounts</div>
-              <div style={{ color: "#6b7280" }}>→ white screen 💀</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Without boundary:</div>
+              <div style={{ color: "#d4d4d4" }}>Counter throws</div>
+              <div style={{ color: "#d4d4d4" }}>→ entire React tree unmounts</div>
+              <div style={{ color: "#d4d4d4" }}>→ white screen 💀</div>
               <br />
-              <div style={{ color: "#4ade80" }}>// With boundary:</div>
-              <div style={{ color: "#4ade80" }}>Counter throws</div>
-              <div style={{ color: "#4ade80" }}>→ boundary catches it</div>
-              <div style={{ color: "#4ade80" }}>→ shows fallback UI</div>
-              <div style={{ color: "#4ade80" }}>→ rest of app works ✓</div>
+              <div style={{ color: "#6a9955" }}>// With boundary:</div>
+              <div style={{ color: "#d4d4d4" }}>Counter throws</div>
+              <div style={{ color: "#d4d4d4" }}>→ boundary catches it</div>
+              <div style={{ color: "#d4d4d4" }}>→ shows fallback UI</div>
+              <div style={{ color: "#d4d4d4" }}>→ rest of app works ✓</div>
             </div>
           </Card>
         </Col>

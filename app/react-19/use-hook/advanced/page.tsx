@@ -129,27 +129,27 @@ export default function UseHookAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Cache State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// Promise cache:</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// Promise cache:</div>
               <div>
                 {loadedIds.length === 0
-                  ? <span style={{ color: "#6b7280" }}>No cached promises yet</span>
+                  ? <span style={{ color: "#d4d4d4" }}>No cached promises yet</span>
                   : loadedIds.map((id) => (
                     <div key={id}>
-                      <span style={{ color: "#fbbf24" }}>{id}</span>
-                      <span style={{ color: "#6b7280" }}> → Promise (resolved)</span>
-                      {id === selectedId && <span style={{ color: "#4ade80" }}> ← viewing</span>}
+                      <span style={{ color: "#b5cea8" }}>{id}</span>
+                      <span style={{ color: "#d4d4d4" }}> → Promise (resolved)</span>
+                      {id === selectedId && <span style={{ color: "#b5cea8" }}> ← viewing</span>}
                     </div>
                   ))
                 }
               </div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc" }}>selected: <span style={{ color: "#fbbf24" }}>{selectedId}</span></div>
-                <div style={{ color: "#a5b4fc" }}>cached: <span style={{ color: "#4ade80" }}>{loadedIds.length}</span></div>
-                <div style={{ color: "#a5b4fc" }}>isPending: <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span></div>
+              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6" }}>selected: <span style={{ color: "#b5cea8" }}>{selectedId}</span></div>
+                <div style={{ color: "#569cd6" }}>cached: <span style={{ color: "#b5cea8" }}>{loadedIds.length}</span></div>
+                <div style={{ color: "#569cd6" }}>isPending: <span style={{ color: isPending ? "#ce9178" : "#b5cea8" }}>{String(isPending)}</span></div>
               </div>
             </div>
           </Card>

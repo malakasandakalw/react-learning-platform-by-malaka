@@ -107,11 +107,11 @@ function LoginForm() {
       <Alert
         type="info"
         showIcon
-        message='Try: alice@example.com / password123'
+        title='Try: alice@example.com / password123'
         style={{ marginBottom: 16, borderRadius: 8, fontSize: 12 }}
       />
       {error && (
-        <Alert type="error" message="Invalid credentials" showIcon style={{ marginBottom: 12, borderRadius: 8 }} />
+        <Alert type="error" title="Invalid credentials" showIcon style={{ marginBottom: 12, borderRadius: 8 }} />
       )}
       <Form layout="vertical">
         <Form.Item label="Email">
@@ -135,7 +135,7 @@ function UserProfile() {
 
   return (
     <Card style={{ borderRadius: 12, textAlign: "center", padding: "8px 0" }}>
-      <Avatar size={64} style={{ background: "#4f46e5", fontSize: 24 }}>
+      <Avatar size={64} style={{ fontSize: 24 }}>
         {user.name[0]}
       </Avatar>
       <Title level={4} style={{ marginTop: 12, marginBottom: 4 }}>{user.name}</Title>
@@ -155,19 +155,19 @@ function Dashboard() {
     <Card
       title={
         <Space>
-          <CheckCircleOutlined style={{ color: "#16a34a" }} />
+          <CheckCircleOutlined />
           <span>Protected Dashboard</span>
         </Space>
       }
-      style={{ borderRadius: 12, borderColor: "#a7f3d0" }}
+      style={{ borderRadius: 12 }}
     >
       <Text style={{ fontSize: 13, color: "#555" }}>
         This component is <strong>protected</strong>. It reads <code>user</code> from AuthContext
         No prop was passed from any parent.
       </Text>
-      <div style={{ marginTop: 16, background: "#f0fdf4", borderRadius: 8, padding: 12 }}>
-        <Text strong style={{ color: "#16a34a" }}>Logged in as: </Text>
-        <Text>{user?.name}</Text> · <Tag color="green">{user?.role}</Tag>
+      <div style={{ marginTop: 16 }}>
+        <Alert type="success" showIcon title={`Logged in as: ${user?.name}`} style={{ borderRadius: 8 }} />
+        <div style={{ marginTop: 8 }}><Tag color="blue">{user?.role}</Tag></div>
       </div>
     </Card>
   );

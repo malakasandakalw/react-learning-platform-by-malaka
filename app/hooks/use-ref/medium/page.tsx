@@ -56,7 +56,7 @@ function StockTracker() {
 
   return (
     <Card title="Stock Price Tracker" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Row gutter={16}>
           <Col span={12}>
             <Statistic
@@ -64,7 +64,7 @@ function StockTracker() {
               value={price}
               prefix="$"
               precision={2}
-              valueStyle={{ color: trend === "up" ? "#16a34a" : trend === "down" ? "#dc2626" : "#374151" }}
+              styles={{ content: { color: trend === "up" ? "#16a34a" : trend === "down" ? "#dc2626" : "#374151" } }}
             />
           </Col>
           <Col span={12}>
@@ -73,7 +73,7 @@ function StockTracker() {
               value={previousPrice ?? "N/A"}
               prefix={previousPrice ? "$" : ""}
               precision={2}
-              valueStyle={{ color: "#9ca3af" }}
+              styles={{ content: { color: "#9ca3af" } }}
             />
           </Col>
         </Row>
@@ -106,20 +106,18 @@ function RenderCounter() {
 
   return (
     <Card title="Render Count vs State Count" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         <Row gutter={16}>
           <Col span={12}>
             <Statistic
               title="State value"
               value={count}
-              valueStyle={{ color: "#4f46e5" }}
             />
           </Col>
           <Col span={12}>
             <Statistic
               title="Total renders"
               value={renderCount.current}
-              valueStyle={{ color: "#7c3aed" }}
             />
           </Col>
         </Row>

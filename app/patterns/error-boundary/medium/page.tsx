@@ -71,43 +71,36 @@ class RetryableErrorBoundary extends Component<
 
     if (this.state.hasError) {
       return (
-        <div
-          style={{
-            background: "#fef2f2",
-            border: "1px solid #fca5a5",
-            borderRadius: 10,
-            padding: 20,
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-            <BugOutlined style={{ color: "#ef4444", fontSize: 18 }} />
-            <Text strong style={{ color: "#7f1d1d", fontSize: 15 }}>
-              Component Error
-            </Text>
-          </div>
-
-          <Text style={{ fontSize: 12, color: "#991b1b", display: "block", marginBottom: 8, fontFamily: "var(--font-geist-mono)" }}>
-            {this.state.error}
-          </Text>
-
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12 }}>
-            {canRetry ? (
-              <Button
-                size="small"
-                icon={<ReloadOutlined />}
-                onClick={this.handleRetry}
-                danger
-              >
-                Retry ({maxRetries - this.state.retries} left)
-              </Button>
-            ) : (
-              <Tag color="red">Max retries ({maxRetries}) reached</Tag>
-            )}
-            <Text type="secondary" style={{ fontSize: 11 }}>
-              Attempts: {this.state.retries}
-            </Text>
-          </div>
-        </div>
+        <Alert
+          type="error"
+          showIcon
+          message="Component Error"
+          description={
+            <div>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, marginBottom: 8 }}>
+                {this.state.error}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                {canRetry ? (
+                  <Button
+                    size="small"
+                    icon={<ReloadOutlined />}
+                    onClick={this.handleRetry}
+                    danger
+                  >
+                    Retry ({maxRetries - this.state.retries} left)
+                  </Button>
+                ) : (
+                  <Tag color="error">Max retries ({maxRetries}) reached</Tag>
+                )}
+                <Text type="secondary" style={{ fontSize: 11 }}>
+                  Attempts: {this.state.retries}
+                </Text>
+              </div>
+            </div>
+          }
+          style={{ borderRadius: 10 }}
+        />
       );
     }
 
@@ -123,23 +116,13 @@ function FlakyDataWidget({ attemptCount }: { attemptCount: number }) {
   }
 
   return (
-    <div
-      style={{
-        background: "#f0fdf4",
-        border: "1px solid #a7f3d0",
-        borderRadius: 8,
-        padding: 20,
-        textAlign: "center",
-      }}
-    >
-      <CheckCircleOutlined style={{ fontSize: 24, color: "#16a34a", marginBottom: 8 }} />
-      <Text strong style={{ color: "#166534", display: "block" }}>
-        Data loaded successfully!
-      </Text>
-      <Text type="secondary" style={{ fontSize: 12 }}>
-        Succeeded on attempt {attemptCount + 1}
-      </Text>
-    </div>
+    <Alert
+      type="success"
+      showIcon
+      message="Data loaded successfully!"
+      description={`Succeeded on attempt ${attemptCount + 1}`}
+      style={{ borderRadius: 8 }}
+    />
   );
 }
 
@@ -203,7 +186,6 @@ export default function ErrorBoundaryMediumPage() {
             <Statistic
               title="Current attempt"
               value={attempt + 1}
-              valueStyle={{ color: "#4f46e5" }}
             />
           </Card>
         </Col>

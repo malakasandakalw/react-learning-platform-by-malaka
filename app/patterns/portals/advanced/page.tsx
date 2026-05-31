@@ -101,7 +101,7 @@ function SmartTooltip({ content, children }: { content: string; children: React.
         onMouseEnter={show}
         onMouseLeave={hide}
         style={{
-          background: "#4f46e5",
+          background: "#1677ff",
           color: "#fff",
           border: "none",
           borderRadius: 8,
@@ -120,7 +120,7 @@ function SmartTooltip({ content, children }: { content: string; children: React.
             position: "absolute",
             top: state.y,
             left: state.x,
-            background: "#1e1b4b",
+            background: "rgba(0,0,0,0.88)",
             color: "#fff",
             padding: "8px 14px",
             borderRadius: 8,
@@ -135,7 +135,7 @@ function SmartTooltip({ content, children }: { content: string; children: React.
           <div style={{
             position: "absolute",
             width: 8, height: 8,
-            background: "#1e1b4b",
+            background: "rgba(0,0,0,0.88)",
             ...ARROW_STYLES[state.placement],
           }} />
         </div>,

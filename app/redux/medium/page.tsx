@@ -67,7 +67,7 @@ export default function ReduxMediumPage() {
       />
 
       {error && (
-        <Alert type="error" message={error} showIcon style={{ marginBottom: 16, borderRadius: 8 }} />
+        <Alert type="error" title={error} showIcon style={{ marginBottom: 16, borderRadius: 8 }} />
       )}
 
       <Row gutter={[24, 24]}>
@@ -89,22 +89,22 @@ export default function ReduxMediumPage() {
             {loading && users.length === 0 ? (
               <div style={{ textAlign: "center", padding: 40 }}><Spin /></div>
             ) : (
-              <List
-                dataSource={users}
-                renderItem={(user) => (
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {users.map((user) => (
                   <List.Item
+                    key={user.id}
                     style={{ cursor: "pointer" }}
                     onClick={() => handleSelectUser(user.id)}
                     actions={[<Tag key="city">{user.address.city}</Tag>]}
                   >
                     <List.Item.Meta
-                      avatar={<Avatar style={{ background: "#b45309" }} icon={<UserOutlined />} />}
+                      avatar={<Avatar icon={<UserOutlined />} />}
                       title={user.name}
                       description={user.email}
                     />
                   </List.Item>
-                )}
-              />
+                ))}
+              </ul>
             )}
           </Card>
         </Col>
@@ -112,24 +112,24 @@ export default function ReduxMediumPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Async Thunk Lifecycle"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>dispatch(fetchUsers())</div>
-              <div style={{ color: "#6b7280" }}>↓ users/fetchAll/pending</div>
-              <div style={{ color: "#6b7280" }}>   loading = true</div>
-              <div style={{ color: "#fbbf24" }}>↓ await getUsers()</div>
-              <div style={{ color: "#4ade80" }}>↓ users/fetchAll/fulfilled</div>
-              <div style={{ color: "#6b7280" }}>   list = payload</div>
-              <div style={{ color: "#6b7280" }}>   loading = false</div>
-              <div style={{ color: "#f87171" }}>↓ (on error) /rejected</div>
-              <div style={{ color: "#6b7280" }}>   error = message</div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc" }}>current state:</div>
-                <div>loading: <span style={{ color: loading ? "#f59e0b" : "#4ade80" }}>{String(loading)}</span></div>
-                <div>users: <span style={{ color: "#e2e8f0" }}>{users.length}</span></div>
-                <div>error: <span style={{ color: error ? "#f87171" : "#4ade80" }}>{error ?? "null"}</span></div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#dcdcaa" }}>dispatch(fetchUsers())</div>
+              <div style={{ color: "#6a9955" }}>↓ users/fetchAll/pending</div>
+              <div style={{ color: "#6a9955" }}>   loading = true</div>
+              <div style={{ color: "#ce9178" }}>↓ await getUsers()</div>
+              <div style={{ color: "#b5cea8" }}>↓ users/fetchAll/fulfilled</div>
+              <div style={{ color: "#d4d4d4" }}>   list = payload</div>
+              <div style={{ color: "#d4d4d4" }}>   loading = false</div>
+              <div style={{ color: "#ce9178" }}>↓ (on error) /rejected</div>
+              <div style={{ color: "#d4d4d4" }}>   error = message</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6" }}>current state:</div>
+                <div>loading: <span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span></div>
+                <div>users: <span style={{ color: "#d4d4d4" }}>{users.length}</span></div>
+                <div>error: <span style={{ color: error ? "#ce9178" : "#b5cea8" }}>{error ?? "null"}</span></div>
               </div>
             </div>
           </Card>

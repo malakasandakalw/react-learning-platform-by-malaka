@@ -46,7 +46,7 @@ export default function ModernHooksIndexPage() {
     <div>
       <div style={{ marginBottom: 40 }}>
         <Title level={1}>Modern React Hooks</Title>
-        <Paragraph style={{ fontSize: 15, color: "#555", maxWidth: 640 }}>
+        <Paragraph style={{ fontSize: 15, maxWidth: 640 }}>
           Introduced in React 18 and 19, these hooks unlock concurrent features:
           keeping your UI fast and responsive even under heavy load.
         </Paragraph>
@@ -57,18 +57,18 @@ export default function ModernHooksIndexPage() {
           <Col xs={24} sm={12} key={hook.name}>
             <Link href={`${hook.path}/easy`} style={{ textDecoration: "none" }}>
               <Card hoverable style={{ borderRadius: 12, height: "100%" }} styles={{ body: { padding: 24 } }}>
-                <Title level={4} style={{ margin: "0 0 8px", fontFamily: "var(--font-geist-mono)", color: "#7c3aed" }}>
+                <Title level={4} style={{ margin: "0 0 8px", fontFamily: "var(--font-mono)" }}>
                   {hook.name}
                 </Title>
-                <Paragraph style={{ color: "#666", fontSize: 13, marginBottom: 16 }}>
+                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>
                   {hook.description}
                 </Paragraph>
-                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12 }}>
-                  <span style={{ color: "#16a34a" }}>● Easy: {hook.easy}</span>
-                  <span style={{ color: "#d97706" }}>● Medium: {hook.medium}</span>
-                  <span style={{ color: "#dc2626" }}>● Advanced: {hook.advanced}</span>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
+                  <span>Easy: {hook.easy}</span>
+                  <span>Medium: {hook.medium}</span>
+                  <span>Advanced: {hook.advanced}</span>
                 </div>
-                <div style={{ marginTop: 16, color: "#7c3aed", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ marginTop: 16, color: "#1677ff", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
                   Start with Easy <ArrowRightOutlined />
                 </div>
               </Card>

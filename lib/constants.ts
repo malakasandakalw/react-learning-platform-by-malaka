@@ -14,9 +14,9 @@ export const LEVEL_LABELS: Record<Level, string> = {
 };
 
 export const LEVEL_COLORS: Record<Level, string> = {
-  easy: "success",
-  medium: "warning",
-  advanced: "error",
+  easy: "default",
+  medium: "blue",
+  advanced: "geekblue",
 };
 
 export const MODULES = {

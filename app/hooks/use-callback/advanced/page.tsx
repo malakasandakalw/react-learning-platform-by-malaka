@@ -94,7 +94,7 @@ function ProductCard({ product }: { product: Product }) {
           <Rate disabled value={product.rating} style={{ fontSize: 11 }} allowHalf />
         </div>
         <div style={{ display: "flex", gap: 12, marginTop: 4 }}>
-          <Text strong style={{ color: "#4f46e5" }}>${product.price}</Text>
+          <Text strong>${product.price}</Text>
           <Text type="success" style={{ fontSize: 12 }}>
             -{product.discountPercentage.toFixed(0)}%
           </Text>
@@ -156,33 +156,33 @@ export default function UseCallbackAdvancedPage() {
         <Col xs={24} lg={9}>
           <Card
             title="Hook Inspector"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>query: </span>
-                <span style={{ color: "#fbbf24" }}>&quot;{query}&quot;</span>
+                <span style={{ color: "#569cd6" }}>query: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{query}&quot;</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>API calls made: </span>
-                <span style={{ color: "#4ade80" }}>{callCount}</span>
+                <span style={{ color: "#569cd6" }}>API calls made: </span>
+                <span style={{ color: "#b5cea8" }}>{callCount}</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>results: </span>
-                <span style={{ color: "#e2e8f0" }}>{results.length}</span>
+                <span style={{ color: "#569cd6" }}>results: </span>
+                <span style={{ color: "#d4d4d4" }}>{results.length}</span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc", marginBottom: 4 }}>search() deps:</div>
-                <code style={{ color: "#4ade80" }}>[]</code>
-                <div style={{ color: "#6b7280", fontSize: 10, marginTop: 4 }}>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6", marginBottom: 4 }}>search() deps:</div>
+                <code style={{ color: "#dcdcaa" }}>[]</code>
+                <div style={{ color: "#6a9955", fontSize: 10, marginTop: 4 }}>
                   stable: safe in useEffect deps
                 </div>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc", marginBottom: 4 }}>debounce effect deps:</div>
-                <code style={{ color: "#fbbf24" }}>[query, search]</code>
-                <div style={{ color: "#6b7280", fontSize: 10, marginTop: 4 }}>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6", marginBottom: 4 }}>debounce effect deps:</div>
+                <code style={{ color: "#b5cea8" }}>[query, search]</code>
+                <div style={{ color: "#6a9955", fontSize: 10, marginTop: 4 }}>
                   search is stable → no infinite loop
                 </div>
               </div>

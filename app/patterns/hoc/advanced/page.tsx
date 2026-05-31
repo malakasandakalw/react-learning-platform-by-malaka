@@ -57,7 +57,7 @@ function withLoadingHoc<P extends object>(WrappedComponent: ComponentType<P>) {
 function withErrorBoundaryHoc<P extends object>(WrappedComponent: ComponentType<P>) {
   function WithError(props: P & { error?: string | null }) {
     const { error, ...rest } = props;
-    if (error) return <Alert type="error" message={error} showIcon style={{ borderRadius: 8 }} />;
+    if (error) return <Alert type="error" title={error} showIcon style={{ borderRadius: 8 }} />;
     return <WrappedComponent {...(rest as P)} />;
   }
   WithError.displayName = `withError(${WrappedComponent.name})`;
@@ -142,21 +142,21 @@ export default function HocAdvancedPage() {
         <Col xs={24} lg={10}>
           <Card
             title="HOC chain"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#7c3aed" }}>// compose() result:</div>
-              <div style={{ color: "#4ade80" }}>withRetry(</div>
-              <div style={{ paddingLeft: 12, color: "#4ade80" }}>withError(</div>
-              <div style={{ paddingLeft: 24, color: "#4ade80" }}>withLoading(</div>
-              <div style={{ paddingLeft: 36, color: "#fbbf24" }}>withLogger(</div>
-              <div style={{ paddingLeft: 48, color: "#e2e8f0" }}>DataDisplay</div>
-              <div style={{ paddingLeft: 36, color: "#fbbf24" }}>)</div>
-              <div style={{ paddingLeft: 24, color: "#4ade80" }}>)</div>
-              <div style={{ paddingLeft: 12, color: "#4ade80" }}>)</div>
-              <div style={{ color: "#4ade80" }}>)</div>
-              <div style={{ marginTop: 8, padding: "6px 10px", background: "#161630", borderRadius: 6 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#6a9955" }}>// compose() result:</div>
+              <div style={{ color: "#569cd6" }}>withRetry(</div>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>withError(</div>
+              <div style={{ paddingLeft: 24, color: "#569cd6" }}>withLoading(</div>
+              <div style={{ paddingLeft: 36, color: "#dcdcaa" }}>withLogger(</div>
+              <div style={{ paddingLeft: 48, color: "#d4d4d4" }}>DataDisplay</div>
+              <div style={{ paddingLeft: 36, color: "#dcdcaa" }}>)</div>
+              <div style={{ paddingLeft: 24, color: "#569cd6" }}>)</div>
+              <div style={{ paddingLeft: 12, color: "#569cd6" }}>)</div>
+              <div style={{ color: "#569cd6" }}>)</div>
+              <div style={{ marginTop: 8, padding: "6px 10px", background: "#252526", borderRadius: 6 }}>
                 <div>state: <Tag style={{ fontSize: 10 }}>{state}</Tag></div>
               </div>
             </div>

@@ -51,10 +51,10 @@ function createSection(name: string, color: string, delayMs: number) {
   };
 }
 
-const DashboardSection = createSection("Dashboard", "#eef2ff", 800);
-const AnalyticsSection = createSection("Analytics", "#f0fdf4", 1600);
-const ReportsSection = createSection("Reports", "#fff7ed", 2400);
-const SettingsSection = createSection("Settings", "#fdf4ff", 400);
+const DashboardSection = createSection("Dashboard", "#f5f5f5", 800);
+const AnalyticsSection = createSection("Analytics", "#f5f5f5", 1600);
+const ReportsSection = createSection("Reports", "#f5f5f5", 2400);
+const SettingsSection = createSection("Settings", "#f5f5f5", 400);
 
 const SECTIONS = [
   { key: "dashboard", label: "Dashboard", Component: DashboardSection, delay: 800 },

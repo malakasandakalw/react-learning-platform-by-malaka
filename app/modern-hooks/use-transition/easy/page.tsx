@@ -94,25 +94,25 @@ export default function UseTransitionEasyPage() {
         <Col xs={24} lg={8}>
           <Card
             title="Transition State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>activeTab: </span>
-                <span style={{ color: "#fbbf24" }}>&quot;{activeTab}&quot;</span>
+                <span style={{ color: "#569cd6" }}>activeTab: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{activeTab}&quot;</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>isPending: </span>
-                <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>
                   {String(isPending)}
                 </span>
               </div>
-              <div style={{ marginTop: 12, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc", fontSize: 11 }}>Without useTransition:</div>
-                <div style={{ color: "#f87171", fontSize: 11 }}>UI freezes during render</div>
-                <div style={{ color: "#a5b4fc", fontSize: 11, marginTop: 8 }}>With useTransition:</div>
-                <div style={{ color: "#4ade80", fontSize: 11 }}>Buttons stay clickable</div>
+              <div style={{ marginTop: 12, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6", fontSize: 11 }}>Without useTransition:</div>
+                <div style={{ color: "#ce9178", fontSize: 11 }}>UI freezes during render</div>
+                <div style={{ color: "#569cd6", fontSize: 11, marginTop: 8 }}>With useTransition:</div>
+                <div style={{ color: "#b5cea8", fontSize: 11 }}>Buttons stay clickable</div>
               </div>
             </div>
           </Card>

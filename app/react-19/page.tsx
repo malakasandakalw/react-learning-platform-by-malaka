@@ -39,9 +39,9 @@ export default function React19IndexPage() {
       <div style={{ marginBottom: 40 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
           <Title level={1} style={{ margin: 0 }}>React 19 Hooks</Title>
-          <Tag color="green" style={{ fontSize: 12, fontWeight: 600 }}>React 19.2.4</Tag>
+          <Tag style={{ fontSize: 12, fontWeight: 600 }}>React 19.2.4</Tag>
         </div>
-        <Paragraph style={{ fontSize: 15, color: "#555", maxWidth: 640 }}>
+        <Paragraph style={{ fontSize: 15, maxWidth: 640 }}>
           These hooks are exclusive to React 19 and require no additional libraries.
           They represent a shift in how React handles async, forms, and context reading.
         </Paragraph>
@@ -53,18 +53,18 @@ export default function React19IndexPage() {
             <Link href={`${hook.path}/easy`} style={{ textDecoration: "none" }}>
               <Card hoverable style={{ borderRadius: 12, height: "100%" }} styles={{ body: { padding: 24 } }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                  <RocketOutlined style={{ color: "#059669" }} />
-                  <Title level={4} style={{ margin: 0, fontFamily: "var(--font-geist-mono)", color: "#059669" }}>
+                  <RocketOutlined />
+                  <Title level={4} style={{ margin: 0, fontFamily: "var(--font-mono)" }}>
                     {hook.name}
                   </Title>
                 </div>
-                <Paragraph style={{ color: "#555", fontSize: 13, marginBottom: 16 }}>{hook.description}</Paragraph>
-                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12 }}>
-                  <span style={{ color: "#16a34a" }}>● Easy: {hook.easy}</span>
-                  <span style={{ color: "#d97706" }}>● Medium: {hook.medium}</span>
-                  <span style={{ color: "#dc2626" }}>● Advanced: {hook.advanced}</span>
+                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>{hook.description}</Paragraph>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
+                  <span>Easy: {hook.easy}</span>
+                  <span>Medium: {hook.medium}</span>
+                  <span>Advanced: {hook.advanced}</span>
                 </div>
-                <div style={{ marginTop: 16, color: "#059669", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ marginTop: 16, color: "#1677ff", fontWeight: 600, fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
                   Start with Easy <ArrowRightOutlined />
                 </div>
               </Card>

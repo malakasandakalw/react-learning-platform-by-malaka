@@ -143,7 +143,7 @@ export default function UseOptimisticAdvancedPage() {
                   onChange={setForceFail}
                   checkedChildren="ON"
                   unCheckedChildren="OFF"
-                  style={{ background: forceFail ? "#ef4444" : undefined }}
+                  danger={forceFail}
                 />
               </Space>
             }
@@ -153,17 +153,17 @@ export default function UseOptimisticAdvancedPage() {
               <Alert
                 type="error"
                 showIcon
-                message={lastError}
+                title={lastError}
                 style={{ marginBottom: 12, borderRadius: 8 }}
                 closable
                 onClose={() => setLastError(null)}
               />
             )}
 
-            <List
-              dataSource={optimisticComments}
-              renderItem={(comment) => (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {optimisticComments.map((comment) => (
                 <List.Item
+                  key={comment.id}
                   actions={[
                     <Button
                       key="like"
@@ -177,53 +177,53 @@ export default function UseOptimisticAdvancedPage() {
                       {comment.likes}
                     </Button>,
                     comment.status === "failed" ? (
-                      <Tag key="status" color="red">Rolled back</Tag>
+                      <Tag key="status" color="error">Rolled back</Tag>
                     ) : comment.status === "pending" ? (
-                      <Tag key="status" color="orange">Saving...</Tag>
+                      <Tag key="status" color="warning">Saving...</Tag>
                     ) : null,
                   ].filter(Boolean)}
                 >
                   <List.Item.Meta
-                    avatar={<Avatar style={{ background: "#4f46e5" }}>{comment.author[0]}</Avatar>}
+                    avatar={<Avatar>{comment.author[0]}</Avatar>}
                     title={comment.author}
                     description={comment.body}
                   />
                 </List.Item>
-              )}
-            />
+              ))}
+            </ul>
           </Card>
         </Col>
 
         <Col xs={24} lg={8}>
           <Card
             title="Rollback Stats"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
             <Row gutter={[0, 16]}>
               <Col span={12}>
                 <Statistic
-                  title={<span style={{ color: "#6b7280", fontSize: 11 }}>successes</span>}
+                  title={<span style={{ color: "#6a9955", fontSize: 11 }}>successes</span>}
                   value={successes}
-                  valueStyle={{ color: "#4ade80" }}
+                  styles={{ content: { color: "#b5cea8" } }}
                 />
               </Col>
               <Col span={12}>
                 <Statistic
-                  title={<span style={{ color: "#6b7280", fontSize: 11 }}>rollbacks</span>}
+                  title={<span style={{ color: "#6a9955", fontSize: 11 }}>rollbacks</span>}
                   value={failures}
-                  valueStyle={{ color: "#f87171" }}
+                  styles={{ content: { color: "#ce9178" } }}
                 />
               </Col>
             </Row>
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0", marginTop: 12 }}>
-              <div><span style={{ color: "#7c3aed" }}>forceFail: </span><span style={{ color: forceFail ? "#f87171" : "#4ade80" }}>{String(forceFail)}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>isPending: </span><span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span></div>
-              <div style={{ marginTop: 8, padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 10 }}>
-                <div style={{ color: "#a5b4fc" }}>When fail mode ON:</div>
-                <div style={{ color: "#6b7280" }}>Every like call throws</div>
-                <div style={{ color: "#6b7280" }}>Optimistic state reverts</div>
-                <div style={{ color: "#6b7280" }}>Real state unchanged ✓</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4", marginTop: 12 }}>
+              <div><span style={{ color: "#569cd6" }}>forceFail: </span><span style={{ color: forceFail ? "#ce9178" : "#b5cea8" }}>{String(forceFail)}</span></div>
+              <div><span style={{ color: "#569cd6" }}>isPending: </span><span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span></div>
+              <div style={{ marginTop: 8, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+                <div style={{ color: "#569cd6" }}>When fail mode ON:</div>
+                <div style={{ color: "#6a9955" }}>Every like call throws</div>
+                <div style={{ color: "#6a9955" }}>Optimistic state reverts</div>
+                <div style={{ color: "#6a9955" }}>Real state unchanged ✓</div>
               </div>
             </div>
           </Card>

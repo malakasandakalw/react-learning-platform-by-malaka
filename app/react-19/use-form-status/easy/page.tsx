@@ -41,7 +41,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       style={{
-        background: pending ? "#9ca3af" : "#059669",
+        background: pending ? "#9ca3af" : "#1677ff",
         color: "#fff",
         border: "none",
         borderRadius: 8,
@@ -72,8 +72,8 @@ function StatusBanner() {
   return (
     <div
       style={{
-        background: "#f0fdf4",
-        border: "1px solid #a7f3d0",
+        background: "#e6f4ff",
+        border: "1px solid #91caff",
         borderRadius: 8,
         padding: "8px 12px",
         display: "flex",
@@ -81,8 +81,8 @@ function StatusBanner() {
         gap: 8,
       }}
     >
-      <LoadingOutlined style={{ color: "#059669" }} />
-      <Text style={{ fontSize: 12, color: "#059669" }}>
+      <LoadingOutlined style={{ color: "#1677ff" }} />
+      <Text style={{ fontSize: 12, color: "#1677ff" }}>
         Submitting: &quot;{data?.get("message")?.toString()?.slice(0, 30)}&quot;...
       </Text>
     </div>
@@ -123,7 +123,7 @@ export default function UseFormStatusEasyPage() {
             {result && (
               <Alert
                 type="success"
-                message={result}
+                title={result}
                 showIcon
                 style={{ marginBottom: 16, borderRadius: 8 }}
                 closable
@@ -133,7 +133,7 @@ export default function UseFormStatusEasyPage() {
 
             {/* The form: SubmitButton and StatusBanner are children */}
             <form onSubmit={handleSubmit}>
-              <Space direction="vertical" style={{ width: "100%" }} size={12}>
+              <Space orientation="vertical" style={{ width: "100%" }} size={12}>
                 <div>
                   <label style={{ display: "block", marginBottom: 4, fontSize: 13, fontWeight: 500 }}>Name</label>
                   <Input name="name" placeholder="Your name" required />
@@ -156,23 +156,23 @@ export default function UseFormStatusEasyPage() {
         <Col xs={24} lg={11}>
           <Card
             title="useFormStatus rules"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div style={{ color: "#4ade80" }}>// ✓ Works: inside a form:</div>
-              <div style={{ color: "#6b7280" }}>{"<form>"}</div>
-              <div style={{ color: "#6b7280", paddingLeft: 12 }}>{"<SubmitButton />"}</div>
-              <div style={{ color: "#6b7280" }}>{"</form>"}</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div style={{ color: "#b5cea8" }}>// ✓ Works: inside a form:</div>
+              <div style={{ color: "#ce9178" }}>{"<form>"}</div>
+              <div style={{ color: "#ce9178", paddingLeft: 12 }}>{"<SubmitButton />"}</div>
+              <div style={{ color: "#ce9178" }}>{"</form>"}</div>
               <br />
-              <div style={{ color: "#f87171" }}>// ✗ Fails: not inside a form:</div>
-              <div style={{ color: "#6b7280" }}>{"<SubmitButton />"} <span style={{ color: "#f87171" }}>← pending always false</span></div>
+              <div style={{ color: "#6a9955" }}>// ✗ Fails: not inside a form:</div>
+              <div style={{ color: "#d4d4d4" }}>{"<SubmitButton />"} <span style={{ color: "#6a9955" }}>← pending always false</span></div>
               <br />
-              <div style={{ color: "#7c3aed" }}>// Returns:</div>
-              <div>{"{ pending: boolean,"}</div>
-              <div>{"  data: FormData | null,"}</div>
-              <div>{"  method: string | null,"}</div>
-              <div>{"  action: fn | string | null }"}</div>
+              <div style={{ color: "#6a9955" }}>// Returns:</div>
+              <div style={{ color: "#d4d4d4" }}>{"{ pending: boolean,"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"  data: FormData | null,"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"  method: string | null,"}</div>
+              <div style={{ color: "#d4d4d4" }}>{"  action: fn | string | null }"}</div>
             </div>
           </Card>
         </Col>

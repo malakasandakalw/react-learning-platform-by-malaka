@@ -77,15 +77,15 @@ export default function RenderPropsEasyPage() {
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 16 }}>
               The Hover component tracks hover state. The consumer decides what to render.
             </Text>
-            <Space direction="vertical" style={{ width: "100%" }} size={12}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={12}>
               <Hover>
                 {(isHovered) => (
                   <div
                     style={{
                       padding: 16,
                       borderRadius: 8,
-                      background: isHovered ? "#4f46e5" : "#f8f9fc",
-                      color: isHovered ? "#fff" : "#374151",
+                      background: isHovered ? "#1677ff" : "#f5f5f5",
+                      color: isHovered ? "#fff" : "rgba(0,0,0,0.88)",
                       transition: "all 0.2s",
                       textAlign: "center",
                       cursor: "pointer",
@@ -104,7 +104,7 @@ export default function RenderPropsEasyPage() {
                         width: 40,
                         height: 40,
                         borderRadius: "50%",
-                        background: isHovered ? "#16a34a" : "#d1d5db",
+                        background: isHovered ? "#1677ff" : "#d9d9d9",
                         transition: "background 0.2s",
                       }}
                     />
@@ -122,7 +122,7 @@ export default function RenderPropsEasyPage() {
             <Text type="secondary" style={{ fontSize: 13, display: "block", marginBottom: 16 }}>
               The Toggle component manages on/off state. Two consumers render it differently.
             </Text>
-            <Space direction="vertical" style={{ width: "100%" }} size={16}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={16}>
               <Toggle
                 render={({ on, toggle }) => (
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -139,10 +139,10 @@ export default function RenderPropsEasyPage() {
                     style={{
                       padding: 16,
                       borderRadius: 8,
-                      background: on ? "#fef3c7" : "#f3f4f6",
+                      background: "#ffffff",
                       cursor: "pointer",
                       textAlign: "center",
-                      border: `2px solid ${on ? "#fbbf24" : "#e5e7eb"}`,
+                      border: `2px solid ${on ? "#1677ff" : "#d9d9d9"}`,
                       transition: "all 0.2s",
                     }}
                   >

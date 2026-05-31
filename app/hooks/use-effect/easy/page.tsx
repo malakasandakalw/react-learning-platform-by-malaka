@@ -56,7 +56,7 @@ export default function UseEffectEasyPage() {
       />
 
       {error && (
-        <Alert type="error" message={error} showIcon style={{ marginBottom: 24, borderRadius: 8 }} />
+        <Alert type="error" title={error} showIcon style={{ marginBottom: 24, borderRadius: 8 }} />
       )}
 
       <Row gutter={[24, 24]}>
@@ -71,17 +71,11 @@ export default function UseEffectEasyPage() {
                 <div style={{ marginTop: 12, color: "#9ca3af" }}>Fetching from API...</div>
               </div>
             ) : (
-              <List
-                dataSource={users}
-                renderItem={(user) => (
-                  <List.Item>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {users.map((user) => (
+                  <List.Item key={user.id}>
                     <List.Item.Meta
-                      avatar={
-                        <Avatar
-                          style={{ background: "#4f46e5" }}
-                          icon={<UserOutlined />}
-                        />
-                      }
+                      avatar={<Avatar icon={<UserOutlined />} />}
                       title={user.name}
                       description={
                         <span>
@@ -92,8 +86,8 @@ export default function UseEffectEasyPage() {
                       }
                     />
                   </List.Item>
-                )}
-              />
+                ))}
+              </ul>
             )}
           </Card>
         </Col>
@@ -101,28 +95,28 @@ export default function UseEffectEasyPage() {
         <Col xs={24} lg={8}>
           <Card
             title="Effect Timeline"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
-              <div style={{ color: "#6b7280" }}>1. Component renders</div>
-              <div style={{ color: "#6b7280" }}>2. DOM is updated</div>
-              <div style={{ color: "#4ade80" }}>3. useEffect fires ← here</div>
-              <div style={{ color: "#f59e0b" }}>4. fetch() called</div>
-              <div style={{ color: "#f59e0b" }}>5. setUsers() called</div>
-              <div style={{ color: "#6b7280" }}>6. Re-render with data</div>
-              <div style={{ color: "#6b7280", marginTop: 12 }}>
-                <span style={{ color: "#7c3aed" }}>deps: </span>[] = never re-runs
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
+              <div style={{ color: "#d4d4d4" }}>1. Component renders</div>
+              <div style={{ color: "#d4d4d4" }}>2. DOM is updated</div>
+              <div style={{ color: "#b5cea8" }}>3. useEffect fires ← here</div>
+              <div style={{ color: "#dcdcaa" }}>4. fetch() called</div>
+              <div style={{ color: "#dcdcaa" }}>5. setUsers() called</div>
+              <div style={{ color: "#d4d4d4" }}>6. Re-render with data</div>
+              <div style={{ color: "#d4d4d4", marginTop: 12 }}>
+                <span style={{ color: "#569cd6" }}>deps: </span>[] = never re-runs
               </div>
-              <div style={{ marginTop: 16, padding: "8px 12px", background: "#161630", borderRadius: 6 }}>
-                <div style={{ color: "#a5b4fc" }}>fetch status:</div>
+              <div style={{ marginTop: 16, padding: "8px 12px", background: "#252526", borderRadius: 6 }}>
+                <div style={{ color: "#569cd6" }}>fetch status:</div>
                 <div>
                   {loading ? (
-                    <span style={{ color: "#f59e0b" }}>● loading</span>
+                    <span style={{ color: "#ce9178" }}>● loading</span>
                   ) : error ? (
-                    <span style={{ color: "#f87171" }}>● error</span>
+                    <span style={{ color: "#ce9178" }}>● error</span>
                   ) : (
-                    <span style={{ color: "#4ade80" }}>● {users.length} users loaded</span>
+                    <span style={{ color: "#b5cea8" }}>● {users.length} users loaded</span>
                   )}
                 </div>
               </div>

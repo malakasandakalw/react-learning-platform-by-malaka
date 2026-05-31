@@ -140,11 +140,6 @@ export const NAV_ITEMS: NavItem[] = [
     children: makeLevels("/redux"),
   },
   {
-    key: "decision-guide",
-    label: "When to use what?",
-    path: "/decision-guide",
-  },
-  {
     key: "patterns",
     label: "Patterns",
     path: "/patterns",
@@ -186,5 +181,11 @@ export const NAV_ITEMS: NavItem[] = [
         children: makeLevels("/patterns/compound-components"),
       },
     ],
+  },
+
+  {
+    key: "decision-guide",
+    label: "When to use what?",
+    path: "/decision-guide",
   },
 ];

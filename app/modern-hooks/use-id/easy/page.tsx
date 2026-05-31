@@ -84,18 +84,18 @@ function IdInspector() {
   return (
     <Card
       title="Generated IDs"
-      style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-      styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+      style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+      styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
     >
-      <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2, color: "#e2e8f0" }}>
-        <div style={{ color: "#7c3aed" }}>// Three useId() calls in this component:</div>
-        <div>id1: <span style={{ color: "#fbbf24" }}>&quot;{id1}&quot;</span></div>
-        <div>id2: <span style={{ color: "#fbbf24" }}>&quot;{id2}&quot;</span></div>
-        <div>id3: <span style={{ color: "#fbbf24" }}>&quot;{id3}&quot;</span></div>
-        <div style={{ marginTop: 8, padding: "8px 12px", background: "#161630", borderRadius: 6, fontSize: 11 }}>
-          <div style={{ color: "#a5b4fc" }}>Pattern: :r{`{componentPosition}`}:</div>
-          <div style={{ color: "#6b7280" }}>Stable across server + client</div>
-          <div style={{ color: "#6b7280" }}>Never use for list keys!</div>
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2, color: "#d4d4d4" }}>
+        <div style={{ color: "#569cd6" }}>// Three useId() calls in this component:</div>
+        <div>id1: <span style={{ color: "#ce9178" }}>&quot;{id1}&quot;</span></div>
+        <div>id2: <span style={{ color: "#ce9178" }}>&quot;{id2}&quot;</span></div>
+        <div>id3: <span style={{ color: "#ce9178" }}>&quot;{id3}&quot;</span></div>
+        <div style={{ marginTop: 8, padding: "8px 12px", background: "#2d2d2d", borderRadius: 6, fontSize: 11 }}>
+          <div style={{ color: "#569cd6" }}>Pattern: :r{`{componentPosition}`}:</div>
+          <div style={{ color: "#6a9955" }}>Stable across server + client</div>
+          <div style={{ color: "#6a9955" }}>Never use for list keys!</div>
         </div>
       </div>
     </Card>
@@ -123,10 +123,10 @@ export default function UseIdEasyPage() {
             <Alert
               type="info"
               showIcon
-              message="Inspect the HTML: each label's htmlFor matches its input's id, linked by useId"
+              title="Inspect the HTML: each label's htmlFor matches its input's id, linked by useId"
               style={{ marginBottom: 20, borderRadius: 8 }}
             />
-            <Space direction="vertical" style={{ width: "100%" }} size={20}>
+            <Space orientation="vertical" style={{ width: "100%" }} size={20}>
               {/* Each LabeledInput instance calls useId internally and all get unique IDs */}
               <LabeledInput
                 label="Full Name"

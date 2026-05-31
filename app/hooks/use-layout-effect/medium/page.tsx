@@ -54,7 +54,7 @@ function Tooltip({
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
         style={{
-          background: "#4f46e5",
+          background: "#1677ff",
           color: "#fff",
           border: "none",
           borderRadius: 8,
@@ -74,8 +74,8 @@ function Tooltip({
             position: "fixed",
             top: pos.top,
             left: pos.left,
-            background: "#1e1b4b",
-            color: "#fff",
+            background: "#e6f4ff",
+            color: "rgba(0,0,0,0.88)",
             padding: "6px 12px",
             borderRadius: 6,
             fontSize: 12,
@@ -94,7 +94,7 @@ function Tooltip({
               transform: "translateX(-50%)",
               width: 8,
               height: 8,
-              background: "#1e1b4b",
+              background: "#e6f4ff",
               rotate: "45deg",
             }}
           />
@@ -117,21 +117,21 @@ function FlickerDemo() {
 
       <div
         style={{
-          background: "#fef3c7",
-          border: "1px solid #fbbf24",
+          background: "#1e1e1e",
+          border: "none",
           borderRadius: 8,
           padding: 16,
-          fontFamily: "var(--font-geist-mono)",
+          fontFamily: "var(--font-mono)",
           fontSize: 12,
           lineHeight: 2,
         }}
       >
-        <div style={{ color: "#92400e" }}>// useEffect: one frame flicker:</div>
-        <div>Frame 1: tooltip renders at top=0, left=0 👁️</div>
-        <div>Frame 2: effect runs, position computed</div>
-        <div>Frame 3: re-render at correct position</div>
-        <div style={{ marginTop: 8, color: "#dc2626" }}>→ User sees a jump</div>
-        <div style={{ marginTop: 8, color: "#16a34a" }}>
+        <div style={{ color: "#6a9955" }}>// useEffect: one frame flicker:</div>
+        <div style={{ color: "#d4d4d4" }}>Frame 1: tooltip renders at top=0, left=0 👁️</div>
+        <div style={{ color: "#d4d4d4" }}>Frame 2: effect runs, position computed</div>
+        <div style={{ color: "#d4d4d4" }}>Frame 3: re-render at correct position</div>
+        <div style={{ marginTop: 8, color: "#ce9178" }}>→ User sees a jump</div>
+        <div style={{ marginTop: 8, color: "#b5cea8" }}>
           // useLayoutEffect: no flicker:<br />
           Frame 1: effect runs before paint<br />
           Frame 1: tooltip renders at correct position<br />

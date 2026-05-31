@@ -110,10 +110,10 @@ export default function UseReducerEasyPage() {
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={14}>
           <Card style={{ borderRadius: 12 }}>
-            <Space direction="vertical" align="center" style={{ width: "100%" }} size={20}>
+            <Space orientation="vertical" align="center" style={{ width: "100%" }} size={20}>
               <Statistic
                 value={state.count}
-                valueStyle={{ fontSize: 72, color: "#4f46e5" }}
+                styles={{ content: { fontSize: 72 } }}
               />
 
               <Space>
@@ -154,7 +154,7 @@ export default function UseReducerEasyPage() {
                     <Tag
                       key={s}
                       style={{ cursor: "pointer", fontWeight: state.step === s ? 700 : 400 }}
-                      color={state.step === s ? "purple" : "default"}
+                      color={state.step === s ? "blue" : "default"}
                       onClick={() => dispatch({ type: "SET_STEP", payload: s })}
                     >
                       {s}
@@ -169,25 +169,25 @@ export default function UseReducerEasyPage() {
         <Col xs={24} lg={10}>
           <Card
             title="Dispatch Log"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>state.count: </span>
-                <span style={{ color: "#4ade80" }}>{state.count}</span>
+                <span style={{ color: "#569cd6" }}>state.count: </span>
+                <span style={{ color: "#b5cea8" }}>{state.count}</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>state.step: </span>
-                <span style={{ color: "#fbbf24" }}>{state.step}</span>
+                <span style={{ color: "#569cd6" }}>state.step: </span>
+                <span style={{ color: "#ce9178" }}>{state.step}</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>history: </span>
-                <span style={{ color: "#e2e8f0" }}>
+                <span style={{ color: "#569cd6" }}>history: </span>
+                <span style={{ color: "#d4d4d4" }}>
                   [{state.history.slice(-5).join(", ")}{state.history.length > 5 ? "..." : ""}]
                 </span>
               </div>
-              <div style={{ marginTop: 12, color: "#6b7280", fontSize: 11 }}>
+              <div style={{ marginTop: 12, color: "#6a9955", fontSize: 11 }}>
                 Dispatch an action to see the state update
               </div>
             </div>

@@ -81,20 +81,19 @@ export default function RenderPropsMediumPage() {
               url={`${API_URLS.jsonPlaceholder}/users`}
               render={({ data, loading, error }) => {
                 if (loading) return <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>;
-                if (error) return <Alert type="error" message={error} showIcon />;
+                if (error) return <Alert type="error" title={error} showIcon />;
                 return (
-                  <List
-                    dataSource={data?.slice(0, 4) ?? []}
-                    renderItem={(user) => (
-                      <List.Item>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {(data?.slice(0, 4) ?? []).map((user) => (
+                      <List.Item key={user.id}>
                         <List.Item.Meta
-                          avatar={<Avatar style={{ background: "#4f46e5" }} icon={<UserOutlined />} />}
+                          avatar={<Avatar icon={<UserOutlined />} />}
                           title={user.name}
                           description={user.email}
                         />
                       </List.Item>
-                    )}
-                  />
+                    ))}
+                  </ul>
                 );
               }}
             />
@@ -120,7 +119,7 @@ export default function RenderPropsMediumPage() {
               url={`${API_URLS.jsonPlaceholder}/users/${userId}/posts`}
               render={({ data, loading, error }) => {
                 if (loading) return <div style={{ textAlign: "center", padding: 32 }}><Spin /></div>;
-                if (error) return <Alert type="error" message={error} showIcon />;
+                if (error) return <Alert type="error" title={error} showIcon />;
                 return (
                   <div>
                     {data?.slice(0, 4).map((post) => (

@@ -62,7 +62,7 @@ export default function HooksIndexPage() {
     <div>
       <div style={{ marginBottom: 40 }}>
         <Title level={1}>Core React Hooks</Title>
-        <Paragraph style={{ fontSize: 15, color: "#555", maxWidth: 640 }}>
+        <Paragraph style={{ fontSize: 15, maxWidth: 640 }}>
           These are the hooks you will use every single day. Start with Easy to
           understand the concept, then work through Medium and Advanced to see how
           it behaves in real-world patterns.
@@ -75,31 +75,24 @@ export default function HooksIndexPage() {
             <Link href={`${hook.path}/easy`} style={{ textDecoration: "none" }}>
               <Card
                 hoverable
-                style={{ borderRadius: 12, height: "100%" }}
-                styles={{ body: { padding: 24 } }}
+                style={{ height: "100%" }}
+                styles={{ body: { padding: 20 } }}
               >
-                <Title
-                  level={4}
-                  style={{
-                    margin: "0 0 8px",
-                    fontFamily: "var(--font-geist-mono)",
-                    color: "#4f46e5",
-                  }}
-                >
+                <Title level={5}>
                   {hook.name}
                 </Title>
-                <Paragraph style={{ color: "#666", fontSize: 13, marginBottom: 16 }}>
+                <Paragraph style={{ fontSize: 13, marginBottom: 16 }}>
                   {hook.description}
                 </Paragraph>
-                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12 }}>
-                  <span style={{ color: "#16a34a" }}>● Easy: {hook.easy}</span>
-                  <span style={{ color: "#d97706" }}>● Medium: {hook.medium}</span>
-                  <span style={{ color: "#dc2626" }}>● Advanced: {hook.advanced}</span>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 12, color: "rgba(0,0,0,0.65)" }}>
+                  <span>Easy: {hook.easy}</span>
+                  <span>Medium: {hook.medium}</span>
+                  <span>Advanced: {hook.advanced}</span>
                 </div>
                 <div
                   style={{
                     marginTop: 16,
-                    color: "#4f46e5",
+                    color: "#1677ff",
                     fontWeight: 600,
                     fontSize: 12,
                     display: "flex",

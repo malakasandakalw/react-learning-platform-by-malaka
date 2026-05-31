@@ -153,25 +153,25 @@ export default function UseMemoMediumPage() {
         <Col xs={24} lg={7}>
           <Card
             title="Memo Stats"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none", borderRadius: 8 }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2 }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2 }}>
               <div>
-                <span style={{ color: "#7c3aed" }}>total Pokémon: </span>
-                <span style={{ color: "#e2e8f0" }}>{pokemon.length}</span>
+                <span style={{ color: "#569cd6" }}>total Pokémon: </span>
+                <span style={{ color: "#d4d4d4" }}>{pokemon.length}</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>filtered: </span>
-                <span style={{ color: "#4ade80" }}>{filteredAndSorted.length}</span>
+                <span style={{ color: "#569cd6" }}>filtered: </span>
+                <span style={{ color: "#ce9178" }}>{filteredAndSorted.length}</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>filter+sort ran: </span>
-                <span style={{ color: "#fbbf24" }}>{computeCount}x</span>
+                <span style={{ color: "#569cd6" }}>filter+sort ran: </span>
+                <span style={{ color: "#b5cea8" }}>{computeCount}x</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>unrelated clicks: </span>
-                <span style={{ color: "#e2e8f0" }}>{counter}</span>
+                <span style={{ color: "#569cd6" }}>unrelated clicks: </span>
+                <span style={{ color: "#d4d4d4" }}>{counter}</span>
               </div>
             </div>
 

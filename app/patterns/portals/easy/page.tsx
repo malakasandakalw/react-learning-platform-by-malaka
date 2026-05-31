@@ -165,14 +165,14 @@ export default function PortalsEasyPage() {
       </Row>
 
       <Card
-        style={{ marginTop: 24, borderRadius: 12, background: "#0f0f23", border: "none" }}
-        styles={{ body: { padding: 16 } }}
+        style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
+        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
       >
-        <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-          <div style={{ color: "#7c3aed" }}>// createPortal syntax:</div>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+          <div style={{ color: "#6a9955" }}>// createPortal syntax:</div>
           <div>return createPortal(</div>
-          <div style={{ paddingLeft: 12, color: "#4ade80" }}>{"<Modal>...</Modal>,"}</div>
-          <div style={{ paddingLeft: 12, color: "#fbbf24" }}>document.body</div>
+          <div style={{ paddingLeft: 12, color: "#569cd6" }}>{"<Modal>...</Modal>,"}</div>
+          <div style={{ paddingLeft: 12, color: "#ce9178" }}>document.body</div>
           <div>);</div>
         </div>
       </Card>

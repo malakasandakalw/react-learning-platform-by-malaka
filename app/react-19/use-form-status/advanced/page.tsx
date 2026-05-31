@@ -52,10 +52,10 @@ function FieldStatus() {
   const { pending, data } = useFormStatus();
 
   return (
-    <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#374151" }}>
+    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#374151" }}>
       <div>pending: <Tag color={pending ? "orange" : "default"}>{String(pending)}</Tag></div>
-      <div>data.title: <span style={{ color: "#4f46e5" }}>&quot;{data?.get("title")?.toString() ?? ""}&quot;</span></div>
-      <div>data.body: <span style={{ color: "#4f46e5" }}>&quot;{(data?.get("body")?.toString() ?? "").slice(0, 20)}&quot;</span></div>
+      <div>data.title: <span style={{ color: "#1677ff" }}>&quot;{data?.get("title")?.toString() ?? ""}&quot;</span></div>
+      <div>data.body: <span style={{ color: "#1677ff" }}>&quot;{(data?.get("body")?.toString() ?? "").slice(0, 20)}&quot;</span></div>
     </div>
   );
 }
@@ -96,7 +96,7 @@ function ActionButton() {
       style={{
         width: "100%",
         padding: "10px 0",
-        background: pending ? "#6b7280" : "#059669",
+        background: pending ? "#6b7280" : "#1677ff",
         color: "#fff",
         border: "none",
         borderRadius: 8,
@@ -142,15 +142,15 @@ export default function UseFormStatusAdvancedPage() {
         <Col xs={24} lg={14}>
           <Card title="Post Form (React 19 pattern)" style={{ borderRadius: 12 }}>
             {result.status === "success" && (
-              <Alert type="success" message={result.message} showIcon icon={<CheckCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
+              <Alert type="success" title={result.message} showIcon icon={<CheckCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
             )}
             {result.status === "error" && (
-              <Alert type="error" message={result.message} showIcon icon={<CloseCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
+              <Alert type="error" title={result.message} showIcon icon={<CloseCircleOutlined />} style={{ marginBottom: 12, borderRadius: 8 }} />
             )}
 
             {/* form action={dispatch}: useFormStatus inside children reads this */}
             <form action={dispatch}>
-              <Space direction="vertical" style={{ width: "100%" }} size={14}>
+              <Space orientation="vertical" style={{ width: "100%" }} size={14}>
                 <SmartInput name="title" label="Post Title" />
                 <SmartInput name="body" label="Post Body" multiline />
                 <ActionButton />
@@ -160,7 +160,7 @@ export default function UseFormStatusAdvancedPage() {
         </Col>
 
         <Col xs={24} lg={10}>
-          <Space direction="vertical" style={{ width: "100%" }} size={16}>
+          <Space orientation="vertical" style={{ width: "100%" }} size={16}>
             <Card title="Live Form Status" style={{ borderRadius: 12, border: "1px solid #e0e7ff" }}>
               {/* FieldStatus must be INSIDE the form to read its status */}
               {/* We show it here for visibility. In real use it would be inside the form. */}
@@ -171,7 +171,7 @@ export default function UseFormStatusAdvancedPage() {
                 <Text type="secondary" style={{ fontSize: 11, display: "block", marginBottom: 8 }}>
                   Form status from useFormStatus:
                 </Text>
-                <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12 }}>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
                   <div>isPending: <Tag color={isPending ? "orange" : "default"}>{String(isPending)}</Tag></div>
                   <div>status: <Tag color={result.status === "success" ? "success" : result.status === "error" ? "error" : "default"}>{result.status}</Tag></div>
                 </div>
@@ -182,7 +182,6 @@ export default function UseFormStatusAdvancedPage() {
               <Statistic
                 title="Posts submitted this session"
                 value={result.count}
-                valueStyle={{ color: "#059669" }}
               />
             </Card>
           </Space>

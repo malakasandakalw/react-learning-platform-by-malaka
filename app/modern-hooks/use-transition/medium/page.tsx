@@ -90,24 +90,28 @@ export default function UseTransitionMediumPage() {
                   <Text type="secondary">Updating results...</Text>
                 </div>
               ) : (
-                <List
-                  dataSource={results}
-                  locale={{ emptyText: searchQuery ? "No users found" : "Start typing to search" }}
-                  renderItem={(user) => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar style={{ background: "#7c3aed" }} icon={<UserOutlined />} />}
-                        title={user.name}
-                        description={
-                          <span>
-                            <Text type="secondary">{user.email}</Text>
-                            {" · "}<Tag>{user.address.city}</Tag>
-                          </span>
-                        }
-                      />
-                    </List.Item>
-                  )}
-                />
+                {results.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "32px 0", color: "#9ca3af" }}>
+                    {searchQuery ? "No users found" : "Start typing to search"}
+                  </div>
+                ) : (
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                    {results.map((user) => (
+                      <List.Item key={user.id}>
+                        <List.Item.Meta
+                          avatar={<Avatar icon={<UserOutlined />} />}
+                          title={user.name}
+                          description={
+                            <span>
+                              <Text type="secondary">{user.email}</Text>
+                              {" · "}<Tag>{user.address.city}</Tag>
+                            </span>
+                          }
+                        />
+                      </List.Item>
+                    ))}
+                  </ul>
+                )}
               )}
             </div>
           </Card>
@@ -116,27 +120,27 @@ export default function UseTransitionMediumPage() {
         <Col xs={24} lg={8}>
           <Card
             title="State Split"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 12, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2.2 }}>
-              <div style={{ color: "#6b7280" }}>// Updates IMMEDIATELY (urgent):</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2.2 }}>
+              <div style={{ color: "#6a9955" }}>// Updates IMMEDIATELY (urgent):</div>
               <div>
-                <span style={{ color: "#7c3aed" }}>inputValue: </span>
-                <span style={{ color: "#fbbf24" }}>&quot;{inputValue}&quot;</span>
+                <span style={{ color: "#569cd6" }}>inputValue: </span>
+                <span style={{ color: "#ce9178" }}>&quot;{inputValue}&quot;</span>
               </div>
-              <div style={{ marginTop: 8, color: "#6b7280" }}>// Updates in TRANSITION (deferred):</div>
+              <div style={{ marginTop: 8, color: "#6a9955" }}>// Updates in TRANSITION (deferred):</div>
               <div>
-                <span style={{ color: "#7c3aed" }}>searchQuery: </span>
-                <span style={{ color: "#4ade80" }}>&quot;{searchQuery}&quot;</span>
-              </div>
-              <div>
-                <span style={{ color: "#7c3aed" }}>isPending: </span>
-                <span style={{ color: isPending ? "#f59e0b" : "#4ade80" }}>{String(isPending)}</span>
+                <span style={{ color: "#569cd6" }}>searchQuery: </span>
+                <span style={{ color: "#b5cea8" }}>&quot;{searchQuery}&quot;</span>
               </div>
               <div>
-                <span style={{ color: "#7c3aed" }}>results: </span>
-                <span style={{ color: "#e2e8f0" }}>{results.length}</span>
+                <span style={{ color: "#569cd6" }}>isPending: </span>
+                <span style={{ color: isPending ? "#dcdcaa" : "#b5cea8" }}>{String(isPending)}</span>
+              </div>
+              <div>
+                <span style={{ color: "#569cd6" }}>results: </span>
+                <span style={{ color: "#d4d4d4" }}>{results.length}</span>
               </div>
             </div>
           </Card>

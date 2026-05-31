@@ -105,7 +105,7 @@ function ProductList() {
   const { state, dispatch } = useCart();
   return (
     <Card title="Products" style={{ borderRadius: 12 }}>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space orientation="vertical" style={{ width: "100%" }}>
         {PRODUCTS.map((p) => {
           const inCart = state.items.find((i) => i.id === p.id);
           return (
@@ -210,7 +210,7 @@ function CartPanel() {
             <Divider style={{ margin: "8px 0" }} />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Text strong>Total:</Text>
-              <Text strong style={{ color: "#4f46e5" }}>${total.toFixed(2)}</Text>
+              <Text strong>${total.toFixed(2)}</Text>
             </div>
           </div>
 

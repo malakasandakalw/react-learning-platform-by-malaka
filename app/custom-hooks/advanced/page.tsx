@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 // Custom Hooks: Advanced
@@ -165,22 +166,22 @@ export default function CustomHooksAdvancedPage() {
         <Col xs={24} lg={7}>
           <Card
             title="Hook State"
-            style={{ borderRadius: 12, background: "#0f0f23", border: "none" }}
-            styles={{ header: { color: "#a5b4fc", borderBottom: "1px solid #1e1e3a" }, body: { padding: 16 } }}
+            style={{ borderRadius: 8, background: "#1e1e1e", border: "none" }}
+            styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 16 } }}
           >
-            <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 11, lineHeight: 2, color: "#e2e8f0" }}>
-              <div><span style={{ color: "#7c3aed" }}>page: </span><span style={{ color: "#fbbf24" }}>{page}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>loaded: </span><span style={{ color: "#4ade80" }}>{items.length}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>total: </span><span style={{ color: "#e2e8f0" }}>{total}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>hasMore: </span><span style={{ color: hasMore ? "#4ade80" : "#f87171" }}>{String(hasMore)}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>loading: </span><span style={{ color: loading ? "#f59e0b" : "#4ade80" }}>{String(loading)}</span></div>
-              <div><span style={{ color: "#7c3aed" }}>sentinel visible: </span><span style={{ color: isIntersecting ? "#4ade80" : "#6b7280" }}>{String(isIntersecting)}</span></div>
-              <div style={{ marginTop: 12, padding: "8px 10px", background: "#161630", borderRadius: 6, fontSize: 10 }}>
-                <div style={{ color: "#a5b4fc" }}>Flow:</div>
-                <div style={{ color: "#6b7280" }}>sentinel enters viewport</div>
-                <div style={{ color: "#6b7280" }}>→ isIntersecting = true</div>
-                <div style={{ color: "#6b7280" }}>→ loadMore() fires</div>
-                <div style={{ color: "#6b7280" }}>→ items append</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, lineHeight: 2, color: "#d4d4d4" }}>
+              <div><span style={{ color: "#569cd6" }}>page: </span><span style={{ color: "#b5cea8" }}>{page}</span></div>
+              <div><span style={{ color: "#569cd6" }}>loaded: </span><span style={{ color: "#b5cea8" }}>{items.length}</span></div>
+              <div><span style={{ color: "#569cd6" }}>total: </span><span style={{ color: "#d4d4d4" }}>{total}</span></div>
+              <div><span style={{ color: "#569cd6" }}>hasMore: </span><span style={{ color: hasMore ? "#b5cea8" : "#ce9178" }}>{String(hasMore)}</span></div>
+              <div><span style={{ color: "#569cd6" }}>loading: </span><span style={{ color: loading ? "#ce9178" : "#b5cea8" }}>{String(loading)}</span></div>
+              <div><span style={{ color: "#569cd6" }}>sentinel visible: </span><span style={{ color: isIntersecting ? "#b5cea8" : "#d4d4d4" }}>{String(isIntersecting)}</span></div>
+              <div style={{ marginTop: 12, padding: "8px 10px", background: "#2d2d2d", borderRadius: 6, fontSize: 10 }}>
+                <div style={{ color: "#dcdcaa" }}>Flow:</div>
+                <div style={{ color: "#d4d4d4" }}>sentinel enters viewport</div>
+                <div style={{ color: "#d4d4d4" }}>→ isIntersecting = true</div>
+                <div style={{ color: "#d4d4d4" }}>→ loadMore() fires</div>
+                <div style={{ color: "#d4d4d4" }}>→ items append</div>
               </div>
             </div>
           </Card>

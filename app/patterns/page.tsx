@@ -68,7 +68,7 @@ export default function PatternsIndexPage() {
     <div>
       <div style={{ marginBottom: 32 }}>
         <Title level={2} style={{ marginBottom: 8 }}>React Patterns</Title>
-        <Paragraph style={{ fontSize: 14, color: "rgba(0,0,0,0.55)", maxWidth: 600, margin: 0 }}>
+        <Paragraph style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", maxWidth: 600, margin: 0 }}>
           Architectural patterns that every React developer must know. These are not hooks.
           they are design patterns that solve recurring structural problems in React applications.
         </Paragraph>
@@ -84,19 +84,13 @@ export default function PatternsIndexPage() {
                 styles={{ body: { padding: 20 } }}
               >
                 <Text strong style={{ fontSize: 14, display: "block", marginBottom: 6 }}>{p.title}</Text>
-                <Paragraph style={{ fontSize: 12, color: "rgba(0,0,0,0.55)", marginBottom: 14 }}>
+                <Paragraph style={{ fontSize: 12, color: "rgba(0,0,0,0.65)", marginBottom: 14 }}>
                   {p.description}
                 </Paragraph>
-                <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 4 }}>
-                  <Text style={{ fontSize: 12 }}>
-                    <Text style={{ color: "#52c41a", fontSize: 12 }}>●</Text> {p.easy}
-                  </Text>
-                  <Text style={{ fontSize: 12 }}>
-                    <Text style={{ color: "#faad14", fontSize: 12 }}>●</Text> {p.medium}
-                  </Text>
-                  <Text style={{ fontSize: 12 }}>
-                    <Text style={{ color: "#ff4d4f", fontSize: 12 }}>●</Text> {p.advanced}
-                  </Text>
+                <div style={{ fontSize: 12, display: "flex", flexDirection: "column", gap: 4, color: "rgba(0,0,0,0.65)" }}>
+                  <span>{p.easy}</span>
+                  <span>{p.medium}</span>
+                  <span>{p.advanced}</span>
                 </div>
                 <div style={{ marginTop: 14, fontSize: 12, color: "#1677ff", display: "flex", alignItems: "center", gap: 4 }}>
                   Start <ArrowRightOutlined style={{ fontSize: 10 }} />

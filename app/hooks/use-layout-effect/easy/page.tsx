@@ -47,8 +47,8 @@ function BoxMeasure({ useLayout }: { useLayout: boolean }) {
       <div
         ref={ref}
         style={{
-          background: useLayout ? "#eef2ff" : "#fff7ed",
-          border: `2px solid ${useLayout ? "#4f46e5" : "#f59e0b"}`,
+          background: useLayout ? "#e6f4ff" : "#fff7ed",
+          border: `2px solid ${useLayout ? "#1677ff" : "#d9d9d9"}`,
           borderRadius: 8,
           padding: 20,
           marginBottom: 12,
@@ -60,8 +60,8 @@ function BoxMeasure({ useLayout }: { useLayout: boolean }) {
       >
         <Text style={{ fontSize: 12 }}>Resize me! (drag corner)</Text>
       </div>
-      <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12 }}>
-        <Tag color={useLayout ? "purple" : "orange"}>
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: 12 }}>
+        <Tag color={useLayout ? "blue" : "default"}>
           {useLayout ? "useLayoutEffect" : "useEffect"}
         </Tag>
         <span style={{ marginLeft: 8 }}>
@@ -95,7 +95,7 @@ function TimelineDemo() {
       <button
         onClick={runDemo}
         style={{
-          background: "#4f46e5",
+          background: "#1677ff",
           color: "#fff",
           border: "none",
           borderRadius: 8,
@@ -111,21 +111,21 @@ function TimelineDemo() {
         <div
           key={i}
           style={{
-            fontFamily: "var(--font-geist-mono)",
+            fontFamily: "var(--font-mono)",
             fontSize: 12,
             padding: "6px 10px",
             marginBottom: 4,
             borderRadius: 6,
             background:
               i === 2
-                ? "#eef2ff"
+                ? "#e6f4ff"
                 : i === 4
                 ? "#fff7ed"
                 : "#f8f9fc",
             borderLeft: `3px solid ${
-              i === 2 ? "#4f46e5" : i === 4 ? "#f59e0b" : "#e5e7eb"
+              i === 2 ? "#1677ff" : i === 4 ? "#d9d9d9" : "#e5e7eb"
             }`,
-            color: i === 2 ? "#4f46e5" : i === 4 ? "#f59e0b" : "#374151",
+            color: i === 2 ? "#1677ff" : i === 4 ? "rgba(0,0,0,0.65)" : "#374151",
           }}
         >
           {entry}
@@ -153,7 +153,7 @@ export default function UseLayoutEffectEasyPage() {
       <Alert
         type="warning"
         showIcon
-        message="Server rendering caveat"
+        title="Server rendering caveat"
         description="useLayoutEffect does not run on the server. For SSR-safe code, use useEffect for non-visual side effects and useLayoutEffect only for client-side DOM work."
         style={{ marginBottom: 24, borderRadius: 8 }}
       />
@@ -170,15 +170,15 @@ export default function UseLayoutEffectEasyPage() {
       </Row>
 
       <Card
-        style={{ marginTop: 24, borderRadius: 12, background: "#0f0f23", border: "none" }}
-        styles={{ body: { padding: 20 } }}
+        style={{ marginTop: 24, borderRadius: 12, background: "#1e1e1e", border: "none" }}
+        styles={{ header: { background: "#1e1e1e", color: "#d4d4d4", borderBottom: "1px solid #333" }, body: { padding: 20 } }}
       >
-        <div style={{ fontFamily: "var(--font-geist-mono)", fontSize: 12, lineHeight: 2, color: "#e2e8f0" }}>
-          <div style={{ color: "#7c3aed" }}>// useEffect (most cases)</div>
-          <div>useEffect({"() => { fetchData(); }"}, [])  <span style={{ color: "#6b7280" }}>← runs after paint</span></div>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, lineHeight: 2, color: "#d4d4d4" }}>
+          <div style={{ color: "#569cd6" }}>// useEffect (most cases)</div>
+          <div>useEffect({"() => { fetchData(); }"}, [])  <span style={{ color: "#6a9955" }}>← runs after paint</span></div>
           <br />
-          <div style={{ color: "#7c3aed" }}>// useLayoutEffect (DOM measurement/mutation)</div>
-          <div>useLayoutEffect({"() => { measureDOM(); }"}, [])  <span style={{ color: "#4ade80" }}>← runs before paint</span></div>
+          <div style={{ color: "#569cd6" }}>// useLayoutEffect (DOM measurement/mutation)</div>
+          <div>useLayoutEffect({"() => { measureDOM(); }"}, [])  <span style={{ color: "#6a9955" }}>← runs before paint</span></div>
         </div>
       </Card>
 

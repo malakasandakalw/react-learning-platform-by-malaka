@@ -14,7 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           token: {
             colorPrimary: "#1677ff",
             borderRadius: 6,
-            fontFamily: "var(--font-geist-sans), sans-serif",
+            fontFamily: "var(--font-sans), sans-serif",
           },
           components: {
             Layout: {

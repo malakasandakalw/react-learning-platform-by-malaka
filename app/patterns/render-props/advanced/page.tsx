@@ -86,8 +86,8 @@ export default function RenderPropsAdvancedPage() {
               style={{
                 height: 180,
                 borderRadius: 8,
-                background: "#f8f9fc",
-                border: "2px dashed #e5e7eb",
+                background: "#f5f5f5",
+                border: "2px dashed #d9d9d9",
                 cursor: "crosshair",
                 position: "relative",
                 overflow: "hidden",
@@ -100,10 +100,10 @@ export default function RenderPropsAdvancedPage() {
                   <div style={{ textAlign: "center", pointerEvents: "none" }}>
                     <div
                       style={{
-                        fontFamily: "var(--font-geist-mono)",
+                        fontFamily: "var(--font-mono)",
                         fontSize: 28,
                         fontWeight: 700,
-                        color: "#4f46e5",
+                        color: "#1677ff",
                       }}
                     >
                       ({x}, {y})
@@ -120,7 +120,7 @@ export default function RenderPropsAdvancedPage() {
                       width: 12,
                       height: 12,
                       borderRadius: "50%",
-                      background: "#4f46e5",
+                      background: "#1677ff",
                       transform: "translate(-50%, -50%)",
                       pointerEvents: "none",
                       transition: "left 0.03s, top 0.03s",
@@ -142,7 +142,7 @@ export default function RenderPropsAdvancedPage() {
               style={{
                 height: 180,
                 borderRadius: 8,
-                border: "2px dashed #e5e7eb",
+                border: "2px dashed #d9d9d9",
                 cursor: "crosshair",
                 overflow: "hidden",
               }}
@@ -164,7 +164,7 @@ export default function RenderPropsAdvancedPage() {
                     <div style={{ textAlign: "center" }}>
                       <div
                         style={{
-                          fontFamily: "var(--font-geist-mono)",
+                          fontFamily: "var(--font-mono)",
                           fontWeight: 700,
                           color: "#fff",
                           textShadow: "0 1px 3px rgba(0,0,0,0.4)",
@@ -211,8 +211,8 @@ export default function RenderPropsAdvancedPage() {
                     style={{
                       height: 130,
                       borderRadius: 8,
-                      background: on ? "#f0fdf4" : "#f9fafb",
-                      border: `2px dashed ${on ? "#86efac" : "#e5e7eb"}`,
+                      background: on ? "#f0f0f0" : "#f9fafb",
+                      border: `2px dashed ${on ? "#d9d9d9" : "#e5e7eb"}`,
                       cursor: on ? "crosshair" : "not-allowed",
                       transition: "all 0.2s",
                       padding: 16,
@@ -222,7 +222,7 @@ export default function RenderPropsAdvancedPage() {
                       <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
                         <div
                           style={{
-                            fontFamily: "var(--font-geist-mono)",
+                            fontFamily: "var(--font-mono)",
                             display: "flex",
                             flexDirection: "column",
                             gap: 6,
@@ -247,12 +247,12 @@ export default function RenderPropsAdvancedPage() {
                               position: "absolute",
                               left: Math.max(120, Math.min(x, 580)),
                               top: Math.max(8, Math.min(y, 100)),
-                              background: "#16a34a",
+                              background: "#1677ff",
                               color: "#fff",
                               padding: "2px 8px",
                               borderRadius: 4,
                               fontSize: 11,
-                              fontFamily: "var(--font-geist-mono)",
+                              fontFamily: "var(--font-mono)",
                               pointerEvents: "none",
                               whiteSpace: "nowrap",
                             }}
@@ -271,15 +271,15 @@ export default function RenderPropsAdvancedPage() {
               style={{
                 marginTop: 16,
                 padding: "12px 16px",
-                background: "#0f0f23",
+                background: "#1e1e1e",
                 borderRadius: 8,
-                fontFamily: "var(--font-geist-mono)",
+                fontFamily: "var(--font-mono)",
                 fontSize: 11,
                 lineHeight: 1.9,
-                color: "#e2e8f0",
+                color: "#d4d4d4",
               }}
             >
-              <div style={{ color: "#7c3aed" }}>
+              <div style={{ color: "#6a9955" }}>
                 {"// Nesting render prop providers: each adds its state:"}
               </div>
               <div>
@@ -288,7 +288,7 @@ export default function RenderPropsAdvancedPage() {
               <div style={{ paddingLeft: 16 }}>
                 {"<MouseTracker render={({ x, y }) => ("}
               </div>
-              <div style={{ paddingLeft: 32, color: "#fbbf24" }}>
+              <div style={{ paddingLeft: 32, color: "#ce9178" }}>
                 {"// on, toggle, x, y all available here"}
               </div>
               <div style={{ paddingLeft: 16 }}>{")}>"}  </div>

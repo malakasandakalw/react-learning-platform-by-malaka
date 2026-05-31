@@ -1,6 +1,7 @@
 "use client";
 
-import { Alert, Card, Tag, Typography } from "antd";
+import { useState } from "react";
+import { Alert, Collapse, Tag, Typography } from "antd";
 import Link from "next/link";
 
 const { Title, Paragraph, Text } = Typography;
@@ -729,35 +730,24 @@ const VERDICT_LABEL: Record<Verdict, string> = {
   avoid: "Don't default to",
 };
 
-// ─── GuideCard component ──────────────────────────────────────────────────────
-function GuideCard({ entry }: { entry: GuideEntry }) {
+// ─── Panel body ───────────────────────────────────────────────────────────────
+function EntryBody({ entry }: { entry: GuideEntry }) {
   return (
-    <Card styles={{ body: { padding: "20px 24px" } }}>
-      {/* Situation heading */}
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-          <Text type="secondary" style={{ fontSize: 11 }}>{entry.id}.</Text>
-          <Tag>{entry.tag}</Tag>
-        </div>
-        <Title level={4} style={{ margin: "0 0 8px", lineHeight: 1.4 }}>
-          {entry.situation}
-        </Title>
-        <Paragraph style={{ margin: 0, fontSize: 13, color: "rgba(0,0,0,0.55)", lineHeight: 1.75 }}>
-          {entry.context}
-        </Paragraph>
-      </div>
+    <div>
+      <Paragraph style={{ margin: "0 0 16px", fontSize: 13, color: "rgba(0,0,0,0.65)", lineHeight: 1.75 }}>
+        {entry.context}
+      </Paragraph>
 
-      {/* Decisions: Ant Design Alert for each */}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: entry.callout ? 12 : 0 }}>
         {entry.decisions.map((d, i) => (
           <Alert
             key={i}
             type={VERDICT_ALERT_TYPE[d.verdict]}
             showIcon
-            message={
+            title={
               <span>
                 <Text strong style={{ fontSize: 13 }}>{VERDICT_LABEL[d.verdict]}: </Text>
-                <Text style={{ fontSize: 13, fontFamily: "var(--font-geist-mono)" }}>{d.concept}</Text>
+                <Text style={{ fontSize: 13, fontFamily: "var(--font-mono)" }}>{d.concept}</Text>
               </span>
             }
             description={<Text style={{ fontSize: 13 }}>{d.reason}</Text>}
@@ -765,70 +755,99 @@ function GuideCard({ entry }: { entry: GuideEntry }) {
         ))}
       </div>
 
-      {/* Callout */}
       {entry.callout && (
         <Alert
           type="info"
           showIcon
-          message={<Text style={{ fontSize: 13 }}>{entry.callout}</Text>}
-          style={{ marginBottom: 0 }}
+          title={<Text style={{ fontSize: 13 }}>{entry.callout}</Text>}
         />
       )}
 
-      {/* Links */}
       {entry.links.length > 0 && (
         <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
           <Text type="secondary" style={{ fontSize: 12 }}>See it in practice:</Text>
           {entry.links.map((link) => (
             <Link key={link.path} href={link.path} style={{ textDecoration: "none" }}>
-              <Text
-                style={{
-                  fontSize: 12,
-                  color: "#1677ff",
-                  fontFamily: "var(--font-geist-mono)",
-                  cursor: "pointer",
-                }}
-              >
+              <Text style={{ fontSize: 12, color: "#1677ff", fontFamily: "var(--font-mono)", cursor: "pointer" }}>
                 {link.label} →
               </Text>
             </Link>
           ))}
         </div>
       )}
-    </Card>
+    </div>
   );
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function DecisionGuidePage() {
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+
+  const allTags = Array.from(new Set(GUIDE.map((e) => e.tag)));
+  const filtered = activeTag ? GUIDE.filter((e) => e.tag === activeTag) : GUIDE;
+
+  const collapseItems = filtered.map((entry) => ({
+    key: String(entry.id),
+    label: (
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <Text type="secondary" style={{ fontSize: 11, minWidth: 18 }}>{entry.id}.</Text>
+        <Tag color={entry.tagColor} style={{ margin: 0 }}>{entry.tag}</Tag>
+        <Text strong style={{ fontSize: 13, lineHeight: 1.4 }}>{entry.situation}</Text>
+      </div>
+    ),
+    children: <EntryBody entry={entry} />,
+  }));
+
   return (
     <div>
-      <div style={{ marginBottom: 32 }}>
+      <div style={{ marginBottom: 24 }}>
         <Title level={2} style={{ marginBottom: 8 }}>When to use what?</Title>
-        <Paragraph style={{ fontSize: 14, color: "rgba(0,0,0,0.55)", maxWidth: 640, margin: "0 0 16px" }}>
+        <Paragraph style={{ fontSize: 14, color: "rgba(0,0,0,0.65)", margin: "0 0 16px" }}>
           Organized around the <strong>situation you are in</strong>, not the API name.
-          because when you are confused, you rarely know the name of what you need.
+          When you are confused, you rarely know the name of what you need.
           Each entry describes a real scenario, then explains which React tool to reach for and which to avoid.
         </Paragraph>
         <Alert
           type="warning"
           showIcon
-          style={{ maxWidth: 640 }}
-          message="Read the situation title first. If it does not match what you are facing, skip it. Wrong-situation advice is worse than no advice."
+          title="Read the situation title first. If it does not match what you are facing, skip it. Wrong-situation advice is worse than no advice."
         />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 860 }}>
-        {GUIDE.map((entry) => (
-          <GuideCard key={entry.id} entry={entry} />
-        ))}
+      {/* Tag filter */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+        <Tag
+          onClick={() => setActiveTag(null)}
+          style={{ cursor: "pointer", padding: "4px 12px", fontSize: 12, borderRadius: 20, fontWeight: activeTag === null ? 600 : 400, background: activeTag === null ? "#1677ff" : undefined, color: activeTag === null ? "#fff" : undefined, borderColor: activeTag === null ? "#1677ff" : undefined }}
+        >
+          All ({GUIDE.length})
+        </Tag>
+        {allTags.map((tag) => {
+          const entry = GUIDE.find((e) => e.tag === tag)!;
+          const isActive = activeTag === tag;
+          return (
+            <Tag
+              key={tag}
+              onClick={() => setActiveTag(isActive ? null : tag)}
+              style={{ cursor: "pointer", padding: "4px 12px", fontSize: 12, borderRadius: 20, fontWeight: isActive ? 600 : 400, background: isActive ? entry.tagColor : undefined, color: isActive ? "#fff" : undefined, borderColor: isActive ? entry.tagColor : undefined }}
+            >
+              {tag}
+            </Tag>
+          );
+        })}
       </div>
 
-      <div style={{ maxWidth: 860, marginTop: 32 }}>
+      <Collapse
+        items={collapseItems}
+        accordion={false}
+        style={{ background: "#fff" }}
+      />
+
+      <div style={{ marginTop: 24 }}>
         <Alert
           type="info"
           showIcon
-          message="These are not absolute rules."
+          title="These are not absolute rules."
           description="React gives you many tools that overlap by design. The decisions above describe the common case. Your specific constraints such as team conventions, library choices, and performance requirements may justify a different call. Understanding why a tool is recommended is more valuable than memorizing which one wins."
         />
       </div>
