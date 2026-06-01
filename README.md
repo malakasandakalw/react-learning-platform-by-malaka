@@ -1,5 +1,7 @@
 # React Learning Hub by Malaka
 
+[Visit Official Website](https://react-learning-hub-by-malaka.netlify.app/)
+
 A structured, code-first learning platform for modern React development. Built to help frontend teams understand React hooks, state management patterns, and architectural patterns through working, interactive examples.
 
 Each concept is broken into three difficulty levels — **Easy**, **Medium**, and **Advanced** — so learners can progress at their own pace without switching platforms.
